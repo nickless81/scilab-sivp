@@ -1,0 +1,43 @@
+     SIVP - Scilab Image and Video Processing toolbox 
+      =============================================================
+
+
+ABOUT SIVP:
+==========================
+
+This is the first release for SIVP (version 0.0.1).
+
+SIVP stands for Scilab Image and Video Processing toolbox. SIVP intends to do image processing and video processing tasks. SIVP is meant to be a useful, efficient, and free image and video processing toolbox for Scilab.
+
+LICENSING:
+==========================
+SIVP is licensed under the GNU General Public License (GPL).
+
+
+WHAT'S NEW:
+==========================
+
+Only 3 functions are implemented. There are:
+
+sivp_formats: show all supported image formats and video codec;
+
+info=vdofinfo('video file name'): return the video file information;
+
+img=imgread('image file name'): read the image file and return the image data to a matrix.(3D matrix for true color image)
+
+
+
+HOW TO INSTALL:
+==========================
+To run this toolbox, you need Scilab 3.1 rc1 or higher, and ffmpeg 0.4.9 pre1 or higher.
+
+1. Compile:
+	Run exec('builder.sce') in scilab.
+
+2. Install:
+	Copy the directory named "SIVP" which contains all source files and binary files to SCILAB_HOME/contrib/.
+	Lunch scilab again, and a menu item "sivp" will apprear in scilab menu "toolbox".
+
+AUTHOR:
+==========================
+	Shiqi Yu (shiqi.yu(at}mail.ia.ac.cn)
