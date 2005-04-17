@@ -29,17 +29,23 @@ Create3DIntMat(int nPos, int nRow, int nCol, int nCh, void* pData, int nType)
     IC_INT32(Dims.D)[2] = nCh;
 
   //create SciIntMat for the image data
-  IntData.m = nRow * nCol *nCh;
-  IntData.n = 1;
+  IntData.m = nRow;
+  IntData.n =  nCol *nCh;
   IntData.l = -1; /* dimensions matrix not in scilab stack */
   IntData.it = nType;
   IntData.D = pData;
 
-
-  CreateVar(nPos,"m", &mL, &nL, &lL);
-  CreateListVarFromPtr(nPos,1,"S", &m1, &n1, Str);
-  CreateListVarFromPtr(nPos,2,"I",&(Dims.m), &(Dims.n), &Dims); 
-  CreateListVarFromPtr(nPos,3,"I",&(IntData.m), &(IntData.n), &IntData ); 
+  if(Dims.n == 2)
+    {
+      CreateVarFromPtr(nPos,"I",&(IntData.m), &(IntData.n), &IntData ); 
+    }
+  else
+    {
+      CreateVar(nPos,"m", &mL, &nL, &lL);
+      CreateListVarFromPtr(nPos,1,"S", &m1, &n1, Str);
+      CreateListVarFromPtr(nPos,2,"I",&(Dims.m), &(Dims.n), &Dims); 
+      CreateListVarFromPtr(nPos,3,"I",&(IntData.m), &(IntData.n), &IntData ); 
+    }
 
 
 /*   free memory */
