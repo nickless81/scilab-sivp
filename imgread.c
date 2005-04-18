@@ -86,9 +86,12 @@ AVImageInfo* imgread(char *fname, char * filename)
       pinfo->pix_fmt =  dst_pix_fmt;
     }
 
+  url_fclose(f);
   return pinfo;
 
  ERROR_TAG:
+  
+  url_fclose(f);
   avpicture_free(&(pinfo->pict));
   free(pinfo);
   return NULL;
