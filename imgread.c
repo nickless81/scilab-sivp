@@ -22,7 +22,7 @@ static int read_image_data_alloc_cb(void *opaque, AVImageInfo *info)
 }
 
 
-AVImageInfo* imgread(char *fname, char * filename)
+AVImageInfo* imgread(char * filename)
 {
   //  char buf[320*240*3+1024];
   AVPicture ImageRGBorGRAY, *pImageRGBorGRAY=&ImageRGBorGRAY;
@@ -99,7 +99,7 @@ AVImageInfo* imgread(char *fname, char * filename)
 
 int int_imgread(char *fname)
 {
-  int minlhs=1, minrhs=1, maxlhs=3, maxrhs=1;
+  int minlhs=1, minrhs=1, maxlhs=1, maxrhs=1;
   int mL, nL, lL;
   int mR, nR, lR;
 
@@ -112,7 +112,7 @@ int int_imgread(char *fname)
 
   GetRhsVar(1, "c", &mL, &nL, &lL);
 
-  pInfo = imgread(fname, cstk(lL));
+  pInfo = imgread(cstk(lL));
 
   if(!pInfo) //read file error
     {
