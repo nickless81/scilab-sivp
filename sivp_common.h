@@ -40,7 +40,8 @@ extern "C" {
   void rgbimg2mat(unsigned char* pSrc, unsigned char * pDst, int nWidth, int nHeight);
   void grayimg2mat(unsigned char* pSrc, unsigned char * pDst, int nWidth, int nHeight);
   void img2mat(unsigned char* pSrc, unsigned char * pDst, int nWidth, int nHeight, int nCh);
-
+  void mat2img(unsigned char * pMat, unsigned char *pImg, int nWidth, int nHeight, int nCh);
+       
 
 #ifdef __cplusplus
 }

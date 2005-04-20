@@ -4,5 +4,6 @@ sivp_path=get_file_path('loader.sce');
 functions=[ 'vdofinfo';
             'sivp_formats';
             'imgread';
+            'int_imgwrite';
 ];
 addinter(sivp_path+'/sivp.so','sivp',functions);
