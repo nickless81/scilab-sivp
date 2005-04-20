@@ -4,7 +4,7 @@ files=[	"sivp_common.o";
 	"vdofinfo.o"; 
 	"sivp_formats.o";
 	"imgread.o";
-	"imgwrite.o"];
+	"int_imgwrite.o"];
 
 
 libs = [];
