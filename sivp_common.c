@@ -1,6 +1,5 @@
 #include"sivp_common.h"
 
-
 BOOL 
 Create3DIntMat(int nPos, int nRow, int nCol, int nCh, void* pData, int nType)
 {

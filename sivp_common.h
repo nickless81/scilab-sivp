@@ -13,6 +13,7 @@ extern "C" {
 
 #define TRUE 1
 #define FALSE 0
+#define MAX_VDO_FILE_NUM 32
 
   typedef int BOOL;
 
@@ -32,8 +33,7 @@ extern "C" {
     char copyright [512];
     char comment [512];
     char log[512];// error message
-  }VDOFInfo;
-
+  }VdoFInfo;
 
   BOOL Create3DIntMat(int nPos, int nRow, int nCol, int nCh, void* pData, int nType);
   //int vdofinfo(char * filename, VDOFInfo * finfo);

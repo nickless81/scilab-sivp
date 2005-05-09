@@ -1,10 +1,5 @@
 #include "sivp_common.h"
 
-BOOL
-conver_image(AVImageInfo * pSrc, AVImageInfo * pDst)
-{
-  
-}
 
 int int_imgwrite(char *fname)
 {

@@ -4,7 +4,8 @@ files=[	"sivp_common.o";
 	"vdofinfo.o"; 
 	"sivp_formats.o";
 	"imgread.o";
-	"int_imgwrite.o"];
+	"int_imgwrite.o";
+	"vdoread.o"];
 
 
 libs = [];
@@ -13,7 +14,12 @@ libs = [];
 table = ["vdofinfo", "int_vdofinfo"; 
 	"sivp_formats", "int_sivp_formats";
 	"imgread", "int_imgread";
-	"int_imgwrite", "int_imgwrite"];
+	"int_imgwrite", "int_imgwrite";
+	"vdoopen", "int_vdoopen";
+	"vdoclose", "int_vdoclose";
+	"vdocloseall", "int_vdocloseall";
+	"vdoshowopened", "int_vdoshowopened";
+	"vdogetframe", "int_vdogetframe" ];
 
 
 ldflags = "-lavformat -lavcodec -lz";

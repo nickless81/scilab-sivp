@@ -63,7 +63,7 @@ get_codec_name (char *name, AVCodecContext * enc, int encode)
  * Read video information from file
  **************************************************/
 int
-vdofinfo (char *filename, VDOFInfo * finfo)
+vdofinfo (char *filename, VdoFInfo * finfo)
 {
   AVFormatContext *pFormatCtx = NULL;
   int i, videoStream;
@@ -189,7 +189,7 @@ int_vdofinfo(char * fname)
   int m1,n1, l1; //for input
   int mL=14,nL=1, lL; //for output
 
-  VDOFInfo Info;
+  VdoFInfo Info;
   int minlhs=1, minrhs=1, maxlhs=1, maxrhs=1;
   
 
