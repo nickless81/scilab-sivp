@@ -2,5 +2,5 @@
 
 int sivptest(char * fname)
 {
-  Sciprintf("This is a test.\n");
+  sciprint("This is a test.\n");
 }
