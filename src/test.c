@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <cv.h>
+#include <stack-c.h>
 
-int sivptest(char * fname)
+int viptest(char * fname)
 {
-  sciprint("This is a test.\n");
+  sciprint("%s: This is a test.\n", fname);
 }
