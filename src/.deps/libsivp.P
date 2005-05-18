@@ -1,0 +1,64 @@
+libsivp.lo libsivp.o : libsivp.c /usr/lib/scilab-3.1-rc1/routines/mex.h \
+  /usr/lib/scilab-3.1-rc1/routines/stack-c.h \
+  /usr/lib/scilab-3.1-rc1/routines/graphics/Math.h \
+  /usr/lib/scilab-3.1-rc1/routines/machine.h /usr/include/stdlib.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i486-linux/3.3.6/include/stddef.h \
+  /usr/include/sys/types.h /usr/include/bits/types.h \
+  /usr/include/bits/wordsize.h /usr/include/bits/typesizes.h \
+  /usr/include/time.h /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/select.h /usr/include/bits/select.h \
+  /usr/include/bits/sigset.h /usr/include/bits/time.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/values.h \
+  /usr/lib/gcc-lib/i486-linux/3.3.6/include/limits.h \
+  /usr/lib/gcc-lib/i486-linux/3.3.6/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h \
+  /usr/lib/gcc-lib/i486-linux/3.3.6/include/float.h \
+  /usr/lib/scilab-3.1-rc1/routines/graphics/Graphics.h \
+  /usr/lib/scilab-3.1-rc1/routines/stack-def.h \
+  /usr/lib/scilab-3.1-rc1/routines/interf/stack1.h \
+  /usr/lib/scilab-3.1-rc1/routines/interf/stack2.h \
+  /usr/lib/scilab-3.1-rc1/routines/interf/stack3.h
+libsivp.c :
+/usr/lib/scilab-3.1-rc1/routines/mex.h :
+/usr/lib/scilab-3.1-rc1/routines/stack-c.h :
+/usr/lib/scilab-3.1-rc1/routines/graphics/Math.h :
+/usr/lib/scilab-3.1-rc1/routines/machine.h :
+/usr/include/stdlib.h :
+/usr/include/features.h :
+/usr/include/sys/cdefs.h :
+/usr/include/gnu/stubs.h :
+/usr/lib/gcc-lib/i486-linux/3.3.6/include/stddef.h :
+/usr/include/sys/types.h :
+/usr/include/bits/types.h :
+/usr/include/bits/wordsize.h :
+/usr/include/bits/typesizes.h :
+/usr/include/time.h :
+/usr/include/endian.h :
+/usr/include/bits/endian.h :
+/usr/include/sys/select.h :
+/usr/include/bits/select.h :
+/usr/include/bits/sigset.h :
+/usr/include/bits/time.h :
+/usr/include/sys/sysmacros.h :
+/usr/include/bits/pthreadtypes.h :
+/usr/include/bits/sched.h :
+/usr/include/alloca.h :
+/usr/include/values.h :
+/usr/lib/gcc-lib/i486-linux/3.3.6/include/limits.h :
+/usr/lib/gcc-lib/i486-linux/3.3.6/include/syslimits.h :
+/usr/include/limits.h :
+/usr/include/bits/posix1_lim.h :
+/usr/include/bits/local_lim.h :
+/usr/include/linux/limits.h :
+/usr/include/bits/posix2_lim.h :
+/usr/lib/gcc-lib/i486-linux/3.3.6/include/float.h :
+/usr/lib/scilab-3.1-rc1/routines/graphics/Graphics.h :
+/usr/lib/scilab-3.1-rc1/routines/stack-def.h :
+/usr/lib/scilab-3.1-rc1/routines/interf/stack1.h :
+/usr/lib/scilab-3.1-rc1/routines/interf/stack2.h :
+/usr/lib/scilab-3.1-rc1/routines/interf/stack3.h :

@@ -1,0 +1,16 @@
+libdir=@TOOLBOXDIR@/lib
+
+lib_LTLIBRARIES = libsivp.la
+
+AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
+
+libsivp_la_SOURCES = test.c libsivp.c 
+
+libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release @PACKAGE_VERSION@
+
+libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
+
+
+libsivp.c: ilib_gen_gateway.sce
+	scilab -nw < ilib_gen_gateway.sce
+
