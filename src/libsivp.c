@@ -1,8 +1,10 @@
 #include <mex.h> 
 static int direct_gateway(char *fname,void F(void)) { F();return 0;};
-extern Gatefunc viptest;
+extern Gatefunc int_test;
+extern Gatefunc int_canny;
 static GenericTable Tab[]={
-  {(Myinterfun)sci_gateway,viptest,"viptest"},
+  {(Myinterfun)sci_gateway,int_test,"sivptest"},
+  {(Myinterfun)sci_gateway,int_canny,"canny"},
 };
  
 int C2F(libsivp)()

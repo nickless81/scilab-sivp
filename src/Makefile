@@ -59,11 +59,11 @@ POST_UNINSTALL = :
 host_alias = 
 host_triplet = i686-pc-linux-gnu
 AR = ar
-AS = as
+AS = @AS@
 CC = gcc
 CXX = g++
 CXXCPP = g++ -E
-DLLTOOL = dlltool
+DLLTOOL = @DLLTOOL@
 ECHO = echo
 EGREP = grep -E
 EXEEXT = 
@@ -72,13 +72,11 @@ GCJ = @GCJ@
 GCJFLAGS = @GCJFLAGS@
 HAVE_LIB = @HAVE_LIB@
 LIB = @LIB@
-LIBRARY_EXTRA_CPPFLAGS = 
-LIBRARY_EXTRA_LIBS = 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LN_S = ln -s
 LTLIB = @LTLIB@
 MAKEINFO = makeinfo
-OBJDUMP = objdump
+OBJDUMP = @OBJDUMP@
 OBJEXT = o
 PACKAGE = sivp
 PKG_CONFIG = /usr/bin/pkg-config
@@ -87,26 +85,26 @@ RC = @RC@
 SCIDIR = /usr/lib/scilab-3.1-rc1
 STRIP = strip
 TOOLBOXDIR = /usr/lib/scilab-3.1-rc1/contrib/sivp
-TOOLBOX_FUNCTIONS = 'viptest'; 		   
+TOOLBOX_FUNCTIONS =     'sivptest'; 		       'canny'; 		   
+TOOLBOX_SRC = 
+TOOLBOX_TABLE = 	'sivptest', 'int_test'; 		'canny', 'int_canny'; 		
 VERSION = cvs
-has_sablotron = 
 has_scilab = yes
-has_xsltproc = yes
 
 libdir = /usr/lib/scilab-3.1-rc1/contrib/sivp/lib
 
 lib_LTLIBRARIES = libsivp.la
 
-AM_CPPFLAGS = 
+AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
 
-libsivp_la_SOURCES = test.c libsivp.c 
+libsivp_la_SOURCES = libsivp.c test.c canny.c
 
 libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release cvs
 
-libsivp_la_LIBADD = 
+libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = config.h
-CONFIG_CLEAN_FILES = 
+CONFIG_CLEAN_FILES =  ilib_gen_gateway.sce
 LTLIBRARIES =  $(lib_LTLIBRARIES)
 
 
@@ -115,20 +113,21 @@ CPPFLAGS =  -I/usr/lib/scilab-3.1-rc1/routines
 LDFLAGS = 
 LIBS =  -L/usr/local/lib -lcxcore -lcv -lhighgui -lcvaux   -lavcodec -lavformat
 libsivp_la_DEPENDENCIES = 
-libsivp_la_OBJECTS =  test.lo libsivp.lo
+libsivp_la_OBJECTS =  libsivp.lo test.lo canny.lo
 CFLAGS = -g -O2 -I/usr/local/include/opencv  
 COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(LIBTOOL) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(LDFLAGS) -o $@
-DIST_COMMON =  ./stamp-h.in Makefile.am Makefile.in config.h.in
+DIST_COMMON =  ./stamp-h.in Makefile.am Makefile.in config.h.in \
+ilib_gen_gateway.sce.in
 
 
 DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
 
 TAR = tar
 GZIP_ENV = --best
-DEP_FILES =  .deps/libsivp.P .deps/test.P
+DEP_FILES =  .deps/canny.P .deps/libsivp.P .deps/test.P
 SOURCES = $(libsivp_la_SOURCES)
 OBJECTS = $(libsivp_la_OBJECTS)
 
@@ -170,6 +169,8 @@ distclean-hdr:
 	-rm -f config.h
 
 maintainer-clean-hdr:
+ilib_gen_gateway.sce: $(top_builddir)/config.status ilib_gen_gateway.sce.in
+	cd $(top_builddir) && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= $(SHELL) ./config.status
 
 mostlyclean-libLTLIBRARIES:
 
@@ -402,7 +403,7 @@ maintainer-clean-generic clean mostlyclean distclean maintainer-clean
 
 
 libsivp.c: ilib_gen_gateway.sce
-	scilab -nw < ilib_gen_gateway.sce
+	scilab -nw -f ilib_gen_gateway.sce
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

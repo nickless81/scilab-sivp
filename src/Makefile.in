@@ -72,8 +72,6 @@ GCJ = @GCJ@
 GCJFLAGS = @GCJFLAGS@
 HAVE_LIB = @HAVE_LIB@
 LIB = @LIB@
-LIBRARY_EXTRA_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
-LIBRARY_EXTRA_LIBS = @LIBRARY_EXTRA_LIBS@
 LIBTOOL = @LIBTOOL@
 LN_S = @LN_S@
 LTLIB = @LTLIB@
@@ -88,10 +86,10 @@ SCIDIR = @SCIDIR@
 STRIP = @STRIP@
 TOOLBOXDIR = @TOOLBOXDIR@
 TOOLBOX_FUNCTIONS = @TOOLBOX_FUNCTIONS@
+TOOLBOX_SRC = @TOOLBOX_SRC@
+TOOLBOX_TABLE = @TOOLBOX_TABLE@
 VERSION = @VERSION@
-has_sablotron = @has_sablotron@
 has_scilab = @has_scilab@
-has_xsltproc = @has_xsltproc@
 
 libdir = @TOOLBOXDIR@/lib
 
@@ -99,14 +97,14 @@ lib_LTLIBRARIES = libsivp.la
 
 AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
 
-libsivp_la_SOURCES = test.c libsivp.c 
+libsivp_la_SOURCES = libsivp.c test.c canny.c
 
 libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release @PACKAGE_VERSION@
 
 libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = config.h
-CONFIG_CLEAN_FILES = 
+CONFIG_CLEAN_FILES =  ilib_gen_gateway.sce
 LTLIBRARIES =  $(lib_LTLIBRARIES)
 
 
@@ -115,20 +113,21 @@ CPPFLAGS = @CPPFLAGS@
 LDFLAGS = @LDFLAGS@
 LIBS = @LIBS@
 libsivp_la_DEPENDENCIES = 
-libsivp_la_OBJECTS =  test.lo libsivp.lo
+libsivp_la_OBJECTS =  libsivp.lo test.lo canny.lo
 CFLAGS = @CFLAGS@
 COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(LIBTOOL) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(LDFLAGS) -o $@
-DIST_COMMON =  ./stamp-h.in Makefile.am Makefile.in config.h.in
+DIST_COMMON =  ./stamp-h.in Makefile.am Makefile.in config.h.in \
+ilib_gen_gateway.sce.in
 
 
 DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
 
 TAR = tar
 GZIP_ENV = --best
-DEP_FILES =  .deps/libsivp.P .deps/test.P
+DEP_FILES =  .deps/canny.P .deps/libsivp.P .deps/test.P
 SOURCES = $(libsivp_la_SOURCES)
 OBJECTS = $(libsivp_la_OBJECTS)
 
@@ -170,6 +169,8 @@ distclean-hdr:
 	-rm -f config.h
 
 maintainer-clean-hdr:
+ilib_gen_gateway.sce: $(top_builddir)/config.status ilib_gen_gateway.sce.in
+	cd $(top_builddir) && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= $(SHELL) ./config.status
 
 mostlyclean-libLTLIBRARIES:
 
@@ -402,7 +403,7 @@ maintainer-clean-generic clean mostlyclean distclean maintainer-clean
 
 
 libsivp.c: ilib_gen_gateway.sce
-	scilab -nw < ilib_gen_gateway.sce
+	scilab -nw -f ilib_gen_gateway.sce
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
