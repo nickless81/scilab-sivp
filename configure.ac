@@ -12,7 +12,7 @@ AM_INIT_AUTOMAKE([sivp], [cvs] )
 # Checks for programs.
 AC_PROG_CC
 
-AC_LIBTOOL_WIN32_DLL
+# AC_LIBTOOL_WIN32_DLL
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
@@ -24,35 +24,35 @@ then
 fi
 
 
-#
-# Tests for windows
-#
-native_win32_build='no'
-cygwin_build='no'
-case $host_os in
-  cygwin*) 
-      cygwin_build='yes'
-      ;;
-  mingw* )
-      native_win32_build='yes' 
-      ;;
-esac
+##
+## Tests for windows
+##
+# native_win32_build='no'
+# cygwin_build='no'
+# case $host_os in
+#   cygwin*) 
+#       cygwin_build='yes'
+#       ;;
+#   mingw* )
+#       native_win32_build='yes' 
+#       ;;
+# esac
 
 
-# checks for xsltproc (to buld HTML help pages)
-AC_CHECK_PROG([has_xsltproc],[xsltproc],[yes],[no], , )
-if test x$has_xsltproc = xno; then
-   # checks for sabcmd as an alternative
-   AC_CHECK_PROG([has_sablotron],[sabcmd],[yes],[no], , )
-   if test x$has_sablotron = xno; then
-      AC_MSG_ERROR([[xsltproc or sabcmd programs were not found but \
-at least one of them is required to build the SIP manual pages.
-Download xslproc (from libxml) at:
-   http://http://www.xmlsoft.org 
-or sabcmd (from sablotron) at:
-   http://www.gingerall.com/charlie/ga/xml/p_sab.xml]])
-   fi
-fi
+# # checks for xsltproc (to buld HTML help pages)
+# AC_CHECK_PROG([has_xsltproc],[xsltproc],[yes],[no], , )
+# if test x$has_xsltproc = xno; then
+#    # checks for sabcmd as an alternative
+#    AC_CHECK_PROG([has_sablotron],[sabcmd],[yes],[no], , )
+#    if test x$has_sablotron = xno; then
+#       AC_MSG_ERROR([[xsltproc or sabcmd programs were not found but \
+# at least one of them is required to build the SIP manual pages.
+# Download xslproc (from libxml) at:
+#    http://http://www.xmlsoft.org 
+# or sabcmd (from sablotron) at:
+#    http://www.gingerall.com/charlie/ga/xml/p_sab.xml]])
+#    fi
+# fi
 
 # test if SCI is defined. If not,
 # test if scilab is in path, then get SCI from scilab -nw.
@@ -81,32 +81,32 @@ AC_PREFIX_DEFAULT([$TOOLBOXDIR])
 AC_SUBST(TOOLBOXDIR)
 AC_SUBST(SCIDIR)
 
-#
-# Set defines required to build DLLs and modules using MinGW
-# thx to Bob F.
-#
-# These options are set for DLL build
-#  libanimal:           _DLL ANIMAL_LIB
-# TODO:
-#   - update from SIMPLE toolbox
-#
-LIBRARY_EXTRA_CPPFLAGS=''
-LIBRARY_EXTRA_LIBS=''
-if test "${native_win32_build}" = 'yes'
-then
-  if test "${libtool_build_shared_libs}" = 'yes'
-  then
-    CPPFLAGS="$CPPFLAGS -D_DLL"
-    LIBRARY_EXTRA_CPPFLAGS="-DANIMAL_LIB"
-    LIBRARY_EXTRA_LIBS="${SCIDIR}/bin/LibScilab.lib"
-    # temporary:
-#    LIBS="$LIBS ${SCIDIR}/bin/LibScilab.lib"
-  else
-    CPPFLAGS="$CPPFLAGS -D_LIB"
-  fi
-fi
-AC_SUBST(LIBRARY_EXTRA_CPPFLAGS)dnl
-AC_SUBST(LIBRARY_EXTRA_LIBS)dnl
+# #
+# # Set defines required to build DLLs and modules using MinGW
+# # thx to Bob F.
+# #
+# # These options are set for DLL build
+# #  libanimal:           _DLL ANIMAL_LIB
+# # TODO:
+# #   - update from SIMPLE toolbox
+# #
+# LIBRARY_EXTRA_CPPFLAGS=''
+# LIBRARY_EXTRA_LIBS=''
+# if test "${native_win32_build}" = 'yes'
+# then
+#   if test "${libtool_build_shared_libs}" = 'yes'
+#   then
+#     CPPFLAGS="$CPPFLAGS -D_DLL"
+#     LIBRARY_EXTRA_CPPFLAGS="-DANIMAL_LIB"
+#     LIBRARY_EXTRA_LIBS="${SCIDIR}/bin/LibScilab.lib"
+#     # temporary:
+# #    LIBS="$LIBS ${SCIDIR}/bin/LibScilab.lib"
+#   else
+#     CPPFLAGS="$CPPFLAGS -D_LIB"
+#   fi
+# fi
+# AC_SUBST(LIBRARY_EXTRA_CPPFLAGS)dnl
+# AC_SUBST(LIBRARY_EXTRA_LIBS)dnl
 
 # Checks for libs. 
 
