@@ -14,5 +14,6 @@ install-data-local:
 	cp loader.sce ${toolboxdir}
 	cp builder.sce ${toolboxdir}
 
-uninstall:
-	rm ${toolboxdir} -rf
+uninstall-data:
+	rm ${toolboxdir}"/loader.sce" -rf
+	rm ${toolboxdir}"/builder.sce" -rf

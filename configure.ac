@@ -156,13 +156,28 @@ AC_HEADER_STDBOOL
 # AC_SUBST(CPPFLAGS)
 # AC_SUBST(LDFLAGS)
 # AC_SUBST(LIBS)
-TOOLBOX_FUNCTIONS="'viptest'; \
+
+## for src/Makefile
+# TOOLBOX_SRC=" test.c"
+
+# for src/ilib_gen_gateway.sce
+
+TOOLBOX_TABLE="	'sivptest', 'int_test'; \
+		'canny', 'int_canny'; \
+		"
+# for loader.sce
+# TOOLBOX_FUNCTIONS is the first colum of TOOLBOX_TABLE 
+TOOLBOX_FUNCTIONS="    'sivptest'; \
+		       'canny'; \
 		   "
-			      
+
+AC_SUBST(TOOLBOX_SRC)
+AC_SUBST(TOOLBOX_TABLE)
 AC_SUBST(TOOLBOX_FUNCTIONS)
 
 AC_CONFIG_FILES([Makefile 
 		 src/Makefile
+		 src/ilib_gen_gateway.sce
 		 loader.sce])
 
 AC_OUTPUT
