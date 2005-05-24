@@ -191,8 +191,6 @@ Configuration:
 	CPPFLAGS = $CPPFLAGS
 	LDFLAGS  = $LDFLAGS
 	LIBS     = $LIBS
-	LIBRARY_EXTRA_CPPFLAGS	= $LIBRARY_EXTRA_CPPFLAGS
-	LIBRARY_EXTRA_LIBS	= $LIBRARY_EXTRA_LIBS
 
 	use OpenCV = $have_opencv
 	use ffmpeg = $have_ffmpeg
