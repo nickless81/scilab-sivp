@@ -214,10 +214,147 @@ Create3DDoubleMat(int nPos, int nRow, int nCol, int nCh, double* pData)
 }
 
 
-
-void iplimg2mat(IplImage * pImage, void * pMat)
+/************************************************************
+ * convert IplImage to SCI matrix
+************************************************************/
+BOOL IplImg2Mat(IplImage * pImage, int nPos)
 {
+  void * pMatData;
+  int nBytes;
+  int nType;
+  
+  if(pImage == NULL)
+    return FALSE;
 
+  /*how many bytes per pixel per channel*/
+  nBytes = pImage->depth;
+  if (nBytes > IPL_DEPTH_SIGN)
+    nBytes -= IPL_DEPTH_SIGN;
+  nBytes = nBytes >> 3;
+  
+  /*alloc memory for matrix data*/
+  pMatData = malloc(pImage->width * pImage->height * pImage->nChannels * nBytes);
+  if(pMatData == NULL)
+    return FALSE;
+
+  ImgData2MatData(pImage, pMatData);
+
+  /*convert IplImage data type to scilab data type*/
+  nType = IplType2SciType(pImage->depth);
+  if (nType <= 0)
+    {
+      free(pMatData);
+      return FALSE;
+    }
+  /*create matrix for scilab*/
+  if(pImage->nChannels == 1)
+    {
+      switch(nType){
+      case I_CHAR:
+      case I_UCHAR:
+      case I_INT16:
+      case I_UINT16:
+      case I_INT32:
+	Create2DIntMat(nPos, pImage->height, pImage->width, pMatData, nType);
+	break;
+      case SIVP_FLOAT:
+	Create2DFloatMat(nPos,pImage->height, pImage->width, pMatData);
+	break;
+      case SIVP_DOUBLE:
+	Create2DDoubleMat(nPos,pImage->height, pImage->width, pMatData);
+	break;
+      }
+    }
+  else
+    {
+      switch(nType){
+      case I_CHAR:
+      case I_UCHAR:
+      case I_INT16:
+      case I_UINT16:
+      case I_INT32:
+	Create3DIntMat(nPos, pImage->height, pImage->width, pImage->nChannels, pMatData, nType);
+	break;
+      case SIVP_FLOAT:
+	Create3DFloatMat(nPos,pImage->height, pImage->width, pImage->nChannels, pMatData);
+	break;
+      case SIVP_DOUBLE:
+	Create3DDoubleMat(nPos,pImage->height, pImage->width, pImage->nChannels, pMatData);
+	break;
+      }
+    }
+
+  /*free matrix data*/
+  free(pMatData);
+  return TRUE;
+}
+
+/************************************************************
+ * change the data order from row-wise to column-wise
+ ************************************************************/
+BOOL ImgData2MatData(IplImage * pImage, void * pMatData)
+{
+  if (pImage == NULL || pMatData == NULL)
+    return FALSE;
+  //  IPL_DEPTH_8U, IPL_DEPTH_8S, IPL_DEPTH_16U,
+  //IPL_DEPTH_16S, IPL_DEPTH_32S, IPL_DEPTH_32F and IPL_DEPTH_64F 
+  int row, col, ch;
+  long nCount = 0;
+  int nBytes;
+
+  char * pSrc = (char*)(pImage->imageData);
+  char * pDst = (char*)pMatData;
+
+  /*how many bytes per pixel per channel*/
+  nBytes = pImage->depth;
+  if (nBytes > IPL_DEPTH_SIGN)
+    nBytes -= IPL_DEPTH_SIGN;
+  nBytes = nBytes >> 3;
+
+  for(ch = 0; ch < pImage->nChannels ; ch++) //the order of IplImage is BGR
+    for(col =0; col < pImage->width; col++)
+      for(row = 0; row < pImage->height; row++)
+	{
+	  memcpy(pDst+nCount, pSrc + pImage->widthStep*row + col*pImage->nChannels*nBytes + (pImage->nChannels-ch-1), nBytes );
+	  nCount += nBytes;
+	}
+
+
+  return TRUE;
+}
+
+/************************************************************
+ * unsigned int32 is not supported (no this type in OpenCV)
+ ************************************************************/
+int IplType2SciType(int IplType)
+{
+  switch(IplType)    {
+  case IPL_DEPTH_8U:  return I_UCHAR;
+  case IPL_DEPTH_8S:  return I_CHAR;
+  case IPL_DEPTH_16U: return I_UINT16;
+  case IPL_DEPTH_16S: return I_INT16;
+  case IPL_DEPTH_32S: return I_INT32;
+  case IPL_DEPTH_32F: return SIVP_FLOAT;
+  case IPL_DEPTH_64F: return SIVP_DOUBLE;
+  default: return 0;
+  }
+}
+
+/************************************************************
+ * unsigned int32 is not supported (no this type in OpenCV)
+ ************************************************************/
+int SciType2IplType(int SciType)
+{
+  switch(SciType)    {
+  case I_UCHAR:  return IPL_DEPTH_8U;
+  case I_CHAR:   return IPL_DEPTH_8S;
+  case I_UINT16: return IPL_DEPTH_16U;
+  case I_INT16:  return IPL_DEPTH_16S;
+  case I_INT32:  return IPL_DEPTH_32S;
+  case SIVP_FLOAT:  return IPL_DEPTH_32F;
+  case SIVP_DOUBLE: return IPL_DEPTH_64F;
+  default: return 0;
+  }
 }
 
 void rgbimg2mat(unsigned char* pSrc, unsigned char * pDst, int nWidth, int nHeight)
