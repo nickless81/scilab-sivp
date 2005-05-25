@@ -1,3 +1,23 @@
+/***********************************************************************
+ * SIVP - Scilab Image and Video Processing toolbox
+ * Copyright (C) 2005  Shiqi Yu
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ ***********************************************************************/
+
+
 #ifndef SIVP_COMMON_H
 #define SIVP_COMMON_H
 
@@ -17,6 +37,11 @@ extern "C" {
 
 typedef int BOOL;
 
+
+#define SIVP_FLOAT 32
+#define SIVP_DOUBLE 64
+
+
 #include <stdio.h>
 
 #include <cv.h>
@@ -24,6 +49,8 @@ typedef int BOOL;
 #include <highgui.h>
 
 #include <stack-c.h>
+  BOOL ImgData2MatData(IplImage * pImage, void * pMatData);
+
 
   BOOL Create2DIntMat(int nPos, int nRow, int nCol, void * pData, int nType);
   BOOL Create2DFloatMat(int nPos, int nRow, int nCol, float * pData);
@@ -31,6 +58,10 @@ typedef int BOOL;
   BOOL Create3DIntMat(int nPos, int nRow, int nCol, int nCh, void * pData, int nType);
   BOOL Create3DFloatMat(int nPos, int nRow, int nCol, int nCh, float* pData);
   BOOL Create3DDoubleMat(int nPos, int nRow, int nCol, int nCh, double* pData);
+
+  int IplType2SciType(int IplType);
+  int SciType2IplType(int SciType);
+
 
 
 #ifdef __cplusplus
