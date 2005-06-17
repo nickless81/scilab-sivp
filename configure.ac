@@ -165,12 +165,14 @@ AC_HEADER_STDBOOL
 TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'canny', 'int_canny'; \
 		'imread', 'int_imread';\
+		'imwrite', 'int_imwrite';\
 		"
 # for loader.sce
 # TOOLBOX_FUNCTIONS is the first colum of TOOLBOX_TABLE 
 TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'canny'; \
 		       'imread';\
+		       'imwrite';\
 		   "
 
 AC_SUBST(TOOLBOX_SRC)
