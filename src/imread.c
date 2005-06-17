@@ -3,7 +3,7 @@
 int int_imread(char * fname)
 {
 
-  int mL, nL, lL;
+
   int mR, nR, lR;
 
   IplImage * pImage;
@@ -11,14 +11,14 @@ int int_imread(char * fname)
   CheckRhs(1, 1);
   CheckLhs(1, 1);
 
-  GetRhsVar(1, "c", &mL, &nL, &lL);
+  GetRhsVar(1, "c", &mR, &nR, &lR);
 
-  pImage = cvLoadImage(cstk(lL), -1);
+  pImage = cvLoadImage(cstk(lR), -1);
 
   /* if load image failed */
   if(pImage == NULL)
     {
-      Scierror("%s: Can not open file %s.\r\n", fname, cstk(lL));
+      Scierror(999, "%s: Can not open file %s.\r\n", fname, cstk(lR));
       return -1;
     }
 
