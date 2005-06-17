@@ -95,13 +95,11 @@ libdir = @TOOLBOXDIR@/lib
 
 lib_LTLIBRARIES = libsivp.la
 
-AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
+# AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
 
-libsivp_la_SOURCES = libsivp.c test.c canny.c
+libsivp_la_SOURCES = libsivp.c common.c imread.c imwrite.c test.c canny.c
 
 libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release @PACKAGE_VERSION@
-
-libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = config.h
 CONFIG_CLEAN_FILES =  ilib_gen_gateway.sce
@@ -112,8 +110,9 @@ DEFS = @DEFS@ -I. -I$(srcdir) -I.
 CPPFLAGS = @CPPFLAGS@
 LDFLAGS = @LDFLAGS@
 LIBS = @LIBS@
-libsivp_la_DEPENDENCIES = 
-libsivp_la_OBJECTS =  libsivp.lo test.lo canny.lo
+libsivp_la_LIBADD = 
+libsivp_la_OBJECTS =  libsivp.lo common.lo imread.lo imwrite.lo test.lo \
+canny.lo
 CFLAGS = @CFLAGS@
 COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -127,7 +126,8 @@ DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
 
 TAR = tar
 GZIP_ENV = --best
-DEP_FILES =  .deps/canny.P .deps/libsivp.P .deps/test.P
+DEP_FILES =  .deps/canny.P .deps/common.P .deps/imread.P .deps/imwrite.P \
+.deps/libsivp.P .deps/test.P
 SOURCES = $(libsivp_la_SOURCES)
 OBJECTS = $(libsivp_la_OBJECTS)
 
@@ -402,8 +402,10 @@ mostlyclean-generic distclean-generic clean-generic \
 maintainer-clean-generic clean mostlyclean distclean maintainer-clean
 
 
+# libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
+
 libsivp.c: ilib_gen_gateway.sce
-	scilab -nw -f ilib_gen_gateway.sce
+	${SCIDIR}/bin/scilab -nw -f ilib_gen_gateway.sce
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
