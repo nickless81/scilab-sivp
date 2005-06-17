@@ -2,11 +2,30 @@
 
 int int_test(char * fname)
 {
-  CheckRhs(0,0);
+  CheckRhs(1,2);
   CheckLhs(0,4);
 
-  sciprint("%s: This is a test.\n", fname);
+  sciprint("%s: This is a test for sivp.\r\n", fname);
 
+  int a = GetType(1);
+  sciprint("GetType return %d.\r\n", a);
+
+  IplImage * pImg;
+  pImg = Mat2IplImg(1);
+  if(pImg != NULL)
+    {
+      cvNamedWindow( "Image view", 1 );
+      cvShowImage( "Image view", pImg );
+      cvWaitKey(100); // very important, contains event processing loop inside
+      cvDestroyWindow( "Image view" );
+      cvReleaseImage( &pImg );
+    }
+  else
+    {
+      sciprint("NULL image\r\n");
+    }
+  
+  /*
   double x1[]={10.0,20.0,30.0, 40.0, 50.0, 60.0, 70.0, 80.0}; int m1=2, n1=2, c1=2; double *y1 = x1;
   float x2[]={100.0,200.0,300.0, 400.0, 500.0, 600.0};int m2=1, n2=2, c2=3; double *y2 = x2;
   int    x3[]={1,2,3,4,5,6,7,8,9,10,11,12};       int m3=2, n3=2, c3=3; int    *y3 = x3;
@@ -21,5 +40,6 @@ int int_test(char * fname)
   LhsVar(2) = 2;
   LhsVar(3) = 3;
   LhsVar(4) = 4;
+  */
 
 }

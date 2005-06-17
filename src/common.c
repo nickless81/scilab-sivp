@@ -289,6 +289,199 @@ BOOL IplImg2Mat(IplImage * pImage, int nPos)
   return TRUE;
 }
 
+
+/************************************************************
+ * get image dimension information and the data address
+ * input: nPos(the nPos'th  argument, the  argument shouble be a mlist)
+ * 
+************************************************************/
+IplImage * CreateIplImgFromHm(int nPos)
+{
+  char ** pStr;
+  int * pListHeader;
+  int * pDataHeader;
+  void * pData;
+  int m, n, l;
+  int m1, n1, m2, n2, m3, n3, l3;
+  SciIntMat Dims;
+  SciIntMat IntMat;
+  
+  int nWidth, nHeight, nCh=1;
+  int iplType;
+  IplImage * pImg = NULL;
+
+  GetListRhsVar(nPos, 1 ,"S",&m1,&n1,&pStr);
+  /*check whether the the argument is a hypermatrix*/
+  if( m1 !=1 || n1 !=3)
+    goto NOT_HM;
+  if( strcmp(pStr[0], "hm") != 0 || strcmp(pStr[1], "dims") != 0 || strcmp(pStr[2], "entries") != 0)
+    goto NOT_HM;
+  
+  /*get the dimension information, it's stored in the second element of the mlist*/
+
+  GetListRhsVar(1,2,"I", &m2, &n2,&Dims);
+  if( m2*n2 !=2 && m2*n2 !=3)
+    goto NOT_HM;
+
+  nHeight = IC_INT32(Dims.D)[0];
+  nWidth  = IC_INT32(Dims.D)[1];
+  if(m2*n2 == 3)
+    nCh = IC_INT32(Dims.D)[2];
+  else
+    nCh = 1;
+
+
+  /*get mlist data structure*/
+  pListHeader = (int*)GetData(nPos);
+  /*data is stored in the third element*/
+  /*data struct is get first*/
+  pDataHeader = (int*)( ((char*)pListHeader) + 24 + (pListHeader[4]-1)*8 );
+  
+  /*the next step is to get the data type and the data*/
+  /*the data type is store in the first 4 bytes as a integer*/
+  switch( pDataHeader[0]  ){
+  case 1:  /*if the data is real*/
+    iplType = IPL_DEPTH_64F;
+    GetListRhsVar(nPos, 3, "d", &m3, &n3, &l3);
+    pData = stk(l3);
+    break;
+  case 8:  /*integer*/
+    GetListRhsVar(nPos, 3, "I", &m3, &n3, &IntMat);
+    m3 = IntMat.m;
+    n3 = IntMat.n;
+    iplType = SciType2IplType(IntMat.it);
+    if(iplType==0)
+      {
+	sciprint("This integer data type is not supported by SIVP. Integer type number: %d. \r\n", IntMat.it);
+	goto EXIT_TAG;
+      }
+    pData = IntMat.D;
+    break;
+  default:
+    sciprint("The data type of %d'th argument is %d. It can't be converted to an image.\r\n",nPos, pDataHeader[0] );
+    goto EXIT_TAG;
+  }
+
+  /*check dimension */
+  if(m3*n3 != nWidth * nHeight * nCh)
+    {
+      sciprint("Broken hypermatrix: The hypermatrix declares %d X %d X %d, but actually %d elements.\r\n", nHeight, nWidth, nCh, m3*n3);
+      goto EXIT_TAG;
+    }
+
+  /*create a IplImage to receiving the data*/
+  pImg = cvCreateImage(cvSize(nWidth, nHeight), iplType, nCh);
+  if(pImg == NULL)
+  {
+    sciprint("Create IplImage for %d'th argument failed.\r\n", nPos);
+    goto EXIT_TAG;
+  }
+
+  /*change data order and copy data*/
+  MatData2ImgData(pImg, pData );
+
+  
+  FreeRhsSVar(pStr);
+  return pImg;
+
+ NOT_HM:
+  sciprint("The %d'th argument is not a hypermatrix.\r\n", nPos);
+  FreeRhsSVar(pStr);
+  return NULL;
+ EXIT_TAG:
+  FreeRhsSVar(pStr);
+  return NULL;
+  
+}
+
+/************************************************************
+ * convert IplImage to SCI matrix
+************************************************************/
+IplImage * Mat2IplImg(int nPos)
+{
+  IplImage * pImg;
+
+  int mR1, nR1, lR1;
+  SciIntMat IntMat;
+  int iplType;
+
+  switch(VarType(nPos)){
+  case 1: /*real or complex constant matrix.*/
+    GetRhsVar(nPos, "d", &mR1, &nR1, &lR1);
+    pImg = cvCreateImage(cvSize(nR1, mR1), IPL_DEPTH_64F, 1);
+    /*if can not create the IplImage*/
+    if(pImg == NULL)
+      {
+	sciprint("Create IplImage for %d'th argument failed.\r\n", nPos);
+	return NULL;
+      }
+    MatData2ImgData(pImg, stk(lR1) );
+    return pImg;
+    break;
+
+    /*integer matrix*/
+  case 8: 
+
+    GetRhsVar(nPos, "I", &mR1, &nR1, &IntMat);
+    iplType = SciType2IplType(IntMat.it);
+    if(iplType==0)
+      {
+	sciprint("This integer data type is not supported by SIVP. Integer type number: %d. \r\n", IntMat.it);
+	return NULL;
+      }
+    pImg = cvCreateImage(cvSize(nR1, mR1),iplType , 1);
+    if(pImg == NULL)
+      {
+	sciprint("Create IplImage for %d'th argument failed.\r\n", nPos);
+	return NULL;
+      }
+    MatData2ImgData(pImg, IntMat.D );
+    return pImg;
+    break;
+
+  case 17:
+    return CreateIplImgFromHm( nPos);
+    break;
+  default:
+    sciprint("This data type can't be converted to an image.\r\n");
+    return NULL;
+  }
+}
+
+/************************************************************
+ * change the data order from column-wise to row-wise
+ ************************************************************/
+BOOL MatData2ImgData(IplImage * pImage, void * pMatData)
+{
+  if (pImage == NULL || pMatData == NULL)
+    return FALSE;
+  //  IPL_DEPTH_8U, IPL_DEPTH_8S, IPL_DEPTH_16U,
+  //IPL_DEPTH_16S, IPL_DEPTH_32S, IPL_DEPTH_32F and IPL_DEPTH_64F 
+  int row, col, ch;
+  long nCount = 0;
+  int nBytes;
+
+  char * pDst = (char*)(pImage->imageData);
+  char * pSrc = (char*)pMatData;
+
+  /*how many bytes per pixel per channel*/
+  nBytes = pImage->depth;
+  if (nBytes > IPL_DEPTH_SIGN)
+    nBytes -= IPL_DEPTH_SIGN;
+  nBytes = nBytes >> 3;
+
+  for(ch = 0; ch < pImage->nChannels ; ch++) //the order of IplImage is BGR
+    for(col =0; col < pImage->width; col++)
+      for(row = 0; row < pImage->height; row++)
+	{
+	  memcpy(pDst + pImage->widthStep*row + (col*pImage->nChannels + (pImage->nChannels-ch-1))*nBytes, pSrc+nCount, nBytes );
+	  nCount += nBytes;
+	}
+
+
+  return TRUE;
+}
+
 /************************************************************
  * change the data order from row-wise to column-wise
  ************************************************************/
@@ -311,11 +504,12 @@ BOOL ImgData2MatData(IplImage * pImage, void * pMatData)
     nBytes -= IPL_DEPTH_SIGN;
   nBytes = nBytes >> 3;
 
+
   for(ch = 0; ch < pImage->nChannels ; ch++) //the order of IplImage is BGR
     for(col =0; col < pImage->width; col++)
       for(row = 0; row < pImage->height; row++)
 	{
-	  memcpy(pDst+nCount, pSrc + pImage->widthStep*row + col*pImage->nChannels*nBytes + (pImage->nChannels-ch-1), nBytes );
+	  memcpy(pDst+nCount, pSrc + pImage->widthStep*row + (col*pImage->nChannels + (pImage->nChannels-ch-1))*nBytes, nBytes );
 	  nCount += nBytes;
 	}
 
@@ -357,44 +551,3 @@ int SciType2IplType(int SciType)
   }
 }
 
-void rgbimg2mat(unsigned char* pSrc, unsigned char * pDst, int nWidth, int nHeight)
-{
-  img2mat(pSrc, pDst, nWidth, nHeight, 3);
-}
-
-
-void grayimg2mat(unsigned char* pSrc, unsigned char * pDst, int nWidth, int nHeight)
-{
-  img2mat(pSrc, pDst, nWidth, nHeight, 1);
-}
-
-void img2mat(unsigned char* pSrc, unsigned char * pDst, int nWidth, int nHeight, int nCh)
-{
-  int row, col, ch;
-  long nCount = 0;
-
-  for(ch =0; ch < nCh; ch++)
-    for(col =0; col < nWidth; col++)
-      for(row = 0; row < nHeight; row++)
-	{
-	  *(pDst+nCount) = *(pSrc+(nWidth*nCh)*row+col*nCh+ch);
-	  nCount++;
-	}
-}
-
-/* convert data from columnwise to row-wise */
-void mat2img(unsigned char * pMat, unsigned char *pImg, int nWidth, int nHeight, int nCh)
-{
-  int row, col, ch;
-  long offset;
-  long nCount = 0;
-
-  for(row=0; row < nHeight; row++)
-    for(col=0; col < nWidth; col++)
-      for (ch=0; ch < nCh; ch++)
-	{
-	  offset = ch*(nWidth*nHeight) + col * nHeight + row;
-	  pImg[nCount] = pMat[offset];
-	  nCount++;
-	}
-}

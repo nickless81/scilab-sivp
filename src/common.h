@@ -49,8 +49,8 @@ typedef int BOOL;
 #include <highgui.h>
 
 #include <stack-c.h>
-  BOOL ImgData2MatData(IplImage * pImage, void * pMatData);
 
+  BOOL IplImg2Mat(IplImage * pImage, int nPos);
 
   BOOL Create2DIntMat(int nPos, int nRow, int nCol, void * pData, int nType);
   BOOL Create2DFloatMat(int nPos, int nRow, int nCol, float * pData);
@@ -59,6 +59,13 @@ typedef int BOOL;
   BOOL Create3DFloatMat(int nPos, int nRow, int nCol, int nCh, float* pData);
   BOOL Create3DDoubleMat(int nPos, int nRow, int nCol, int nCh, double* pData);
 
+  IplImage * Mat2IplImg(int nPos);
+  IplImage * CreateIplImgFromHm(int nPos);
+
+  BOOL MatData2ImgData(IplImage * pImage, void * pMatData);
+  BOOL ImgData2MatData(IplImage * pImage, void * pMatData);
+  
+  
   int IplType2SciType(int IplType);
   int SciType2IplType(int SciType);
 
