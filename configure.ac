@@ -157,6 +157,7 @@ AC_HEADER_STDBOOL
 # AC_SUBST(LDFLAGS)
 # AC_SUBST(LIBS)
 
+PACKAGE_NAME = sivp
 ## for src/Makefile
 # TOOLBOX_SRC=" test.c"
 
@@ -175,11 +176,13 @@ TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'imwrite';\
 		   "
 
+AC_SUBST(PACKAGE_NAME)
 AC_SUBST(TOOLBOX_SRC)
 AC_SUBST(TOOLBOX_TABLE)
 AC_SUBST(TOOLBOX_FUNCTIONS)
 
 AC_CONFIG_FILES([Makefile 
+		 macros/Makefile
 		 src/Makefile
 		 src/ilib_gen_gateway.sce
 		 loader.sce])
