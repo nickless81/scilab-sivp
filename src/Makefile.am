@@ -32,6 +32,6 @@ libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release @PACKAGE_VERSION
 
 
 libsivp.c: ilib_gen_gateway.sce
-	$(SCIDIR)/util/scibatch $(SCIDIR) ilib_gen_gateway.sce
+	$(SCIDIR)/bin/scilab -nw -f ilib_gen_gateway.sce
 
 
