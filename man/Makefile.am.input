@@ -29,7 +29,7 @@ SCIDIR=@SCIDIR@
 helpdir=@TOOLBOXDIR@/man
 help_DATA = $(manpages_html) whatis.htm 
 
-EXTRA_DIST = $(manpages_xml) html-sivp.xsl mansivp.dtd Makefile.am.input
+EXTRA_DIST = $(manpages_xml) html-sivp.xsl mansivp.dtd Makefile.am.input 
 
 %.htm: %.xml
 	@echo "Creating html help files"

@@ -2,18 +2,11 @@ EXTRA_DIST = ChangeLog COPYING INSTALL libtool Makefile.in NEWS README \
 		builder.sce loader.sce \
 		config/config.guess config/config.sub config/install-sh \
 		config/ltmain.sh config/missing config/mkinstalldirs \
+		config/sivp_xmltohtml.sci config/subst_input_files.sh   \
 		src/ilib_gen_gateway.sce
 
 
-SUBDIRS = src 
+SUBDIRS = src macros man
 
 toolboxdir=@TOOLBOXDIR@
-
-
-install-data-local:
-	cp loader.sce ${toolboxdir}
-	cp builder.sce ${toolboxdir}
-
-uninstall-data:
-	rm ${toolboxdir}"/loader.sce" -rf
-	rm ${toolboxdir}"/builder.sce" -rf
+toolbox_DATA = loader.sce builder.sce
