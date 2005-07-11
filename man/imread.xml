@@ -20,7 +20,7 @@
    <PARAM_ITEM>
    <PARAM_NAME>im</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   All images will be converted to gray images or RGB images. For RGB images, this is a MxNx3 unsigned char matrix; For gray images, this is a MxN unsigned char matrix.
+   All images will be converted to gray images or RGB images. For gray images, this is a MxN unsigned char matrix; For RGB images, this is a MxNx3 unsigned char matrix.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
 </PARAM_INDENT>
@@ -36,22 +36,13 @@
     * TIFF files - TIFF, TIF. 
 </P>
    <DESCRIPTION_INDENT>
-   <DESCRIPTION_ITEM label="Img = imread(filename)">
-      reads image in filename into <TT>Img</TT>
-      matrix. If filename contains a truecolor image, <TT>Img</TT> is a
-   MxNx3 hypermatrix, so for example <TT>Img(:,:,1)</TT> stands for  the
-   red channel. For binary images, Img is a MxNx1 matrix.
-   </DESCRIPTION_ITEM>
-   <DESCRIPTION_ITEM label="[Index,Map] = imread(filename)">
-      reads the indexed image in  filename into <TT>Index</TT> (MxN)
-      and <TT>Map</TT>
-   (Mx3), its colormap.  Grayscale and Paletted images are read in this way.
+   <DESCRIPTION_ITEM label="im = imread(filename)">
+      reads image in filename into <TT>im</TT>
+      matrix. If filename contains a truecolor image, <TT>im</TT> is a
+   MxNx3 hypermatrix, so for example <TT>im(:,:,1)</TT> stands for  the
+   red channel. For gray images, im is a MxNx1 unsigned char matrix.
    </DESCRIPTION_ITEM>
    </DESCRIPTION_INDENT>
-<P>
-   To know if the image stored in <TT>filename</TT> is truecolor or
-   indexed, you can use the <TT>imfinfo</TT> command, and then call
-   <TT>imread</TT> accordingly. </P>
 </DESCRIPTION>
 <EXAMPLE><![CDATA[
     initial_dir = PWD;
@@ -66,7 +57,7 @@
 <!-- ================================= -->
 
 <AUTHORS>
-   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;sqyu (AT) users DOT sf DOT net&gt; </AUTHORS_ITEM>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;yushiqi (AT) yahoo DOT com DOT cn&gt; </AUTHORS_ITEM>
 </AUTHORS>
 <!-- ================================= -->
 <SECTION label="Bugs and Shortcomings">
@@ -77,7 +68,7 @@ All kinds of images are converted to gray images or RGB images.
 </SECTION>
 <!-- ================================= -->
 <SECTION label="Availability">
-The latest version of the Scilab Image Processing toolbox can be found at
+The latest version of SIVP can be found at
 <P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
 </SECTION>
 <!-- ================================= -->

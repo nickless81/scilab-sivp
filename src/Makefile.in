@@ -79,6 +79,7 @@ MAKEINFO = @MAKEINFO@
 OBJDUMP = @OBJDUMP@
 OBJEXT = @OBJEXT@
 PACKAGE = @PACKAGE@
+PACKAGE_NAME = @PACKAGE_NAME@
 PKG_CONFIG = @PKG_CONFIG@
 RANLIB = @RANLIB@
 RC = @RC@
@@ -100,6 +101,10 @@ lib_LTLIBRARIES = libsivp.la
 libsivp_la_SOURCES = libsivp.c common.c imread.c imwrite.c test.c canny.c
 
 libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release @PACKAGE_VERSION@
+
+# libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
+
+EXTRA_DIST = common.h
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = config.h
 CONFIG_CLEAN_FILES =  ilib_gen_gateway.sce
@@ -402,10 +407,8 @@ mostlyclean-generic distclean-generic clean-generic \
 maintainer-clean-generic clean mostlyclean distclean maintainer-clean
 
 
-# libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
-
 libsivp.c: ilib_gen_gateway.sce
-	${SCIDIR}/bin/scilab -nw -f ilib_gen_gateway.sce
+	$(SCIDIR)/bin/scilab -nw -nb -f ilib_gen_gateway.sce
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

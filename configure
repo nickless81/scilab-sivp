@@ -466,7 +466,7 @@ ac_includes_default="\
 #endif"
 
 ac_default_prefix=$TOOLBOXDIR
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO SET_MAKE CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT build build_cpu build_vendor build_os host host_cpu host_vendor host_os EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB STRIP ac_ct_STRIP DLLTOOL ac_ct_DLLTOOL AS ac_ct_AS OBJDUMP ac_ct_OBJDUMP CPP CXX CXXFLAGS ac_ct_CXX CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL has_xsltproc has_sablotron has_scilab TOOLBOXDIR SCIDIR LIBRARY_EXTRA_CPPFLAGS LIBRARY_EXTRA_LIBS PKG_CONFIG ac_pt_PKG_CONFIG OPENCV_CFLAGS OPENCV_LIBS TOOLBOX_FUNCTIONS LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO SET_MAKE CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT build build_cpu build_vendor build_os host host_cpu host_vendor host_os EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB STRIP ac_ct_STRIP CPP CXX CXXFLAGS ac_ct_CXX CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL has_scilab TOOLBOXDIR SCIDIR PKG_CONFIG ac_pt_PKG_CONFIG OPENCV_CFLAGS OPENCV_LIBS TOOLBOX_SRC TOOLBOX_TABLE TOOLBOX_FUNCTIONS LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -2748,8 +2748,7 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
-
-
+# AC_LIBTOOL_WIN32_DLL
 # Check whether --enable-static or --disable-static was given.
 if test "${enable_static+set}" = set; then
   enableval="$enable_static"
@@ -3350,7 +3349,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 3353 "configure"' > conftest.$ac_ext
+  echo '#line 3352 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -3504,248 +3503,6 @@ echo "${ECHO_T}$lt_cv_cc_needs_belf" >&6
     # this is probably gcc 2.8.0, egcs 1.0 or newer; no need for -belf
     CFLAGS="$SAVE_CFLAGS"
   fi
-  ;;
-*-*-cygwin* | *-*-mingw* | *-*-pw32*)
-  if test -n "$ac_tool_prefix"; then
-  # Extract the first word of "${ac_tool_prefix}dlltool", so it can be a program name with args.
-set dummy ${ac_tool_prefix}dlltool; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_prog_DLLTOOL+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$DLLTOOL"; then
-  ac_cv_prog_DLLTOOL="$DLLTOOL" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_prog_DLLTOOL="${ac_tool_prefix}dlltool"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-fi
-fi
-DLLTOOL=$ac_cv_prog_DLLTOOL
-if test -n "$DLLTOOL"; then
-  echo "$as_me:$LINENO: result: $DLLTOOL" >&5
-echo "${ECHO_T}$DLLTOOL" >&6
-else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-fi
-
-fi
-if test -z "$ac_cv_prog_DLLTOOL"; then
-  ac_ct_DLLTOOL=$DLLTOOL
-  # Extract the first word of "dlltool", so it can be a program name with args.
-set dummy dlltool; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_prog_ac_ct_DLLTOOL+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$ac_ct_DLLTOOL"; then
-  ac_cv_prog_ac_ct_DLLTOOL="$ac_ct_DLLTOOL" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_prog_ac_ct_DLLTOOL="dlltool"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-  test -z "$ac_cv_prog_ac_ct_DLLTOOL" && ac_cv_prog_ac_ct_DLLTOOL="false"
-fi
-fi
-ac_ct_DLLTOOL=$ac_cv_prog_ac_ct_DLLTOOL
-if test -n "$ac_ct_DLLTOOL"; then
-  echo "$as_me:$LINENO: result: $ac_ct_DLLTOOL" >&5
-echo "${ECHO_T}$ac_ct_DLLTOOL" >&6
-else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-fi
-
-  DLLTOOL=$ac_ct_DLLTOOL
-else
-  DLLTOOL="$ac_cv_prog_DLLTOOL"
-fi
-
-  if test -n "$ac_tool_prefix"; then
-  # Extract the first word of "${ac_tool_prefix}as", so it can be a program name with args.
-set dummy ${ac_tool_prefix}as; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_prog_AS+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$AS"; then
-  ac_cv_prog_AS="$AS" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_prog_AS="${ac_tool_prefix}as"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-fi
-fi
-AS=$ac_cv_prog_AS
-if test -n "$AS"; then
-  echo "$as_me:$LINENO: result: $AS" >&5
-echo "${ECHO_T}$AS" >&6
-else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-fi
-
-fi
-if test -z "$ac_cv_prog_AS"; then
-  ac_ct_AS=$AS
-  # Extract the first word of "as", so it can be a program name with args.
-set dummy as; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_prog_ac_ct_AS+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$ac_ct_AS"; then
-  ac_cv_prog_ac_ct_AS="$ac_ct_AS" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_prog_ac_ct_AS="as"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-  test -z "$ac_cv_prog_ac_ct_AS" && ac_cv_prog_ac_ct_AS="false"
-fi
-fi
-ac_ct_AS=$ac_cv_prog_ac_ct_AS
-if test -n "$ac_ct_AS"; then
-  echo "$as_me:$LINENO: result: $ac_ct_AS" >&5
-echo "${ECHO_T}$ac_ct_AS" >&6
-else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-fi
-
-  AS=$ac_ct_AS
-else
-  AS="$ac_cv_prog_AS"
-fi
-
-  if test -n "$ac_tool_prefix"; then
-  # Extract the first word of "${ac_tool_prefix}objdump", so it can be a program name with args.
-set dummy ${ac_tool_prefix}objdump; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_prog_OBJDUMP+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$OBJDUMP"; then
-  ac_cv_prog_OBJDUMP="$OBJDUMP" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_prog_OBJDUMP="${ac_tool_prefix}objdump"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-fi
-fi
-OBJDUMP=$ac_cv_prog_OBJDUMP
-if test -n "$OBJDUMP"; then
-  echo "$as_me:$LINENO: result: $OBJDUMP" >&5
-echo "${ECHO_T}$OBJDUMP" >&6
-else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-fi
-
-fi
-if test -z "$ac_cv_prog_OBJDUMP"; then
-  ac_ct_OBJDUMP=$OBJDUMP
-  # Extract the first word of "objdump", so it can be a program name with args.
-set dummy objdump; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_prog_ac_ct_OBJDUMP+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$ac_ct_OBJDUMP"; then
-  ac_cv_prog_ac_ct_OBJDUMP="$ac_ct_OBJDUMP" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_prog_ac_ct_OBJDUMP="objdump"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-  test -z "$ac_cv_prog_ac_ct_OBJDUMP" && ac_cv_prog_ac_ct_OBJDUMP="false"
-fi
-fi
-ac_ct_OBJDUMP=$ac_cv_prog_ac_ct_OBJDUMP
-if test -n "$ac_ct_OBJDUMP"; then
-  echo "$as_me:$LINENO: result: $ac_ct_OBJDUMP" >&5
-echo "${ECHO_T}$ac_ct_OBJDUMP" >&6
-else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-fi
-
-  OBJDUMP=$ac_ct_OBJDUMP
-else
-  OBJDUMP="$ac_cv_prog_OBJDUMP"
-fi
-
   ;;
 
 esac
@@ -5047,7 +4804,7 @@ fi
 
 
 # Provide some information about the compiler.
-echo "$as_me:5050:" \
+echo "$as_me:4807:" \
      "checking for Fortran 77 compiler version" >&5
 ac_compiler=`set X $ac_compile; echo $2`
 { (eval echo "$as_me:$LINENO: \"$ac_compiler --version </dev/null >&5\"") >&5
@@ -5944,7 +5701,7 @@ fi
 esac
 
 enable_dlopen=no
-enable_win32_dll=yes
+enable_win32_dll=no
 
 # Check whether --enable-libtool-lock or --disable-libtool-lock was given.
 if test "${enable_libtool_lock+set}" = set; then
@@ -6079,11 +5836,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:6082: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:5839: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:6086: \$? = $ac_status" >&5
+   echo "$as_me:5843: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -6312,11 +6069,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:6315: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:6072: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:6319: \$? = $ac_status" >&5
+   echo "$as_me:6076: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -6372,11 +6129,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:6375: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:6132: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:6379: \$? = $ac_status" >&5
+   echo "$as_me:6136: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -8560,7 +8317,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 8563 "configure"
+#line 8320 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -8658,7 +8415,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 8661 "configure"
+#line 8418 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -10835,11 +10592,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:10838: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:10595: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:10842: \$? = $ac_status" >&5
+   echo "$as_me:10599: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -10895,11 +10652,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:10898: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:10655: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:10902: \$? = $ac_status" >&5
+   echo "$as_me:10659: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -12264,7 +12021,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 12267 "configure"
+#line 12024 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -12362,7 +12119,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 12365 "configure"
+#line 12122 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -13189,11 +12946,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:13192: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:12949: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:13196: \$? = $ac_status" >&5
+   echo "$as_me:12953: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -13249,11 +13006,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:13252: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:13009: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:13256: \$? = $ac_status" >&5
+   echo "$as_me:13013: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -15294,11 +15051,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:15297: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:15054: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:15301: \$? = $ac_status" >&5
+   echo "$as_me:15058: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -15527,11 +15284,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:15530: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:15287: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:15534: \$? = $ac_status" >&5
+   echo "$as_me:15291: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -15587,11 +15344,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:15590: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:15347: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:15594: \$? = $ac_status" >&5
+   echo "$as_me:15351: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -17775,7 +17532,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 17778 "configure"
+#line 17535 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -17873,7 +17630,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 17876 "configure"
+#line 17633 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -18896,112 +18653,35 @@ then
 fi
 
 
-#
-# Tests for windows
-#
-native_win32_build='no'
-cygwin_build='no'
-case $host_os in
-  cygwin*)
-      cygwin_build='yes'
-      ;;
-  mingw* )
-      native_win32_build='yes'
-      ;;
-esac
+##
+## Tests for windows
+##
+# native_win32_build='no'
+# cygwin_build='no'
+# case $host_os in
+#   cygwin*)
+#       cygwin_build='yes'
+#       ;;
+#   mingw* )
+#       native_win32_build='yes'
+#       ;;
+# esac
 
 
-# checks for xsltproc (to buld HTML help pages)
-# Extract the first word of "xsltproc", so it can be a program name with args.
-set dummy xsltproc; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_prog_has_xsltproc+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$has_xsltproc"; then
-  ac_cv_prog_has_xsltproc="$has_xsltproc" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_prog_has_xsltproc="yes"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-  test -z "$ac_cv_prog_has_xsltproc" && ac_cv_prog_has_xsltproc="no"
-fi
-fi
-has_xsltproc=$ac_cv_prog_has_xsltproc
-if test -n "$has_xsltproc"; then
-  echo "$as_me:$LINENO: result: $has_xsltproc" >&5
-echo "${ECHO_T}$has_xsltproc" >&6
-else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-fi
-
-if test x$has_xsltproc = xno; then
-   # checks for sabcmd as an alternative
-   # Extract the first word of "sabcmd", so it can be a program name with args.
-set dummy sabcmd; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_prog_has_sablotron+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$has_sablotron"; then
-  ac_cv_prog_has_sablotron="$has_sablotron" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_prog_has_sablotron="yes"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-  test -z "$ac_cv_prog_has_sablotron" && ac_cv_prog_has_sablotron="no"
-fi
-fi
-has_sablotron=$ac_cv_prog_has_sablotron
-if test -n "$has_sablotron"; then
-  echo "$as_me:$LINENO: result: $has_sablotron" >&5
-echo "${ECHO_T}$has_sablotron" >&6
-else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-fi
-
-   if test x$has_sablotron = xno; then
-      { { echo "$as_me:$LINENO: error: xsltproc or sabcmd programs were not found but \
-at least one of them is required to build the SIP manual pages.
-Download xslproc (from libxml) at:
-   http://http://www.xmlsoft.org
-or sabcmd (from sablotron) at:
-   http://www.gingerall.com/charlie/ga/xml/p_sab.xml" >&5
-echo "$as_me: error: xsltproc or sabcmd programs were not found but \
-at least one of them is required to build the SIP manual pages.
-Download xslproc (from libxml) at:
-   http://http://www.xmlsoft.org
-or sabcmd (from sablotron) at:
-   http://www.gingerall.com/charlie/ga/xml/p_sab.xml" >&2;}
-   { (exit 1); exit 1; }; }
-   fi
-fi
+# # checks for xsltproc (to buld HTML help pages)
+# AC_CHECK_PROG([has_xsltproc],[xsltproc],[yes],[no], , )
+# if test x$has_xsltproc = xno; then
+#    # checks for sabcmd as an alternative
+#    AC_CHECK_PROG([has_sablotron],[sabcmd],[yes],[no], , )
+#    if test x$has_sablotron = xno; then
+#       AC_MSG_ERROR([[xsltproc or sabcmd programs were not found but \
+# at least one of them is required to build the SIP manual pages.
+# Download xslproc (from libxml) at:
+#    http://http://www.xmlsoft.org
+# or sabcmd (from sablotron) at:
+#    http://www.gingerall.com/charlie/ga/xml/p_sab.xml]])
+#    fi
+# fi
 
 # test if SCI is defined. If not,
 # test if scilab is in path, then get SCI from scilab -nw.
@@ -19067,30 +18747,32 @@ TOOLBOXDIR=$prefix
 
 
 
-#
-# Set defines required to build DLLs and modules using MinGW
-# thx to Bob F.
-#
-# These options are set for DLL build
-#  libanimal:           _DLL ANIMAL_LIB
-# TODO:
-#   - update from SIMPLE toolbox
-#
-LIBRARY_EXTRA_CPPFLAGS=''
-LIBRARY_EXTRA_LIBS=''
-if test "${native_win32_build}" = 'yes'
-then
-  if test "${libtool_build_shared_libs}" = 'yes'
-  then
-    CPPFLAGS="$CPPFLAGS -D_DLL"
-    LIBRARY_EXTRA_CPPFLAGS="-DANIMAL_LIB"
-    LIBRARY_EXTRA_LIBS="${SCIDIR}/bin/LibScilab.lib"
-    # temporary:
-#    LIBS="$LIBS ${SCIDIR}/bin/LibScilab.lib"
-  else
-    CPPFLAGS="$CPPFLAGS -D_LIB"
-  fi
-fi
+# #
+# # Set defines required to build DLLs and modules using MinGW
+# # thx to Bob F.
+# #
+# # These options are set for DLL build
+# #  libanimal:           _DLL ANIMAL_LIB
+# # TODO:
+# #   - update from SIMPLE toolbox
+# #
+# LIBRARY_EXTRA_CPPFLAGS=''
+# LIBRARY_EXTRA_LIBS=''
+# if test "${native_win32_build}" = 'yes'
+# then
+#   if test "${libtool_build_shared_libs}" = 'yes'
+#   then
+#     CPPFLAGS="$CPPFLAGS -D_DLL"
+#     LIBRARY_EXTRA_CPPFLAGS="-DANIMAL_LIB"
+#     LIBRARY_EXTRA_LIBS="${SCIDIR}/bin/LibScilab.lib"
+#     # temporary:
+# #    LIBS="$LIBS ${SCIDIR}/bin/LibScilab.lib"
+#   else
+#     CPPFLAGS="$CPPFLAGS -D_LIB"
+#   fi
+# fi
+# AC_SUBST(LIBRARY_EXTRA_CPPFLAGS)dnl
+# AC_SUBST(LIBRARY_EXTRA_LIBS)dnl
 
 # Checks for libs.
 
@@ -19203,52 +18885,37 @@ echo "${ECHO_T}no" >&6
 fi
 
 pkg_failed=no
-echo "$as_me:$LINENO: checking for OPENCV_CFLAGS" >&5
-echo $ECHO_N "checking for OPENCV_CFLAGS... $ECHO_C" >&6
-if test "${pkg_cv_OPENCV_CFLAGS+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test "x$ac_cv_env_OPENCV_CFLAGS_set" = "xset"; then
-	pkg_cv_OPENCV_CFLAGS=$ac_cv_env_OPENCV_CFLAGS_value
-elif test -n "$PKG_CONFIG"; then
-	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"opencv >= 0.9.6\" >/dev/null 2>&1") >&5
-  ($PKG_CONFIG --exists "opencv >= 0.9.6" >/dev/null 2>&1) 2>&5
+echo "$as_me:$LINENO: checking for OPENCV" >&5
+echo $ECHO_N "checking for OPENCV... $ECHO_C" >&6
+
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"opencv >= 0.9.6\"") >&5
+  ($PKG_CONFIG --exists --print-errors "opencv >= 0.9.6") 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-		pkg_cv_OPENCV_CFLAGS=`$PKG_CONFIG --cflags "opencv >= 0.9.6" 2>/dev/null`
-	else
-		pkg_failed=yes
-	fi
+  pkg_cv_OPENCV_CFLAGS=`$PKG_CONFIG --cflags "opencv >= 0.9.6" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
 else
 	pkg_failed=untried
 fi
-fi
-echo "$as_me:$LINENO: result: $pkg_cv_OPENCV_CFLAGS" >&5
-echo "${ECHO_T}$pkg_cv_OPENCV_CFLAGS" >&6
-echo "$as_me:$LINENO: checking for OPENCV_LIBS" >&5
-echo $ECHO_N "checking for OPENCV_LIBS... $ECHO_C" >&6
-if test "${pkg_cv_OPENCV_LIBS+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test "x$ac_cv_env_OPENCV_LIBS_set" = "xset"; then
-	pkg_cv_OPENCV_LIBS=$ac_cv_env_OPENCV_LIBS_value
-elif test -n "$PKG_CONFIG"; then
-	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"opencv >= 0.9.6\" >/dev/null 2>&1") >&5
-  ($PKG_CONFIG --exists "opencv >= 0.9.6" >/dev/null 2>&1) 2>&5
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"opencv >= 0.9.6\"") >&5
+  ($PKG_CONFIG --exists --print-errors "opencv >= 0.9.6") 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-		pkg_cv_OPENCV_LIBS=`$PKG_CONFIG --libs "opencv >= 0.9.6" 2>/dev/null`
-	else
-		pkg_failed=yes
-	fi
+  pkg_cv_OPENCV_LIBS=`$PKG_CONFIG --libs "opencv >= 0.9.6" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
 else
 	pkg_failed=untried
 fi
-fi
-echo "$as_me:$LINENO: result: $pkg_cv_OPENCV_LIBS" >&5
-echo "${ECHO_T}$pkg_cv_OPENCV_LIBS" >&6
 
 if test $pkg_failed = yes; then
 	OPENCV_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "opencv >= 0.9.6"`
@@ -20217,12 +19884,32 @@ fi
 # AC_SUBST(CPPFLAGS)
 # AC_SUBST(LDFLAGS)
 # AC_SUBST(LIBS)
-TOOLBOX_FUNCTIONS="'viptest'; \
+
+PACKAGE_NAME = sivp
+## for src/Makefile
+# TOOLBOX_SRC=" test.c"
+
+# for src/ilib_gen_gateway.sce
+
+TOOLBOX_TABLE="	'sivptest', 'int_test'; \
+		'canny', 'int_canny'; \
+		'imread', 'int_imread';\
+		'imwrite', 'int_imwrite';\
+		"
+# for loader.sce
+# TOOLBOX_FUNCTIONS is the first colum of TOOLBOX_TABLE
+TOOLBOX_FUNCTIONS="    'sivptest'; \
+		       'canny'; \
+		       'imread';\
+		       'imwrite';\
 		   "
 
 
 
-                              ac_config_files="$ac_config_files Makefile src/Makefile loader.sce"
+
+
+
+                                                            ac_config_files="$ac_config_files Makefile macros/Makefile man/Makefile src/Makefile src/ilib_gen_gateway.sce loader.sce"
 
 
 cat >confcache <<\_ACEOF
@@ -20761,7 +20448,10 @@ do
   case "$ac_config_target" in
   # Handling of arguments.
   "Makefile" ) CONFIG_FILES="$CONFIG_FILES Makefile" ;;
+  "macros/Makefile" ) CONFIG_FILES="$CONFIG_FILES macros/Makefile" ;;
+  "man/Makefile" ) CONFIG_FILES="$CONFIG_FILES man/Makefile" ;;
   "src/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
+  "src/ilib_gen_gateway.sce" ) CONFIG_FILES="$CONFIG_FILES src/ilib_gen_gateway.sce" ;;
   "loader.sce" ) CONFIG_FILES="$CONFIG_FILES loader.sce" ;;
   "default-1" ) CONFIG_COMMANDS="$CONFIG_COMMANDS default-1" ;;
   "src/config.h" ) CONFIG_HEADERS="$CONFIG_HEADERS src/config.h" ;;
@@ -20885,12 +20575,6 @@ s,@RANLIB@,$RANLIB,;t t
 s,@ac_ct_RANLIB@,$ac_ct_RANLIB,;t t
 s,@STRIP@,$STRIP,;t t
 s,@ac_ct_STRIP@,$ac_ct_STRIP,;t t
-s,@DLLTOOL@,$DLLTOOL,;t t
-s,@ac_ct_DLLTOOL@,$ac_ct_DLLTOOL,;t t
-s,@AS@,$AS,;t t
-s,@ac_ct_AS@,$ac_ct_AS,;t t
-s,@OBJDUMP@,$OBJDUMP,;t t
-s,@ac_ct_OBJDUMP@,$ac_ct_OBJDUMP,;t t
 s,@CPP@,$CPP,;t t
 s,@CXX@,$CXX,;t t
 s,@CXXFLAGS@,$CXXFLAGS,;t t
@@ -20900,17 +20584,15 @@ s,@F77@,$F77,;t t
 s,@FFLAGS@,$FFLAGS,;t t
 s,@ac_ct_F77@,$ac_ct_F77,;t t
 s,@LIBTOOL@,$LIBTOOL,;t t
-s,@has_xsltproc@,$has_xsltproc,;t t
-s,@has_sablotron@,$has_sablotron,;t t
 s,@has_scilab@,$has_scilab,;t t
 s,@TOOLBOXDIR@,$TOOLBOXDIR,;t t
 s,@SCIDIR@,$SCIDIR,;t t
-s,@LIBRARY_EXTRA_CPPFLAGS@,$LIBRARY_EXTRA_CPPFLAGS,;t t
-s,@LIBRARY_EXTRA_LIBS@,$LIBRARY_EXTRA_LIBS,;t t
 s,@PKG_CONFIG@,$PKG_CONFIG,;t t
 s,@ac_pt_PKG_CONFIG@,$ac_pt_PKG_CONFIG,;t t
 s,@OPENCV_CFLAGS@,$OPENCV_CFLAGS,;t t
 s,@OPENCV_LIBS@,$OPENCV_LIBS,;t t
+s,@TOOLBOX_SRC@,$TOOLBOX_SRC,;t t
+s,@TOOLBOX_TABLE@,$TOOLBOX_TABLE,;t t
 s,@TOOLBOX_FUNCTIONS@,$TOOLBOX_FUNCTIONS,;t t
 s,@LIBOBJS@,$LIBOBJS,;t t
 s,@LTLIBOBJS@,$LTLIBOBJS,;t t
@@ -21534,8 +21216,6 @@ Configuration:
 	CPPFLAGS = $CPPFLAGS
 	LDFLAGS  = $LDFLAGS
 	LIBS     = $LIBS
-	LIBRARY_EXTRA_CPPFLAGS	= $LIBRARY_EXTRA_CPPFLAGS
-	LIBRARY_EXTRA_LIBS	= $LIBRARY_EXTRA_LIBS
 
 	use OpenCV = $have_opencv
 	use ffmpeg = $have_ffmpeg
@@ -21550,8 +21230,6 @@ Configuration:
 	CPPFLAGS = $CPPFLAGS
 	LDFLAGS  = $LDFLAGS
 	LIBS     = $LIBS
-	LIBRARY_EXTRA_CPPFLAGS	= $LIBRARY_EXTRA_CPPFLAGS
-	LIBRARY_EXTRA_LIBS	= $LIBRARY_EXTRA_LIBS
 
 	use OpenCV = $have_opencv
 	use ffmpeg = $have_ffmpeg

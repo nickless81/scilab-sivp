@@ -26,12 +26,15 @@ macros_bin = $(macros_sci:.sci=.bin)
 macrodir=@TOOLBOXDIR@/macros
 macro_DATA = $(macros_bin) genlib names lib
 
+EXTRA_DIST = $(macros_sci)
+
 ## dist_macro_DATA = $(macros_sci) sip-intro.dem sipdemo_gui.dem interferometry_gui.dem mogrify.dem
 
 
 #
 # The following code is an adaptation to Automake from @SCIDIR@/macros/Make.lib
 #
+
 %.bin : %.sci
 	@SCI=$(SCIDIR);export SCI;$(SCIDIR)/bin/scilab -comp  $<
 

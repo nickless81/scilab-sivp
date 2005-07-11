@@ -16,22 +16,22 @@
 ## along with this program; if not, write to the Free Software
 ## Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-manpages_xml  = imread.xml
-manpages_cat  = imread.cat
-manpages_html = imread.htm
+manpages_xml  = imread.xml imread.zh-s.xml
+manpages_cat  = $(manpages_xml:.xml=.cat)
+manpages_html = $(manpages_xml:.xml=.htm)
 SCIDIR=@SCIDIR@
 
 helpdir=@TOOLBOXDIR@/man
 help_DATA = $(manpages_html) whatis.htm 
 
-EXTRA_DIST = $(manpages_xml) html-sivp.xsl mansivp.dtd Makefile.am.input
+EXTRA_DIST = $(manpages_xml) html-sivp.xsl mansivp.dtd Makefile.am.input 
 
 %.htm: %.xml
 	@echo "Creating html help files"
 	@$(SCIDIR)/bin/scilab -nwni -nb -e "exec('$(top_srcdir)/config/sivp_xmltohtml.sci');%helps=[PWD,'SIVP';%helps];sivp_xmltohtml(PWD,'SIVP','html-sivp.xsl');quit"
 
-Makefile.am: Makefile.am.input
-	$(top_srcdir)/config/subst_input_files.sh
+## Makefile.am: Makefile.am.input
+##	$(top_srcdir)/config/subst_input_files.sh
 
 clean-local:
 	rm -f *.htm

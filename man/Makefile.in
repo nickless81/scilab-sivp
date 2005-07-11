@@ -92,15 +92,15 @@ TOOLBOX_TABLE = @TOOLBOX_TABLE@
 VERSION = @VERSION@
 has_scilab = @has_scilab@
 
-manpages_xml = imread.xml
-manpages_cat = imread.cat
-manpages_html = imread.htm
+manpages_xml = imread.xml imread.zh-s.xml
+manpages_cat = $(manpages_xml:.xml=.cat)
+manpages_html = $(manpages_xml:.xml=.htm)
 SCIDIR = @SCIDIR@
 
 helpdir = @TOOLBOXDIR@/man
 help_DATA = $(manpages_html) whatis.htm 
 
-EXTRA_DIST = $(manpages_xml) html-sivp.xsl mansivp.dtd Makefile.am.input
+EXTRA_DIST = $(manpages_xml) html-sivp.xsl mansivp.dtd Makefile.am.input 
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = ../src/config.h
 CONFIG_CLEAN_FILES = 
@@ -231,9 +231,6 @@ maintainer-clean-generic clean mostlyclean distclean maintainer-clean
 %.htm: %.xml
 	@echo "Creating html help files"
 	@$(SCIDIR)/bin/scilab -nwni -nb -e "exec('$(top_srcdir)/config/sivp_xmltohtml.sci');%helps=[PWD,'SIVP';%helps];sivp_xmltohtml(PWD,'SIVP','html-sivp.xsl');quit"
-
-Makefile.am: Makefile.am.input
-	$(top_srcdir)/config/subst_input_files.sh
 
 clean-local:
 	rm -f *.htm

@@ -99,6 +99,8 @@ macros_bin = $(macros_sci:.sci=.bin)
 
 macrodir = @TOOLBOXDIR@/macros
 macro_DATA = $(macros_bin) genlib names lib
+
+EXTRA_DIST = $(macros_sci)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = ../src/config.h
 CONFIG_CLEAN_FILES = 
@@ -229,6 +231,7 @@ maintainer-clean-generic clean mostlyclean distclean maintainer-clean
 #
 # The following code is an adaptation to Automake from @SCIDIR@/macros/Make.lib
 #
+
 %.bin : %.sci
 	@SCI=$(SCIDIR);export SCI;$(SCIDIR)/bin/scilab -comp  $<
 
