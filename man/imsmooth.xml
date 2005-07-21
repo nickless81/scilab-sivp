@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>imsmooth</TITLE>
+<TYPE>SIVP Toolbox</TYPE>
+<DATE>July, 2005</DATE>
+<SHORT_DESCRIPTION name="imsmooth">Smooths the image in one of several ways</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>ima_out = imsmooth(ima_in,"Calling sequence",param1,param2,param3)</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+   <PARAM_NAME>ima_in</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Input matrice.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>ima_out</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Output matrice. Image to store the edges found by the function.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>calling sequence</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Type of the smoothing:
+   
+BLUR_NO_SCALE (simple blur with no scaling) - summation over a pixel param1×param2 neighborhood. If the neighborhood size may vary, one may precompute integral image with cvIntegral function. 
+
+BLUR (simple blur) - summation over a pixel param1×param2 neighborhood with subsequent scaling by 1/(param1*param2). 
+
+GAUSSIAN (gaussian blur) - convolving image with param1×param2 Gaussian kernel. 
+
+MEDIAN (median blur) - finding median of param1×param1 neighborhood (i.e. the neighborhood is square). 
+
+BILATERAL (bilateral filter) - applying bilateral 3x3 filtering with color sigma=param1 and space sigma=param2. Information about bilateral filtering can be found at http://www.dai.ed.ac.uk/CVonline/LOCAL_COPIES/MANDUCHI1/Bilateral_Filtering.html
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>Param1</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   The first parameter of smoothing operation.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>Param2</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   The second parameter of smoothing operation. In case of simple scaled/non-scaled and Gaussian blur if param2 is zero, it is set to param1.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>Param3</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   In case of Gaussian parameter this parameter may specify Gaussian sigma (standard deviation). If it is zero, it is calculated from the kernel size:
+
+              sigma = (n/2 - 1)*0.3 + 0.8, where n=param1 for horizontal kernel,
+                                                 n=param2 for vertical kernel.
+              
+   Using standard sigma for small kernels (3×3 to 7×7) gives better speed. If param3 is not zero, while param1 and param2 are zeros, the kernel size is calculated from the sigma (to provide accurate enough operation).
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+<DESCRIPTION>
+<P>
+   <TT>imsmooth</TT> The function cvSmooth smooths image using one of several methods. Every of the methods has some features and restrictions listed below
+</P>
+<P>
+Blur with no scaling works with single-channel images only and supports accumulation of 8-bit to 16-bit format (similar to cvSobel and cvLaplace) and 32-bit floating point to 32-bit floating-point format.
+</P>
+<P>
+Simple blur and Gaussian blur support 1- or 3-channel, 8-bit and 32-bit floating point images. These two methods can process images in-place.
+</P>
+<P>
+Median and bilateral filters work with 1- or 3-channel 8-bit images and can not process images in-place.
+</P>
+   
+</DESCRIPTION>
+<EXAMPLE><![CDATA[
+
+//upgrade the size of the memory
+stacksize(10000000); 
+
+//load the picture
+B=imread('/home/vincent/software/sivp/images/test.jpg');
+
+//C=convert(B,2);
+
+//D=canny(C,100,150,3);
+
+//call the rect SIVP function
+A=smooth(B,'GAUSSIAN',3,3,0);
+//A=imsmooth(B,'BILATERAL',3,3,0);
+//A=imsmooth(B,'MEDIAN',3,3,0);
+//A=imsmooth(B,'BLUR',3,3,0);
+//A=imsmooth(B,'BLUR_NO_SCALE',3,3,0);
+
+
+//conversion
+A=double(A)/255;
+//B=double(B)/255;
+
+//try to display the result
+imshow(A);
+
+]]></EXAMPLE>
+<!-- ================================= -->
+
+<AUTHORS>
+   <AUTHORS_ITEM name="ETIENNE"> ETIENNE Vincent &lt;vincent.etienne (AT) gmail DOT com &gt; </AUTHORS_ITEM>
+</AUTHORS>
+<!-- ================================= -->
+<SECTION label="Bugs and Shortcomings">
+<P>
+</P>
+</SECTION>
+<!-- ================================= -->
+<SECTION label="Availability">
+The latest version of SIVP can be found at
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+   <SEE_ALSO>
+      <SEE_ALSO_ITEM> <LINK>threshold</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK></LINK> </SEE_ALSO_ITEM>
+   </SEE_ALSO>
+</MAN>

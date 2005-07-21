@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>Fr</LANGUAGE>
+<TITLE>imsmooth</TITLE>
+<TYPE>Boite à outil SIVP</TYPE>
+<DATE>Juillet 2005</DATE>
+<SHORT_DESCRIPTION name="imsmooth">Lisse une image de plusieurs manières</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>ima_out = imsmooth(ima_in,"Calling sequence",param1,param2,param3)</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+   <PARAM_NAME>ima_in</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Matrice d'entrée
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>ima_out</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Matrice de sortie
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>calling sequence</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Type de lissage:
+
+BLUR_NO_SCALE (simple floue sans graduation) - addition sur un voisinage du Pixel param1×param2. Si la taille de voisinage peut changer, on peut précalculer l'image intégrale avec la fonction cvIntegral.
+
+BLUR  (floue simple) - addition sur un voisinage du Pixel param1×param2 avec la graduation suivante : 1/(param1*param2).
+
+GAUSSIAN (floue gaussian) - image convolving avec le grain param1×param2 gaussien.
+
+MEDIAN (floue médien) - trouve la médiane du voisinage param1×param1 (c.-à-d. le voisinage est à angle droit).
+
+BILATERAL (filtre bilatéral) - application d'un filtre bilatéral 3x3 avec la couleur sigma=param1 et l'espace sigma=param2. Des informations sur le filtrage bilatéral peuvent être trouvées à http://www.dai.ed.ac.uk/CVonline/LOCAL_COPIES/MANDUCHI1/Bilateral_Filtering.html
+   
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>Param1</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Premier parametre de l'opération de smoothing.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>Param2</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Le deuxième paramètre de l'opération. En cas de Blur / non-scaled Blur et de floue gaussien, si param2 est égale à zéro, il est placée à param1.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>Param3</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   In case of Gaussian parameter this parameter may specify Gaussian sigma (standard deviation). If it is zero, it is calculated from the kernel size:
+
+              sigma = (n/2 - 1)*0.3 + 0.8, ou n=param1 pour un noyau horizontal
+                                              n=param2 pour un vertical.
+              
+   Employer le sigma standard pour les petits grains (3×3 à 7×7) donne une meilleure vitesse. Si param3 n'est pas zéro, alors que param1 et param2 sont des zéros, la taille de grain est calculée à partir du sigma (pour fournir assez de précision à l'opération).
+
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+<DESCRIPTION>
+<P>
+   <TT>imsmooth</TT> La fonction smooth lisse l'image en utilisant une des différentes méthodes. Chaqu'une des méthodes énumérer nécéssitent quelques dispositifs et restrictions ci-dessous :
+</P>
+<P>
+Le flou sans la graduation fonctionne avec des images à canal unique et supporte l'accumulation de 8 bits au format de 16 bits et à la virgule flottante de 32 bits au format à point mobile de 32 bits.
+</P>
+<P>
+Le flou simple et le flou gaussien supporte images 1 ou de 3-channel, de 8 bits et de 32 bits de virgule flottante. Ces deux méthodes peuvent traiter des images sur place.
+</P>
+<P>
+Les filtres médians et bilatéraux fonctionnent avec des images à un ou 3 channel de 8 bits et ne peuvent pas traiter des images sur place.
+</P>
+   
+</DESCRIPTION>
+<EXAMPLE><![CDATA[
+
+//upgrade the size of the memory
+stacksize(10000000); 
+
+//load the picture
+B=imread('/home/vincent/software/sivp/images/test.jpg');
+
+//C=convert(B,2);
+
+//D=canny(C,100,150,3);
+
+//call the rect SIVP function
+A=imsmooth(B,'GAUSSIAN',3,3,0);
+//A=imsmooth(B,'BILATERAL',3,3,0);
+//A=imsmooth(B,'MEDIAN',3,3,0);
+//A=imsmooth(B,'BLUR',3,3,0);
+//A=imsmooth(B,'BLUR_NO_SCALE',3,3,0);
+
+
+//conversion
+A=double(A)/255;
+//B=double(B)/255;
+
+//try to display the result
+imshow(A);
+
+]]></EXAMPLE>
+<!-- ================================= -->
+
+<AUTHORS>
+   <AUTHORS_ITEM name="ETIENNE"> ETIENNE Vincent &lt;vincent.etienne (AT) gmail DOT com &gt; </AUTHORS_ITEM>
+</AUTHORS>
+<!-- ================================= -->
+<SECTION label="Bugs and Shortcomings">
+<P>
+</P>
+</SECTION>
+<!-- ================================= -->
+<SECTION label="Availability">
+The latest version of SIVP can be found at
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+   <SEE_ALSO>
+      <SEE_ALSO_ITEM> <LINK>threshold</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK></LINK> </SEE_ALSO_ITEM>
+   </SEE_ALSO>
+</MAN>

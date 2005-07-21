@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>convert</TITLE>
+<TYPE>SIVP Toolbox</TYPE>
+<DATE>July, 2005</DATE>
+<SHORT_DESCRIPTION name="convert">Converts image from one color space to another</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>ima_out = convert(ima_in,'calling sequence')</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+   <PARAM_NAME>ima_in</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Input matrice.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>ima_out</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Output matrice.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>'calling sequence'</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Color conversion operation that can be specifed using 'src_color_space'2'dst_color_space'
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+<DESCRIPTION>
+
+<P>
+   <TT>convert</TT>The function convert, converts input image from one color space to another. The function ignores colorModel and channelSeq fields of header, so the source image color space should be specified correctly (including order of the channels in case of RGB space, e.g. BGR means 24-bit format with B0 G0 R0 B1 G1 R1 ... layout, whereas RGB means 24-format with R0 G0 B0 R1 G1 B1 ... layout). The function can do the following transformations:
+</P>   
+    
+<P>
+    RGB[A]->Gray: Y=0.212671*R + 0.715160*G + 0.072169*B + 0*A
+</P>
+
+<P>    
+    Gray->RGB[A]: R=Y G=Y B=Y A=0
+    
+    same thing with BGR
+</P>    
+
+ <P> 
+   RGB->XYZ (BGR2XYZ, RGB2XYZ, XYZ2BGR, XYZ2RGB):
+ </P>  
+    
+   <P><TT>|X|   |0.412411  0.357585  0.180454| |R|</TT></P>
+   <P><TT>|Y| = |0.212649  0.715169  0.072182|*|G|</TT></P>
+   <P><TT>|Z|   |0.019332  0.119195  0.950390| |B|</TT></P>
+
+<P> 
+    <P><TT>|R|   | 3.240479  -1.53715  -0.498535| |X|</TT></P>
+    <P><TT>|G| = |-0.969256   1.875991  0.041556|*|Y|</TT></P>
+    <P><TT>|B|   | 0.055648  -0.204043  1.057311| |Z|</TT></P>
+ </P>
+
+<P>       
+    RGB->YCrCb (BGR2YCrCb, RGB2YCrCb, YCrCb2BGR, YCrCb2RGB) :
+</P>    
+    <P><TT>Y=0.299*R + 0.587*G + 0.114*B</TT></P>
+    <P><TT>Cr=(R-Y)*0.713 + 128</TT></P>
+    <P><TT>Cb=(B-Y)*0.564 + 128</TT></P>
+
+    <P><TT>R=Y + 1.403*(Cr - 128)</TT></P>
+    <P><TT>G=Y - 0.344*(Cr - 128) - 0.714*(Cb - 128)</TT></P>
+    <P><TT>B=Y + 1.773*(Cb - 128)</TT></P>
+<P>    
+    RGB->HSV (CV_BGR2HSV,CV_RGB2HSV) :
+</P>
+    
+    <P><TT>V=max(R,G,B)</TT></P>
+    <P><TT>S=(V-min(R,G,B))*255/V   if V!=0, 0 otherwise</TT></P>
+
+           <P><TT>(G - B)*60/S,  if V=R</TT></P>
+    <P><TT>H= 180+(B - R)*60/S,  if V=G</TT></P>
+       <P><TT>240+(R - G)*60/S,  if V=B</TT></P>
+
+    <P><TT>if H &lt; 0 then H=H+360</TT></P>
+    <P><TT>The hue values calcualted using the above formulae vary from 0° to 360° so they are divided by 2 to fit into 8 bits.</TT></P>
+ 
+ <P>    
+    RGB->Lab (BGR2Lab, RGB2Lab) :
+ </P>
+    <P><TT>|X|   |0.433910  0.376220  0.189860| |R/255|</TT></P>
+    <P><TT>|Y| = |0.212649  0.715169  0.072182|*|G/255|</TT></P>
+    <P><TT>|Z|   |0.017756  0.109478  0.872915| |B/255|</TT></P>
+      
+    <P><TT>L = 116*Y1/3      for Y>0.008856</TT></P>
+    <P><TT>L = 903.3*Y      for Y&lt;=0.008856</TT></P>
+
+    <P><TT>a = 500*(f(X)-f(Y))</TT></P>
+    <P><TT>b = 200*(f(Y)-f(Z))</TT></P>
+    <P><TT>where f(t)=t1/3              for t>0.008856</TT></P>
+           <P><TT>f(t)=7.787*t+16/116    for t&lt;=0.008856</TT></P>
+    <P><TT>The above formulae have been taken from http://www.cica.indiana.edu/cica/faq/color_spaces/color.spaces.html</TT></P>   
+  
+  <P>   
+     Bayer->RGB (BayerBG2BGR, BayerGB2BGR, BayerRG2BGR, BayerGR2BGR,
+BayerBG2RGB, BayerRG2BGR, BayerGB2RGB, BayerGR2BGR,
+BayerRG2RGB, BayerBG2BGR, BayerGR2RGB, BayerGB2BGR)
+</P>
+     
+<P><TT>Bayer pattern is widely used in CCD and CMOS cameras. It allows to get color picture out of a single plane where R,G and B pixels (sensors of a particular component)</TT></P>
+   
+</DESCRIPTION>
+<EXAMPLE><![CDATA[
+
+//upgrade the size of the memory
+stacksize(20000000); 
+
+//load the picture
+A=imread('/home/vincent/software/sivp/images/lena.tif');
+B=convert(A,'RGB2GRAY');
+
+B=double(B)/255;
+
+//try to display the result
+imshow(B);
+
+]]></EXAMPLE>
+<!-- ================================= -->
+
+<AUTHORS>
+   <AUTHORS_ITEM name="ETIENNE"> ETIENNE Vincent &lt;vincent.etienne (AT) gmail DOT com &gt; </AUTHORS_ITEM>
+</AUTHORS>
+<!-- ================================= -->
+<SECTION label="Bugs and Shortcomings">
+<P>
+</P>
+</SECTION>
+<!-- ================================= -->
+<SECTION label="Availability">
+The latest version of SIVP can be found at
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+   <SEE_ALSO>
+      <SEE_ALSO_ITEM> <LINK></LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK></LINK> </SEE_ALSO_ITEM>
+   </SEE_ALSO>
+</MAN>
