@@ -24,7 +24,7 @@ lib_LTLIBRARIES = libsivp.la
 
 # AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
 
-libsivp_la_SOURCES = libsivp.c common.c imread.c imwrite.c test.c canny.c
+libsivp_la_SOURCES = libsivp.c common.c imread.c imwrite.c test.c canny.c  convert.c imsmooth.c laplace.c precornerdetec.c sobel.c threshold.c 
 
 libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release @PACKAGE_VERSION@
 

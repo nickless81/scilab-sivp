@@ -466,7 +466,7 @@ ac_includes_default="\
 #endif"
 
 ac_default_prefix=$TOOLBOXDIR
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO SET_MAKE CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT build build_cpu build_vendor build_os host host_cpu host_vendor host_os EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB STRIP ac_ct_STRIP CPP CXX CXXFLAGS ac_ct_CXX CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL has_scilab TOOLBOXDIR SCIDIR PKG_CONFIG ac_pt_PKG_CONFIG OPENCV_CFLAGS OPENCV_LIBS TOOLBOX_SRC TOOLBOX_TABLE TOOLBOX_FUNCTIONS LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO SET_MAKE CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT build build_cpu build_vendor build_os host host_cpu host_vendor host_os EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB STRIP ac_ct_STRIP CPP CXX CXXFLAGS ac_ct_CXX CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL has_xsltproc has_sablotron has_scilab TOOLBOXDIR SCIDIR PKG_CONFIG ac_pt_PKG_CONFIG OPENCV_CFLAGS OPENCV_LIBS TOOLBOX_SRC TOOLBOX_TABLE TOOLBOX_FUNCTIONS LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -18668,20 +18668,97 @@ fi
 # esac
 
 
-# # checks for xsltproc (to buld HTML help pages)
-# AC_CHECK_PROG([has_xsltproc],[xsltproc],[yes],[no], , )
-# if test x$has_xsltproc = xno; then
-#    # checks for sabcmd as an alternative
-#    AC_CHECK_PROG([has_sablotron],[sabcmd],[yes],[no], , )
-#    if test x$has_sablotron = xno; then
-#       AC_MSG_ERROR([[xsltproc or sabcmd programs were not found but \
-# at least one of them is required to build the SIP manual pages.
-# Download xslproc (from libxml) at:
-#    http://http://www.xmlsoft.org
-# or sabcmd (from sablotron) at:
-#    http://www.gingerall.com/charlie/ga/xml/p_sab.xml]])
-#    fi
-# fi
+# checks for xsltproc (to buld HTML help pages)
+# Extract the first word of "xsltproc", so it can be a program name with args.
+set dummy xsltproc; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_prog_has_xsltproc+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$has_xsltproc"; then
+  ac_cv_prog_has_xsltproc="$has_xsltproc" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_prog_has_xsltproc="yes"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+  test -z "$ac_cv_prog_has_xsltproc" && ac_cv_prog_has_xsltproc="no"
+fi
+fi
+has_xsltproc=$ac_cv_prog_has_xsltproc
+if test -n "$has_xsltproc"; then
+  echo "$as_me:$LINENO: result: $has_xsltproc" >&5
+echo "${ECHO_T}$has_xsltproc" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+if test x$has_xsltproc = xno; then
+   # checks for sabcmd as an alternative
+   # Extract the first word of "sabcmd", so it can be a program name with args.
+set dummy sabcmd; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_prog_has_sablotron+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$has_sablotron"; then
+  ac_cv_prog_has_sablotron="$has_sablotron" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_prog_has_sablotron="yes"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+  test -z "$ac_cv_prog_has_sablotron" && ac_cv_prog_has_sablotron="no"
+fi
+fi
+has_sablotron=$ac_cv_prog_has_sablotron
+if test -n "$has_sablotron"; then
+  echo "$as_me:$LINENO: result: $has_sablotron" >&5
+echo "${ECHO_T}$has_sablotron" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+   if test x$has_sablotron = xno; then
+      { { echo "$as_me:$LINENO: error: xsltproc or sabcmd programs were not found but \
+at least one of them is required to build the SIP manual pages.
+Download xslproc (from libxml) at:
+   http://http://www.xmlsoft.org
+or sabcmd (from sablotron) at:
+   http://www.gingerall.com/charlie/ga/xml/p_sab.xml" >&5
+echo "$as_me: error: xsltproc or sabcmd programs were not found but \
+at least one of them is required to build the SIP manual pages.
+Download xslproc (from libxml) at:
+   http://http://www.xmlsoft.org
+or sabcmd (from sablotron) at:
+   http://www.gingerall.com/charlie/ga/xml/p_sab.xml" >&2;}
+   { (exit 1); exit 1; }; }
+   fi
+fi
 
 # test if SCI is defined. If not,
 # test if scilab is in path, then get SCI from scilab -nw.
@@ -18932,6 +19009,8 @@ echo "$as_me: error:  OpenCV version >= 0.9.6 was not found. " >&2;}
 else
 	OPENCV_CFLAGS=$pkg_cv_OPENCV_CFLAGS
 	OPENCV_LIBS=$pkg_cv_OPENCV_LIBS
+        echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
 	CFLAGS="$CFLAGS $OPENCV_CFLAGS"
 		 LIBS="$LIBS $OPENCV_LIBS"
 		 have_opencv=yes
@@ -19892,16 +19971,28 @@ PACKAGE_NAME = sivp
 # for src/ilib_gen_gateway.sce
 
 TOOLBOX_TABLE="	'sivptest', 'int_test'; \
-		'canny', 'int_canny'; \
 		'imread', 'int_imread';\
 		'imwrite', 'int_imwrite';\
+		'canny', 'int_canny'; \
+                'convert', 'int_convert'; \
+                'laplace', 'int_laplace'; \
+                'precornerdetec', 'int_precornerdetec'; \
+                'imsmooth', 'int_imsmooth'; \
+                'sobel', 'int_sobel'; \
+                'threshold', 'int_threshold'; \
 		"
 # for loader.sce
 # TOOLBOX_FUNCTIONS is the first colum of TOOLBOX_TABLE
 TOOLBOX_FUNCTIONS="    'sivptest'; \
-		       'canny'; \
 		       'imread';\
 		       'imwrite';\
+		       'canny'; \
+                       'convert'; \
+                       'laplace'; \
+                       'precornerdetec'; \
+                       'imsmooth'; \
+                       'sobel'; \
+                       'threshold'; \
 		   "
 
 
@@ -20584,6 +20675,8 @@ s,@F77@,$F77,;t t
 s,@FFLAGS@,$FFLAGS,;t t
 s,@ac_ct_F77@,$ac_ct_F77,;t t
 s,@LIBTOOL@,$LIBTOOL,;t t
+s,@has_xsltproc@,$has_xsltproc,;t t
+s,@has_sablotron@,$has_sablotron,;t t
 s,@has_scilab@,$has_scilab,;t t
 s,@TOOLBOXDIR@,$TOOLBOXDIR,;t t
 s,@SCIDIR@,$SCIDIR,;t t

@@ -39,20 +39,20 @@ fi
 # esac
 
 
-# # checks for xsltproc (to buld HTML help pages)
-# AC_CHECK_PROG([has_xsltproc],[xsltproc],[yes],[no], , )
-# if test x$has_xsltproc = xno; then
-#    # checks for sabcmd as an alternative
-#    AC_CHECK_PROG([has_sablotron],[sabcmd],[yes],[no], , )
-#    if test x$has_sablotron = xno; then
-#       AC_MSG_ERROR([[xsltproc or sabcmd programs were not found but \
-# at least one of them is required to build the SIP manual pages.
-# Download xslproc (from libxml) at:
-#    http://http://www.xmlsoft.org 
-# or sabcmd (from sablotron) at:
-#    http://www.gingerall.com/charlie/ga/xml/p_sab.xml]])
-#    fi
-# fi
+# checks for xsltproc (to buld HTML help pages)
+AC_CHECK_PROG([has_xsltproc],[xsltproc],[yes],[no], , )
+if test x$has_xsltproc = xno; then
+   # checks for sabcmd as an alternative
+   AC_CHECK_PROG([has_sablotron],[sabcmd],[yes],[no], , )
+   if test x$has_sablotron = xno; then
+      AC_MSG_ERROR([[xsltproc or sabcmd programs were not found but \
+at least one of them is required to build the SIP manual pages.
+Download xslproc (from libxml) at:
+   http://http://www.xmlsoft.org 
+or sabcmd (from sablotron) at:
+   http://www.gingerall.com/charlie/ga/xml/p_sab.xml]])
+   fi
+fi
 
 # test if SCI is defined. If not,
 # test if scilab is in path, then get SCI from scilab -nw.
@@ -164,16 +164,28 @@ PACKAGE_NAME = sivp
 # for src/ilib_gen_gateway.sce
 
 TOOLBOX_TABLE="	'sivptest', 'int_test'; \
-		'canny', 'int_canny'; \
 		'imread', 'int_imread';\
 		'imwrite', 'int_imwrite';\
+		'canny', 'int_canny'; \
+                'convert', 'int_convert'; \
+                'laplace', 'int_laplace'; \
+                'precornerdetec', 'int_precornerdetec'; \
+                'imsmooth', 'int_imsmooth'; \
+                'sobel', 'int_sobel'; \
+                'threshold', 'int_threshold'; \
 		"
 # for loader.sce
 # TOOLBOX_FUNCTIONS is the first colum of TOOLBOX_TABLE 
 TOOLBOX_FUNCTIONS="    'sivptest'; \
-		       'canny'; \
 		       'imread';\
 		       'imwrite';\
+		       'canny'; \
+                       'convert'; \
+                       'laplace'; \
+                       'precornerdetec'; \
+                       'imsmooth'; \
+                       'sobel'; \
+                       'threshold'; \
 		   "
 
 AC_SUBST(PACKAGE_NAME)

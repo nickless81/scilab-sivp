@@ -90,9 +90,11 @@ TOOLBOX_FUNCTIONS = @TOOLBOX_FUNCTIONS@
 TOOLBOX_SRC = @TOOLBOX_SRC@
 TOOLBOX_TABLE = @TOOLBOX_TABLE@
 VERSION = @VERSION@
+has_sablotron = @has_sablotron@
 has_scilab = @has_scilab@
+has_xsltproc = @has_xsltproc@
 
-manpages_xml = imread.xml imread.zh-s.xml
+manpages_xml = imread.xml imread.zh-s.xml canny.xml canny.fr.xml sobel.xml sobel.fr.xml laplace.xml laplace.fr.xml convert.xml convert.fr.xml imsmooth.xml imsmooth.fr.xml threshold.xml threshold.fr.xml precornerdetec.xml precornerdetec.fr.xml
 manpages_cat = $(manpages_xml:.xml=.cat)
 manpages_html = $(manpages_xml:.xml=.htm)
 SCIDIR = @SCIDIR@

@@ -91,7 +91,9 @@ TOOLBOX_FUNCTIONS = @TOOLBOX_FUNCTIONS@
 TOOLBOX_SRC = @TOOLBOX_SRC@
 TOOLBOX_TABLE = @TOOLBOX_TABLE@
 VERSION = @VERSION@
+has_sablotron = @has_sablotron@
 has_scilab = @has_scilab@
+has_xsltproc = @has_xsltproc@
 
 macros_sci = imshow.sci char2double.sci short2double.sci long2double.sci sip_approx_true_cmap.sci sip_index_true_cmap.sci
 
