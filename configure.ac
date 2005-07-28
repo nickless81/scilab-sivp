@@ -7,7 +7,7 @@ AC_INIT([sivp], [cvs], [https://sourceforge.net/tracker/?group_id=134898&atid=73
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_SRCDIR(src/test.c)
 AM_CONFIG_HEADER(src/config.h)
-AM_INIT_AUTOMAKE([sivp], [cvs] )
+AM_INIT_AUTOMAKE([sivp], [0.1] )
 
 # Checks for programs.
 AC_PROG_CC
@@ -121,14 +121,14 @@ PKG_CHECK_MODULES(OPENCV,
 
 
 
-#check for ffmpeg
-have_ffmpeg=no
-AC_CHECK_HEADER(ffmpeg/avcodec.h,
-    AC_CHECK_LIB(avcodec, avcodec_decode_video,
-        [AC_CHECK_LIB(avformat, av_read_frame,
-			[have_ffmpeg=yes
-			 LIBS="$LIBS -lavcodec -lavformat"],,
-			[-lavcodec])]))
+##check for ffmpeg
+#have_ffmpeg=no
+#AC_CHECK_HEADER(ffmpeg/avcodec.h,
+#    AC_CHECK_LIB(avcodec, avcodec_decode_video,
+#        [AC_CHECK_LIB(avformat, av_read_frame,
+#			[have_ffmpeg=yes
+#			 LIBS="$LIBS -lavcodec -lavformat"],,
+#			[-lavcodec])]))
 
 #echo $has_ffmpeg
 #echo ":$FFMPEG_CFLGS:"
@@ -212,8 +212,8 @@ Configuration:
 	LDFLAGS  = $LDFLAGS
 	LIBS     = $LIBS
 
-	use OpenCV = $have_opencv
-	use ffmpeg = $have_ffmpeg
+	has OpenCV = $have_opencv
 =====================================================
 This toolbox will be installed in $TOOLBOXDIR.
+Please run 'make' and 'make install' to compile and install the toolbox. 
 ]) 

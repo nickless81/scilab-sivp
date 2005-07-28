@@ -2,9 +2,8 @@ EXTRA_DIST = ChangeLog COPYING INSTALL libtool Makefile.in NEWS README \
 		builder.sce loader.sce \
 		config/config.guess config/config.sub config/install-sh \
 		config/ltmain.sh config/missing config/mkinstalldirs \
-		config/sivp_xmltohtml.sci config/subst_input_files.sh   \
+		config/sivp_xmltohtml.sci   \
 		src/ilib_gen_gateway.sce
-
 
 SUBDIRS = src macros man
 
