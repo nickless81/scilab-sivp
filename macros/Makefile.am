@@ -26,7 +26,7 @@ macros_bin = $(macros_sci:.sci=.bin)
 macrodir=@TOOLBOXDIR@/macros
 macro_DATA = $(macros_bin) genlib names lib imshow.tcl
 
-EXTRA_DIST = $(macros_sci)
+EXTRA_DIST = $(macros_sci)  imshow.tcl
 
 ## dist_macro_DATA = $(macros_sci) sip-intro.dem sipdemo_gui.dem interferometry_gui.dem mogrify.dem
 

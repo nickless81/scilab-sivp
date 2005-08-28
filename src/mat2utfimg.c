@@ -33,7 +33,7 @@ int int_mat2utfimg(char * fname)
       for(c=pImg->nChannels-1; c>=0; c--)
 	{
 	  Pixel = CV_IMAGE_ELEM(pImg, unsigned char, h, w*pImg->nChannels + c );
-	  if(Pixel <= 127)
+	  if(Pixel <= 127 && Pixel > 0)
 	    {
 	      pUTFData[nCurr++] = Pixel;
 	    }
@@ -44,7 +44,6 @@ int int_mat2utfimg(char * fname)
 	    }
 	}
 
-  pUTFData[nCurr++] = '\0';
 
   isOK = FALSE;
   isOK = Create2DIntMat(2, 1, nCurr, pUTFData, I_UCHAR);

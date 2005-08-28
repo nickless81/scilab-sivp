@@ -1,4 +1,4 @@
-EXTRA_DIST = ChangeLog COPYING INSTALL libtool Makefile.in NEWS README \
+EXTRA_DIST = ChangeLog TODO BUGS COPYING INSTALL libtool Makefile.in NEWS README \
 		builder.sce loader.sce \
 		config/config.guess config/config.sub config/install-sh \
 		config/ltmain.sh config/missing config/mkinstalldirs \

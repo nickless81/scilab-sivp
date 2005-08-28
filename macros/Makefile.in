@@ -87,14 +87,14 @@ has_sablotron = @has_sablotron@
 has_scilab = @has_scilab@
 has_xsltproc = @has_xsltproc@
 
-macros_sci = char2double.sci short2double.sci long2double.sci sip_approx_true_cmap.sci sip_index_true_cmap.sci #imshow.sci 
+macros_sci = imshow.sci
 
 macros_bin = $(macros_sci:.sci=.bin)
 
 macrodir = @TOOLBOXDIR@/macros
-macro_DATA = $(macros_bin) genlib names lib
+macro_DATA = $(macros_bin) genlib names lib imshow.tcl
 
-EXTRA_DIST = $(macros_sci)
+EXTRA_DIST = $(macros_sci)  imshow.tcl
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = ../src/config.h
 CONFIG_CLEAN_FILES = 

@@ -7,19 +7,19 @@ wm title $w "image show"
 wm iconname $w "imshow"
 
 frame $w.top -borderwidth 10
-pack $w.top 
+grid $w.top -sticky n
 
 #Zoom In button
 button $w.top.zoomin -text "Zoom In" -command {zoom_in}
-pack $w.top.zoomin -side left
+grid $w.top.zoomin -row 0 -column 0 -sticky n
 
 #Zoom Out button
 button $w.top.zoomout -text "Zoom Out" -command {zoom_out}
-pack $w.top.zoomout -side left
+grid $w.top.zoomout -row 0 -column 1 -sticky n
 
 #close button
 button $w.top.exit -text Close -command {destroy .imshow}
-pack $w.top.exit -side right
+grid $w.top.exit -row 0 -column 2 -sticky n
 
 
 
@@ -29,13 +29,20 @@ image create photo tkimage
 tkimage put  $imagedata
 
 #create a scrollable canvas
-canvas $w.can 
-pack $w.can -expand 1 -fill both
+canvas $w.can -highlightthickness 0  -yscrollcommand {$w.vs set} -xscrollcommand {$w.hs set} 
+scrollbar $w.vs -command {$w.can yview}
+scrollbar $w.hs -command {$w.can xview} -orient horizontal
+grid $w.can $w.vs -sticky nsew
+grid $w.hs -sticky nsew
+grid rowconfigure    $w 1 -weight 1
+grid columnconfigure $w 0 -weight 1
+
 $w.can create image 0 0 -tags item -image tkimage  -anchor nw
 
 $w.can configure -scrollregion [$w.can bbox all]
 
 set zoomscale 1.0
+
 
 proc zoom_out {} {
     global w tkimage zoomscale
@@ -55,6 +62,9 @@ proc zoom_out {} {
 	zoomimage copy tkimage -subsample [format "%.0f" [expr {1/$zoomscale}]]
     }
     $w.can create image 0 0 -tags item -image zoomimage  -anchor nw
+    
+    $w.can configure -scrollregion [$w.can bbox all]
+
 } 
 
 proc zoom_in {} {
@@ -75,6 +85,9 @@ proc zoom_in {} {
 	zoomimage copy tkimage -subsample [format "%.0f" [expr {1/$zoomscale}]]
     }
     $w.can create image 0 0 -tags item -image zoomimage  -anchor nw
+
+    $w.can configure -scrollregion [$w.can bbox all]
+
 } 
 
 
