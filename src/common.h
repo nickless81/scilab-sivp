@@ -41,6 +41,7 @@ typedef int BOOL;
 #define SIVP_FLOAT 32
 #define SIVP_DOUBLE 64
 
+#include "config.h"
 
 #include <stdio.h>
 
@@ -49,6 +50,12 @@ typedef int BOOL;
 #include <highgui.h>
 
 #include <stack-c.h>
+
+
+#ifdef HAVE_FFMPEG
+#include <ffmpeg/avcodec.h>
+#include <ffmpeg/avformat.h>
+#endif
 
   BOOL IplImg2Mat(IplImage * pImage, int nPos);
 
@@ -69,6 +76,8 @@ typedef int BOOL;
   int IplType2SciType(int IplType);
   int SciType2IplType(int SciType);
 
+  void img2mat(unsigned char* pSrc, unsigned char * pDst, int nWidth, int nHeight, int nCh);
+  void mat2img(unsigned char * pMat, unsigned char *pImg, int nWidth, int nHeight, int nCh);
 
 
 #ifdef __cplusplus

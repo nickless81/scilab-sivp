@@ -59,18 +59,11 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 host_alias = @host_alias@
 host_triplet = @host@
-AR = @AR@
 AS = @AS@
 CC = @CC@
-CXX = @CXX@
-CXXCPP = @CXXCPP@
 DLLTOOL = @DLLTOOL@
 ECHO = @ECHO@
-EGREP = @EGREP@
 EXEEXT = @EXEEXT@
-F77 = @F77@
-GCJ = @GCJ@
-GCJFLAGS = @GCJFLAGS@
 HAVE_LIB = @HAVE_LIB@
 LIB = @LIB@
 LIBTOOL = @LIBTOOL@
@@ -83,7 +76,6 @@ PACKAGE = @PACKAGE@
 PACKAGE_NAME = @PACKAGE_NAME@
 PKG_CONFIG = @PKG_CONFIG@
 RANLIB = @RANLIB@
-RC = @RC@
 STRIP = @STRIP@
 TOOLBOXDIR = @TOOLBOXDIR@
 TOOLBOX_FUNCTIONS = @TOOLBOX_FUNCTIONS@
@@ -94,7 +86,7 @@ has_sablotron = @has_sablotron@
 has_scilab = @has_scilab@
 has_xsltproc = @has_xsltproc@
 
-manpages_xml = imread.xml imread.zh-s.xml canny.xml canny.fr.xml sobel.xml sobel.fr.xml laplace.xml laplace.fr.xml convert.xml convert.fr.xml imsmooth.xml imsmooth.fr.xml threshold.xml threshold.fr.xml precornerdetec.xml precornerdetec.fr.xml
+manpages_xml = imread.xml imread.zh-s.xml imwrite.xml imwrite.zh-s.xml canny.xml canny.fr.xml sobel.xml sobel.fr.xml laplace.xml laplace.fr.xml convert.xml convert.fr.xml imsmooth.xml imsmooth.fr.xml threshold.xml threshold.fr.xml precornerdetec.xml precornerdetec.fr.xml
 manpages_cat = $(manpages_xml:.xml=.cat)
 manpages_html = $(manpages_xml:.xml=.htm)
 SCIDIR = @SCIDIR@
@@ -232,7 +224,8 @@ maintainer-clean-generic clean mostlyclean distclean maintainer-clean
 
 %.htm: %.xml
 	@echo "Creating html help files"
-	@$(SCIDIR)/bin/scilab -nwni -nb -e "exec('$(top_srcdir)/config/sivp_xmltohtml.sci');%helps=[PWD,'SIVP';%helps];sivp_xmltohtml(PWD,'SIVP','html-sivp.xsl');quit"
+	@$(SCIDIR)/bin/scilab -nwni -nb -e "exec('$(top_srcdir)/config/sivp_xmltohtml.sci');%helps=[PWD,'SIVP';%helps];sivp_xmltohtml(PWD,'SIVP','html-sivp.xsl','whatis');quit"
+	@$(SCIDIR)/bin/scilab -nwni -nb -e "exec('$(top_srcdir)/config/sivp_xmltohtml.sci');%helps=[PWD,'SIVP';%helps];sivp_xmltohtml(PWD,'SIVP','html-sivp.xsl','html');quit"
 
 clean-local:
 	rm -f *.htm

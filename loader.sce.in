@@ -43,8 +43,6 @@ end
 functions=[@TOOLBOX_FUNCTIONS@];
 addinter(libsivp_path+'/lib/libsivp.so','libsivp',functions);
 
-write(%io(2),'--------------------------------------------');
-write(%io(2), libtitle + ' loaded');
 
 clear libname;
 clear libtitle;

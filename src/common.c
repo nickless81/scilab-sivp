@@ -551,3 +551,35 @@ int SciType2IplType(int SciType)
   }
 }
 
+/* convert data from row-wise to columnwise */
+void img2mat(unsigned char* pSrc, unsigned char * pDst, int nWidth, int nHeight, int nCh)
+{
+  int row, col, ch;
+  long nCount = 0;
+
+  for(ch =0; ch < nCh; ch++)
+    for(col =0; col < nWidth; col++)
+      for(row = 0; row < nHeight; row++)
+	{
+	  *(pDst+nCount) = *(pSrc+(nWidth*nCh)*row+col*nCh+ch);
+	  nCount++;
+	}
+}
+
+/* convert data from columnwise to row-wise */
+void mat2img(unsigned char * pMat, unsigned char *pImg, int nWidth, int nHeight, int nCh)
+{
+  int row, col, ch;
+  long offset;
+  long nCount = 0;
+
+  for(row=0; row < nHeight; row++)
+    for(col=0; col < nWidth; col++)
+      for (ch=0; ch < nCh; ch++)
+	{
+	  offset = ch*(nWidth*nHeight) + col * nHeight + row;
+	  pImg[nCount] = pMat[offset];
+	  nCount++;
+	}
+}
+

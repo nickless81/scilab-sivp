@@ -2,12 +2,12 @@
 # Some inspiration came from sip's configure.ac (thx Ricardo Fabbri)
 
 
-AC_PREREQ(2.59)
-AC_INIT([sivp], [cvs], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
+AC_PREREQ(2.56)
+AC_INIT([sivp], [0.2], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_SRCDIR(src/test.c)
 AM_CONFIG_HEADER(src/config.h)
-AM_INIT_AUTOMAKE([sivp], [0.1] )
+AM_INIT_AUTOMAKE([sivp], [0.2] )
 
 # Checks for programs.
 AC_PROG_CC
@@ -46,7 +46,7 @@ if test x$has_xsltproc = xno; then
    AC_CHECK_PROG([has_sablotron],[sabcmd],[yes],[no], , )
    if test x$has_sablotron = xno; then
       AC_MSG_ERROR([[xsltproc or sabcmd programs were not found but \
-at least one of them is required to build the SIP manual pages.
+at least one of them is required to build the SIVP manual pages.
 Download xslproc (from libxml) at:
    http://http://www.xmlsoft.org 
 or sabcmd (from sablotron) at:
@@ -114,26 +114,23 @@ AC_SUBST(SCIDIR)
 have_opencv=no
 PKG_CHECK_MODULES(OPENCV, 
 		[opencv >= 0.9.6],
-		[CFLAGS="$CFLAGS $OPENCV_CFLAGS"
+		[CPPFLAGS="$CPPFLAGS $OPENCV_CFLAGS"
 		 LIBS="$LIBS $OPENCV_LIBS"
-		 have_opencv=yes],
+		 have_opencv=yes
+		 AC_DEFINE(HAVE_OPENCV,[], [define HAVE_OPENCV if you have opencv])],
 		[AC_MSG_ERROR([[ OpenCV version >= 0.9.6 was not found. ]])])
 
 
 
-##check for ffmpeg
-#have_ffmpeg=no
-#AC_CHECK_HEADER(ffmpeg/avcodec.h,
-#    AC_CHECK_LIB(avcodec, avcodec_decode_video,
-#        [AC_CHECK_LIB(avformat, av_read_frame,
-#			[have_ffmpeg=yes
-#			 LIBS="$LIBS -lavcodec -lavformat"],,
-#			[-lavcodec])]))
-
-#echo $has_ffmpeg
-#echo ":$FFMPEG_CFLGS:"
-#echo ":$FFMPEG_LIBS:"
-#AC_MSG_ERROR([stop])
+#check for ffmpeg
+have_ffmpeg=no
+AC_CHECK_HEADER(ffmpeg/avcodec.h,
+    AC_CHECK_LIB(avcodec, avcodec_decode_video,
+        [AC_CHECK_LIB(avformat, av_read_frame,
+			[have_ffmpeg=yes
+			 AC_DEFINE(HAVE_FFMPEG,[],[define HAVE_FFMPEG if you have ffmpeg])
+			 LIBS="$LIBS -lavcodec -lavformat"],,
+			[-lavcodec])]))
 
 # Checks for header files. 
 AC_HEADER_STDC
@@ -157,7 +154,7 @@ AC_HEADER_STDBOOL
 # AC_SUBST(LDFLAGS)
 # AC_SUBST(LIBS)
 
-PACKAGE_NAME = sivp
+PACKAGE_NAME=sivp
 ## for src/Makefile
 # TOOLBOX_SRC=" test.c"
 
@@ -173,6 +170,12 @@ TOOLBOX_TABLE="	'sivptest', 'int_test'; \
                 'imsmooth', 'int_imsmooth'; \
                 'sobel', 'int_sobel'; \
                 'threshold', 'int_threshold'; \
+		'vdopen', 'int_vdopen'; \
+		'vdgetframe', 'int_vdgetframe'; \
+		'vdshowopened', 'int_vdshowopened'; \
+		'vdclose', 'int_vdclose'; \
+		'vdcloseall', 'int_vdcloseall'; \
+		'mat2utfimg', 'int_mat2utfimg';\
 		"
 # for loader.sce
 # TOOLBOX_FUNCTIONS is the first colum of TOOLBOX_TABLE 
@@ -186,6 +189,12 @@ TOOLBOX_FUNCTIONS="    'sivptest'; \
                        'imsmooth'; \
                        'sobel'; \
                        'threshold'; \
+		       'vdopen'; \
+		       'vdgetframe'; \
+		       'vdshowopened'; \
+		       'vdclose'; \
+		       'vdcloseall'; \
+		       'mat2utfimg'; \
 		   "
 
 AC_SUBST(PACKAGE_NAME)
@@ -212,7 +221,8 @@ Configuration:
 	LDFLAGS  = $LDFLAGS
 	LIBS     = $LIBS
 
-	has OpenCV = $have_opencv
+	have OpenCV = $have_opencv
+	have FFMPEG = $have_ffmpeg
 =====================================================
 This toolbox will be installed in $TOOLBOXDIR.
 Please run 'make' and 'make install' to compile and install the toolbox. 

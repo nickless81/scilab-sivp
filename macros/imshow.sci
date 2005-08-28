@@ -113,7 +113,7 @@ select type(img)
 	    [m,n]=size(img)
             xset('colormap', graycolormap(256))
             xset('wdim',n,m)
-	    Matplot(img + 1,strf) 
+	    Matplot(double(img)+1,strf)  //convert to double by Shiqi Yu
       else
          [m2,n2] = size(arg2)
          if n2 == 1 then
@@ -163,19 +163,21 @@ select type(img)
       // of the number of colors to 40^3 ~= 2^16
       // Scilab unfortunately doesn't work with 25bit colordepth
       // My thanks to Bruno Pincon
-      printf('This may take a while.');
+      // printf('This may take a while.'); //removed by Shiqi Yu
       if argn(2) == 1
-         nlevels = 11  // 11^3 colors only, for speed
+         nlevels = 11  // 11^3 colors only, for speed 
       else
          nlevels = arg2
       end
+
       xset('colormap',sip_approx_true_cmap(nlevels))
+	
       xset('wdim',dims(2),dims(1))
       if inttype(img(1)) == 11 then  // ssl Ö»Ö§³Öuint8
          img=char2double(img);  // ssl
       end
       Matplot(sip_index_true_cmap(img,nlevels),strf)
-   case 10 then   // filename
+   case 10 then   // filename //this should be removed, by Shiqi YU
       map=0;
       [image,map] = imread(img)
       imshow(image,map)

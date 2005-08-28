@@ -191,6 +191,7 @@ function gener_whatis(title)
         "<dl>"];
   
   l=0;
+  line="";
   for k1=1:size(xml,'*')  // loop on .xml files
     path=xml(k1);
     txt=mgetl(path);

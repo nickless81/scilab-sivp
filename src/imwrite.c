@@ -53,6 +53,7 @@ int int_imwrite(char * fname)
     {
       /*only unsigned char image can be saved
 	convert other type to unsigned char*/
+      /*
       switch(pImage->depth){
       case IPL_DEPTH_8S:     dScale = 1.0;   dShift = 128.0 ; break;
       case IPL_DEPTH_16U:    dScale = (double)(2^8-1)/(double)(2^16-1);   dShift = 0.0 ; break;
@@ -61,6 +62,10 @@ int int_imwrite(char * fname)
       case IPL_DEPTH_32F:
       case IPL_DEPTH_64F:    dScale = 255.0; dShift = 0.0; break;
       }
+      */
+      dScale = 1.0;
+      dShift = 0.0;
+
 
       pDstImage = cvCreateImage(cvSize(pImage->width, pImage->height), IPL_DEPTH_8U, pImage->nChannels);
       if(!pDstImage)

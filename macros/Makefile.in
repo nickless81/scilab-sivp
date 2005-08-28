@@ -59,18 +59,11 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 host_alias = @host_alias@
 host_triplet = @host@
-AR = @AR@
 AS = @AS@
 CC = @CC@
-CXX = @CXX@
-CXXCPP = @CXXCPP@
 DLLTOOL = @DLLTOOL@
 ECHO = @ECHO@
-EGREP = @EGREP@
 EXEEXT = @EXEEXT@
-F77 = @F77@
-GCJ = @GCJ@
-GCJFLAGS = @GCJFLAGS@
 HAVE_LIB = @HAVE_LIB@
 LIB = @LIB@
 LIBTOOL = @LIBTOOL@
@@ -83,7 +76,6 @@ PACKAGE = @PACKAGE@
 PACKAGE_NAME = @PACKAGE_NAME@
 PKG_CONFIG = @PKG_CONFIG@
 RANLIB = @RANLIB@
-RC = @RC@
 SCIDIR = @SCIDIR@
 STRIP = @STRIP@
 TOOLBOXDIR = @TOOLBOXDIR@
@@ -95,7 +87,7 @@ has_sablotron = @has_sablotron@
 has_scilab = @has_scilab@
 has_xsltproc = @has_xsltproc@
 
-macros_sci = imshow.sci char2double.sci short2double.sci long2double.sci sip_approx_true_cmap.sci sip_index_true_cmap.sci
+macros_sci = char2double.sci short2double.sci long2double.sci sip_approx_true_cmap.sci sip_index_true_cmap.sci #imshow.sci 
 
 macros_bin = $(macros_sci:.sci=.bin)
 

@@ -28,12 +28,14 @@
 <DESCRIPTION>
 <P>
    <TT>imread</TT> 将各种格式的图像文件读入Scilab。文件的格式由文件名的扩展名推断得出。目前支持如下格式：
+
     * Windows bitmaps - BMP, DIB;
     * JPEG files - JPEG, JPG, JPE;
     * Portable Network Graphics - PNG;
     * Portable image format - PBM, PGM, PPM;
     * Sun rasters - SR, RAS;
-    * TIFF files - TIFF, TIF. 
+    * TIFF files - TIFF, TIF.
+
 </P>
    <DESCRIPTION_INDENT>
    <DESCRIPTION_ITEM label="im = imread(filename)">

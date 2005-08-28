@@ -10,6 +10,12 @@ extern Gatefunc int_precornerdetec;
 extern Gatefunc int_imsmooth;
 extern Gatefunc int_sobel;
 extern Gatefunc int_threshold;
+extern Gatefunc int_vdopen;
+extern Gatefunc int_vdgetframe;
+extern Gatefunc int_vdshowopened;
+extern Gatefunc int_vdclose;
+extern Gatefunc int_vdcloseall;
+extern Gatefunc int_mat2utfimg;
 static GenericTable Tab[]={
   {(Myinterfun)sci_gateway,int_test,"sivptest"},
   {(Myinterfun)sci_gateway,int_imread,"imread"},
@@ -21,6 +27,12 @@ static GenericTable Tab[]={
   {(Myinterfun)sci_gateway,int_imsmooth,"imsmooth"},
   {(Myinterfun)sci_gateway,int_sobel,"sobel"},
   {(Myinterfun)sci_gateway,int_threshold,"threshold"},
+  {(Myinterfun)sci_gateway,int_vdopen,"vdopen"},
+  {(Myinterfun)sci_gateway,int_vdgetframe,"vdgetframe"},
+  {(Myinterfun)sci_gateway,int_vdshowopened,"vdshowopened"},
+  {(Myinterfun)sci_gateway,int_vdclose,"vdclose"},
+  {(Myinterfun)sci_gateway,int_vdcloseall,"vdcloseall"},
+  {(Myinterfun)sci_gateway,int_mat2utfimg,"mat2utfimg"},
 };
  
 int C2F(libsivp)()
