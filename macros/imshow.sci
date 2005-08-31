@@ -19,7 +19,7 @@ function imshow(im)
 		return;
 	end
 
-	imc=mat2utfimg(im);
+	imc=mat2utfimg(uint8(im));
 
 	if (channel==1)
 		imc='P5'+char(10)+msprintf('%d %d",width,height)+char(10)+'255'+char(10)+char(imc); 
