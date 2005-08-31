@@ -1,5 +1,6 @@
 
-set w .imshow
+if  {[winfo exists  .sivpimshow] != 1 } then {
+set w .sivpimshow
 catch {destroy $w}
 toplevel $w
 
@@ -22,12 +23,6 @@ button $w.top.exit -text Close -command {destroy .imshow}
 grid $w.top.exit -row 0 -column 2 -sticky n
 
 
-
-
-#create image	
-image create photo tkimage 
-tkimage put  $imagedata
-
 #create a scrollable canvas
 canvas $w.can -highlightthickness 0  -yscrollcommand {$w.vs set} -xscrollcommand {$w.hs set} 
 scrollbar $w.vs -command {$w.can yview}
@@ -37,6 +32,14 @@ grid $w.hs -sticky nsew
 grid rowconfigure    $w 1 -weight 1
 grid columnconfigure $w 0 -weight 1
 
+#create image	
+image create photo tkimage 
+
+}
+
+tkimage put  $imagedata
+
+$w.can delete item 
 $w.can create image 0 0 -tags item -image tkimage  -anchor nw
 
 $w.can configure -scrollregion [$w.can bbox all]
@@ -61,6 +64,7 @@ proc zoom_out {} {
     } else {
 	zoomimage copy tkimage -subsample [format "%.0f" [expr {1/$zoomscale}]]
     }
+
     $w.can create image 0 0 -tags item -image zoomimage  -anchor nw
     
     $w.can configure -scrollregion [$w.can bbox all]
