@@ -16,7 +16,7 @@
 ## along with this program; if not, write to the Free Software
 ## Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-manpages_xml  = imread.xml imread.zh-s.xml imwrite.xml imwrite.zh-s.xml canny.xml canny.fr.xml sobel.xml sobel.fr.xml laplace.xml laplace.fr.xml convert.xml convert.fr.xml imsmooth.xml imsmooth.fr.xml threshold.xml threshold.fr.xml precornerdetec.xml precornerdetec.fr.xml
+manpages_xml  = imread.xml imread.zh-s.xml imwrite.xml imwrite.zh-s.xml canny.xml canny.fr.xml sobel.xml sobel.fr.xml laplace.xml laplace.fr.xml convert.xml convert.fr.xml imsmooth.xml imsmooth.fr.xml threshold.xml threshold.fr.xml precornerdetec.xml precornerdetec.fr.xml vdopen.xml vdopen.zh-s.xml vdclose.xml vdclose.zh-s.xml vdcloseall.xml vdcloseall.zh-s.xml
 manpages_cat  = $(manpages_xml:.xml=.cat)
 manpages_html = $(manpages_xml:.xml=.htm)
 SCIDIR=@SCIDIR@

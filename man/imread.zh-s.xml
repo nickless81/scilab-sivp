@@ -48,7 +48,6 @@
     chdir (SIVPDIR + 'images');
 
     im = imread('example.png');
-    xbasc();
     imshow(im);
 
     chdir(initial_dir);

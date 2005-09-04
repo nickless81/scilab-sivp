@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>zh-s</LANGUAGE>
+<TITLE>vdopen</TITLE>
+<TYPE>SIVP 工具箱</TYPE>
+<DATE>2005年9月</DATE>
+<SHORT_DESCRIPTION name="vdopen">打开一个视频文件</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>n = vdopen(filename)</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+   <PARAM_NAME>filename</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   要打开的文件的名字，字符串类型。
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>n</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   已经被打开的文件的索引。
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+<DESCRIPTION>
+<P>
+   <TT>vdopen</TT> 仅仅打开一个文件，但并不从文件读取图像数据。请使用<TT>im=vdgetframe(n)</TT>获取第n个视频文件的当前帧. 在使用完文件后，请用<TT>vdclose(n)</TT>或者<TT>vdcloseall()</TT>关闭文件。
+</P>
+</DESCRIPTION>
+<EXAMPLE><![CDATA[
+	
+    n = vdopen(SCI+'/contrib/sivp/images/walking.avi');
+    im = vdgetframe(n); //get a frame
+    imshow(im);
+
+    vdshowopened();
+    vdclose(n);
+
+    chdir(initial_dir);
+]]></EXAMPLE>
+<!-- ================================= -->
+
+<AUTHORS>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;yushiqi (AT) yahoo DOT com DOT cn&gt; </AUTHORS_ITEM>
+</AUTHORS>
+<!-- ================================= -->
+<SECTION label="Availability">
+要获得最新的SIVP工具箱请访问
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+   <SEE_ALSO>
+      <SEE_ALSO_ITEM> <LINK>vdgetframe</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>vdclose</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>vdcloseall</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>vdshowopened</LINK> </SEE_ALSO_ITEM>
+   </SEE_ALSO>
+</MAN>

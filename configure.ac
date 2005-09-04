@@ -204,6 +204,7 @@ AC_SUBST(TOOLBOX_FUNCTIONS)
 
 AC_CONFIG_FILES([Makefile 
 		 macros/Makefile
+		 images/Makefile
 		 man/Makefile
 		 src/Makefile
 		 src/ilib_gen_gateway.sce

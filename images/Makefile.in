@@ -76,6 +76,7 @@ PACKAGE = @PACKAGE@
 PACKAGE_NAME = @PACKAGE_NAME@
 PKG_CONFIG = @PKG_CONFIG@
 RANLIB = @RANLIB@
+SCIDIR = @SCIDIR@
 STRIP = @STRIP@
 TOOLBOXDIR = @TOOLBOXDIR@
 TOOLBOX_FUNCTIONS = @TOOLBOX_FUNCTIONS@
@@ -86,19 +87,15 @@ has_sablotron = @has_sablotron@
 has_scilab = @has_scilab@
 has_xsltproc = @has_xsltproc@
 
-manpages_xml = imread.xml imread.zh-s.xml imwrite.xml imwrite.zh-s.xml canny.xml canny.fr.xml sobel.xml sobel.fr.xml laplace.xml laplace.fr.xml convert.xml convert.fr.xml imsmooth.xml imsmooth.fr.xml threshold.xml threshold.fr.xml precornerdetec.xml precornerdetec.fr.xml vdopen.xml vdopen.zh-s.xml vdclose.xml vdclose.zh-s.xml vdcloseall.xml vdcloseall.zh-s.xml
-manpages_cat = $(manpages_xml:.xml=.cat)
-manpages_html = $(manpages_xml:.xml=.htm)
-SCIDIR = @SCIDIR@
+images = lena.png baboon.png peppers.png walking.avi
+imagesdir = @TOOLBOXDIR@/images
 
-helpdir = @TOOLBOXDIR@/man
-help_DATA = $(manpages_html) whatis.htm 
-
-EXTRA_DIST = $(manpages_xml) html-sivp.xsl mansivp.dtd Makefile.am.input 
+images_DATA = $(images)
+EXTRA_DIST = $(images)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = ../src/config.h
 CONFIG_CLEAN_FILES = 
-DATA =  $(help_DATA)
+DATA =  $(images_DATA)
 
 DIST_COMMON =  Makefile.am Makefile.in
 
@@ -110,30 +107,30 @@ GZIP_ENV = --best
 all: all-redirect
 .SUFFIXES:
 $(srcdir)/Makefile.in: Makefile.am $(top_srcdir)/configure.ac $(ACLOCAL_M4) 
-	cd $(top_srcdir) && $(AUTOMAKE) --gnu man/Makefile
+	cd $(top_srcdir) && $(AUTOMAKE) --gnu images/Makefile
 
 Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status $(BUILT_SOURCES)
 	cd $(top_builddir) \
 	  && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= $(SHELL) ./config.status
 
 
-install-helpDATA: $(help_DATA)
+install-imagesDATA: $(images_DATA)
 	@$(NORMAL_INSTALL)
-	$(mkinstalldirs) $(DESTDIR)$(helpdir)
-	@list='$(help_DATA)'; for p in $$list; do \
+	$(mkinstalldirs) $(DESTDIR)$(imagesdir)
+	@list='$(images_DATA)'; for p in $$list; do \
 	  if test -f $(srcdir)/$$p; then \
-	    echo " $(INSTALL_DATA) $(srcdir)/$$p $(DESTDIR)$(helpdir)/$$p"; \
-	    $(INSTALL_DATA) $(srcdir)/$$p $(DESTDIR)$(helpdir)/$$p; \
+	    echo " $(INSTALL_DATA) $(srcdir)/$$p $(DESTDIR)$(imagesdir)/$$p"; \
+	    $(INSTALL_DATA) $(srcdir)/$$p $(DESTDIR)$(imagesdir)/$$p; \
 	  else if test -f $$p; then \
-	    echo " $(INSTALL_DATA) $$p $(DESTDIR)$(helpdir)/$$p"; \
-	    $(INSTALL_DATA) $$p $(DESTDIR)$(helpdir)/$$p; \
+	    echo " $(INSTALL_DATA) $$p $(DESTDIR)$(imagesdir)/$$p"; \
+	    $(INSTALL_DATA) $$p $(DESTDIR)$(imagesdir)/$$p; \
 	  fi; fi; \
 	done
 
-uninstall-helpDATA:
+uninstall-imagesDATA:
 	@$(NORMAL_UNINSTALL)
-	list='$(help_DATA)'; for p in $$list; do \
-	  rm -f $(DESTDIR)$(helpdir)/$$p; \
+	list='$(images_DATA)'; for p in $$list; do \
+	  rm -f $(DESTDIR)$(imagesdir)/$$p; \
 	done
 tags: TAGS
 TAGS:
@@ -141,14 +138,14 @@ TAGS:
 
 distdir = $(top_builddir)/$(PACKAGE)-$(VERSION)/$(subdir)
 
-subdir = man
+subdir = images
 
 distdir: $(DISTFILES)
 	here=`cd $(top_builddir) && pwd`; \
 	top_distdir=`cd $(top_distdir) && pwd`; \
 	distdir=`cd $(distdir) && pwd`; \
 	cd $(top_srcdir) \
-	  && $(AUTOMAKE) --include-deps --build-dir=$$here --srcdir-name=$(top_srcdir) --output-dir=$$top_distdir --gnu man/Makefile
+	  && $(AUTOMAKE) --include-deps --build-dir=$$here --srcdir-name=$(top_srcdir) --output-dir=$$top_distdir --gnu images/Makefile
 	@for file in $(DISTFILES); do \
 	  d=$(srcdir); \
 	  if test -d $$d/$$file; then \
@@ -170,20 +167,20 @@ installcheck: installcheck-am
 install-exec-am:
 install-exec: install-exec-am
 
-install-data-am: install-helpDATA
+install-data-am: install-imagesDATA
 install-data: install-data-am
 
 install-am: all-am
 	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
 install: install-am
-uninstall-am: uninstall-helpDATA
+uninstall-am: uninstall-imagesDATA
 uninstall: uninstall-am
 all-am: Makefile $(DATA)
 all-redirect: all-am
 install-strip:
 	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
 installdirs:
-	$(mkinstalldirs)  $(DESTDIR)$(helpdir)
+	$(mkinstalldirs)  $(DESTDIR)$(imagesdir)
 
 
 mostlyclean-generic:
@@ -199,7 +196,7 @@ mostlyclean-am:  mostlyclean-generic
 
 mostlyclean: mostlyclean-am
 
-clean-am:  clean-generic mostlyclean-am clean-local
+clean-am:  clean-generic mostlyclean-am
 
 clean: clean-am
 
@@ -214,21 +211,13 @@ maintainer-clean-am:  maintainer-clean-generic distclean-am
 
 maintainer-clean: maintainer-clean-am
 
-.PHONY: uninstall-helpDATA install-helpDATA tags distdir info-am info \
-dvi-am dvi check check-am installcheck-am installcheck install-exec-am \
-install-exec install-data-am install-data install-am install \
-uninstall-am uninstall all-redirect all-am all installdirs \
+.PHONY: uninstall-imagesDATA install-imagesDATA tags distdir info-am \
+info dvi-am dvi check check-am installcheck-am installcheck \
+install-exec-am install-exec install-data-am install-data install-am \
+install uninstall-am uninstall all-redirect all-am all installdirs \
 mostlyclean-generic distclean-generic clean-generic \
 maintainer-clean-generic clean mostlyclean distclean maintainer-clean
 
-
-%.htm: %.xml
-	@echo "Creating html help files"
-	@$(SCIDIR)/bin/scilab -nwni -nb -e "exec('$(top_srcdir)/config/sivp_xmltohtml.sci');%helps=[PWD,'SIVP';%helps];sivp_xmltohtml(PWD,'SIVP','html-sivp.xsl','whatis');quit"
-	@$(SCIDIR)/bin/scilab -nwni -nb -e "exec('$(top_srcdir)/config/sivp_xmltohtml.sci');%helps=[PWD,'SIVP';%helps];sivp_xmltohtml(PWD,'SIVP','html-sivp.xsl','html');quit"
-
-clean-local:
-	rm -f *.htm
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

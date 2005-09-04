@@ -9036,7 +9036,7 @@ TOOLBOX_FUNCTIONS="    'sivptest'; \
 
 
 
-                                                            ac_config_files="$ac_config_files Makefile macros/Makefile man/Makefile src/Makefile src/ilib_gen_gateway.sce loader.sce"
+                                                                      ac_config_files="$ac_config_files Makefile macros/Makefile images/Makefile man/Makefile src/Makefile src/ilib_gen_gateway.sce loader.sce"
 
 
 cat >confcache <<\_ACEOF
@@ -9576,6 +9576,7 @@ do
   # Handling of arguments.
   "Makefile" ) CONFIG_FILES="$CONFIG_FILES Makefile" ;;
   "macros/Makefile" ) CONFIG_FILES="$CONFIG_FILES macros/Makefile" ;;
+  "images/Makefile" ) CONFIG_FILES="$CONFIG_FILES images/Makefile" ;;
   "man/Makefile" ) CONFIG_FILES="$CONFIG_FILES man/Makefile" ;;
   "src/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
   "src/ilib_gen_gateway.sce" ) CONFIG_FILES="$CONFIG_FILES src/ilib_gen_gateway.sce" ;;

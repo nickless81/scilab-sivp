@@ -5,7 +5,7 @@ EXTRA_DIST = ChangeLog TODO BUGS COPYING INSTALL libtool Makefile.in NEWS README
 		config/sivp_xmltohtml.sci   \
 		src/ilib_gen_gateway.sce
 
-SUBDIRS = src macros man
+SUBDIRS = src macros man images
 
 toolboxdir=@TOOLBOXDIR@
 toolbox_DATA = loader.sce builder.sce
