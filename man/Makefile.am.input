@@ -22,8 +22,11 @@
 
 #% Substitutions done by subst_input_files.sh
 manpages_xml  = %MANPAGES_XML%
+
 manpages_cat  = $(manpages_xml:.xml=.cat)
+
 manpages_html = $(manpages_xml:.xml=.htm)
+
 SCIDIR=@SCIDIR@
 
 helpdir=@TOOLBOXDIR@/man

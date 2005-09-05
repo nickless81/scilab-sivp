@@ -19,7 +19,7 @@ button $w.top.zoomout -text "Zoom Out" -command {zoom_out}
 grid $w.top.zoomout -row 0 -column 1 -sticky n
 
 #close button
-button $w.top.exit -text Close -command {destroy .imshow}
+button $w.top.exit -text Close -command {destroy $w}
 grid $w.top.exit -row 0 -column 2 -sticky n
 
 

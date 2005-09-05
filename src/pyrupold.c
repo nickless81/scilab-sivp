@@ -7,37 +7,24 @@
 
 #include "common.h"
 
-int int_canny(char *fname)
+int int_pyrup(char *fname)
 {
-static int l2, m2, n2, l3, m3, n3, l4, m4, n4;
-
+static int l2, m2, n2;
+int flag ;
 //create variable for parameters
-double * param1=NULL;
-double * param2=NULL;
-int * param3=NULL;
+char * nom=NULL;
 
 //check the number of in/out parametres
 Rhs=Max(Lhs,Rhs);
 
-CheckRhs(4,4);
+CheckRhs(1,2);
 CheckLhs(1,1);
 
 //check the nature of parametres
-GetRhsVar(2, "d", &m2, &n2, &l2);
-GetRhsVar(3, "d", &m3, &n3, &l3);
-GetRhsVar(4, "i", &m4, &n4, &l4);
-
-// check if arg are scalaire
-if (m2*n2 != 1 || m3*n3 != 1 || m4*n4 != 1) 
-    {
-      sciprint("Error: arguments must be scalars\r\n");
-      return 0;
-    }
+GetRhsVar(2, "c", &m2, &n2, &l2);
 
 //receive the data
-param1 =  stk(l2);
-param2 =  stk(l3);
-param3 =  istk(l4);
+nom =  cstk(l2);
 
 //load the input image for cvcanny
 IplImage* img1 = NULL ;
@@ -60,29 +47,23 @@ if(img2==NULL)
    sciprint("Error: can't create the output matrix\r\n");
    return 0;
   }
-
-  
- if((img1->depth==IPL_DEPTH_8U) && (img1->nChannels==1))
+   
+flag=strcmp(nom,"GAUSSIAN_5x5");
+if (flag==0)
   {
-   //use the opencv function
-   cvCanny( img1, img2 ,param1[0],param2[0],param3[0]);
-   //sciprint("param1:%fparam2:%fpamarm3:%d\n",param1[0],param2[0],param3[0]);
-   cvSaveImage("/home/vincent/software/sivp/src/truc.png",img2);
-   //transform the result of opencv canny in a matrice
-   IplImg2Mat(img2,5);
-
-   //send the result
-   LhsVar(1)=5;
+  //use the opencv function
+  cvPyrUp( img1, img2 ,CV_GAUSSIAN_5x5);
   }
- else
- {
-  sciprint("Error: wrong input matrice\r\n");
-  return 0;
- }  
+     
+//transform the result of opencv canny in a matrice
+IplImg2Mat(img2, 3);
+
+//send the result
+LhsVar(1)=3;
  
 //let's free the memory
-//cvReleaseImage( &img1 );
-//cvReleaseImage( &img2 );
+cvReleaseImage( &img1 );
+cvReleaseImage( &img2 );
 
 return 0;
 }

@@ -3,6 +3,7 @@ EXTRA_DIST = ChangeLog TODO BUGS COPYING INSTALL libtool Makefile.in NEWS README
 		config/config.guess config/config.sub config/install-sh \
 		config/ltmain.sh config/missing config/mkinstalldirs \
 		config/sivp_xmltohtml.sci   \
+		config/subst_input_files.sh \
 		src/ilib_gen_gateway.sce
 
 SUBDIRS = src macros man images

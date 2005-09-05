@@ -8997,38 +8997,58 @@ PACKAGE_NAME=sivp
 TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'imread', 'int_imread';\
 		'imwrite', 'int_imwrite';\
-		'canny', 'int_canny'; \
-                'convert', 'int_convert'; \
-                'laplace', 'int_laplace'; \
-                'precornerdetec', 'int_precornerdetec'; \
-                'imsmooth', 'int_imsmooth'; \
-                'sobel', 'int_sobel'; \
-                'threshold', 'int_threshold'; \
 		'vdopen', 'int_vdopen'; \
 		'vdgetframe', 'int_vdgetframe'; \
 		'vdshowopened', 'int_vdshowopened'; \
 		'vdclose', 'int_vdclose'; \
 		'vdcloseall', 'int_vdcloseall'; \
 		'mat2utfimg', 'int_mat2utfimg';\
+		'canny', 'int_canny'; \
+		'convert', 'int_convert'; \
+		'laplace', 'int_laplace'; \
+		'precornerdetec', 'int_precornerdetec'; \
+		'imsmooth', 'int_imsmooth'; \
+		'sobel', 'int_sobel'; \
+		'threshold', 'int_threshold'; \
+		'adaptativethreshold', 'int_adaptativethreshold'; \
+		'erode', 'int_erode';\
+		'dilate', 'int_dilate';\
+		'pyrdown', 'int_pyrdown';\
+		'pyrup', 'int_pyrup';\
+		'goodfeaturestotrack', 'int_goodfeaturestotrack';\
+		'xor', 'int_xor';\
+		'not', 'int_not';\
+		'cmp', 'int_cmp';\
+		'hough', 'int_hough';\
 		"
 # for loader.sce
 # TOOLBOX_FUNCTIONS is the first colum of TOOLBOX_TABLE
 TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'imread';\
 		       'imwrite';\
-		       'canny'; \
-                       'convert'; \
-                       'laplace'; \
-                       'precornerdetec'; \
-                       'imsmooth'; \
-                       'sobel'; \
-                       'threshold'; \
 		       'vdopen'; \
 		       'vdgetframe'; \
 		       'vdshowopened'; \
 		       'vdclose'; \
 		       'vdcloseall'; \
 		       'mat2utfimg'; \
+		       'canny'; \
+		       'convert'; \
+		       'laplace'; \
+		       'precornerdetec'; \
+		       'imsmooth'; \
+		       'sobel'; \
+		       'threshold'; \
+		       'adaptativethreshold'; \
+		       'erode';\
+		       'dilate';\
+		       'pyrdown';\
+		       'pyrup';\
+		       'goodfeaturestotrack';\
+		       'xor';\
+		       'not';\
+		       'cmp';\
+		       'hough';\
 		   "
 
 

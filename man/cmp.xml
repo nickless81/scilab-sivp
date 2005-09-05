@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>cmp</TITLE>
+<TYPE>SIVP Toolbox</TYPE>
+<DATE>August, 2005</DATE>
+<SHORT_DESCRIPTION name="cmp">Performs per-element comparison of two arrays.</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>ima_out = cmp(ima_A,ima_B,'mode')</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+   <PARAM_NAME>ima_A</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Input matrice.The first source array.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+
+   <PARAM_ITEM>
+   <PARAM_NAME>ima_B</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Input matrice.The second source array.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+
+   <PARAM_ITEM>
+   <PARAM_NAME>ima_out</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Output matrice.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>mode</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Mode of comparaison,The flag specifying the relation between the elements to be checked:
+
+- CMP_EQ
+- CMP_GT
+- CMP_GE
+- CMP_LT
+- CMP_GE
+- CMP_NE
+
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+<DESCRIPTION>
+<P>
+   <TT>cmp</TT>Compare twos arrays with differents modes :
+
+CMP_EQ - ima_A(I) "equal to" ima_B(I)
+CMP_GT - ima_A(I) "greater than" ima_B(I)
+CMP_GE - ima_A(I) "greater or equal" ima_B(I)
+CMP_LT - ima_A(I) "less than" ima_B(I)
+CMP_GE - ima_A(I) "less or equal" ima_B(I)
+CMP_NE - ima_A(I) "not equal to" ima_B(I)
+
+The function cmp compares the corresponding elements of two arrays and fills the destination mask array:
+ima_out(I)=ima_A(I) op ima_B(I),
+
+where op is '=', '&gt;', '&gt;=', '&lt;', '&lt;=' or '!='.
+</P>
+   
+</DESCRIPTION>
+<EXAMPLE><![CDATA[
+
+//upgrade the size of the memory
+stacksize(10000000); 
+
+//load the picture
+B=imread('/home/vincent/software/sivp/images/horizontal.png');
+C=imread('/home/vincent/software/sivp/images/vertical.png');
+//conversion
+B=convert(B,'RGB2GRAY');
+C=convert(C,'RGB2GRAY');
+
+//call the canny SIVP function
+A=cmp(B,C,"CMP_EQ");
+//A=cmp(B,C,"CMP_GT");
+//A=cmp(B,C,"CMP_GE");
+//A=cmp(B,C,"CMP_LT");
+//A=cmp(B,C,"CMP_LE");
+//A=cmp(B,C,"CMP_NE");
+
+//conversion
+A=double(A)/255;
+
+//try to display the result
+imshow(A);
+
+]]></EXAMPLE>
+<!-- ================================= -->
+
+<AUTHORS>
+   <AUTHORS_ITEM name="ETIENNE"> ETIENNE Vincent &lt;vincent.etienne (AT) gmail DOT com &gt; </AUTHORS_ITEM>
+</AUTHORS>
+<!-- ================================= -->
+<SECTION label="Bugs and Shortcomings">
+<P>
+</P>
+</SECTION>
+<!-- ================================= -->
+<SECTION label="Availability">
+The latest version of SIVP can be found at
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+   <SEE_ALSO>
+      <SEE_ALSO_ITEM> <LINK>xor</LINK> </SEE_ALSO_ITEM>
+   </SEE_ALSO>
+</MAN>
