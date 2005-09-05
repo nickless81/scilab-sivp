@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "mansivp.dtd">
 <MAN>
 <LANGUAGE>eng</LANGUAGE>
@@ -33,7 +33,7 @@
     * Portable Network Graphics - PNG;
     * Portable image format - PBM, PGM, PPM;
     * Sun rasters - SR, RAS;
-    * TIFF files - TIFF, TIF.
+    * TIFF files - TIFF, TIF. 
 </P>
    <DESCRIPTION_INDENT>
    <DESCRIPTION_ITEM label="im = imread(filename)">
@@ -49,6 +49,7 @@
     chdir (SIVPDIR + 'images');
 
     im = imread('example.png');
+    xbasc();
     imshow(im);
 
     chdir(initial_dir);
