@@ -124,13 +124,18 @@ PKG_CHECK_MODULES(OPENCV,
 
 #check for ffmpeg
 have_ffmpeg=no
+
 AC_CHECK_HEADER(ffmpeg/avcodec.h,
     AC_CHECK_LIB(avcodec, avcodec_decode_video,
         [AC_CHECK_LIB(avformat, av_read_frame,
 			[have_ffmpeg=yes
 			 AC_DEFINE(HAVE_FFMPEG,[],[define HAVE_FFMPEG if you have ffmpeg])
-			 LIBS="$LIBS -lavcodec -lavformat"],,
-			[-lavcodec])]))
+			 LIBS="$LIBS -lavcodec -lavformat"],
+			 AC_MSG_ERROR([[ libavformat-dev was not found. ]]),
+			[-lavcodec])]), 
+			 AC_MSG_ERROR([[ libavcodec-dev was not found. ]]))
+
+
 
 # Checks for header files. 
 AC_HEADER_STDC

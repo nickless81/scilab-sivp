@@ -45,20 +45,11 @@
    </DESCRIPTION_INDENT>
 </DESCRIPTION>
 <EXAMPLE><![CDATA[
-    initial_dir = PWD;
-    chdir (SIVPDIR + 'images');
 
-    im = imread('example.png');
-    xbasc();
+    im = imread(SCI + '/contrib/sivp/images/lena.png');
     imshow(im);
 
-    chdir(initial_dir);
 ]]></EXAMPLE>
-<!-- ================================= -->
-
-<AUTHORS>
-   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;yushiqi (AT) yahoo DOT com DOT cn&gt; </AUTHORS_ITEM>
-</AUTHORS>
 <!-- ================================= -->
 <SECTION label="Bugs and Shortcomings">
 <P>
@@ -66,6 +57,11 @@ Images with a palette are not supported.
 All kinds of images are converted to gray images or RGB images.
 </P>
 </SECTION>
+<!-- ================================= -->
+
+<AUTHORS>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;yushiqi (AT) yahoo DOT com DOT cn&gt; </AUTHORS_ITEM>
+</AUTHORS>
 <!-- ================================= -->
 <SECTION label="Availability">
 The latest version of SIVP can be found at
