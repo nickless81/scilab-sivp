@@ -1,0 +1,33 @@
+
+mode(-1)
+
+if ~with_tk() then
+  x_message('Sorry this version has not been built with tcl/tk interface')
+  return
+end
+
+oldln=lines();
+lines(0)
+
+deff('[]=demoex(num)','execstr(demolist(num,2))')
+
+sivpdemopath=SCI+'/contrib/sivp/demos/'
+
+if MSDOS then sivpdemopath=strsubst(sivpdemopath,'/','\'),end
+
+demolist=[
+'Image reading and showing', 'exec(sivpdemopath+''image.sce'')';
+'Canny edge detector',       'exec(sivpdemopath+''canny.sce'')';
+'Video reading and showing', 'exec(sivpdemopath+''video.sce'')';
+]
+
+while %t then
+  num=x_choose(demolist(:,1),'Demos of SIVP');
+  if num==0 then 
+     lines(oldln(1))
+     return
+  else
+     demoex(num)
+
+  end,
+end
