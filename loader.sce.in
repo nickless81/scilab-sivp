@@ -39,6 +39,18 @@ else
    add_help_chapter(libtitle,libsivp_path+'/man');
 end
 
+// add demos to demos menu
+global demolist;
+have_sivp = 0;
+for num=1:size(demolist, 1),
+	if demolist(num,1)=='SIVP' then
+		have_sivp = 1;
+	end
+end
+if have_sivp==0 then
+	demolist = [demolist; 'SIVP', '/home/yushiqi/programming/sivp/demos/sivp.dem'];
+end
+clear have_sivp num;
 
 functions=[@TOOLBOX_FUNCTIONS@];
 addinter(libsivp_path+'/lib/libsivp.so','libsivp',functions);
