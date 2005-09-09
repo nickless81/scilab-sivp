@@ -56,7 +56,7 @@ if test x$has_xsltproc = xno; then
       AC_MSG_ERROR([[xsltproc or sabcmd programs were not found but \
 at least one of them is required to build the SIVP manual pages.
 Download xslproc (from libxml) at:
-   http://http://www.xmlsoft.org 
+   http://www.xmlsoft.org 
 or sabcmd (from sablotron) at:
    http://www.gingerall.com/charlie/ga/xml/p_sab.xml]])
    fi
