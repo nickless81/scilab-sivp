@@ -5,7 +5,7 @@
 <TITLE>vdshowopened</TITLE>
 <TYPE>SIVP 工具箱</TYPE>
 <DATE>2005年9月</DATE>
-<SHORT_DESCRIPTION name="vdshowopened">列出所有已经打开的视频文件</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="vdshowopened(zh-s)">列出所有已经打开的视频文件</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>vdshowopened</CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>

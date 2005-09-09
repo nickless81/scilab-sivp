@@ -15,12 +15,13 @@ Dependencies
 ------------
 Scilab		>= 3.1		(http://www.scilab.org/)
 OpenCV		>= 0.9.6	(http://sourceforge.net/projects/opencvlibrary/)
+FFMPEG		>= 0.4.9     (http://ffmpeg.sourceforge.net/)
 xslproc	or sabcmd		(http://www.xmlsoft.org, http://www.gingerall.com/charlie/ga/xml/p_sab.xml)
 
 
 TODO
 ------------
-Video file R/W support
+Video file write support
 V4L support
 1394 support
 More image processing functions

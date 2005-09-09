@@ -1,27 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "mansivp.dtd">
 <MAN>
-<LANGUAGE>zh-s</LANGUAGE>
-<TITLE>vdclose</TITLE>
-<TYPE>SIVP 工具箱</TYPE>
-<DATE>2005年9月</DATE>
-<SHORT_DESCRIPTION name="vdclose(zh-s)">关闭一个视频文件。</SHORT_DESCRIPTION>
+<LANGUAGE>fr</LANGUAGE>
+<TITLE>vdgetframe</TITLE>
+<TYPE>Boîte à outils SIVP</TYPE>
+<DATE>Septembre, 2005</DATE>
+<SHORT_DESCRIPTION name="vdgetframe(fr)">Extrait une frame à partir d'un fichier vidéo</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
-   <CALLING_SEQUENCE_ITEM>vdclose(n)</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>im = vdgetframe(n)</CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>
 <PARAM>
 <PARAM_INDENT>
    <PARAM_ITEM>
    <PARAM_NAME>n</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   The opened file index.
+   L'index des fichiers vidéo ouverts.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>im</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Image/frama retourné. Si ce n'est pas une frame on retourne 0.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
 </PARAM_INDENT>
 </PARAM>
 <DESCRIPTION>
 <P>
-   <TT>vdclose</TT> 关闭一个已经打开的视频文件。
+   <TT>vdgetframe</TT> Extrait et rend une frame à partir d'un fichier vidéo. Peut seulement extraire la frame courrante et passer le pointeur à la frame suivante.
 </P>
 </DESCRIPTION>
 <EXAMPLE><![CDATA[
@@ -33,6 +39,7 @@
     vdshowopened();
     vdclose(n);
 
+    chdir(initial_dir);
 ]]></EXAMPLE>
 <!-- ================================= -->
 
@@ -40,14 +47,20 @@
    <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;yushiqi (AT) yahoo DOT com DOT cn&gt; </AUTHORS_ITEM>
 </AUTHORS>
 <!-- ================================= -->
+<SECTION label="Bugs and Shortcomings">
+<P>
+<TT>vdgetframe</TT> Ne peut saisir que la frame courante pour le moment.
+</P>
+</SECTION>
+<!-- ================================= -->
 <SECTION label="Availability">
-要获得最新的SIVP工具箱请访问
+Vous pouvez trouver la dernière version de SIVP à cette adresse :
 <P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
 </SECTION>
 <!-- ================================= -->
    <SEE_ALSO>
-      <SEE_ALSO_ITEM> <LINK>vdgetframe</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>vdopen</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>vdclose</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>vdcloseall</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>vdshowopened</LINK> </SEE_ALSO_ITEM>
    </SEE_ALSO>

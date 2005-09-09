@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "mansivp.dtd">
 <MAN>
 <LANGUAGE>Fr</LANGUAGE>
 <TITLE>pyrdown</TITLE>
-<TYPE>Boite à outil SIVP</TYPE>
+<TYPE>Boite Ã  outil SIVP</TYPE>
 <DATE>Aout, 2005</DATE>
-<SHORT_DESCRIPTION name="pyrdown">sous échantillonage de l'image </SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="pyrdown(fr)">sous Ã©chantillonage de l'image </SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>ima_out = pyrdown(ima_in,param1,"mode") </CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>
@@ -14,7 +14,7 @@
    <PARAM_ITEM>
    <PARAM_NAME>ima_in</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Matrice d'entrée
+   Matrice d'entrÃ©e
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
@@ -27,7 +27,7 @@
    <PARAM_NAME>mode</PARAM_NAME>
    <PARAM_DESCRIPTION>
 
-Type de filtre utilisé pour la convolution, pour le moment seul GAUSSIAN_5x5 est supporté.
+Type de filtre utilisÃ© pour la convolution, pour le moment seul GAUSSIAN_5x5 est supportÃ©.
 
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
@@ -37,7 +37,7 @@ Type de filtre utilisé pour la convolution, pour le moment seul GAUSSIAN_5x5 est
 </PARAM>
 <DESCRIPTION>
 <P>
-   <TT>pyrdown</TT>La fonction pyrdown exécute un sous échantillonage.D'abord elle convolue l'image source avec le filtre puis elle downsamples l'image en rejetant des rangées et des colonnes égales.
+   <TT>pyrdown</TT>La fonction pyrdown exÃ©cute un sous Ã©chantillonage.D'abord elle convolue l'image source avec le filtre puis elle downsamples l'image en rejetant des rangÃ©es et des colonnes Ã©gales.
 </P>
 
 

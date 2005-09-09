@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "mansivp.dtd">
 <MAN>
 <LANGUAGE>Fr</LANGUAGE>
 <TITLE>goodfeaturestotrack</TITLE>
-<TYPE>Boite à outil SIVP</TYPE>
+<TYPE>Boite Ã  outil SIVP</TYPE>
 <DATE>Aout, 2005</DATE>
-<SHORT_DESCRIPTION name="goodfeaturestotrack">Détermine les coins forts d'une image</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="goodfeaturestotrack(fr)">DÃ©termine les coins forts d'une image</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>ima_out = goodfeaturestotrack(ima_in,param1,param2,param3) </CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>
@@ -14,7 +14,7 @@
    <PARAM_ITEM>
    <PARAM_NAME>ima_in</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Matrice d'entrée
+   Matrice d'entrÃ©e
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
@@ -26,21 +26,21 @@
    <PARAM_ITEM>
    <PARAM_NAME>param1</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Nombre maximum de coins à détecter
+   Nombre maximum de coins Ã  dÃ©tecter
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
 
    <PARAM_ITEM>
    <PARAM_NAME>param2</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Multiplicateur pour les valeurs propres max et min ; indique la qualité admise minimale des coins de l'image.
+   Multiplicateur pour les valeurs propres max et min ; indique la qualitÃ© admise minimale des coins de l'image.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
 
    <PARAM_ITEM>
    <PARAM_NAME>param3</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Limite, indiquant la distance possible minimum entre les coins trouvés ; on utilise la notion de distance euclidienne.
+   Limite, indiquant la distance possible minimum entre les coins trouvÃ©s ; on utilise la notion de distance euclidienne.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM> 
 
@@ -48,7 +48,7 @@
 </PARAM>
 <DESCRIPTION>
 <P>
-   <TT>goodfeaturestotrack</TT>La fonction goodfeaturestotrack trouve les coins d'images, à l'aide des valeurs propres de l'image.
+   <TT>goodfeaturestotrack</TT>La fonction goodfeaturestotrack trouve les coins d'images, Ã  l'aide des valeurs propres de l'image.
 </P>
 
 </DESCRIPTION>
@@ -91,6 +91,6 @@ The latest version of SIVP can be found at
 </SECTION>
 <!-- ================================= -->
    <SEE_ALSO>
-      <SEE_ALSO_ITEM> <LINK>precornerdetect</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>precornerdetec</LINK> </SEE_ALSO_ITEM>
    </SEE_ALSO>
 </MAN>

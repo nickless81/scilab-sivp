@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "mansivp.dtd">
 <MAN>
 <LANGUAGE>Fr</LANGUAGE>
 <TITLE>precornerdetec</TITLE>
 <TYPE>Boite a outil SIVP</TYPE>
 <DATE>Juillet, 2005</DATE>
-<SHORT_DESCRIPTION name="precornerdetec">Calcul l'image des coins</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="precornerdetec(fr)">Calcul l'image des coins</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>ima_out = precornerdetec(ima_in,param1)</CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>
@@ -14,7 +14,7 @@
    <PARAM_ITEM>
    <PARAM_NAME>ima_in</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Matrice d'entrée.
+   Matrice d'entré–‘.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
@@ -26,14 +26,14 @@
    <PARAM_ITEM>
    <PARAM_NAME>param1</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Taille de l'opérateur de sobel (see Sobel).
+   Taille de l'opé–žateur de sobel (see Sobel).
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
 </PARAM_INDENT>
 </PARAM>
 <DESCRIPTION>
 <P>
-   <TT>precornerdetect</TT> La fonction calcul precornerdetec calcul une fonction f : (Dx^2 Dyy + Dy^2 Dxx - 2 Dx Dy Dxy) ou  D? denotes la premiére image dérivée selon ? et D?? denotes la seconde image dérivée selon ?. Les coins peuvent êtres identifiés comme étant un maximum local de cette fonction.</P>
+   <TT>precornerdetect</TT> La fonction calcul precornerdetec calcul une fonction f : (Dx^2 Dyy + Dy^2 Dxx - 2 Dx Dy Dxy) ou  D? denotes la premié–že image dé–živé–‘ selon ? et D?? denotes la seconde image dé–živé–‘ selon ?. Les coins peuvent é˜¾res identifié–Ÿ comme é– ant un maximum local de cette fonction.</P>
 
 </DESCRIPTION>
 <EXAMPLE><![CDATA[

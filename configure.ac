@@ -3,14 +3,22 @@
 
 
 AC_PREREQ(2.56)
-AC_INIT([sivp], [0.2rc2], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
+AC_INIT([sivp], [0.2rc3], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_SRCDIR(src/test.c)
 AM_CONFIG_HEADER(src/config.h)
-AM_INIT_AUTOMAKE([sivp], [0.2rc2] )
+AM_INIT_AUTOMAKE([sivp], [0.2rc3] )
 
 # Checks for programs.
 AC_PROG_CC
+AC_PROG_CXX
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AC_PROG_RANLIB
+
 
 # AC_LIBTOOL_WIN32_DLL
 AC_DISABLE_STATIC
@@ -131,9 +139,9 @@ AC_CHECK_HEADER(ffmpeg/avcodec.h,
 			[have_ffmpeg=yes
 			 AC_DEFINE(HAVE_FFMPEG,[],[define HAVE_FFMPEG if you have ffmpeg])
 			 LIBS="$LIBS -lavcodec -lavformat"],
-			 AC_MSG_ERROR([[ libavformat-dev was not found. ]]),
+			 AC_MSG_ERROR([[ libavformat (FFMPEG) was not found. ]]),
 			[-lavcodec])]), 
-			 AC_MSG_ERROR([[ libavcodec-dev was not found. ]]))
+			 AC_MSG_ERROR([[ libavcodec (FFMPEG) was not found. ]]))
 
 
 
@@ -151,13 +159,8 @@ AC_HEADER_STDBOOL
 
 
 # Checks for library functions.
-
-# AC_CHECK_FUNC([strcasecmp],[],[AC_MSG_ERROR([[this package needs the strcasecmp function.]])])
-
-# AC_SUBST(CFLAGS)
-# AC_SUBST(CPPFLAGS)
-# AC_SUBST(LDFLAGS)
-# AC_SUBST(LIBS)
+AC_FUNC_MALLOC
+AC_CHECK_FUNCS([memset])
 
 PACKAGE_NAME=sivp
 ## for src/Makefile

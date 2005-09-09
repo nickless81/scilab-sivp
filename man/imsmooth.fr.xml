@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "mansivp.dtd">
 <MAN>
 <LANGUAGE>Fr</LANGUAGE>
 <TITLE>imsmooth</TITLE>
-<TYPE>Boite à outil SIVP</TYPE>
+<TYPE>Boite Ã  outil SIVP</TYPE>
 <DATE>Juillet 2005</DATE>
-<SHORT_DESCRIPTION name="imsmooth">Lisse une image de plusieurs manières</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="imsmooth(fr)">Lisse une image de plusieurs maniÃ¨res</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>ima_out = imsmooth(ima_in,"Calling sequence",param1,param2,param3)</CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>
@@ -14,7 +14,7 @@
    <PARAM_ITEM>
    <PARAM_NAME>ima_in</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Matrice d'entrée
+   Matrice d'entrÃ©e
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
@@ -28,28 +28,28 @@
    <PARAM_DESCRIPTION>
    Type de lissage:
 
-BLUR_NO_SCALE (simple floue sans graduation) - addition sur un voisinage du Pixel param1×param2. Si la taille de voisinage peut changer, on peut précalculer l'image intégrale avec la fonction cvIntegral.
+BLUR_NO_SCALE (simple floue sans graduation) - addition sur un voisinage du Pixel param1Ã—param2. Si la taille de voisinage peut changer, on peut prÃ©calculer l'image intÃ©grale avec la fonction cvIntegral.
 
-BLUR  (floue simple) - addition sur un voisinage du Pixel param1×param2 avec la graduation suivante : 1/(param1*param2).
+BLUR  (floue simple) - addition sur un voisinage du Pixel param1Ã—param2 avec la graduation suivante : 1/(param1*param2).
 
-GAUSSIAN (floue gaussian) - image convolving avec le grain param1×param2 gaussien.
+GAUSSIAN (floue gaussian) - image convolving avec le grain param1Ã—param2 gaussien.
 
-MEDIAN (floue médien) - trouve la médiane du voisinage param1×param1 (c.-à-d. le voisinage est à angle droit).
+MEDIAN (floue mÃ©dien) - trouve la mÃ©diane du voisinage param1Ã—param1 (c.-Ã -d. le voisinage est Ã  angle droit).
 
-BILATERAL (filtre bilatéral) - application d'un filtre bilatéral 3x3 avec la couleur sigma=param1 et l'espace sigma=param2. Des informations sur le filtrage bilatéral peuvent être trouvées à http://www.dai.ed.ac.uk/CVonline/LOCAL_COPIES/MANDUCHI1/Bilateral_Filtering.html
+BILATERAL (filtre bilatÃ©ral) - application d'un filtre bilatÃ©ral 3x3 avec la couleur sigma=param1 et l'espace sigma=param2. Des informations sur le filtrage bilatÃ©ral peuvent Ãªtre trouvÃ©es Ã  http://www.dai.ed.ac.uk/CVonline/LOCAL_COPIES/MANDUCHI1/Bilateral_Filtering.html
    
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
    <PARAM_NAME>Param1</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Premier parametre de l'opération de smoothing.
+   Premier parametre de l'opÃ©ration de smoothing.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
    <PARAM_NAME>Param2</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Le deuxième paramètre de l'opération. En cas de Blur / non-scaled Blur et de floue gaussien, si param2 est égale à zéro, il est placée à param1.
+   Le deuxiÃ¨me paramÃ¨tre de l'opÃ©ration. En cas de Blur / non-scaled Blur et de floue gaussien, si param2 est Ã©gale Ã  zÃ©ro, il est placÃ©e Ã  param1.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
@@ -60,7 +60,7 @@ BILATERAL (filtre bilatéral) - application d'un filtre bilatéral 3x3 avec la cou
               sigma = (n/2 - 1)*0.3 + 0.8, ou n=param1 pour un noyau horizontal
                                               n=param2 pour un vertical.
               
-   Employer le sigma standard pour les petits grains (3×3 à 7×7) donne une meilleure vitesse. Si param3 n'est pas zéro, alors que param1 et param2 sont des zéros, la taille de grain est calculée à partir du sigma (pour fournir assez de précision à l'opération).
+   Employer le sigma standard pour les petits grains (3Ã—3 Ã  7Ã—7) donne une meilleure vitesse. Si param3 n'est pas zÃ©ro, alors que param1 et param2 sont des zÃ©ros, la taille de grain est calculÃ©e Ã  partir du sigma (pour fournir assez de prÃ©cision Ã  l'opÃ©ration).
 
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
@@ -68,16 +68,16 @@ BILATERAL (filtre bilatéral) - application d'un filtre bilatéral 3x3 avec la cou
 </PARAM>
 <DESCRIPTION>
 <P>
-   <TT>imsmooth</TT> La fonction smooth lisse l'image en utilisant une des différentes méthodes. Chaqu'une des méthodes énumérer nécéssitent quelques dispositifs et restrictions ci-dessous :
+   <TT>imsmooth</TT> La fonction smooth lisse l'image en utilisant une des diffÃ©rentes mÃ©thodes. Chaqu'une des mÃ©thodes Ã©numÃ©rer nÃ©cÃ©ssitent quelques dispositifs et restrictions ci-dessous :
 </P>
 <P>
-Le flou sans la graduation fonctionne avec des images à canal unique et supporte l'accumulation de 8 bits au format de 16 bits et à la virgule flottante de 32 bits au format à point mobile de 32 bits.
+Le flou sans la graduation fonctionne avec des images Ã  canal unique et supporte l'accumulation de 8 bits au format de 16 bits et Ã  la virgule flottante de 32 bits au format Ã  point mobile de 32 bits.
 </P>
 <P>
-Le flou simple et le flou gaussien supporte images 1 ou de 3-channel, de 8 bits et de 32 bits de virgule flottante. Ces deux méthodes peuvent traiter des images sur place.
+Le flou simple et le flou gaussien supporte images 1 ou de 3-channel, de 8 bits et de 32 bits de virgule flottante. Ces deux mÃ©thodes peuvent traiter des images sur place.
 </P>
 <P>
-Les filtres médians et bilatéraux fonctionnent avec des images à un ou 3 channel de 8 bits et ne peuvent pas traiter des images sur place.
+Les filtres mÃ©dians et bilatÃ©raux fonctionnent avec des images Ã  un ou 3 channel de 8 bits et ne peuvent pas traiter des images sur place.
 </P>
    
 </DESCRIPTION>

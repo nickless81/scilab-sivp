@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "mansivp.dtd">
 <MAN>
 <LANGUAGE>FR</LANGUAGE>
 <TITLE>sobel</TITLE>
-<TYPE>Boite à outil SIVP</TYPE>
+<TYPE>Boite Ã  outil SIVP</TYPE>
 <DATE>Juillet 2005</DATE>
-<SHORT_DESCRIPTION name="sobel">Calcule la convolution de l'image d'entrée avec l'opérateur de Sobel</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="sobel(fr)">Calcule la convolution de l'image d'entrÃ©e avec l'opÃ©rateur de Sobel</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>ima_out = sobel(ima_in,dx,dy,apertureSize)</CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>
@@ -14,7 +14,7 @@
    <PARAM_ITEM>
    <PARAM_NAME>ima_in</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Matrice d'entrée.
+   Matrice d'entrÃ©e.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
@@ -26,13 +26,13 @@
    <PARAM_ITEM>
    <PARAM_NAME>dx</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Ordre de dérivation selon x.
+   Ordre de dÃ©rivation selon x.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
    <PARAM_NAME>dy</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Ordre de dérivation selon y.
+   Ordre de dÃ©rivation selon y.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
@@ -45,7 +45,7 @@
 </PARAM>
 <DESCRIPTION>
 <P>
-   <TT>sobel</TT> La fonction Sobel calcule la convolution de l'image d'entrée "ima_in" avec l'opérateur de Sobel et rend le résultat dans "l'ima_out".
+   <TT>sobel</TT> La fonction Sobel calcule la convolution de l'image d'entrÃ©e "ima_in" avec l'opÃ©rateur de Sobel et rend le rÃ©sultat dans "l'ima_out".
 </P>
    
 </DESCRIPTION>

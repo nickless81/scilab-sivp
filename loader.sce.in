@@ -23,7 +23,7 @@ mode(-1);
 
 // specific part
 libname='libsivp'
-libtitle='SIVP - Scilab Image Processing Toolbox @PACKAGE_VERSION@';
+libtitle='SIVP - Scilab Image and Video Processing Toolbox @PACKAGE_VERSION@';
 
 write(%io(2), libtitle);
 

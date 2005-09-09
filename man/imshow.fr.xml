@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>fr</LANGUAGE>
+<TITLE>imshow</TITLE>
+<TYPE>Boîte à outil SIVP</TYPE>
+<DATE>Aout 2005</DATE>
+<SHORT_DESCRIPTION name="imshow(fr)">Affiche les images dans une fenêtre graphique</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>imshow(im)</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+   <PARAM_NAME>im</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+      Matrice de taille MxN, une image en niveau de gris (gamme 0-255), ou MxNx3, une image couleur (gamme 0-255).
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+<DESCRIPTION>
+   <DESCRIPTION_INDENT>
+   <DESCRIPTION_ITEM label="imshow(im)">
+   <TT>imshow</TT> Peut uniquement afficher les images codées entre 0 et 255. Avant d'afficher une image, convertissée là.<TT>im</TT> Pour les characters non signés d'abord utiliser<TT>uint8()</TT>.
+   </DESCRIPTION_ITEM>
+   </DESCRIPTION_INDENT>
+</DESCRIPTION>
+<EXAMPLE><![CDATA[
+
+    im = imread(SCI + '/contrib/sivp/images/lena.png');
+    imshow(im);
+
+]]></EXAMPLE>
+<REMARKS>
+<TT>imshow</TT> Utilise une interface dévelopée sous SIVP, et non l'objet figure de Scilab
+</REMARKS>
+<SECTION label="Bugs and Shortcomings">
+<P>
+Seul une fenêtre peut être affichée à la fois. 
+</P>
+</SECTION>
+<!-- ================================= -->
+
+<AUTHORS>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;yushiqi (AT) yahoo DOT com DOT cn&gt; </AUTHORS_ITEM>
+</AUTHORS>
+<!-- ================================= -->
+<SECTION label="Availability">
+La dernière version de SIVP peut être trouvée à l'adresse suivante :
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+   <SEE_ALSO>
+      <SEE_ALSO_ITEM> <LINK>imread</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>imwrite</LINK> </SEE_ALSO_ITEM>
+   </SEE_ALSO>
+</MAN>

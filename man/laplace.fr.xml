@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "mansivp.dtd">
 <MAN>
 <LANGUAGE>eng</LANGUAGE>
 <TITLE>laplace</TITLE>
 <TYPE>SIVP Toolbox</TYPE>
 <DATE>July, 2005</DATE>
-<SHORT_DESCRIPTION name="laplace">Calculates convolution of input image with Laplacian operator.</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="laplace(fr)">Calculates convolution of input image with Laplacian operator.</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>ima_out = canny(ima_in,apertureSize)</CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>

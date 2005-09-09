@@ -2,6 +2,7 @@
 ## -------------------------------------------------------------------------
 ## SIVP - Scilab Image and Video Processing toolbox
 ## Copyright (C) 2005  Shiqi Yu
+## Copyright (C) 2003 Ricardo Fabbri
 ##
 ## This program is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by

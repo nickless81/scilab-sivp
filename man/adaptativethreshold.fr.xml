@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "mansivp.dtd">
 <MAN>
 <LANGUAGE>Fr</LANGUAGE>
 <TITLE>adaptativethreshold</TITLE>
-<TYPE>Boite à outil SIVP</TYPE>
+<TYPE>Boite Ã  outil SIVP</TYPE>
 <DATE>Aout, 2005</DATE>
-<SHORT_DESCRIPTION name="adaptativethreshold">Applique un seuillage adaptatif</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="adaptativethreshold(fr)">Applique un seuillage adaptatif</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
-   <CALLING_SEQUENCE_ITEM>ima_out = adaptativethreshold(ima_in,param1,"méthode","type",param2,param3)</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>ima_out = adaptativethreshold(ima_in,param1,"mÃ©thode","type",param2,param3)</CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>
 <PARAM>
 <PARAM_INDENT>
    <PARAM_ITEM>
    <PARAM_NAME>ima_in</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Matrice d'entrée
+   Matrice d'entrÃ©e
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
@@ -24,18 +24,18 @@
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
-   <PARAM_NAME>méthode</PARAM_NAME>
+   <PARAM_NAME>mÃ©thode</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   méthode de seuillage :
+   mÃ©thode de seuillage :
    
-   L'algorithme Adaptivethreshold fonctionne selon deux méthodes : ADAPTIVE_THRESH_MEAN_C or ADAPTIVE_THRESH_GAUSSIAN_C.
+   L'algorithme Adaptivethreshold fonctionne selon deux mÃ©thodes : ADAPTIVE_THRESH_MEAN_C or ADAPTIVE_THRESH_GAUSSIAN_C.
    
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
    <PARAM_NAME>type</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Le type de seuillage doit être : 
+   Le type de seuillage doit Ãªtre : 
 	THRESH_BINARY, 
 	THRESH_BINARY_INV,
    </PARAM_DESCRIPTION>
@@ -43,19 +43,19 @@
    <PARAM_ITEM>
    <PARAM_NAME>Param1</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Seuil maximum utilisé quel que soit le type de seuillage THRESH_BINARY ou THRESH_BINARY_INV.
+   Seuil maximum utilisÃ© quel que soit le type de seuillage THRESH_BINARY ou THRESH_BINARY_INV.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
    <PARAM_NAME>param2</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   La taille du voisinage de pixel employé pour calculer la valeur seuillé pour chaque pixel : 3, 5, 7,
+   La taille du voisinage de pixel employÃ© pour calculer la valeur seuillÃ© pour chaque pixel : 3, 5, 7,
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
    <PARAM_NAME>param3</PARAM_NAME>
    <PARAM_DESCRIPTION>
-Pour les méthodes ADAPTIVE_THRESH_MEAN_C et ADAPTIVE_THRESH_GAUSSIAN_C c'est une constante soustraite de la moyenne pondérée, bien qu'elle puisse être négative.
+Pour les mÃ©thodes ADAPTIVE_THRESH_MEAN_C et ADAPTIVE_THRESH_GAUSSIAN_C c'est une constante soustraite de la moyenne pondÃ©rÃ©e, bien qu'elle puisse Ãªtre nÃ©gative.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    </PARAM_INDENT>
@@ -77,9 +77,9 @@ dst(x,y) = 0, if src(x,y)>T(x,y)
 <P>
 Ou TI est la valeur en chaque pixel.
 
-Pour la méthode ADAPTIVE_THRESH_MEAN_C c'est une moyenne de blockSize × blockSize du voisinage de Pixel, soustrait par param3.
+Pour la mÃ©thode ADAPTIVE_THRESH_MEAN_C c'est une moyenne de blockSize Ã— blockSize du voisinage de Pixel, soustrait par param3.
 
-Pour la méthode ADAPTIVE_THRESH_GAUSSIAN_C c'est une moyenne pondéré(gaussian) de blockSize le × blockSize du voisinage de Pixel, soustrait par param3.
+Pour la mÃ©thode ADAPTIVE_THRESH_GAUSSIAN_C c'est une moyenne pondÃ©rÃ©(gaussian) de blockSize le Ã— blockSize du voisinage de Pixel, soustrait par param3.
 
 </P>
 

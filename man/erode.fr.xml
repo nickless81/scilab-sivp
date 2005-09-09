@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "mansivp.dtd">
 <MAN>
 <LANGUAGE>Fr</LANGUAGE>
 <TITLE>erode</TITLE>
-<TYPE>Boite à outil SIVP</TYPE>
+<TYPE>Boite Ã  outil SIVP</TYPE>
 <DATE>Aout, 2005</DATE>
-<SHORT_DESCRIPTION name="erode">Erode les images en utilisant un élément de structure arbitraire</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="erode(fr)">Erode les images en utilisant un Ã©lÃ©ment de structure arbitraire</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
-   <CALLING_SEQUENCE_ITEM>ima_out = erode(ima_in,param1,"shape",param2,param3,param4,param5) ou avec les paramètres par default erode(ima_in,param1);</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>ima_out = erode(ima_in,param1,"shape",param2,param3,param4,param5) ou avec les paramÃ¨tres par default erode(ima_in,param1);</CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>
 <PARAM>
 <PARAM_INDENT>
    <PARAM_ITEM>
    <PARAM_NAME>ima_in</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Matrice d'entrée
+   Matrice d'entrÃ©e
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
@@ -26,24 +26,24 @@
    <PARAM_ITEM>
    <PARAM_NAME>param1</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Nombre d'itération
+   Nombre d'itÃ©ration
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
 
    <PARAM_ITEM>
    <PARAM_NAME>"shape"</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Argument optionnel : forme de l'élement ;
+   Argument optionnel : forme de l'Ã©lement ;
    SHAPE_RECT , rectangle
    SHAPE_CROSS , croix 
-   SHAPE_ELLIPSE , élipse
+   SHAPE_ELLIPSE , Ã©lipse
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
  
    <PARAM_ITEM>
    <PARAM_NAME>"param2"</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Argument optionnel : dimention de l'élément.
+   Argument optionnel : dimention de l'Ã©lÃ©ment.
    Nombre de colone.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>  
@@ -51,7 +51,7 @@
    <PARAM_ITEM>
    <PARAM_NAME>"param3"</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   Argument optionnel : dimention de l'élément.
+   Argument optionnel : dimention de l'Ã©lÃ©ment.
    Nombre de ligne.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM> 
@@ -74,7 +74,7 @@
 </PARAM>
 <DESCRIPTION>
 <P>
-   <TT>dilate</TT>La fonction Erode l'image source à l'aide d'un élément structurant (B) qui détermine la forme du voisinage de pixel concernée, par défault un rectangle 3*3
+   <TT>dilate</TT>La fonction Erode l'image source Ã  l'aide d'un Ã©lÃ©ment structurant (B) qui dÃ©termine la forme du voisinage de pixel concernÃ©e, par dÃ©fault un rectangle 3*3
 </P>
 
 <P>
@@ -82,7 +82,7 @@ C=erode(A,B):  C(x,y)=min((x',y') in B(x,y))A(x',y')
 </P>
 
 <P>
-La fonction erode peut être paramètrèe de façon à appliquer plusieurs itérations par périodes. L'érodatiom d'une une image couleur signifie que la transformation se passe de façon indépendante sur tous les canaux.
+La fonction erode peut Ãªtre paramÃ¨trÃ¨e de faÃ§on Ã  appliquer plusieurs itÃ©rations par pÃ©riodes. L'Ã©rodatiom d'une une image couleur signifie que la transformation se passe de faÃ§on indÃ©pendante sur tous les canaux.
 </P>
    
 </DESCRIPTION>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "mansivp.dtd">
 <MAN>
-<LANGUAGE>zh-s</LANGUAGE>
+<LANGUAGE>fr</LANGUAGE>
 <TITLE>vdclose</TITLE>
-<TYPE>SIVP 工具箱</TYPE>
-<DATE>2005年9月</DATE>
-<SHORT_DESCRIPTION name="vdclose(zh-s)">关闭一个视频文件。</SHORT_DESCRIPTION>
+<TYPE>Boite à outil SIVP</TYPE>
+<DATE>Septembre, 2005</DATE>
+<SHORT_DESCRIPTION name="vdclose(fr)">Ferme un fichier vidéo.</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>vdclose(n)</CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>
@@ -14,14 +14,14 @@
    <PARAM_ITEM>
    <PARAM_NAME>n</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   The opened file index.
+   L'index des fichiers vidéo ouverts.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
 </PARAM_INDENT>
 </PARAM>
 <DESCRIPTION>
 <P>
-   <TT>vdclose</TT> 关闭一个已经打开的视频文件。
+   <TT>vdclose</TT> Ferme un fichier vidéo ouvert.
 </P>
 </DESCRIPTION>
 <EXAMPLE><![CDATA[
@@ -41,7 +41,7 @@
 </AUTHORS>
 <!-- ================================= -->
 <SECTION label="Availability">
-要获得最新的SIVP工具箱请访问
+Vous pouvez trouver la dernière version de SIVP à cette adresse :
 <P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
 </SECTION>
 <!-- ================================= -->
