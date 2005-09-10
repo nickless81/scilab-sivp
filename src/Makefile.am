@@ -25,7 +25,7 @@ lib_LTLIBRARIES = libsivp.la
 
 # AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
 
-libsivp_la_SOURCES = libsivp.c common.c imread.c imwrite.c test.c vdrw.c mat2utfimg.c canny.c convert.c laplace.c precornerdetec.c imsmooth.c sobel.c threshold.c adaptativethreshold.c erode.c dilate.c pyrdown.c pyrup.c goodfeaturestotrack.c xor.c not.c cmp.c hough.c
+libsivp_la_SOURCES = libsivp.c common.c sivp_init.c imread.c imwrite.c test.c vdrw.c mat2utfimg.c canny.c convert.c laplace.c precornerdetec.c imsmooth.c sobel.c threshold.c adaptativethreshold.c erode.c dilate.c pyrdown.c pyrup.c goodfeaturestotrack.c xor.c not.c cmp.c hough.c
 
 libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release @PACKAGE_VERSION@
 

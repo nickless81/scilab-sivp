@@ -41,6 +41,7 @@ GetRhsVar(2, "d", &m2, &n2, &l2);
 GetRhsVar(3, "d", &m3, &n3, &l3);
 GetRhsVar(4, "i", &m4, &n4, &l4);
 
+
 // check if arg are scalaire
 if (m2*n2 != 1 || m3*n3 != 1 || m4*n4 != 1) 
     {

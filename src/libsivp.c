@@ -1,6 +1,7 @@
 #include <mex.h> 
 static int direct_gateway(char *fname,void F(void)) { F();return 0;};
 extern Gatefunc int_test;
+extern Gatefunc int_sivp_init;
 extern Gatefunc int_imread;
 extern Gatefunc int_imwrite;
 extern Gatefunc int_vdopen;
@@ -28,6 +29,7 @@ extern Gatefunc int_cmp;
 extern Gatefunc int_hough;
 static GenericTable Tab[]={
   {(Myinterfun)sci_gateway,int_test,"sivptest"},
+  {(Myinterfun)sci_gateway,int_sivp_init,"sivp_init"},
   {(Myinterfun)sci_gateway,int_imread,"imread"},
   {(Myinterfun)sci_gateway,int_imwrite,"imwrite"},
   {(Myinterfun)sci_gateway,int_vdopen,"vdopen"},

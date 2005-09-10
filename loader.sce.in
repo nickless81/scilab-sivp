@@ -55,6 +55,7 @@ clear have_sivp num;
 functions=[@TOOLBOX_FUNCTIONS@];
 addinter(libsivp_path+'/lib/libsivp.so','libsivp',functions);
 
+sivp_init();
 
 clear libname;
 clear libtitle;

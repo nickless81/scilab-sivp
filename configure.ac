@@ -169,6 +169,7 @@ PACKAGE_NAME=sivp
 # for src/ilib_gen_gateway.sce
 
 TOOLBOX_TABLE="	'sivptest', 'int_test'; \
+		'sivp_init','int_sivp_init'; \
 		'imread', 'int_imread';\
 		'imwrite', 'int_imwrite';\
 		'vdopen', 'int_vdopen'; \
@@ -198,6 +199,7 @@ TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 # for loader.sce
 # TOOLBOX_FUNCTIONS is the first colum of TOOLBOX_TABLE 
 TOOLBOX_FUNCTIONS="    'sivptest'; \
+		       'sivp_init'; \
 		       'imread';\
 		       'imwrite';\
 		       'vdopen'; \
@@ -250,7 +252,7 @@ Configuration:
 	CPPFLAGS = $CPPFLAGS
 	LDFLAGS  = $LDFLAGS
 	LIBS     = $LIBS
-
+        
 	have OpenCV = $have_opencv
 	have FFMPEG = $have_ffmpeg
 =====================================================
