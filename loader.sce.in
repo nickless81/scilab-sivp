@@ -27,7 +27,7 @@ libtitle='SIVP - Scilab Image and Video Processing Toolbox @PACKAGE_VERSION@';
 
 write(%io(2), libtitle);
 
-libsivp_path=get_file_path('loader.sce');
+libsivp_path=get_absolute_file_path('loader.sce');
 
 // load the library macros
 execstr(libname+'=lib(""'+libsivp_path+'macros/'+'"")')
@@ -48,12 +48,27 @@ for num=1:size(demolist, 1),
 	end
 end
 if have_sivp==0 then
-	demolist = [demolist; 'SIVP', '/home/yushiqi/programming/sivp/demos/sivp.dem'];
+	demolist = [demolist; 'SIVP', SCI+'/contrib/sivp/demos/sivp.dem'];
 end
 clear have_sivp num;
 
 functions=[@TOOLBOX_FUNCTIONS@];
-addinter(libsivp_path+'/lib/libsivp.so','libsivp',functions);
+
+
+if MSDOS then 
+	// load the OpenCV dlls for Windows version
+	OpenCV= libsivp_path + '/lib/';
+	link(OpenCV + 'cxcore097.dll');
+	link(OpenCV + 'cv097.dll');
+	link(OpenCV + 'highgui097.dll');
+
+	addinter(libsivp_path+'/lib/libsivp.dll','libsivp',functions);
+else
+	addinter(libsivp_path+'/lib/libsivp.so','libsivp',functions);
+end
+
+
+
 
 sivp_init();
 

@@ -2,12 +2,12 @@
 # Some inspiration came from sip's configure.ac (thx Ricardo Fabbri)
 
 
-AC_PREREQ(2.56)
-AC_INIT([sivp], [0.2-rc4], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
+AC_PREREQ(2.59)
+AC_INIT([sivp], [0.2.5], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_SRCDIR(src/test.c)
 AM_CONFIG_HEADER(src/config.h)
-AM_INIT_AUTOMAKE([sivp], [0.2-rc4] )
+AM_INIT_AUTOMAKE([sivp],[0.2.5])
 
 # Checks for programs.
 AC_PROG_CC
@@ -32,19 +32,19 @@ then
 fi
 
 
-##
-## Tests for windows
-##
-# native_win32_build='no'
-# cygwin_build='no'
-# case $host_os in
-#   cygwin*) 
-#       cygwin_build='yes'
-#       ;;
-#   mingw* )
-#       native_win32_build='yes' 
-#       ;;
-# esac
+#
+# Tests for windows
+#
+native_win32_build='no'
+cygwin_build='no'
+case $host_os in
+   cygwin*) 
+       cygwin_build='yes'
+       ;;
+   mingw* )
+       native_win32_build='yes' 
+       ;;
+esac
 
 
 # checks for xsltproc (to buld HTML help pages)
@@ -89,32 +89,23 @@ AC_PREFIX_DEFAULT([$TOOLBOXDIR])
 AC_SUBST(TOOLBOXDIR)
 AC_SUBST(SCIDIR)
 
-# #
-# # Set defines required to build DLLs and modules using MinGW
-# # thx to Bob F.
-# #
-# # These options are set for DLL build
-# #  libanimal:           _DLL ANIMAL_LIB
-# # TODO:
-# #   - update from SIMPLE toolbox
-# #
-# LIBRARY_EXTRA_CPPFLAGS=''
-# LIBRARY_EXTRA_LIBS=''
-# if test "${native_win32_build}" = 'yes'
-# then
-#   if test "${libtool_build_shared_libs}" = 'yes'
-#   then
-#     CPPFLAGS="$CPPFLAGS -D_DLL"
-#     LIBRARY_EXTRA_CPPFLAGS="-DANIMAL_LIB"
-#     LIBRARY_EXTRA_LIBS="${SCIDIR}/bin/LibScilab.lib"
-#     # temporary:
-# #    LIBS="$LIBS ${SCIDIR}/bin/LibScilab.lib"
-#   else
-#     CPPFLAGS="$CPPFLAGS -D_LIB"
-#   fi
-# fi
-# AC_SUBST(LIBRARY_EXTRA_CPPFLAGS)dnl
-# AC_SUBST(LIBRARY_EXTRA_LIBS)dnl
+
+LIBRARY_EXTRA_CPPFLAGS=''
+LIBRARY_EXTRA_LIBS=''
+if test "${native_win32_build}" = 'yes'
+then
+  if test "${libtool_build_shared_libs}" = 'yes'
+  then
+    CPPFLAGS="$CPPFLAGS -D_DLL"
+    LIBRARY_EXTRA_LIBS="${SCIDIR}/bin/libscilab.lib"
+    # temporary:
+    LIBS="$LIBS ${SCIDIR}/bin/libscilab.lib"
+  else
+    CPPFLAGS="$CPPFLAGS -D_LIB"
+   fi
+ fi
+ AC_SUBST(LIBRARY_EXTRA_CPPFLAGS)dnl
+ AC_SUBST(LIBRARY_EXTRA_LIBS)dnl
 
 # Checks for libs. 
 
@@ -159,8 +150,8 @@ AC_HEADER_STDBOOL
 
 
 # Checks for library functions.
-AC_FUNC_MALLOC
-AC_CHECK_FUNCS([memset])
+#AC_FUNC_MALLOC
+AC_CHECK_FUNCS([malloc])
 
 PACKAGE_NAME=sivp
 ## for src/Makefile
