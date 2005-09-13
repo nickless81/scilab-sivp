@@ -1,7 +1,7 @@
 ##
 ## -------------------------------------------------------------------------
 ## SIVP - Scilab Image and Video Processing toolbox
-## Copyright (C) 2005  Shiqi Yu
+## Copyright (C) 2005  Shiqi Yu, Shulin Shang
 ## Copyright (C) 2003 Ricardo Fabbri
 ##
 ## This program is free software; you can redistribute it and/or modify
@@ -23,13 +23,13 @@ libdir=@TOOLBOXDIR@/lib
 
 lib_LTLIBRARIES = libsivp.la
 
-# AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
+AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
 
 libsivp_la_SOURCES = libsivp.c common.c sivp_init.c imread.c imwrite.c test.c vdrw.c mat2utfimg.c canny.c convert.c laplace.c precornerdetec.c imsmooth.c sobel.c threshold.c adaptativethreshold.c erode.c dilate.c pyrdown.c pyrup.c goodfeaturestotrack.c xor.c not.c cmp.c hough.c
 
 libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release @PACKAGE_VERSION@
 
-# libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
+libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
 
 EXTRA_DIST = common.h
 

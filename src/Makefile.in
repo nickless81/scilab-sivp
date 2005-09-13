@@ -80,6 +80,7 @@ PACKAGE_NAME = @PACKAGE_NAME@
 PKG_CONFIG = @PKG_CONFIG@
 RANLIB = @RANLIB@
 SCIDIR = @SCIDIR@
+SHARED_LIB_SUFFIX = @SHARED_LIB_SUFFIX@
 STRIP = @STRIP@
 TOOLBOXDIR = @TOOLBOXDIR@
 TOOLBOX_FUNCTIONS = @TOOLBOX_FUNCTIONS@
@@ -94,13 +95,13 @@ libdir = @TOOLBOXDIR@/lib
 
 lib_LTLIBRARIES = libsivp.la
 
-# AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
+AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
 
 libsivp_la_SOURCES = libsivp.c common.c sivp_init.c imread.c imwrite.c test.c vdrw.c mat2utfimg.c canny.c convert.c laplace.c precornerdetec.c imsmooth.c sobel.c threshold.c adaptativethreshold.c erode.c dilate.c pyrdown.c pyrup.c goodfeaturestotrack.c xor.c not.c cmp.c hough.c
 
 libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release @PACKAGE_VERSION@
 
-# libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
+libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
 
 EXTRA_DIST = common.h
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -113,7 +114,7 @@ DEFS = @DEFS@ -I. -I$(srcdir) -I.
 CPPFLAGS = @CPPFLAGS@
 LDFLAGS = @LDFLAGS@
 LIBS = @LIBS@
-libsivp_la_LIBADD = 
+libsivp_la_DEPENDENCIES = 
 libsivp_la_OBJECTS =  libsivp.lo common.lo sivp_init.lo imread.lo \
 imwrite.lo test.lo vdrw.lo mat2utfimg.lo canny.lo convert.lo laplace.lo \
 precornerdetec.lo imsmooth.lo sobel.lo threshold.lo \

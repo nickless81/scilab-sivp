@@ -1,13 +1,32 @@
-# Copyright (C) 2005 Shiqi Yu
-# Some inspiration came from sip's configure.ac (thx Ricardo Fabbri)
+##
+## -------------------------------------------------------------------------
+## SIVP - Scilab Image and Video Processing toolbox
+## Copyright (C) 2005  Shiqi Yu, Shulin Shang
+## Some inspiration came from sip's configure.ac (thx Ricardo Fabbri)
+##
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 2 of the License, or
+## (at your option) any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with this program; if not, write to the Free Software
+## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+## -------------------------------------------------------------------------
+##
 
 
 AC_PREREQ(2.59)
-AC_INIT([sivp], [0.2.5], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
+AC_INIT([sivp], [0.2.6], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_SRCDIR(src/test.c)
 AM_CONFIG_HEADER(src/config.h)
-AM_INIT_AUTOMAKE([sivp],[0.2.5])
+AM_INIT_AUTOMAKE([sivp],[0.2.6])
 
 # Checks for programs.
 AC_PROG_CC
@@ -17,8 +36,13 @@ AC_PROG_CPP
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
-AC_PROG_RANLIB
 
+# ssl begin
+if test x"$ac_cv_prog_cc_stdc" = x'no'; then
+   AC_MSG_WARN([[found the $CC compiler but it is not ANSI-C 
+                compliant.]])
+fi
+# ssl end
 
 AC_LIBTOOL_WIN32_DLL
 AC_DISABLE_STATIC
@@ -62,28 +86,39 @@ or sabcmd (from sablotron) at:
    fi
 fi
 
-# test if SCI is defined. If not,
-# test if scilab is in path, then get SCI from scilab -nw.
-if test -z $SCI; then
-   AC_CHECK_PROG([has_scilab],[scilab],[yes],[no], , )
-   if test x$has_scilab = xno; then
-      AC_MSG_ERROR([[neither Scilab was found in your PATH nor a SCI variable has been defined]])
+# test if SCI is defined. If not, test if scilab is in path,
+# then get SCI from scilab -nw.
+if test -z "$SCI"; then
+   if test $native_win32_build = yes; then
+      dnl TODO take SCIDIR from the registry
+      AC_MSG_WARN([[hardcoding SCI to /c/scilab]])
+      SCIDIR="/c/scilab"
    else
-      cmd='F=mopen("path.incl","w");
-           mfprintf(F,SCI);
-           mclose(F);'
-      echo "$cmd" | scilab -nw >/dev/null
-      SCIDIR=`cat path.incl`
+      AC_CHECK_PROG([has_scilab],[scilab],[yes],[no], , )
+      if test x$has_scilab = xno; then
+         AC_MSG_ERROR([[neither Scilab was found in your PATH nor a SCI variable has been defined]])
+      else
+         cmd='F=mopen("path.incl","w");
+              mfprintf(F,SCI);
+              mclose(F);'
+         echo "$cmd" | scilab -nw >/dev/null
+         SCIDIR=`cat path.incl`
+      fi
    fi
 else
-   SCIDIR=$SCI
+   SCIDIR="$SCI"
 fi
+
 CPPFLAGS="$CPPFLAGS -I${SCIDIR}/routines"
+
+AC_PREFIX_DEFAULT([SCI/contrib/sivp])
 
 if test "x$prefix"  = xNONE; then 
    prefix="${SCIDIR}/contrib/sivp"
 fi
+
 TOOLBOXDIR=$prefix
+
 # Set the default installation
 AC_PREFIX_DEFAULT([$TOOLBOXDIR])
 AC_SUBST(TOOLBOXDIR)
@@ -96,16 +131,22 @@ if test "${native_win32_build}" = 'yes'
 then
   if test "${libtool_build_shared_libs}" = 'yes'
   then
-    CPPFLAGS="$CPPFLAGS -D_DLL"
-    LIBRARY_EXTRA_LIBS="${SCIDIR}/bin/libscilab.lib"
-    # temporary:
-    LIBS="$LIBS ${SCIDIR}/bin/libscilab.lib"
+    SHARED_LIB_SUFFIX=dll
+    CPPFLAGS="$CPPFLAGS -DFORDLL"
+    AC_MSG_WARN([[Don't forget to rename SCI/bin/LibScilab* to lowercase]])
+    LDFLAGS="$LDFLAGS -L${SCIDIR}/bin"
+    #LIBRARY_EXTRA_CPPFLAGS="-D_SIMPLELIB"
+    LIBRARY_EXTRA_LIBS="-lscilab"
   else
     CPPFLAGS="$CPPFLAGS -D_LIB"
-   fi
- fi
- AC_SUBST(LIBRARY_EXTRA_CPPFLAGS)dnl
- AC_SUBST(LIBRARY_EXTRA_LIBS)dnl
+  fi
+else
+   SHARED_LIB_SUFFIX=so
+fi
+AC_SUBST(SHARED_LIB_SUFFIX)
+
+AC_SUBST(LIBRARY_EXTRA_CPPFLAGS)
+AC_SUBST(LIBRARY_EXTRA_LIBS)
 
 # Checks for libs. 
 
@@ -114,6 +155,7 @@ have_opencv=no
 PKG_CHECK_MODULES(OPENCV, 
 		[opencv >= 0.9.6],
 		[CPPFLAGS="$CPPFLAGS $OPENCV_CFLAGS"
+		 LDFLAGS="$LDFLAGS -L${SCIDIR}/bin"
 		 LIBS="$LIBS $OPENCV_LIBS"
 		 have_opencv=yes
 		 AC_DEFINE(HAVE_OPENCV,[], [define HAVE_OPENCV if you have opencv])],
@@ -121,9 +163,9 @@ PKG_CHECK_MODULES(OPENCV,
 
 
 
-#check for ffmpeg
+# check for ffmpeg
+if test $native_win32_build = no; then
 have_ffmpeg=no
-
 AC_CHECK_HEADER(ffmpeg/avcodec.h,
     AC_CHECK_LIB(avcodec, avcodec_decode_video,
         [AC_CHECK_LIB(avformat, av_read_frame,
@@ -133,6 +175,7 @@ AC_CHECK_HEADER(ffmpeg/avcodec.h,
 			 AC_MSG_ERROR([[ libavformat (FFMPEG) was not found. ]]),
 			[-lavcodec])]), 
 			 AC_MSG_ERROR([[ libavcodec (FFMPEG) was not found. ]]))
+fi
 
 
 
@@ -235,6 +278,7 @@ AC_CONFIG_FILES([Makefile
 AC_OUTPUT
 
 
+if test $native_win32_build = no; then
 AC_MSG_RESULT([
 =====================================================
 Configuration:
@@ -250,3 +294,19 @@ Configuration:
 This toolbox will be installed in $TOOLBOXDIR.
 Please run 'make' and 'make install' to compile and install the toolbox. 
 ]) 
+else
+AC_MSG_RESULT([
+=====================================================
+Configuration:
+	CC       = $CC
+	CFLAGS   = $CFLAGS
+	CPPFLAGS = $CPPFLAGS
+	LDFLAGS  = $LDFLAGS
+	LIBS     = $LIBS
+        
+	have OpenCV = $have_opencv
+=====================================================
+This toolbox will be installed in $TOOLBOXDIR.
+Please run 'make' and 'make install' to compile and install the toolbox. 
+]) 
+fi
