@@ -1,0 +1,17 @@
+Image input, output, and display
+	imread
+	imwrite
+	imshow
+	
+
+Video/camera input, output
+	aviinfo
+	aviopen
+	camopen
+	aviclose
+	avicloseall
+	avilistopened
+	avireadframe
+
+Spatial transformation and registration
+	imresize

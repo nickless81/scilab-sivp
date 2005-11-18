@@ -20,34 +20,37 @@
 
 #include "common.h"
 
-int int_imread(char * fname)
+/* close an opened file */
+int int_aviclose(char *fname)
 {
-
-
   int mR, nR, lR;
-
-  IplImage * pImage;
-
-  CheckRhs(1, 1);
-  CheckLhs(1, 1);
-
-  GetRhsVar(1, "c", &mR, &nR, &lR);
-
-  pImage = cvLoadImage(cstk(lR), -1);
-
-  /* if load image failed */
-  if(pImage == NULL)
-    {
-      Scierror(999, "%s: Can not open file %s.\r\n", fname, cstk(lR));
-      return -1;
-    }
-
-  IplImg2Mat(pImage, 2);
-
-  LhsVar(1) = 2;
+  int nFile;
   
-  cvReleaseImage(&pImage);
+  CheckRhs(1,1);
+  CheckLhs(0,1);
+
+  GetRhsVar(1, "i", &mR, &nR, &lR);
+  CheckDims(1, mR, nR, 1, 1);
+
+  nFile = *((int *)(istk(lR)));
+  nFile = nFile - 1;
+
+  if (nFile >= 0 && nFile < MAX_AVI_FILE_NUM)
+    {
+      if(OpenedCap[nFile].cap)
+	{
+	  cvReleaseCapture(&(OpenedCap[nFile].cap));
+	  memset(OpenedCap[nFile].filename, 0, sizeof(OpenedCap[nFile].filename) );
+	}
+      else
+	{
+	  Scierror(999, "%s: The %d'th file is not opened.\r\n", fname, nFile+1);
+	}
+    }
+  else
+    {
+      Scierror(999, "%s: The argument should >=1 and <= %d.\r\n", fname, MAX_AVI_FILE_NUM);
+    }
 
   return 0;
 }
-

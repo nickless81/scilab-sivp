@@ -97,7 +97,13 @@ lib_LTLIBRARIES = libsivp.la
 
 AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
 
-libsivp_la_SOURCES = libsivp.c common.c sivp_init.c imread.c imwrite.c test.c vdrw.c mat2utfimg.c canny.c convert.c laplace.c precornerdetec.c imsmooth.c sobel.c threshold.c adaptativethreshold.c erode.c dilate.c pyrdown.c pyrup.c goodfeaturestotrack.c xor.c not.c cmp.c hough.c
+#vdrw.c goodfeaturestotrack.c 
+#
+IMG_IO_SRC = imread.c imwrite.c test.c mat2utfimg.c
+AVI_IO_SRC = aviinfo.c aviopen.c aviclose.c avicloseall.c avilistopened.c avireadframe.c camopen.c
+IMG_TRAN_SRC = imresize.c
+
+libsivp_la_SOURCES = libsivp.c common.c sivp_init.c $(IMG_IO_SRC)  $(AVI_IO_SRC) $(IMG_TRAN_SRC) canny.c convert.c laplace.c precornerdetec.c imsmooth.c sobel.c threshold.c adaptativethreshold.c erode.c dilate.c pyrdown.c pyrup.c xor.c not.c cmp.c hough.c
 
 libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release @PACKAGE_VERSION@
 
@@ -116,10 +122,11 @@ LDFLAGS = @LDFLAGS@
 LIBS = @LIBS@
 libsivp_la_DEPENDENCIES = 
 libsivp_la_OBJECTS =  libsivp.lo common.lo sivp_init.lo imread.lo \
-imwrite.lo test.lo vdrw.lo mat2utfimg.lo canny.lo convert.lo laplace.lo \
-precornerdetec.lo imsmooth.lo sobel.lo threshold.lo \
-adaptativethreshold.lo erode.lo dilate.lo pyrdown.lo pyrup.lo \
-goodfeaturestotrack.lo xor.lo not.lo cmp.lo hough.lo
+imwrite.lo test.lo mat2utfimg.lo aviinfo.lo aviopen.lo aviclose.lo \
+avicloseall.lo avilistopened.lo avireadframe.lo camopen.lo imresize.lo \
+canny.lo convert.lo laplace.lo precornerdetec.lo imsmooth.lo sobel.lo \
+threshold.lo adaptativethreshold.lo erode.lo dilate.lo pyrdown.lo \
+pyrup.lo xor.lo not.lo cmp.lo hough.lo
 CFLAGS = @CFLAGS@
 COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -133,13 +140,15 @@ DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
 
 TAR = tar
 GZIP_ENV = --best
-DEP_FILES =  .deps/adaptativethreshold.P .deps/canny.P .deps/cmp.P \
-.deps/common.P .deps/convert.P .deps/dilate.P .deps/erode.P \
-.deps/goodfeaturestotrack.P .deps/hough.P .deps/imread.P \
-.deps/imsmooth.P .deps/imwrite.P .deps/laplace.P .deps/libsivp.P \
-.deps/mat2utfimg.P .deps/not.P .deps/precornerdetec.P .deps/pyrdown.P \
-.deps/pyrup.P .deps/sivp_init.P .deps/sobel.P .deps/test.P \
-.deps/threshold.P .deps/vdrw.P .deps/xor.P
+DEP_FILES =  .deps/adaptativethreshold.P .deps/aviclose.P \
+.deps/avicloseall.P .deps/aviinfo.P .deps/avilistopened.P \
+.deps/aviopen.P .deps/avireadframe.P .deps/camopen.P .deps/canny.P \
+.deps/cmp.P .deps/common.P .deps/convert.P .deps/dilate.P .deps/erode.P \
+.deps/hough.P .deps/imread.P .deps/imresize.P .deps/imsmooth.P \
+.deps/imwrite.P .deps/laplace.P .deps/libsivp.P .deps/mat2utfimg.P \
+.deps/not.P .deps/precornerdetec.P .deps/pyrdown.P .deps/pyrup.P \
+.deps/sivp_init.P .deps/sobel.P .deps/test.P .deps/threshold.P \
+.deps/xor.P
 SOURCES = $(libsivp_la_SOURCES)
 OBJECTS = $(libsivp_la_OBJECTS)
 

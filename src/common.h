@@ -52,10 +52,23 @@ typedef int BOOL;
 #include <stack-c.h>
 
 
-#ifdef HAVE_FFMPEG
-#include <ffmpeg/avcodec.h>
-#include <ffmpeg/avformat.h>
-#endif
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+#define MAX_AVI_FILE_NUM 32
+#define MAX_FILENAME_LENGTH 2048
+
+  typedef struct OpenedCapture{
+    CvCapture * cap;
+    char filename[MAX_FILENAME_LENGTH];
+  } OpenedCapture;
+
+  OpenedCapture OpenedCap[MAX_AVI_FILE_NUM];
+//#ifdef HAVE_FFMPEG
+//#include <ffmpeg/avcodec.h>
+//#include <ffmpeg/avformat.h>
+//#endif
 
   BOOL IplImg2Mat(IplImage * pImage, int nPos);
 

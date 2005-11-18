@@ -8,3 +8,4 @@ for idx=1:100,
 	im=vdgetframe(n);
 	imshow(im);
 end;
+vdclose(n);

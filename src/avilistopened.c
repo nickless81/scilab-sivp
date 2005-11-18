@@ -20,34 +20,43 @@
 
 #include "common.h"
 
-int int_imread(char * fname)
+//TODL: list filenames
+int int_avilistopened(char * fname)
 {
+  int element;
+  int One = 1;
+  int i;
 
+  int count = 0;
+  int offset = 0;
 
-  int mR, nR, lR;
-
-  IplImage * pImage;
-
-  CheckRhs(1, 1);
+  CheckRhs(0, 0);
   CheckLhs(1, 1);
 
-  GetRhsVar(1, "c", &mR, &nR, &lR);
+  double dIndices[MAX_AVI_FILE_NUM];
+  double * dIdx = dIndices;
+  char sFileNames[MAX_AVI_FILE_NUM * MAX_FILENAME_LENGTH];
+  char * sFN = sFileNames;
 
-  pImage = cvLoadImage(cstk(lR), -1);
-
-  /* if load image failed */
-  if(pImage == NULL)
+  for (i = 0; i < MAX_AVI_FILE_NUM; i++)
     {
-      Scierror(999, "%s: Can not open file %s.\r\n", fname, cstk(lR));
-      return -1;
+      if(OpenedCap[i].cap)
+	{
+	  dIndices[count]=i+1;
+
+          //strcpy(sFileNames[count],  OpenedCap[i].filename);
+          strcpy(sFileNames+offset, OpenedCap[i].filename);
+	  offset += strlen(OpenedCap[i].filename)+1;
+	  count++;
+	}
     }
 
-  IplImg2Mat(pImage, 2);
 
-  LhsVar(1) = 2;
-  
-  cvReleaseImage(&pImage);
+  CreateVarFromPtr(1, "d", &count, &One, &dIdx);
+  //CreateVarFromPtr(2, "S", &count, &One, &sFN);
+
+  LhsVar(1) =1;
+  //  LhsVar(2) =2;
 
   return 0;
 }
-

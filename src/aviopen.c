@@ -20,34 +20,46 @@
 
 #include "common.h"
 
-int int_imread(char * fname)
+int int_aviopen(char *fname)
 {
-
-
+  int mL, nL;
   int mR, nR, lR;
+  int nCurrFile = 0;
+  int *pret = &nCurrFile;
 
-  IplImage * pImage;
-
-  CheckRhs(1, 1);
-  CheckLhs(1, 1);
+  CheckRhs(1,1);
+  CheckLhs(1,1);
 
   GetRhsVar(1, "c", &mR, &nR, &lR);
 
-  pImage = cvLoadImage(cstk(lR), -1);
-
-  /* if load image failed */
-  if(pImage == NULL)
+  for (nCurrFile = 0; nCurrFile < MAX_AVI_FILE_NUM; nCurrFile++)
     {
-      Scierror(999, "%s: Can not open file %s.\r\n", fname, cstk(lR));
+      if( !(OpenedCap[nCurrFile].cap))
+	break;
+    }
+
+  if( nCurrFile ==  MAX_AVI_FILE_NUM)
+    {
+      Scierror(999, "%s: Too many video files (or cameras) opened. Use aviclose or avicloseall to close some files (cameras).\r\n", fname);
       return -1;
     }
 
-  IplImg2Mat(pImage, 2);
 
-  LhsVar(1) = 2;
+  OpenedCap[nCurrFile].cap = cvCaptureFromFile(cstk(lR));
+  if(OpenedCap[nCurrFile].cap == 0)
+    {
+      Scierror(999, "%s: Can not open video file %s. \nMaybe the codec of the video can not be handled or the file does not exist.\r\n", fname, cstk(lR));
+      return -1;
+    }
+
+  strcpy(OpenedCap[nCurrFile].filename, cstk(lR));
+  //the output is the opened index
+  nCurrFile += 1;
+
+  mL = 1;
+  nL = 1;
+  CreateVarFromPtr(2, "i", &mL, &nL, &pret);
   
-  cvReleaseImage(&pImage);
-
+  LhsVar(1) =2 ;
   return 0;
 }
-

@@ -20,34 +20,22 @@
 
 #include "common.h"
 
-int int_imread(char * fname)
+/* close all opened files */
+int int_avicloseall(char *fname)
 {
+  int i;
 
+  CheckRhs(0, 0);
+  CheckLhs(0, 1);
 
-  int mR, nR, lR;
-
-  IplImage * pImage;
-
-  CheckRhs(1, 1);
-  CheckLhs(1, 1);
-
-  GetRhsVar(1, "c", &mR, &nR, &lR);
-
-  pImage = cvLoadImage(cstk(lR), -1);
-
-  /* if load image failed */
-  if(pImage == NULL)
+  for (i = 0; i < MAX_AVI_FILE_NUM; i++)
     {
-      Scierror(999, "%s: Can not open file %s.\r\n", fname, cstk(lR));
-      return -1;
+      if(OpenedCap[i].cap)
+	{
+	  cvReleaseCapture( &(OpenedCap[i].cap) );
+	  memset(OpenedCap[i].filename, 0, sizeof(OpenedCap[i].filename) );
+	}
     }
-
-  IplImg2Mat(pImage, 2);
-
-  LhsVar(1) = 2;
-  
-  cvReleaseImage(&pImage);
 
   return 0;
 }
-

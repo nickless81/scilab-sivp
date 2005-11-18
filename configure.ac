@@ -22,11 +22,11 @@
 
 
 AC_PREREQ(2.59)
-AC_INIT([sivp], [0.2.6], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
+AC_INIT([sivp], [0.2.7], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_SRCDIR(src/test.c)
 AM_CONFIG_HEADER(src/config.h)
-AM_INIT_AUTOMAKE([sivp],[0.2.6])
+AM_INIT_AUTOMAKE([sivp],[0.2.7])
 
 # Checks for programs.
 AC_PROG_CC
@@ -161,21 +161,24 @@ PKG_CHECK_MODULES(OPENCV,
 		 AC_DEFINE(HAVE_OPENCV,[], [define HAVE_OPENCV if you have opencv])],
 		[AC_MSG_ERROR([[ OpenCV version >= 0.9.6 was not found. ]])])
 
-
+AC_CHECK_LIB(highgui, cvCaptureFromFile,, AC_MSG_ERROR([[OpenCV does not support video file R/W, 
+		      please recompile OpenCV with FFMPEG.]]))
+AC_CHECK_LIB(highgui, cvCaptureFromCAM,, AC_MSG_ERROR([[OpenCV does not support camera capture, 
+		      please recompile OpenCV with FFMPEG and Video4Linux.]]))
 
 # check for ffmpeg
-if test $native_win32_build = no; then
-have_ffmpeg=no
-AC_CHECK_HEADER(ffmpeg/avcodec.h,
-    AC_CHECK_LIB(avcodec, avcodec_decode_video,
-        [AC_CHECK_LIB(avformat, av_read_frame,
-			[have_ffmpeg=yes
-			 AC_DEFINE(HAVE_FFMPEG,[],[define HAVE_FFMPEG if you have ffmpeg])
-			 LIBS="$LIBS -lavcodec -lavformat"],
-			 AC_MSG_ERROR([[ libavformat (FFMPEG) was not found. ]]),
-			[-lavcodec])]), 
-			 AC_MSG_ERROR([[ libavcodec (FFMPEG) was not found. ]]))
-fi
+#if test $native_win32_build = no; then
+#have_ffmpeg=no
+#AC_CHECK_HEADER(ffmpeg/avcodec.h,
+#   AC_CHECK_LIB(avcodec, avcodec_decode_video,
+#       [AC_CHECK_LIB(avformat, av_read_frame,
+#			[have_ffmpeg=yes
+#			 AC_DEFINE(HAVE_FFMPEG,[],[define HAVE_FFMPEG if you have ffmpeg])
+#			 LIBS="$LIBS -lavcodec -lavformat"],
+#			 AC_MSG_ERROR([[ libavformat (FFMPEG) was not found. ]]),
+#			[-lavcodec])]), 
+#			 AC_MSG_ERROR([[ libavcodec (FFMPEG) was not found. ]]))
+#fi
 
 
 
@@ -202,15 +205,26 @@ PACKAGE_NAME=sivp
 
 # for src/ilib_gen_gateway.sce
 
+#		'vdopen', 'int_vdopen'; \
+#		'vdgetframe', 'int_vdgetframe'; \
+#		'vdshowopened', 'int_vdshowopened'; \
+#		'vdclose', 'int_vdclose'; \
+#		'vdcloseall', 'int_vdcloseall'; \
+#		'goodfeaturestotrack', 'int_goodfeaturestotrack';\
+
+
 TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'sivp_init','int_sivp_init'; \
 		'imread', 'int_imread';\
 		'imwrite', 'int_imwrite';\
-		'vdopen', 'int_vdopen'; \
-		'vdgetframe', 'int_vdgetframe'; \
-		'vdshowopened', 'int_vdshowopened'; \
-		'vdclose', 'int_vdclose'; \
-		'vdcloseall', 'int_vdcloseall'; \
+		'aviinfo', 'int_aviinfo';\
+		'aviopen', 'int_aviopen';\
+		'aviclose','int_aviclose';\
+		'avicloseall','int_avicloseall';\
+		'avilistopened', 'int_avilistopened';\
+		'avireadframe', 'int_avireadframe';\
+		'camopen', 'int_camopen';\
+		'imresize', 'int_imresize';\
 		'mat2utfimg', 'int_mat2utfimg';\
 		'canny', 'int_canny'; \
 		'convert', 'int_convert'; \
@@ -224,7 +238,6 @@ TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'dilate', 'int_dilate';\
 		'pyrdown', 'int_pyrdown';\
 		'pyrup', 'int_pyrup';\
-		'goodfeaturestotrack', 'int_goodfeaturestotrack';\
 		'xor', 'int_xor';\
 		'not', 'int_not';\
 		'cmp', 'int_cmp';\
@@ -232,15 +245,26 @@ TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		"
 # for loader.sce
 # TOOLBOX_FUNCTIONS is the first colum of TOOLBOX_TABLE 
+
+#		       'vdopen'; \
+#		       'vdgetframe'; \
+#		       'vdshowopened'; \
+#		       'vdclose'; \
+#		       'vdcloseall'; \
+#		       'goodfeaturestotrack';\
+
 TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'sivp_init'; \
 		       'imread';\
 		       'imwrite';\
-		       'vdopen'; \
-		       'vdgetframe'; \
-		       'vdshowopened'; \
-		       'vdclose'; \
-		       'vdcloseall'; \
+		       'aviinfo';\
+		       'aviopen';\
+		       'aviclose';\
+		       'avicloseall';\
+		       'avilistopened';\
+		       'avireadframe';\
+		       'camopen';\
+		       'imresize';\
 		       'mat2utfimg'; \
 		       'canny'; \
 		       'convert'; \
@@ -254,7 +278,6 @@ TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'dilate';\
 		       'pyrdown';\
 		       'pyrup';\
-		       'goodfeaturestotrack';\
 		       'xor';\
 		       'not';\
 		       'cmp';\
@@ -287,9 +310,6 @@ Configuration:
 	CPPFLAGS = $CPPFLAGS
 	LDFLAGS  = $LDFLAGS
 	LIBS     = $LIBS
-        
-	have OpenCV = $have_opencv
-	have FFMPEG = $have_ffmpeg
 =====================================================
 This toolbox will be installed in $TOOLBOXDIR.
 Please run 'make' and 'make install' to compile and install the toolbox. 
@@ -303,8 +323,6 @@ Configuration:
 	CPPFLAGS = $CPPFLAGS
 	LDFLAGS  = $LDFLAGS
 	LIBS     = $LIBS
-        
-	have OpenCV = $have_opencv
 =====================================================
 This toolbox will be installed in $TOOLBOXDIR.
 Please run 'make' and 'make install' to compile and install the toolbox. 
