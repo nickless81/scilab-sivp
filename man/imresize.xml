@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>imresize</TITLE>
+<TYPE>SIVP Toolbox</TYPE>
+<DATE>Feb, 2006</DATE>
+<SHORT_DESCRIPTION name="imresize">Resizes image</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>imout = imresize(imin, scale)</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>imout = imresize(imin, scale, interp)</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>imout = imresize(imin, [mrows, ncols])</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>imout = imresize(imin, [mrows, ncols], interp)</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+     <PARAM_NAME>imin</PARAM_NAME>
+     <PARAM_DESCRIPTION>
+       An image which will be resized.
+     </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+     <PARAM_NAME>scale</PARAM_NAME>
+     <PARAM_DESCRIPTION>
+       The size of resized image is <TT>[width, height] x scale</TT>.
+     </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+     <PARAM_NAME>[mrows, ncols]</PARAM_NAME>
+     <PARAM_DESCRIPTION>
+       The size of resized image.
+     </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+     <PARAM_NAME>interp</PARAM_NAME>
+     <PARAM_DESCRIPTION>
+       Interpolation method. The value of <TT>interp</TT> must be one of the follows: 1. 'nearest' - nearest-neigbor interpolation (default value); 2. 'bilinear' - bilinear interpolation; 3. 'bicubic' - bicubic interpolation; 4.  'area' - resampling using pixel area relation.
+     </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+<DESCRIPTION>
+<P>
+   <TT>imresize</TT> resize the input image. When <TT>scale</TT> parameter is specified, the width and height of the image is resized in the same scale. There are four interpolation method can be used: nearest-neigbor, bilinear, bicubic and area methods. The default method is nearest-neigbor method.
+</P>
+</DESCRIPTION>
+<EXAMPLE><![CDATA[
+
+    im = imread(SCI + '/contrib/sivp/images/lena.png');
+    ima = imresize(im, 1.5);
+    imb = imresize(im, 1.5, 'bilinear');
+    imc = imresize(im, [100,200], 'bicubic');
+
+]]></EXAMPLE>
+<!-- ================================= -->
+
+<AUTHORS>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu@gmail.com&gt; </AUTHORS_ITEM>
+</AUTHORS>
+<!-- ================================= -->
+<SECTION label="Availability">
+The latest version of SIVP can be found at
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+   <SEE_ALSO>
+   </SEE_ALSO>
+</MAN>
