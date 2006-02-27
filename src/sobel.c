@@ -1,5 +1,6 @@
 /***********************************************************************
  * SIVP - Scilab Image and Video Processing toolbox
+ * Copyright (C) 2006  Shiqi Yu
  * Copyright (C) 2005  Vincent Etienne
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,96 +21,144 @@
 
 #include "common.h"
 
+/**********************************************************************
+ * BW = sobel(im, dx, dy, thresh)
+ * [BW,thresh] = sobel(im, ...)
+ **********************************************************************/
 int int_sobel(char *fname)
 {
-static int l2, m2, n2, l3, m3, n3, l4, m4, n4 ;
+  static int One=1;
+  static int l2, m2, n2, l3, m3, n3, l4, m4, n4 ;
 
-//create variable for parameters
-int *param1=NULL;
-int *param2=NULL;
-int *param3=NULL;
+  //create variable for parameters
+  double *pfThresh=NULL;
+  double fThresh = -1.0;
+  int *pnDx=NULL;
+  int *pnDy=NULL;
+  
+  IplImage* pSrcImg = NULL;
+  IplImage* pSobelImg = NULL;
+  IplImage* pEdgeImg = NULL;
 
-IplImage* img2 = NULL;
+  CheckRhs(3,4);
+  CheckLhs(1,2);
 
-// check nbre et nature param entre sortie
-Rhs=Max(Lhs,Rhs);
 
-CheckRhs(4,4);
-CheckLhs(1,1);
-
-//definie le param charactere d entre
-GetRhsVar(2, "i", &m2, &n2, &l2);
-GetRhsVar(3, "i", &m3, &n3, &l3);
-GetRhsVar(4, "i", &m4, &n4, &l4);
-
-// check if arg are scalaire
-if (m2*n2 != 1 || m3*n3 != 1 || m4*n4 != 1) 
+  GetRhsVar(2, "i", &m2, &n2, &l2);
+  GetRhsVar(3, "i", &m3, &n3, &l3);
+  // check if arg are scalaire
+  if (m2*n2 != 1 || m3*n3 != 1) 
     {
-      sciprint("Error: arguments must be scalars\r\n");
+      Scierror(999, "Internal eroror: %s: arguments must be scalars.\r\n", fname);
+      return 0;
+    }
+  //receive the data
+  pnDx =  istk(l2);
+  pnDy =  istk(l3);
+
+  if( Rhs == 4)
+    {
+      GetRhsVar(4, "d", &m4, &n4, &l4);
+      // check if arg are scalaire
+      if ( m4*n4 != 1) 
+	{
+	  Scierror(999, "Internal eroror: %s: arguments must be scalars.\r\n", fname);
+	  return 0;
+	}
+      pfThresh = stk(l4);
+      //check the values
+      if(pfThresh[0]< 0)
+	{
+	  Scierror(999, "Internal eroror: %s: thresh should greater than zero. \r\n", fname);
+	  return 0;
+	}
+    }
+  else
+    {
+      pfThresh = &fThresh; //the value is -1 to indicate 
+                           //that the thresh should be choosen in this function
+    }
+
+
+
+  if ( (pnDx[0]>2) || (pnDx[0]<0) || (pnDy[0]>2)|| (pnDy[0]<0))
+    {
+      Scierror(999, "Internal eroror: %s: The direction should be 0 or 1.\r\n", fname);
       return 0;
     }
 
-//receive the data
-param1 =  istk(l2);
-param2 =  istk(l3);
-param3 =  istk(l4);
 
-//verifications des valeurs
-if ( (param3[0]%2 != 1) || (param3[0]<3) )
-{
-sciprint("Error: The size of sobel kernel must be 3,5,7, ...\r\n");
-return 0;
-}
+  //load the input image
+  pSrcImg = Mat2IplImg(1);
+  
+  // check if input image is correctly loaded
+  if(pSrcImg == NULL)
+    {
+      Scierror(999, "%s: Can not get the image.\r\n", fname);
+      return 0;
+    }
 
-if ( (param1[0]>2) || (param1[0]<0) || (param2[0]>2)|| (param2[0]<0))
-{
-sciprint("Error: wrong dx or dy ...\r\n");
-return 0;
-}
+  //the image must be gray image
+  if(! ((pSrcImg->depth==IPL_DEPTH_8U)  &&  (pSrcImg->nChannels==1)) )
+    {
+      cvReleaseImage(&pSrcImg);
+      Scierror(999, "%s: The input image must be gray image.\r\n", fname);
+      return 0;
+    }
 
-
-//load the input image for cvsobel
-IplImage* img1 = NULL ;
-img1=Mat2IplImg(1);
-
-// check if input image is correctly loaded
-if(img1==NULL)
-  {
-   sciprint("Error: can't read the input image\r\n");
-   return 0;
-  }
-
-  if(   (img1->depth==IPL_DEPTH_8U)  &&  (img1->nChannels==1)   )
-  {
-   //create the output image for cv canny 
+  
+  //create the output image for cvSobel
+  pSobelImg = cvCreateImage(cvGetSize(pSrcImg), IPL_DEPTH_16S, 1);
+  // check if the output image is correctly created
+  if(pSobelImg == NULL)
+    {
+      cvReleaseImage(&pSrcImg);
+      Scierror(999, "%s: Can't create images.\r\n", fname);
+      return 0;
+    }
    
-   img2 = cvCreateImage(cvGetSize(img1), IPL_DEPTH_16S, 1);
-   
-   // check if the output image is correctly loaded
-   if(img2==NULL)
-     {
-     sciprint("Error: can't create the output matrix\r\n");
-     return 0;
-     }
-   
-   //use the opencv function
-   cvSobel( img1, img2 ,param1[0],param2[0],param3[0]);
-   
-   //transform the result of opencv canny in a matrice
-   IplImg2Mat(img2, 5);
-   
-   //send the result
-   LhsVar(1)=5;
-  }
- else
- {
-  sciprint("Error: wrong input matrice\r\n");
+  //Sobel operate
+  cvSobel( pSrcImg, pSobelImg , pnDx[0], pnDy[0], 3);
+  
+  pEdgeImg = cvCreateImage(cvGetSize(pSrcImg), IPL_DEPTH_8U, 1);
+  // check if the output image is correctly created
+  if(pEdgeImg == NULL)
+    {
+      cvReleaseImage(&pSrcImg);
+      cvReleaseImage(&pSobelImg);
+      Scierror(999, "%s: Can't create images.\r\n", fname);
+      return 0;
+    }
+
+  //convert the sobel image to [0,255] 8bits image
+  //the range of the sobel image is[-4x255, 4x255]
+  cvConvertScaleAbs(pSobelImg, pEdgeImg, 0.25, 0);
+
+  //choose the thresh value if the user does not specified the value
+  if(pfThresh[0] < 0)
+    {
+      double fMin, fMax;
+      cvMinMaxLoc(pEdgeImg, &fMin, &fMax, NULL, NULL, NULL);
+      pfThresh[0] = cvRound(( 3*fMin/4.0 + fMax/4.0)*4) ;
+    }
+
+  //threshold
+  cvThreshold(pEdgeImg, pEdgeImg, pfThresh[0]/4.0, 255, CV_THRESH_BINARY);
+
+  
+  //translate IplImage to Matrix
+  IplImg2Mat(pEdgeImg, 5);
+  CreateVarFromPtr( 6, "d", &One, &One, &pfThresh);
+
+  //send the result
+  LhsVar(1)=5;
+  LhsVar(2)=6;
+
+  //release all images
+  cvReleaseImage(&pSrcImg);
+  cvReleaseImage(&pSobelImg);
+  cvReleaseImage(&pEdgeImg);
+
   return 0;
- }  
- 
-//let's free the memory
-cvReleaseImage( &img1 );
-cvReleaseImage( &img2 );
 
-return 0;
 }

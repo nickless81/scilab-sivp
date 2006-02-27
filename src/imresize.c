@@ -37,7 +37,7 @@ int int_imresize(char * fname)
 
   IplImage* pSrcImg = NULL;
   IplImage* pDstImg = NULL;
-  int Interpolation = CV_INTER_NN; //Interpolation method
+  int Interpolation = CV_INTER_NN; //Interpolation method, default method is nearest neigbor
   int nDestW = 0, nDestH = 0;
 
   CheckRhs(2, 3);

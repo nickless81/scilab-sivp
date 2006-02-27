@@ -111,6 +111,7 @@ if(img1==NULL)
      imgTmp = NULL;
    }
 
+
  cvCanny( img1, img2 ,param1[0],param2[0],param3[0]);
 
  //transform the result of opencv canny in a matrice
