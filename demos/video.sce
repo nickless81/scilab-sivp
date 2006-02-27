@@ -2,10 +2,10 @@ filename = SCI + '/contrib/sivp/images/walking.avi';
 
 if MSDOS then filename=strsubst(filename,'/','\'),end
 
-n = vdopen(filename);
+n = aviopen(filename);
 
 for idx=1:100,
-	im=vdgetframe(n);
+	im=avireadframe(n);
 	imshow(im);
 end;
-vdclose(n);
+aviclose(n);

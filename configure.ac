@@ -22,11 +22,11 @@
 
 
 AC_PREREQ(2.59)
-AC_INIT([sivp], [0.2.7], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
+AC_INIT([sivp], [cvs], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_SRCDIR(src/test.c)
 AM_CONFIG_HEADER(src/config.h)
-AM_INIT_AUTOMAKE([sivp],[0.2.7])
+AM_INIT_AUTOMAKE([sivp],[cvs])
 
 # Checks for programs.
 AC_PROG_CC
@@ -161,10 +161,10 @@ PKG_CHECK_MODULES(OPENCV,
 		 AC_DEFINE(HAVE_OPENCV,[], [define HAVE_OPENCV if you have opencv])],
 		[AC_MSG_ERROR([[ OpenCV version >= 0.9.6 was not found. ]])])
 
-AC_CHECK_LIB(highgui, cvCaptureFromFile,, AC_MSG_ERROR([[OpenCV does not support video file R/W, 
-		      please recompile OpenCV with FFMPEG.]]))
-AC_CHECK_LIB(highgui, cvCaptureFromCAM,, AC_MSG_ERROR([[OpenCV does not support camera capture, 
-		      please recompile OpenCV with FFMPEG and Video4Linux.]]))
+#AC_CHECK_LIB(highgui0.9, cvCaptureFromFile,, AC_MSG_ERROR([[OpenCV does not support video file R/W, 
+#		      please recompile OpenCV with FFMPEG.]]))
+#AC_CHECK_LIB(highgui0.9, cvCaptureFromCAM,, AC_MSG_ERROR([[OpenCV does not support camera capture, 
+#		      please recompile OpenCV with FFMPEG and Video4Linux.]]))
 
 # check for ffmpeg
 #if test $native_win32_build = no; then
