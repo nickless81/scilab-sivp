@@ -22,11 +22,11 @@
 
 
 AC_PREREQ(2.59)
-AC_INIT([sivp], [cvs], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
+AC_INIT([sivp], [0.1.8], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_SRCDIR(src/test.c)
 AM_CONFIG_HEADER(src/config.h)
-AM_INIT_AUTOMAKE([sivp],[cvs])
+AM_INIT_AUTOMAKE([sivp],[0.1.8])
 
 # Checks for programs.
 AC_PROG_CC

@@ -80,7 +80,7 @@ if(img1==NULL)
    		sciprint("Error: can't create the output matrix\r\n");
    		return 0;
   		}
-	cvSmooth( img1, img2 ,CV_BLUR ,param2[0],param3[0],param4[0]);
+	cvSmooth( img1, img2 ,CV_BLUR ,param2[0],param3[0],param4[0], 0);
 	//transform the result of opencv canny in a matrice
  	IplImg2Mat(img2, 5);
 	//send the result
@@ -103,7 +103,7 @@ if(img1==NULL)
    		sciprint("Error: can't create the output matrix\r\n");
    		return 0;
   		}
-	cvSmooth( img1, img2 ,CV_BLUR ,param2[0],param3[0],param4[0]);
+	cvSmooth( img1, img2 ,CV_BLUR ,param2[0],param3[0],param4[0],0);
 	//transform the result of opencv canny in a matrice
  	IplImg2Mat(img2, 5);
 	//send the result
@@ -127,7 +127,7 @@ if(img1==NULL)
    		sciprint("Error: can't create the output matrix\r\n");
    		return 0;
   		}
-	cvSmooth( img1, img2 ,CV_GAUSSIAN ,param2[0],param3[0],param4[0]);
+	cvSmooth( img1, img2 ,CV_GAUSSIAN ,param2[0],param3[0],param4[0], 0);
 	//transform the result of opencv canny in a matrice
  	IplImg2Mat(img2, 5);
 	//send the result
@@ -150,7 +150,7 @@ if(img1==NULL)
    		sciprint("Error: can't create the output matrix\r\n");
    		return 0;
   		}
-	cvSmooth( img1, img2 ,CV_BILATERAL,param2[0],param3[0],param4[0]);
+	cvSmooth( img1, img2 ,CV_BILATERAL,param2[0],param3[0],param4[0], 0);
 	//transform the result of opencv canny in a matrice
  	IplImg2Mat(img2, 5);
 	//send the result
@@ -173,7 +173,7 @@ if(img1==NULL)
    		sciprint("Error: can't create the output matrix\r\n");
    		return 0;
   		}
-	cvSmooth( img1, img2 ,CV_MEDIAN ,param2[0],param3[0],param4[0]);
+	cvSmooth( img1, img2 ,CV_MEDIAN ,param2[0],param3[0],param4[0], 0);
 	//transform the result of opencv canny in a matrice
  	IplImg2Mat(img2, 5);
 	//send the result
