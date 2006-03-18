@@ -34,24 +34,35 @@ If <TT>im</TT> is not of class uint8,  <TT>imwrite</TT> convert the datatype bef
 </PARAM>
 <DESCRIPTION>
 <P>
-   <TT>imwrite</TT> writes a matrix into a image file. The format of the  file is inferred from the extension in the <TT>filename</TT> parameter. Currently the following file formats are supported:
+   <TT>imwrite</TT> writes a matrix into a image file. The format of the  file is inferred from the extension in the <TT>filename</TT> parameter. Currently the following file formats are supported:</P>
+   <DESCRIPTION_INDENT><DESCRIPTION_ITEM>
     * Windows bitmaps - BMP, DIB;
+   </DESCRIPTION_ITEM></DESCRIPTION_INDENT>
+   <DESCRIPTION_INDENT><DESCRIPTION_ITEM>
     * JPEG files - JPEG, JPG, JPE;
+   </DESCRIPTION_ITEM></DESCRIPTION_INDENT>
+   <DESCRIPTION_INDENT><DESCRIPTION_ITEM>
     * Portable Network Graphics - PNG;
+   </DESCRIPTION_ITEM></DESCRIPTION_INDENT>
+   <DESCRIPTION_INDENT><DESCRIPTION_ITEM>
     * Portable image format - PBM, PGM, PPM;
+   </DESCRIPTION_ITEM></DESCRIPTION_INDENT>
+   <DESCRIPTION_INDENT><DESCRIPTION_ITEM>
     * Sun rasters - SR, RAS;
-    * TIFF files - TIFF, TIF.
-</P>
+   </DESCRIPTION_ITEM></DESCRIPTION_INDENT>
+   <DESCRIPTION_INDENT><DESCRIPTION_ITEM>
+    * TIFF files - TIFF, TIF. 
+   </DESCRIPTION_ITEM></DESCRIPTION_INDENT>
 
 </DESCRIPTION>
 <EXAMPLE><![CDATA[
-    im=rand(200,300);
+    im=rand(200,300)*255;
     ret = imwrite(im, 'rand.png');
 ]]></EXAMPLE>
 <!-- ================================= -->
 
 <AUTHORS>
-   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;yushiqi (AT) yahoo DOT com DOT cn&gt; </AUTHORS_ITEM>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu@gmail.com&gt; </AUTHORS_ITEM>
 </AUTHORS>
 <!-- ================================= -->
 <SECTION label="Bugs and Shortcomings">

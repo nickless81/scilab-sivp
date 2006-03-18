@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>imcrop</TITLE>
+<TYPE>SIVP Toolbox</TYPE>
+<DATE>March, 2006</DATE>
+<SHORT_DESCRIPTION name="imcrop">Crop image</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>subim = imcrop(im, rect)</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+   <PARAM_NAME>im</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+     An image, which can be one channel or three channel image.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>rect</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   <TT>rect=[x, y, width, height]</TT> is a vector. <TT>(x, y)</TT> is the top-left corner of the rentangle.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>subim</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   <TT>subim</TT> is the sub-region of the image <TT>im</TT>.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+<DESCRIPTION>
+<P>Crop image at regin <TT>rect</TT> to <TT>subim</TT>.
+</P>
+</DESCRIPTION>
+<EXAMPLE><![CDATA[
+
+    im = imread(SCI + '/contrib/sivp/images/lena.png');
+    subim = imcrop(im, [20, 30, 200, 300]);
+    imshow(subim);
+
+]]></EXAMPLE>
+<!-- ================================= -->
+<SECTION label="TODO">
+<P>
+If <TT>rect</TT> is not specified, a window which showing the image should be poped out,
+and let the user to select the region using mouse.
+</P>
+</SECTION>
+<!-- ================================= -->
+
+<AUTHORS>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu@gmail.com&gt; </AUTHORS_ITEM>
+</AUTHORS>
+<!-- ================================= -->
+<SECTION label="Availability">
+The latest version of SIVP can be found at
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+   <SEE_ALSO>
+      <SEE_ALSO_ITEM> <LINK>imresize</LINK> </SEE_ALSO_ITEM>
+   </SEE_ALSO>
+</MAN>

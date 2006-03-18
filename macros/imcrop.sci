@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////
 // SIVP - Scilab Image and Video Processing toolbox
-// Copyright (C) 2005  Shiqi Yu
+// Copyright (C) 2006  Shiqi Yu
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,40 +17,23 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////
 
+function [subim] = imcrop(im, rect)
 
-function imshow(im)
-	//get dim of image
-	width =size(im,2);
-	height=size(im,1);
-	channel = 0;
+	 //get the image width and height
+	 [imh,imw] = size(im);
 
-	//check whether it is an image
-	if(size(size(im),2)==3) then
-		if( size(im,3) == 3 | size(im,3) == 1) then
-			channel = size(im,3);
-		end
-	end
-	if(size(size(im),2)==2) then
-		channel=1;
-	end
+	 //check the rectangle
+	 if (rect(1)<1 | rect(2)<1 | rect(1)+rect(3)-1>imw | rect(2)+rect(4)-1>imh ) then
+	    error("The rectangle is out of the image range.");
+	    return;   
+	 end
 
-	if(channel==0)
-		error("The input should be an image.");
-		return;
-	end
-
-	imc=mat2utfimg(uint8(im));
-
-	if (channel==1)
-		imc='P5'+char(10)+msprintf('%d %d",width,height)+char(10)+'255'+char(10)+char(imc); 
-	else
-		imc='P6'+char(10)+msprintf('%d %d",width,height)+char(10)+'255'+char(10)+char(imc); 
-	end
-
-	TCL_SetVar('imagewidth',msprintf('%d',width));
-	TCL_SetVar('imageheight',msprintf('%d',height));
-	TCL_SetVar('imagechannel',msprintf('%d',channel));
-	TCL_SetVar('imagedata', imc);
-
-	TCL_EvalFile(SCI + '/contrib/sivp/macros/imshow.tcl');
+	 if (size(size(im),2) ==2) //gray image
+	    subim = im(rect(2):rect(2)+rect(4)-1, rect(1):rect(1)+rect(3)-1);
+	 elseif (size(size(im),2) ==3)//RGB image
+	    subim = im(rect(2):rect(2)+rect(4)-1, rect(1):rect(1)+rect(3)-1, :);
+	 else
+	    error("Is the imput an image?");
+	    return;
+	 end
 endfunction

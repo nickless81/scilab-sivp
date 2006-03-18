@@ -20,13 +20,9 @@ IMG_IO_MAN=imread.xml imwrite.xml
 AVI_IO_MAN= #aviinfo.xml aviopen.xml aviclose.xml avicloseall.xml avilistopened.xml avireadframe.xml camopen.xml
 IMG_GUI_MAN=imshow.xml
 IMG_TRAN_MAN=imresize.xml
-IMG_PROC_MAN= canny.xml
+IMG_PROC_MAN= 
 
 manpages_xml = $(IMG_IO_MAN) $(AVI_IO_MAN) $(IMG_GUI_MAN) $(IMG_TRAN_MAN) $(IMG_PROC_MAN)
-
-## adaptativethreshold.fr.xml adaptativethreshold.xml  cmp.fr.xml cmp.xml dilate.fr.xml dilate.xml erode.fr.xml erode.xml goodfeaturestotrack.fr.xml goodfeaturestotrack.xml  imsmooth.fr.xml imsmooth.xml laplace.fr.xml laplace.xml precornerdetec.fr.xml precornerdetec.xml pyrdown.fr.xml pyrdown.xml pyrup.fr.xml pyrup.xml sobel.fr.xml sobel.xml threshold.fr.xml threshold.xml xor.fr.xml xor.xml
-
-## manpages_xml  = adaptativethreshold.fr.xml adaptativethreshold.xml canny.fr.xml canny.xml cmp.fr.xml cmp.xml convert.fr.xml convert.xml dilate.fr.xml dilate.xml erode.fr.xml erode.xml goodfeaturestotrack.fr.xml goodfeaturestotrack.xml imread.xml imread.zh-s.xml imshow.fr.xml imshow.xml imshow.zh-s.xml imsmooth.fr.xml imsmooth.xml imwrite.fr.xml imwrite.xml imwrite.zh-s.xml laplace.fr.xml laplace.xml precornerdetec.fr.xml precornerdetec.xml pyrdown.fr.xml pyrdown.xml pyrup.fr.xml pyrup.xml sobel.fr.xml sobel.xml threshold.fr.xml threshold.xml vdcloseall.fr.xml vdcloseall.xml vdcloseall.zh-s.xml vdclose.fr.xml vdclose.xml vdclose.zh-s.xml vdgetframe.fr.xml vdgetframe.xml vdgetframe.zh-s.xml vdopen.fr.xml vdopen.xml vdopen.zh-s.xml vdshowopened.fr.xml vdshowopened.xml vdshowopened.zh-s.xml xor.fr.xml xor.xml
 
 manpages_cat  = $(manpages_xml:.xml=.cat)
 
