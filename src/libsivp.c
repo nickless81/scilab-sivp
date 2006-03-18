@@ -12,6 +12,7 @@ extern Gatefunc int_avilistopened;
 extern Gatefunc int_avireadframe;
 extern Gatefunc int_camopen;
 extern Gatefunc int_imresize;
+extern Gatefunc int_imabsdiff;
 extern Gatefunc int_mat2utfimg;
 extern Gatefunc int_canny;
 extern Gatefunc int_convert;
@@ -42,6 +43,7 @@ static GenericTable Tab[]={
   {(Myinterfun)sci_gateway,int_avireadframe,"avireadframe"},
   {(Myinterfun)sci_gateway,int_camopen,"camopen"},
   {(Myinterfun)sci_gateway,int_imresize,"imresize"},
+  {(Myinterfun)sci_gateway,int_imabsdiff,"int_imabsdiff"},
   {(Myinterfun)sci_gateway,int_mat2utfimg,"mat2utfimg"},
   {(Myinterfun)sci_gateway,int_canny,"canny"},
   {(Myinterfun)sci_gateway,int_convert,"convert"},

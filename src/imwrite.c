@@ -91,7 +91,7 @@ int int_imwrite(char * fname)
       if(!pDstImage)
 	{
 	  cvReleaseImage(&pImage);
-	  Scierror(999, "%f: Create IplImage error.",fname);
+	  Scierror(999, "%f: Create IplImage error.\r\n",fname);
 	}
       cvConvertScale(pImage, pDstImage, dScale, dShift);
       *stk(lL) = cvSaveImage(cstk(lR), pDstImage);

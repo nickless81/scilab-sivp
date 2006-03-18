@@ -225,6 +225,7 @@ TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'avireadframe', 'int_avireadframe';\
 		'camopen', 'int_camopen';\
 		'imresize', 'int_imresize';\
+		'int_imabsdiff', 'int_imabsdiff';\
 		'mat2utfimg', 'int_mat2utfimg';\
 		'canny', 'int_canny'; \
 		'convert', 'int_convert'; \
@@ -265,6 +266,7 @@ TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'avireadframe';\
 		       'camopen';\
 		       'imresize';\
+		       'int_imabsdiff';\
 		       'mat2utfimg'; \
 		       'canny'; \
 		       'convert'; \
