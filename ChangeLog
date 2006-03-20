@@ -1,16 +1,11 @@
-=============================================================================
-	SIVP 0.2 rc4
-=============================================================================
->>> new features <<<
-	- SIVP demos added
-	- canny can handle true color image now
-
-=============================================================================
-	SIVP 0.2 rc3
-=============================================================================
->>> new features <<<
-	- video reading
-	- rewrite image show GUI.
-	- add some image processing functions
-	- add some French and Chinese man pages
+------------------------------------------------------------
+	SIVP 0.3.0
+------------------------------------------------------------
+features:
+ + image I/O: imread, imwrite
+ + image showing: imshow
+ + video I/O, camera read: aviinfo, aviopen, camopen, aviclose, 
+		avicloseall, avilistopened, avireadframe
+ + Spatial transformation: imcrop, imresize
+ + Image Arithmetic: imabsdiff
 

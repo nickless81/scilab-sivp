@@ -174,7 +174,7 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-macros_sci = imshow.sci imcrop.sci
+macros_sci = imshow.sci imcrop.sci imabsdiff.sci
 macros_bin = $(macros_sci:.sci=.bin)
 macrodir = @TOOLBOXDIR@/macros
 macro_DATA = $(macros_bin) genlib names lib imshow.tcl

@@ -19,7 +19,7 @@
 IMG_IO_MAN=imread.xml imwrite.xml
 AVI_IO_MAN= #aviinfo.xml aviopen.xml aviclose.xml avicloseall.xml avilistopened.xml avireadframe.xml camopen.xml
 IMG_GUI_MAN=imshow.xml
-IMG_TRAN_MAN=imresize.xml
+IMG_TRAN_MAN=imresize.xml imcrop.xml
 IMG_PROC_MAN= 
 
 manpages_xml = $(IMG_IO_MAN) $(AVI_IO_MAN) $(IMG_GUI_MAN) $(IMG_TRAN_MAN) $(IMG_PROC_MAN)

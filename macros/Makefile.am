@@ -19,7 +19,7 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ## -------------------------------------------------------------------------
 ##
-macros_sci = imshow.sci imcrop.sci
+macros_sci = imshow.sci imcrop.sci imabsdiff.sci
 
 macros_bin = $(macros_sci:.sci=.bin)
 
