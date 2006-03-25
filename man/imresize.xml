@@ -65,5 +65,6 @@ The latest version of SIVP can be found at
 </SECTION>
 <!-- ================================= -->
    <SEE_ALSO>
+      <SEE_ALSO_ITEM> <LINK>imcrop</LINK> </SEE_ALSO_ITEM>
    </SEE_ALSO>
 </MAN>
