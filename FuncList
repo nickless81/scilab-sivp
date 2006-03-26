@@ -17,6 +17,10 @@ Spatial transformation and registration
 	imcrop
 	imresize
 
+Image Analysis and Statistics
+      mean2
+      corr2
+      std2/stdev2
 
 Image Arithmetic
       imabsdiff

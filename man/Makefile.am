@@ -22,8 +22,9 @@ IMG_GUI_MAN=imshow.xml
 IMG_TRAN_MAN=imresize.xml imcrop.xml
 IMG_ARITHMETIC=imabsdiff.xml 
 IMG_PROC_MAN= 
+IMG_STAT_MAN=mean2.xml corr2.xml std2.xml
 
-manpages_xml = $(IMG_IO_MAN) $(AVI_IO_MAN) $(IMG_GUI_MAN) $(IMG_TRAN_MAN) $(IMG_PROC_MAN) $(IMG_ARITHMETIC)
+manpages_xml = $(IMG_IO_MAN) $(AVI_IO_MAN) $(IMG_GUI_MAN) $(IMG_TRAN_MAN) $(IMG_PROC_MAN) $(IMG_ARITHMETIC) $(IMG_STAT_MAN)
 
 manpages_cat  = $(manpages_xml:.xml=.cat)
 

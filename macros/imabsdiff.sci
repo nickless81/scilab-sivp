@@ -22,7 +22,7 @@ function [imdiff] = imabsdiff(im1, im2)
     //check the image width and height
     if( or( size(im1)<>size(im2) )) then
 	error("The two images do not have the same size or the same channel number.");
-	return;
+	//return;
     end
   
     if (size(size(im1),2)>3) then
@@ -32,7 +32,7 @@ function [imdiff] = imabsdiff(im1, im2)
     if (size(size(im1),2)==3) then
         if (size(im1, 3)<>1) & (size(im1,3)<>3) then
 	    error("The two inputs are not images");
-	    return;
+	    //return;
         end	    
     end
 
