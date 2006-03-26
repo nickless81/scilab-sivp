@@ -24,7 +24,7 @@ function [c] = corr2(imA, imB)
 
 	 //check the image width and height
 	 if( or( size(imA)<>size(imB) )) then
-	     error("The two images do not have the same size.");
+	     error("The two inputs do not have the same size.");
          end
 
 	 difA = double(imA) - mean2(imA);
