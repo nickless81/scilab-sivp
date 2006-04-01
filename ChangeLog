@@ -2,10 +2,12 @@
 	SIVP 0.3.0
 ------------------------------------------------------------
 features:
- + image I/O: imread, imwrite
- + image showing: imshow
- + video I/O, camera read: aviinfo, aviopen, camopen, aviclose, 
+ + Supported image type: uint8, int8, uint16, int16, int32, double
+ + Image I/O functions: imread, imwrite
+ + Image showing functions: imshow
+ + Video I/O, camera read functions: aviinfo, aviopen, camopen, aviclose, 
 		avicloseall, avilistopened, avireadframe
- + Spatial transformation: imcrop, imresize
- + Image Arithmetic: imabsdiff
+ + Spatial transformation functions: imcrop, imresize
+ + Image analysis and statistics functions: mean2, corr2, std2/stdev2
+ + Image arithmetic functions: imabsdiff
 
