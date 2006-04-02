@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////
 // SIVP - Scilab Image and Video Processing toolbox
-// Copyright (C) 2005-2006  Shiqi Yu
+// Copyright (C) 2006  Shiqi Yu
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,41 +17,35 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////
 
+function [G] = mat2gray(M, mmin, mmax)
 
-function imshow(im)
-	//get dim of image
-	width =size(im,2);
-	height=size(im,1);
-	channel = 0;
+	 //check input
+	 if(size(size(M),2)>2)
+		error("The input matrix M should be 2D matrix.");
+	 end
 
-	//check whether it is an image
-	if(size(size(im),2)==3) then
-		if( size(im,3) == 3 | size(im,3) == 1) then
-			channel = size(im,3);
-		end
-	end
-	if(size(size(im),2)==2) then
-		channel=1;
-	end
+	 //get rhs
+	 rhs=argn(2);
+	 //convert to double
+	 M = double(M);
+	 if (rhs==1)  then
+	    mmin = min(M);
+	    mmax = max(M);
+	 elseif (rhs==2)
+	    mmax = max(M);
+	 end
+ 
 
-	if(channel==0)
-		error("The input should be an image.");
-		return;
-	end
-
-	//imc=mat2utfimg(uint8(im));
-	imc=mat2utfimg(im2uint8(im));
-
-	if (channel==1)
-		imc='P5'+char(10)+msprintf('%d %d",width,height)+char(10)+'255'+char(10)+char(imc); 
-	else
-		imc='P6'+char(10)+msprintf('%d %d",width,height)+char(10)+'255'+char(10)+char(imc); 
-	end
-
-	TCL_SetVar('imagewidth',msprintf('%d',width));
-	TCL_SetVar('imageheight',msprintf('%d',height));
-	TCL_SetVar('imagechannel',msprintf('%d',channel));
-	TCL_SetVar('imagedata', imc);
-
-	TCL_EvalFile(SCI + '/contrib/sivp/macros/imshow.tcl');
+	 if (mmax < mmin)
+	    error("Parameter mmax should be greater than mmin");
+	 end 
+	 
+	 //map M from [mmin, mmax] to [0,1]
+	 if (mmax == mmin)
+	    G=zeros(size(M,1), size(M,2));
+	 else	       
+	    G = (M-mmin)/(mmax-mmin);
+	    G(G>1) = 1;
+	    G(G<0) = 0;
+	 end
 endfunction

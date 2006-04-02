@@ -28,13 +28,13 @@ function [im2] = im2uint8(im)
 		case 'int8' then
 		     im2 = uint8(im)+128;
 		case 'uint16' then
-		     im2 = uint8(double(im)*(2^8-1)/(2^16-1)+0.5);
+		     im2 = uint8(round(double(im)*(2^8-1)/(2^16-1)));
 		case 'int16' then
-		     im2 = uint8((double(im) + 2^15)*(2^8-1)/(2^16-1)+0.5);
+		     im2 = uint8(round((double(im) + 2^15)*(2^8-1)/(2^16-1)));
 		case 'int32' then
-		     im2 = uint8((double(im)+2^31) * (2^8-1)/(2^32-1)+0.5);
+		     im2 = uint8(round((double(im)+2^31) * (2^8-1)/(2^32-1)));
 	 	case 'constant' then
-		     im2 = uint8(im * 255);
+		     im2 = uint8(round(im * 255));
 		else
 		     error("Data type " + imtype + " is not supported.");
 		end

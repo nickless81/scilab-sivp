@@ -13,6 +13,16 @@ Video/camera input, output
 	avilistopened
 	avireadframe
 
+Image type conversion
+      im2bw
+      im2uint8
+      im2int8
+      im2uint16
+      im2int16
+      im2int32
+      im2double
+      mat2gray
+
 Spatial transformation and registration
 	imcrop
 	imresize

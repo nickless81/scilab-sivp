@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////
 // SIVP - Scilab Image and Video Processing toolbox
-// Copyright (C) 2005-2006  Shiqi Yu
+// Copyright (C) 2006  Shiqi Yu
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,41 +17,28 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////
 
-
-function imshow(im)
-	//get dim of image
-	width =size(im,2);
-	height=size(im,1);
-	channel = 0;
-
-	//check whether it is an image
-	if(size(size(im),2)==3) then
-		if( size(im,3) == 3 | size(im,3) == 1) then
-			channel = size(im,3);
+function [im2] = im2bw(im, level)
+	 if (level < 0 | level > 1)
+	    error("level should be in the range [0,1]");
+	 end
+	 imtype = typeof(im);
+	 
+	 select imtype
+	 	case 'boolean' then
+		     im2 = im;
+		case 'uint8' then
+		     im2 = im > uint8(round((2^8-1)*level));
+		case 'int8' then
+		     im2 = im > int8(round((2^8-1)*level-128));
+		case 'uint16' then
+		     im2 = im > uint16(round((2^16-1)*level)); 
+		case 'int16' then
+		     im2 = im > int16(round((2^16-1)*level-2^15)); 
+		case 'int32' then
+		     im2 = im > int32(round((2^32-1)*level-2^31)); 
+	 	case 'constant' then
+		     im2 = im > level;
+		else
+		     error("Data type " + imtype + " is not supported.");
 		end
-	end
-	if(size(size(im),2)==2) then
-		channel=1;
-	end
-
-	if(channel==0)
-		error("The input should be an image.");
-		return;
-	end
-
-	//imc=mat2utfimg(uint8(im));
-	imc=mat2utfimg(im2uint8(im));
-
-	if (channel==1)
-		imc='P5'+char(10)+msprintf('%d %d",width,height)+char(10)+'255'+char(10)+char(imc); 
-	else
-		imc='P6'+char(10)+msprintf('%d %d",width,height)+char(10)+'255'+char(10)+char(imc); 
-	end
-
-	TCL_SetVar('imagewidth',msprintf('%d',width));
-	TCL_SetVar('imageheight',msprintf('%d',height));
-	TCL_SetVar('imagechannel',msprintf('%d',channel));
-	TCL_SetVar('imagedata', imc);
-
-	TCL_EvalFile(SCI + '/contrib/sivp/macros/imshow.tcl');
 endfunction
