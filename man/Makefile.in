@@ -177,11 +177,12 @@ target_alias = @target_alias@
 IMG_IO_MAN = imread.xml imwrite.xml
 AVI_IO_MAN = #aviinfo.xml aviopen.xml aviclose.xml avicloseall.xml avilistopened.xml avireadframe.xml camopen.xml
 IMG_GUI_MAN = imshow.xml
+IMG_CONVERT = im2bw.xml im2uint8.xml im2int8.xml im2uint16.xml im2int16.xml im2int32.xml im2double.xml mat2gray.xml
 IMG_TRAN_MAN = imresize.xml imcrop.xml
 IMG_ARITHMETIC = imabsdiff.xml 
 IMG_PROC_MAN = 
 IMG_STAT_MAN = mean2.xml corr2.xml std2.xml
-manpages_xml = $(IMG_IO_MAN) $(AVI_IO_MAN) $(IMG_GUI_MAN) $(IMG_TRAN_MAN) $(IMG_PROC_MAN) $(IMG_ARITHMETIC) $(IMG_STAT_MAN)
+manpages_xml = $(IMG_IO_MAN) $(AVI_IO_MAN) $(IMG_GUI_MAN) $(IMG_CONVERT) $(IMG_TRAN_MAN) $(IMG_PROC_MAN) $(IMG_ARITHMETIC) $(IMG_STAT_MAN)
 manpages_cat = $(manpages_xml:.xml=.cat)
 manpages_html = $(manpages_xml:.xml=.htm)
 helpdir = @TOOLBOXDIR@/man

@@ -17,9 +17,9 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////
 
-function [im2] = im2bw(im, level)
-	 if (level < 0 | level > 1)
-	    error("level should be in the range [0,1]");
+function [im2] = im2bw(im, thresh)
+	 if (thresh < 0 | thresh > 1)
+	    error("thresh should be in the range [0,1]");
 	 end
 	 imtype = typeof(im);
 	 
@@ -27,17 +27,17 @@ function [im2] = im2bw(im, level)
 	 	case 'boolean' then
 		     im2 = im;
 		case 'uint8' then
-		     im2 = im > uint8(round((2^8-1)*level));
+		     im2 = im > uint8(round((2^8-1)*thresh));
 		case 'int8' then
-		     im2 = im > int8(round((2^8-1)*level-128));
+		     im2 = im > int8(round((2^8-1)*thresh-128));
 		case 'uint16' then
-		     im2 = im > uint16(round((2^16-1)*level)); 
+		     im2 = im > uint16(round((2^16-1)*thresh)); 
 		case 'int16' then
-		     im2 = im > int16(round((2^16-1)*level-2^15)); 
+		     im2 = im > int16(round((2^16-1)*thresh-2^15)); 
 		case 'int32' then
-		     im2 = im > int32(round((2^32-1)*level-2^31)); 
+		     im2 = im > int32(round((2^32-1)*thresh-2^31)); 
 	 	case 'constant' then
-		     im2 = im > level;
+		     im2 = im > thresh;
 		else
 		     error("Data type " + imtype + " is not supported.");
 		end

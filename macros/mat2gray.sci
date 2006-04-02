@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////
 
-function [G] = mat2gray(M, mmin, mmax)
+function [G] = mat2gray(M, mm)
 
 	 //check input
 	 if(size(size(M),2)>2)
@@ -32,10 +32,13 @@ function [G] = mat2gray(M, mmin, mmax)
 	    mmin = min(M);
 	    mmax = max(M);
 	 elseif (rhs==2)
-	    mmax = max(M);
+	    if(length(mm)<>2)
+		error("The second argument should be a 2-element vector.");
+	    end
+	    mmin = mm(1);
+	    mmax = mm(2);
 	 end
  
-
 	 if (mmax < mmin)
 	    error("Parameter mmax should be greater than mmin");
 	 end 

@@ -21,7 +21,7 @@
 ##
 macros_sci = imshow.sci imcrop.sci imabsdiff.sci \
 	mean2.sci corr2.sci std2.sci \
-	im2bw.sci im2int8.sci im2uint8.sci im2int16.sci im2uint16.sci im2int32.sci im2double.sci\
+	im2bw.sci im2int8.sci im2uint8.sci im2int16.sci im2uint16.sci im2int32.sci im2double.sci \
 	mat2gray.sci
 
 macros_bin = $(macros_sci:.sci=.bin)
