@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>avireadframe</TITLE>
+<TYPE>SIVP Toolbox</TYPE>
+<DATE>April, 2006</DATE>
+<SHORT_DESCRIPTION name="avireadframe">Grabs and returns a frame from a opened video file or camera</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>im = avireadframe(n)</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+   <PARAM_NAME>n</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   The opened video file/camera index.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>im</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   The returned frame/image. If no frame, return 0.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+<DESCRIPTION>
+<P>
+   <TT>avireadframe</TT> grabs and returns a frame from an opened video file or camera. It can only get the current frame and move to the pointer to the next frame.
+</P>
+<P>
+Video support for SIVP is only available when SIVP is compiled with OpenCV which support video I/O.
+</P>
+
+</DESCRIPTION>
+<EXAMPLE><![CDATA[
+	
+    n = aviopen(SCI+'/contrib/sivp/images/walking.avi');
+    im = avireadframe(n); //get a frame
+    imshow(im);
+
+    avilistopened()
+    aviclose(n);
+
+]]></EXAMPLE>
+<!-- ================================= -->
+<SECTION label="Bugs and Shortcomings">
+<P>
+<TT>avireadframe</TT> can only get the current frame now.
+</P>
+</SECTION>
+<!-- ================================= -->
+<AUTHORS>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu@gmail.com&gt; </AUTHORS_ITEM>
+</AUTHORS>
+<!-- ================================= -->
+<SECTION label="Availability">
+The latest version of SIVP can be found at
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+
+   <SEE_ALSO>
+      <SEE_ALSO_ITEM> <LINK>aviinfo</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>aviopen</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>camopen</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>aviclose</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>avicloseall</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>avilistopened</LINK> </SEE_ALSO_ITEM>
+   </SEE_ALSO>
+</MAN>

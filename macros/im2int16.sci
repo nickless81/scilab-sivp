@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////
 
 function [im2] = im2int16(im)
-	 imtype = typeof(im);
+	 imtype = typeof(im(1));
 	 
 	 select imtype
 	 	case 'boolean' then

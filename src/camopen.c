@@ -56,7 +56,7 @@ int int_camopen(char *fname)
   OpenedCap[nCurrFile].cap = cvCaptureFromCAM(nCamIdx);
   if(OpenedCap[nCurrFile].cap == 0)
     {
-      Scierror(999, "$s, Can not open the camera.\r\n", fname);
+      Scierror(999, "%s, Can not open the camera.\r\n", fname);
       return -1;
     }
   cvSetCaptureProperty(OpenedCap[nCurrFile].cap, CV_CAP_PROP_FRAME_WIDTH, 320);

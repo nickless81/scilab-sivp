@@ -21,7 +21,12 @@ function [im2] = im2bw(im, thresh)
 	 if (thresh < 0 | thresh > 1)
 	    error("thresh should be in the range [0,1]");
 	 end
-	 imtype = typeof(im);
+
+	 if(size(size(im),2)>2)
+		error("The input matrix im should be 2D matrix.");
+	 end
+
+	 imtype = typeof(im(1));
 	 
 	 select imtype
 	 	case 'boolean' then
