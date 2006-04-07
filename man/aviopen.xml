@@ -32,20 +32,6 @@
 <P>
 Video support for SIVP is only available when SIVP is compiled with OpenCV which support video I/O.
 </P>
-</DESCRIPTION>
-<EXAMPLE><![CDATA[
-	
-    n = aviopen(SCI+'/contrib/sivp/images/walking.avi');
-    im = avireadframe(n); //get a frame
-    imshow(im);
-
-    avilistopened()
-    aviclose(n);
-
-]]></EXAMPLE>
-<!-- ================================= -->
-
-<AUTHORS>
    <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu@gmail.com&gt; </AUTHORS_ITEM>
 </AUTHORS>
 <!-- ================================= -->
