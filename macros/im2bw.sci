@@ -22,8 +22,14 @@ function [im2] = im2bw(im, thresh)
 	    error("thresh should be in the range [0,1]");
 	 end
 
-	 if(size(size(im),2)>2)
-		error("The input matrix im should be 2D matrix.");
+	 if (size(dims,2)== 3) then
+	   if (dims(3)<>3) then
+	     error("The input matrix im should be MxN or M x N x 3 matrix.");
+	   end
+	   //convert the RGB image to gray image first
+	   im = rgb2gray(im);
+	 elseif (size(size(im),2)>3) then
+	   error("The input matrix im should be MxN or M x N x 3 matrix.");
 	 end
 
 	 imtype = typeof(im(1));
@@ -45,5 +51,5 @@ function [im2] = im2bw(im, thresh)
 		     im2 = im > thresh;
 		else
 		     error("Data type " + imtype + " is not supported.");
-		end
+	 end
 endfunction

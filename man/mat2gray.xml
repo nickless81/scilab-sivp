@@ -61,6 +61,7 @@ The latest version of SIVP can be found at
 </SECTION>
 <!-- ================================= -->
    <SEE_ALSO>
+      <SEE_ALSO_ITEM> <LINK>rgb2gray</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>im2bw</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>im2uint8</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>im2int8</LINK> </SEE_ALSO_ITEM>
