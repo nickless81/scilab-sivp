@@ -43,7 +43,7 @@ in the following steps
 5) Install your opencv in c:\opencv (/c/opencv in MSYS).
    Make a directory "opencv" under current directory, create opencv.sh and
    opencv.pc files in above said opencv directory according to the text below. 
-   Revise the 096 to actual installed opencv version number. 
+   Revise the 097 to actual installed opencv version number. 
    Put an entry in /etc/fstab inside MSYS and revise the opencv directiry name of 
    the opencv/opencv.sh script if opencv is installed it elsewhere
    At last, run opencv.sh in MSYS 
@@ -73,33 +73,33 @@ in the following steps
    
    echo EXPORTS > cxcore.def
    nm /c/opencv/lib/cxcore.lib | grep ' T _' | sed 's/.* T _//' >> cxcore.def
-   dlltool --def cxcore.def --dllname cxcore096.dll --output-lib libcxcore.dll.a
+   dlltool --def cxcore.def --dllname cxcore097.dll --output-lib libcxcore.dll.a
    
    echo EXPORTS > cv.def
    nm /c/opencv/lib/cv.lib | grep ' T _' | sed 's/.* T _//' >> cv.def
-   dlltool --def cv.def --dllname cv096.dll --output-lib libcv.dll.a
+   dlltool --def cv.def --dllname cv097.dll --output-lib libcv.dll.a
    
    echo EXPORTS > cvaux.def
    nm /c/opencv/lib/cvaux.lib | grep ' T _' | sed 's/.* T _//' >> cvaux.def
-   dlltool --def cvaux.def --dllname cvaux096.dll --output-lib libcvaux.dll.a
+   dlltool --def cvaux.def --dllname cvaux097.dll --output-lib libcvaux.dll.a
    
    echo EXPORTS > highgui.def
    nm /c/opencv/lib/highgui.lib | grep ' T _' | sed 's/.* T _//' >> highgui.def
-   dlltool --def highgui.def --dllname highgui096.dll --output-lib libhighgui.dll.a
+   dlltool --def highgui.def --dllname highgui097.dll --output-lib libhighgui.dll.a
    
    echo EXPORTS > cvcam.def
    nm /c/opencv/lib/cvcam.lib | grep ' T _' | sed 's/.* T _//' >> cvcam.def
-   dlltool --def cvcam.def --dllname cvcam096.dll --output-lib libcvcam.dll.a
+   dlltool --def cvcam.def --dllname cvcam097.dll --output-lib libcvcam.dll.a
    
    mkdir /usr/lib/opencv
    cp lib*.a /usr/lib/opencv
    cp opencv.pc /usr/lib/opencv
    
-   cp /c/opencv/bin/cxcore096.dll /usr/bin
-   cp /c/opencv/bin/cv096.dll /usr/bin
-   cp /c/opencv/bin/cvaux096.dll /usr/bin
-   cp /c/opencv/bin/highgui096.dll /usr/bin
-   cp /c/opencv/bin/cvcam096.dll /usr/bin
+   cp /c/opencv/bin/cxcore097.dll /usr/bin
+   cp /c/opencv/bin/cv097.dll /usr/bin
+   cp /c/opencv/bin/cvaux097.dll /usr/bin
+   cp /c/opencv/bin/highgui097.dll /usr/bin
+   cp /c/opencv/bin/cvcam097.dll /usr/bin
    
    mkdir /usr/include/opencv
    cp /c/opencv/cxcore/include/*.h /usr/include/opencv
@@ -129,9 +129,9 @@ in the following steps
 
 8) Copy the cv09x.dll, cxcore09x.dll, highgui09x.dll to SCI/contrib/sivp/lib by hand.
    For example,
-   cp /c/opencv/bin/cxcore096.dll /c/scilab/contrib/sivp/lib
-   cp /c/opencv/bin/cv096.dll /c/scilab/contrib/sivp/lib
-   cp /c/opencv/bin/highgui096.dll /c/scilab/contrib/sivp/lib
+   cp /c/opencv/bin/cxcore097.dll /c/scilab/contrib/sivp/lib
+   cp /c/opencv/bin/cv097.dll /c/scilab/contrib/sivp/lib
+   cp /c/opencv/bin/highgui097.dll /c/scilab/contrib/sivp/lib
 
 Now enter Scilab and click the menuitem ‘sivp’ button in ‘toolbox’.
 
@@ -172,7 +172,7 @@ MinGW (Minimallist GNU for Windows) 是可以生成windwows本地代码的一组开发工具。
 
 5) 把你的opencv安装在c:\opencv(在MSYS中对应着/c/opencv这个目录)，或者在/etc/fstab
    中添加相应的mount目录。在当前文件夹下创建一个名为opencv的目录，在opencv目录下面，
-   按下面样式创建opencv.sh、opencv.pc两个文件，修改其中的096版本号为实际安装的
+   按下面样式创建opencv.sh、opencv.pc两个文件，修改其中的097版本号为实际安装的
    opencv版本号。如果opencv没有安装在c:\opencv这个目录底下，请修改附件
    ./opencv/opencv.sh 这个脚本文件。最后，在MSYS中运行它。
 
@@ -201,33 +201,33 @@ MinGW (Minimallist GNU for Windows) 是可以生成windwows本地代码的一组开发工具。
    
    echo EXPORTS > cxcore.def
    nm /c/opencv/lib/cxcore.lib | grep ' T _' | sed 's/.* T _//' >> cxcore.def
-   dlltool --def cxcore.def --dllname cxcore096.dll --output-lib libcxcore.dll.a
+   dlltool --def cxcore.def --dllname cxcore097.dll --output-lib libcxcore.dll.a
    
    echo EXPORTS > cv.def
    nm /c/opencv/lib/cv.lib | grep ' T _' | sed 's/.* T _//' >> cv.def
-   dlltool --def cv.def --dllname cv096.dll --output-lib libcv.dll.a
+   dlltool --def cv.def --dllname cv097.dll --output-lib libcv.dll.a
    
    echo EXPORTS > cvaux.def
    nm /c/opencv/lib/cvaux.lib | grep ' T _' | sed 's/.* T _//' >> cvaux.def
-   dlltool --def cvaux.def --dllname cvaux096.dll --output-lib libcvaux.dll.a
+   dlltool --def cvaux.def --dllname cvaux097.dll --output-lib libcvaux.dll.a
    
    echo EXPORTS > highgui.def
    nm /c/opencv/lib/highgui.lib | grep ' T _' | sed 's/.* T _//' >> highgui.def
-   dlltool --def highgui.def --dllname highgui096.dll --output-lib libhighgui.dll.a
+   dlltool --def highgui.def --dllname highgui097.dll --output-lib libhighgui.dll.a
    
    echo EXPORTS > cvcam.def
    nm /c/opencv/lib/cvcam.lib | grep ' T _' | sed 's/.* T _//' >> cvcam.def
-   dlltool --def cvcam.def --dllname cvcam096.dll --output-lib libcvcam.dll.a
+   dlltool --def cvcam.def --dllname cvcam097.dll --output-lib libcvcam.dll.a
    
    mkdir /usr/lib/opencv
    cp lib*.a /usr/lib/opencv
    cp opencv.pc /usr/lib/opencv
    
-   cp /c/opencv/bin/cxcore096.dll /usr/bin
-   cp /c/opencv/bin/cv096.dll /usr/bin
-   cp /c/opencv/bin/cvaux096.dll /usr/bin
-   cp /c/opencv/bin/highgui096.dll /usr/bin
-   cp /c/opencv/bin/cvcam096.dll /usr/bin
+   cp /c/opencv/bin/cxcore097.dll /usr/bin
+   cp /c/opencv/bin/cv097.dll /usr/bin
+   cp /c/opencv/bin/cvaux097.dll /usr/bin
+   cp /c/opencv/bin/highgui097.dll /usr/bin
+   cp /c/opencv/bin/cvcam097.dll /usr/bin
    
    mkdir /usr/include/opencv
    cp /c/opencv/cxcore/include/*.h /usr/include/opencv
@@ -253,9 +253,9 @@ MinGW (Minimallist GNU for Windows) 是可以生成windwows本地代码的一组开发工具。
 
 8) 把cv09x.dll, cxcore09x.dll, highgui09x.dll 这几个文件（随版本不同文件名有所区别）拷到 SCI/contrib/sivp/lib 
    这个目录下. 例如：
-   cp /c/opencv/bin/cxcore096.dll /c/scilab/contrib/sivp/lib
-   cp /c/opencv/bin/cv096.dll /c/scilab/contrib/sivp/lib
-   cp /c/opencv/bin/highgui096.dll /c/scilab/contrib/sivp/lib
+   cp /c/opencv/bin/cxcore097.dll /c/scilab/contrib/sivp/lib
+   cp /c/opencv/bin/cv097.dll /c/scilab/contrib/sivp/lib
+   cp /c/opencv/bin/highgui097.dll /c/scilab/contrib/sivp/lib
 
 现在启动Scilab点击toolbox下的sivp菜单项，即可使用sivp工具箱。
 
