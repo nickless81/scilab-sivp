@@ -1,0 +1,263 @@
+
+-------------------------------------------------------------------------------
+---------------------------English Version-------------------------------------
+-------------------------------------------------------------------------------
+
+port SIVP to Windows OS
+
+MinGW (Minimallist GNU for Windows) is a set of development tools for 
+generating native Windows code. It enables you to compile this toolbox 
+using configure and make, similar to Unix/Linux. 
+
+There are some specific things that you must set up by hand in 
+order to compile this toolbox with MinGW. The whole process consists 
+in the following steps
+
+1) Vist www.mingw.org, download and install the following packages:
+   MinGW, MSYS, and MSYS-DTK. Then update autoconf to 2.59(msys-autoconf-2.59)
+   and automake to 1.8.2(msys-automake-1.8.2). Install libxslt-1.1.14+.win32.
+
+2) Install gtk-win32-devel-2.6.x in C:\GTK (download it from http://gladewin32.sourceforge.net/),
+   execute commands below under MSYS:
+
+   cp /c/GTK/bin/* /local/bin/
+   cp /c/GTK/share/aclocal/pkg.m4  /local/share/aclocal/
+   
+3) Your scilab installation must be in c:\scilab (/c/scilab in MSYS), 
+   because this path is hardcoded in the build process.  Please move 
+   your scilab installation to that place or else put an entry in the 
+   /etc/fstab file inside MSYS. 
+
+4) Inside /c/scilab/bin (MSYS path), we must rename the libraries 
+   "LibScilab.*" to lowercase. Even though Windows is case 
+   insensitive, this causes problem to programs inside MSYS. 
+   This step can be quickly done inside the MSYS shell typing this:
+
+      mkdir /tmp/scilibs
+      mv /c/scilab/bin/LibSci* /tmp/scilibs
+      cd /tmp/scilibs
+      for i in `ls Lib*`; do
+         mv $i /c/scilab/bin/`echo $i | tr A-Z a-z`;
+      done 
+
+5) Install your opencv in c:\opencv (/c/opencv in MSYS).
+   Make a directory "opencv" under current directory, create opencv.sh and
+   opencv.pc files in above said opencv directory according to the text below. 
+   Revise the 096 to actual installed opencv version number. 
+   Put an entry in /etc/fstab inside MSYS and revise the opencv directiry name of 
+   the opencv/opencv.sh script if opencv is installed it elsewhere
+   At last, run opencv.sh in MSYS 
+
+   --------------------------------------------------
+   opencv/opencv.pc
+   --------------------------------------------------
+   
+   # Package Information for pkg-config
+   
+   
+   prefix=/usr/
+   exec_prefix=${prefix}/bin
+   libdir=${prefix}/lib/opencv
+   includedir=${prefix}/include/opencv
+   
+   Name: OpenCV
+   Description: Intel(R) Open Source Computer Vision Library
+   Version: 0.9.6
+   Libs: -L${libdir} -lcxcore -lcv -lhighgui -lcvaux
+   Cflags: -I${includedir}
+   
+   
+   --------------------------------------------------
+   opencv/opencv.sh
+   --------------------------------------------------
+   
+   echo EXPORTS > cxcore.def
+   nm /c/opencv/lib/cxcore.lib | grep ' T _' | sed 's/.* T _//' >> cxcore.def
+   dlltool --def cxcore.def --dllname cxcore096.dll --output-lib libcxcore.dll.a
+   
+   echo EXPORTS > cv.def
+   nm /c/opencv/lib/cv.lib | grep ' T _' | sed 's/.* T _//' >> cv.def
+   dlltool --def cv.def --dllname cv096.dll --output-lib libcv.dll.a
+   
+   echo EXPORTS > cvaux.def
+   nm /c/opencv/lib/cvaux.lib | grep ' T _' | sed 's/.* T _//' >> cvaux.def
+   dlltool --def cvaux.def --dllname cvaux096.dll --output-lib libcvaux.dll.a
+   
+   echo EXPORTS > highgui.def
+   nm /c/opencv/lib/highgui.lib | grep ' T _' | sed 's/.* T _//' >> highgui.def
+   dlltool --def highgui.def --dllname highgui096.dll --output-lib libhighgui.dll.a
+   
+   echo EXPORTS > cvcam.def
+   nm /c/opencv/lib/cvcam.lib | grep ' T _' | sed 's/.* T _//' >> cvcam.def
+   dlltool --def cvcam.def --dllname cvcam096.dll --output-lib libcvcam.dll.a
+   
+   mkdir /usr/lib/opencv
+   cp lib*.a /usr/lib/opencv
+   cp opencv.pc /usr/lib/opencv
+   
+   cp /c/opencv/bin/cxcore096.dll /usr/bin
+   cp /c/opencv/bin/cv096.dll /usr/bin
+   cp /c/opencv/bin/cvaux096.dll /usr/bin
+   cp /c/opencv/bin/highgui096.dll /usr/bin
+   cp /c/opencv/bin/cvcam096.dll /usr/bin
+   
+   mkdir /usr/include/opencv
+   cp /c/opencv/cxcore/include/*.h /usr/include/opencv
+   cp /c/opencv/cv/include/*.h /usr/include/opencv
+   cp /c/opencv/cvaux/include/*.h /usr/include/opencv
+   cp /c/opencv/otherlibs/highgui/*.h /usr/include/opencv
+   cp /c/opencv/otherlibs/cvcam/include/*.h /usr/include/opencv
+   
+
+6) Enter the toolbox's toplevel directory, export environment variables SCI and
+   PKG_CONFIG_PATH, for example,
+
+    export SCI=/c/scilab
+    export PKG_CONFIG_PATH=/usr/lib/opencv
+
+   where "/usr/lib/opencv" is the file opencv.pc located.   
+   Then type:
+
+      ./configure
+      make
+      make install
+
+7) For some versions of libtool/automake you may have to install the 
+   DLL of the toolbox by hand:
+
+      cp src/.libs/libsivp*.dll /c/scilab/contrib/sivp/lib/libsivp.dll
+
+8) Copy the cv09x.dll, cxcore09x.dll, highgui09x.dll to SCI/contrib/sivp/lib by hand.
+   For example,
+   cp /c/opencv/bin/cxcore096.dll /c/scilab/contrib/sivp/lib
+   cp /c/opencv/bin/cv096.dll /c/scilab/contrib/sivp/lib
+   cp /c/opencv/bin/highgui096.dll /c/scilab/contrib/sivp/lib
+
+Now enter Scilab and click the menuitem ‘sivp’ button in ‘toolbox’.
+
+-------------------------------------------------------------------------------
+------------------------------中文版-------------------------------------------
+-----------------------Chinese Version(GB2312)---------------------------------
+-------------------------------------------------------------------------------
+
+SIVP的windows移植步骤
+
+MinGW (Minimallist GNU for Windows) 是可以生成windwows本地代码的一组开发工具。
+你可以使用它像在Unix/Linux一样configure, make 这个工具箱。
+
+为了使用MinGW编译这个工具箱，我们需要手动作一些配置。整个过程是由如下步骤组成：
+
+1) 访问www.mingw.org并下载安装MinGW, MSYS, MSYS-DTK。然后分别升级autoconf, automake
+   到2.59,1.8.2版。并为MSYS安装libxslt-1.1.14+.win32。
+
+2) 从 http://gladewin32.sourceforge.net/ 下载gtk-win32-devel-2.6.x（最新版本）并把
+   它安装到 C:\GTK 目录下,
+   在MSYS执行如下命令:
+
+   cp /c/GTK/bin/* /local/bin/
+   cp /c/GTK/share/aclocal/pkg.m4  /local/share/aclocal/
+
+3) scilab必须安装在c:\scilab这个目录(在MSYS中对应着/c/scilab)，另一种方法是你在
+   MSYS对应的/etc/fstab这个文件中添加相应的mount目录。
+
+4) 虽然Windows对大小写不敏感，但是由于在MSYS中区分大小写，我们需要把/c/scilab/bin
+   中的"LibScilab.*"这些库名转化成小写。在MSYS中执行如下的指令即可迅速做到。
+
+      mkdir /tmp/scilibs
+      mv /c/scilab/bin/LibSci* /tmp/scilibs
+      cd /tmp/scilibs
+      for i in `ls Lib*`; do
+         mv $i /c/scilab/bin/`echo $i | tr A-Z a-z`;
+      done 
+
+5) 把你的opencv安装在c:\opencv(在MSYS中对应着/c/opencv这个目录)，或者在/etc/fstab
+   中添加相应的mount目录。在当前文件夹下创建一个名为opencv的目录，在opencv目录下面，
+   按下面样式创建opencv.sh、opencv.pc两个文件，修改其中的096版本号为实际安装的
+   opencv版本号。如果opencv没有安装在c:\opencv这个目录底下，请修改附件
+   ./opencv/opencv.sh 这个脚本文件。最后，在MSYS中运行它。
+
+   --------------------------------------------------
+   opencv/opencv.pc
+   --------------------------------------------------
+   
+   # Package Information for pkg-config
+   
+   
+   prefix=/usr/
+   exec_prefix=${prefix}/bin
+   libdir=${prefix}/lib/opencv
+   includedir=${prefix}/include/opencv
+   
+   Name: OpenCV
+   Description: Intel(R) Open Source Computer Vision Library
+   Version: 0.9.6
+   Libs: -L${libdir} -lcxcore -lcv -lhighgui -lcvaux
+   Cflags: -I${includedir}
+   
+   
+   --------------------------------------------------
+   opencv/opencv.sh
+   --------------------------------------------------
+   
+   echo EXPORTS > cxcore.def
+   nm /c/opencv/lib/cxcore.lib | grep ' T _' | sed 's/.* T _//' >> cxcore.def
+   dlltool --def cxcore.def --dllname cxcore096.dll --output-lib libcxcore.dll.a
+   
+   echo EXPORTS > cv.def
+   nm /c/opencv/lib/cv.lib | grep ' T _' | sed 's/.* T _//' >> cv.def
+   dlltool --def cv.def --dllname cv096.dll --output-lib libcv.dll.a
+   
+   echo EXPORTS > cvaux.def
+   nm /c/opencv/lib/cvaux.lib | grep ' T _' | sed 's/.* T _//' >> cvaux.def
+   dlltool --def cvaux.def --dllname cvaux096.dll --output-lib libcvaux.dll.a
+   
+   echo EXPORTS > highgui.def
+   nm /c/opencv/lib/highgui.lib | grep ' T _' | sed 's/.* T _//' >> highgui.def
+   dlltool --def highgui.def --dllname highgui096.dll --output-lib libhighgui.dll.a
+   
+   echo EXPORTS > cvcam.def
+   nm /c/opencv/lib/cvcam.lib | grep ' T _' | sed 's/.* T _//' >> cvcam.def
+   dlltool --def cvcam.def --dllname cvcam096.dll --output-lib libcvcam.dll.a
+   
+   mkdir /usr/lib/opencv
+   cp lib*.a /usr/lib/opencv
+   cp opencv.pc /usr/lib/opencv
+   
+   cp /c/opencv/bin/cxcore096.dll /usr/bin
+   cp /c/opencv/bin/cv096.dll /usr/bin
+   cp /c/opencv/bin/cvaux096.dll /usr/bin
+   cp /c/opencv/bin/highgui096.dll /usr/bin
+   cp /c/opencv/bin/cvcam096.dll /usr/bin
+   
+   mkdir /usr/include/opencv
+   cp /c/opencv/cxcore/include/*.h /usr/include/opencv
+   cp /c/opencv/cv/include/*.h /usr/include/opencv
+   cp /c/opencv/cvaux/include/*.h /usr/include/opencv
+   cp /c/opencv/otherlibs/highgui/*.h /usr/include/opencv
+   cp /c/opencv/otherlibs/cvcam/include/*.h /usr/include/opencv
+
+6) 在MSYS中解开源码，进入源码目录，按如下方式export 环境变量SCI、PKG_CONFIG_PATH
+
+    export SCI=/c/scilab
+    export PKG_CONFIG_PATH=/usr/lib/opencv
+
+   这里"/usr/lib/opencv" 是opencv.pc这个文件所在的目录。接着在运行下面命令
+
+    ./configure
+    make
+    make install
+
+7) 对于某些版本的libtool、automake，需要手动安装工具箱的动态库：
+
+      cp src/.libs/libsivp*.dll /c/scilab/contrib/sivp/lib/libsivp.dll
+
+8) 把cv09x.dll, cxcore09x.dll, highgui09x.dll 这几个文件（随版本不同文件名有所区别）拷到 SCI/contrib/sivp/lib 
+   这个目录下. 例如：
+   cp /c/opencv/bin/cxcore096.dll /c/scilab/contrib/sivp/lib
+   cp /c/opencv/bin/cv096.dll /c/scilab/contrib/sivp/lib
+   cp /c/opencv/bin/highgui096.dll /c/scilab/contrib/sivp/lib
+
+现在启动Scilab点击toolbox下的sivp菜单项，即可使用sivp工具箱。
+
+Reference:
+SIP
