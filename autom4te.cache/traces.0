@@ -117,41 +117,6 @@ m4trace:configure.ac:32: -1- AM_CONDITIONAL([am__fastdepCC], [
   && test "$am_cv_CC_dependencies_compiler_type" = gcc3])
 m4trace:configure.ac:32: -1- AC_SUBST([am__fastdepCC_TRUE])
 m4trace:configure.ac:32: -1- AC_SUBST([am__fastdepCC_FALSE])
-m4trace:configure.ac:33: -1- AC_PROG_CXX
-m4trace:configure.ac:33: -1- AC_SUBST([CXX])
-m4trace:configure.ac:33: -1- AC_SUBST([CXXFLAGS])
-m4trace:configure.ac:33: -1- AC_SUBST([LDFLAGS])
-m4trace:configure.ac:33: -1- AC_SUBST([CPPFLAGS])
-m4trace:configure.ac:33: -1- AC_SUBST([CXX])
-m4trace:configure.ac:33: -1- AC_SUBST([ac_ct_CXX])
-m4trace:configure.ac:33: -1- AC_SUBST([CXXDEPMODE], [depmode=$am_cv_CXX_dependencies_compiler_type])
-m4trace:configure.ac:33: -1- AM_CONDITIONAL([am__fastdepCXX], [
-  test "x$enable_dependency_tracking" != xno \
-  && test "$am_cv_CXX_dependencies_compiler_type" = gcc3])
-m4trace:configure.ac:33: -1- AC_SUBST([am__fastdepCXX_TRUE])
-m4trace:configure.ac:33: -1- AC_SUBST([am__fastdepCXX_FALSE])
-m4trace:configure.ac:34: -1- AC_PROG_CC
-m4trace:configure.ac:34: -1- AC_SUBST([CC])
-m4trace:configure.ac:34: -1- AC_SUBST([CFLAGS])
-m4trace:configure.ac:34: -1- AC_SUBST([LDFLAGS])
-m4trace:configure.ac:34: -1- AC_SUBST([CPPFLAGS])
-m4trace:configure.ac:34: -1- AC_SUBST([CC])
-m4trace:configure.ac:34: -1- AC_SUBST([ac_ct_CC])
-m4trace:configure.ac:34: -1- AC_SUBST([CC])
-m4trace:configure.ac:34: -1- AC_SUBST([ac_ct_CC])
-m4trace:configure.ac:34: -1- AC_SUBST([CC])
-m4trace:configure.ac:34: -1- AC_SUBST([CC])
-m4trace:configure.ac:34: -1- AC_SUBST([ac_ct_CC])
-m4trace:configure.ac:34: -1- AC_SUBST([CCDEPMODE], [depmode=$am_cv_CC_dependencies_compiler_type])
-m4trace:configure.ac:34: -1- AM_CONDITIONAL([am__fastdepCC], [
-  test "x$enable_dependency_tracking" != xno \
-  && test "$am_cv_CC_dependencies_compiler_type" = gcc3])
-m4trace:configure.ac:34: -1- AC_SUBST([am__fastdepCC_TRUE])
-m4trace:configure.ac:34: -1- AC_SUBST([am__fastdepCC_FALSE])
-m4trace:configure.ac:35: -1- AC_PROG_CPP
-m4trace:configure.ac:35: -1- AC_SUBST([CPP])
-m4trace:configure.ac:35: -1- AC_SUBST([CPPFLAGS])
-m4trace:configure.ac:35: -1- AC_SUBST([CPP])
 m4trace:configure.ac:36: -1- AC_PROG_INSTALL
 m4trace:configure.ac:36: -1- AC_SUBST([INSTALL_PROGRAM])
 m4trace:configure.ac:36: -1- AC_SUBST([INSTALL_SCRIPT])
@@ -261,6 +226,10 @@ m4trace:configure.ac:49: -1- AC_CHECK_HEADERS([dlfcn.h])
 m4trace:configure.ac:49: -1- AH_OUTPUT([HAVE_DLFCN_H], [/* Define to 1 if you have the <dlfcn.h> header file. */
 #undef HAVE_DLFCN_H])
 m4trace:configure.ac:49: -1- AC_HEADER_STDC
+m4trace:configure.ac:49: -1- AC_PROG_CPP
+m4trace:configure.ac:49: -1- AC_SUBST([CPP])
+m4trace:configure.ac:49: -1- AC_SUBST([CPPFLAGS])
+m4trace:configure.ac:49: -1- AC_SUBST([CPP])
 m4trace:configure.ac:49: -1- AC_DEFINE_TRACE_LITERAL([STDC_HEADERS])
 m4trace:configure.ac:49: -1- AH_OUTPUT([STDC_HEADERS], [/* Define to 1 if you have the ANSI C header files. */
 #undef STDC_HEADERS])
@@ -336,6 +305,19 @@ aclocal.m4:81: _AC_PROG_LIBTOOL is expanded from...
 configure.ac:49: _AC_PROG_LIBTOOL is required by...
 aclocal.m4:61: AC_PROG_LIBTOOL is expanded from...
 configure.ac:49: the top level])
+m4trace:configure.ac:49: -1- AC_PROG_CXX
+m4trace:configure.ac:49: -1- AC_SUBST([CXX])
+m4trace:configure.ac:49: -1- AC_SUBST([CXXFLAGS])
+m4trace:configure.ac:49: -1- AC_SUBST([LDFLAGS])
+m4trace:configure.ac:49: -1- AC_SUBST([CPPFLAGS])
+m4trace:configure.ac:49: -1- AC_SUBST([CXX])
+m4trace:configure.ac:49: -1- AC_SUBST([ac_ct_CXX])
+m4trace:configure.ac:49: -1- AC_SUBST([CXXDEPMODE], [depmode=$am_cv_CXX_dependencies_compiler_type])
+m4trace:configure.ac:49: -1- AM_CONDITIONAL([am__fastdepCXX], [
+  test "x$enable_dependency_tracking" != xno \
+  && test "$am_cv_CXX_dependencies_compiler_type" = gcc3])
+m4trace:configure.ac:49: -1- AC_SUBST([am__fastdepCXX_TRUE])
+m4trace:configure.ac:49: -1- AC_SUBST([am__fastdepCXX_FALSE])
 m4trace:configure.ac:49: -1- AC_SUBST([CXXCPP])
 m4trace:configure.ac:49: -1- AC_SUBST([CPPFLAGS])
 m4trace:configure.ac:49: -1- AC_SUBST([CXXCPP])
