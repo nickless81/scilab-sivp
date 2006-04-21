@@ -22,6 +22,7 @@ Image type conversion
       im2int32
       im2double
       mat2gray
+      rgb2gray
 
 Spatial transformation and registration
 	imcrop

@@ -22,6 +22,7 @@ function [im2] = im2bw(im, thresh)
 	    error("thresh should be in the range [0,1]");
 	 end
 
+	 dims = size(im);
 	 if (size(dims,2)== 3) then
 	   if (dims(3)<>3) then
 	     error("The input matrix im should be MxN or M x N x 3 matrix.");
