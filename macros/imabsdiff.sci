@@ -50,7 +50,8 @@ function [imdiff] = imabsdiff(im1, im2)
        //imdiff = abs(im1 - im2);
     else //convert to the same type first
        //imdiff = int_imabsdiff(double(im1), double(im2));
-       imdiff = abs(double(im1)-double(im2));
+       //imdiff = abs(double(im1)-double(im2));
+       error("The two input images must have the same type.");
     end
 
 endfunction
