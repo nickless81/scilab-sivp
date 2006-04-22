@@ -5,7 +5,7 @@
 <TITLE>avicloseall</TITLE>
 <TYPE>SIVP Toolbox</TYPE>
 <DATE>April, 2006</DATE>
-<SHORT_DESCRIPTION name="avicloseall">Close all opened video files/cameras.</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="avicloseall">Close all opened video files/cameras. (experimental)</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>avicloseall()</CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>
@@ -31,7 +31,7 @@ Video support for SIVP is only available when SIVP is compiled with OpenCV which
 <!-- ================================= -->
 
 <AUTHORS>
-   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu@gmail.com&gt; </AUTHORS_ITEM>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </AUTHORS_ITEM>
 </AUTHORS>
 <!-- ================================= -->
 <SECTION label="Availability">

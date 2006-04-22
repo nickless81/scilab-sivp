@@ -5,7 +5,7 @@
 <TITLE>imhist</TITLE>
 <TYPE>SIVP Toolbox</TYPE>
 <DATE>April, 2006</DATE>
-<SHORT_DESCRIPTION name="imhist">//get the histogram of an image</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="imhist">get the histogram of an image</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>[counts, cells] = imread(im)</CALLING_SEQUENCE_ITEM>
    <CALLING_SEQUENCE_ITEM>[counts, cells] = imread(im, bins)</CALLING_SEQUENCE_ITEM>
@@ -64,7 +64,7 @@ and  <TT>[cells(1)-step/2, cells(1)+step/2]</TT> for <TT>i=1</TT>.
 </P>
 
 <P>
-If more than 2 arguments are given, the function will call <TT>bar(cells, counts, ...)</TT> and send rest arguments to <TT>function</TT>.
+If more than 2 arguments are given, the function will call <TT>bar(cells, counts, ...)</TT> and send rest arguments to <TT>bar</TT> function to display the histogram.
 </P>
 
 </DESCRIPTION>

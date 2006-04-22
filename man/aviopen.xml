@@ -5,7 +5,7 @@
 <TITLE>aviopen</TITLE>
 <TYPE>SIVP Toolbox</TYPE>
 <DATE>April, 2006</DATE>
-<SHORT_DESCRIPTION name="aviopen">Open a video file.</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="aviopen">Open a video file. (experimental)</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>n = aviopen(filename)</CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>

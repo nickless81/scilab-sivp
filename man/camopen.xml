@@ -5,7 +5,7 @@
 <TITLE>camopen</TITLE>
 <TYPE>SIVP Toolbox</TYPE>
 <DATE>April, 2006</DATE>
-<SHORT_DESCRIPTION name="camopen">Open a camera.</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="camopen">Open a camera. (experimental)</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>n = camopen()</CALLING_SEQUENCE_ITEM>
    <CALLING_SEQUENCE_ITEM>n = camopen(i)</CALLING_SEQUENCE_ITEM>
@@ -52,7 +52,7 @@ The frame size could be set by user in later version.
 </SECTION>
 <!-- ================================= -->
 <AUTHORS>
-   <AUTHORS_ITEM name="Shiqi Yu"> Shiqi Yu &lt;shiqi.yu@gmail.com&gt; </AUTHORS_ITEM>
+   <AUTHORS_ITEM name="Shiqi Yu"> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </AUTHORS_ITEM>
 </AUTHORS>
 <!-- ================================= -->
 <SECTION label="Availability">

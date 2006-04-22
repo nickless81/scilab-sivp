@@ -36,7 +36,7 @@ Otherwise, <TT>im2int32</TT> rescales or offsets the data, and returns the equiv
 <!-- ================================= -->
 
 <AUTHORS>
-   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu@gmail.com&gt; </AUTHORS_ITEM>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </AUTHORS_ITEM>
 </AUTHORS>
 <!-- ================================= -->
 <SECTION label="Availability">

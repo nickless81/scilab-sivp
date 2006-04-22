@@ -5,7 +5,7 @@
 <TITLE>avireadframe</TITLE>
 <TYPE>SIVP Toolbox</TYPE>
 <DATE>April, 2006</DATE>
-<SHORT_DESCRIPTION name="avireadframe">Grabs and returns a frame from a opened video file or camera</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="avireadframe">Grabs and returns a frame from a opened video file or camera (experimental)</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>im = avireadframe(n)</CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>
@@ -52,7 +52,7 @@ Video support for SIVP is only available when SIVP is compiled with OpenCV which
 </SECTION>
 <!-- ================================= -->
 <AUTHORS>
-   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu@gmail.com&gt; </AUTHORS_ITEM>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </AUTHORS_ITEM>
 </AUTHORS>
 <!-- ================================= -->
 <SECTION label="Availability">

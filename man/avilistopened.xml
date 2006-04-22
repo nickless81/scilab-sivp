@@ -5,7 +5,7 @@
 <TITLE>avilistopened</TITLE>
 <TYPE>SIVP Toolbox</TYPE>
 <DATE>April, 2006</DATE>
-<SHORT_DESCRIPTION name="avilistopened">Show all opened video files.</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="avilistopened">Show all opened video files. (experimental)</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>I=avilistopened()</CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>
@@ -40,7 +40,7 @@ Video support for SIVP is only available when SIVP is compiled with OpenCV which
 ]]></EXAMPLE>
 <!-- ================================= -->
 <AUTHORS>
-   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu@gmail.com&gt; </AUTHORS_ITEM>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </AUTHORS_ITEM>
 </AUTHORS>
 <!-- ================================= -->
 <SECTION label="Availability">
