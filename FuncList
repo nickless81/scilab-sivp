@@ -32,6 +32,7 @@ Image Analysis and Statistics
       mean2
       corr2
       std2/stdev2
+      imhist
 
 Image Arithmetic
       imabsdiff
