@@ -23,7 +23,7 @@ IMG_CONVERT=im2bw.xml im2uint8.xml im2int8.xml im2uint16.xml im2int16.xml im2int
 IMG_TRAN_MAN=imresize.xml imcrop.xml
 IMG_ARITHMETIC=imabsdiff.xml 
 IMG_PROC_MAN= 
-IMG_STAT_MAN=mean2.xml corr2.xml std2.xml
+IMG_STAT_MAN=mean2.xml corr2.xml std2.xml imhist.xml
 
 manpages_xml = $(IMG_IO_MAN) $(AVI_IO_MAN) $(IMG_GUI_MAN) $(IMG_CONVERT) $(IMG_TRAN_MAN) $(IMG_PROC_MAN) $(IMG_ARITHMETIC) $(IMG_STAT_MAN)
 
