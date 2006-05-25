@@ -35,7 +35,6 @@
  */
 int int_imwrite(char * fname)
 {
-
   int mL=1, nL=1, lL;
   int mR, nR, lR;
 

@@ -22,8 +22,6 @@
 
 int int_imread(char * fname)
 {
-
-
   int mR, nR, lR;
 
   IplImage * pImage;
