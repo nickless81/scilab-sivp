@@ -2,6 +2,8 @@ Image input, output, and display
 	imread
 	imwrite
 	imshow
+    TODO:
+	imfinfo
 	
 
 Video/camera input, output
@@ -23,16 +25,34 @@ Image type conversion
       im2double
       mat2gray
       rgb2gray
+    TODO:
+      isbw Return true for binary image
+      isgray Return true for intensity image
+      isrgbReturn true for RGB image
 
 Spatial transformation and registration
 	imcrop
 	imresize
+    TODO:
+	imrotate
+	interp2
+	imtransform
+
 
 Image Analysis and Statistics
       mean2
       corr2
       std2/stdev2
       imhist
+   TODO:
+      *edge
 
 Image Arithmetic
       imabsdiff
+    TODO:
+      imadd
+      imcomplement
+      imdivide
+      imlincomb
+      immultiply
+      imsubtract
