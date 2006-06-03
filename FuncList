@@ -56,3 +56,7 @@ Image Arithmetic
       imlincomb
       immultiply
       imsubtract
+
+Linear Filtering and Transforms
+       imfilter
+       fspecial

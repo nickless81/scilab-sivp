@@ -60,13 +60,14 @@ am__objects_1 = imread.lo imwrite.lo test.lo mat2utfimg.lo
 am__objects_2 = aviinfo.lo aviopen.lo aviclose.lo avicloseall.lo \
 	avilistopened.lo avireadframe.lo camopen.lo
 am__objects_3 = imresize.lo imabsdiff.lo
-am__objects_4 = canny.lo sobel.lo convert.lo laplace.lo \
+am__objects_4 = imfilter.lo
+am__objects_5 = canny.lo sobel.lo convert.lo laplace.lo \
 	precornerdetec.lo imsmooth.lo threshold.lo \
 	adaptativethreshold.lo erode.lo dilate.lo pyrdown.lo pyrup.lo \
 	xor.lo not.lo cmp.lo hough.lo
 am_libsivp_la_OBJECTS = libsivp.lo common.lo sivp_init.lo \
 	$(am__objects_1) $(am__objects_2) $(am__objects_3) \
-	$(am__objects_4)
+	$(am__objects_4) $(am__objects_5)
 libsivp_la_OBJECTS = $(am_libsivp_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I.
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -115,6 +116,7 @@ EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FFLAGS = @FFLAGS@
+GREP = @GREP@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
@@ -151,16 +153,9 @@ TOOLBOX_FUNCTIONS = @TOOLBOX_FUNCTIONS@
 TOOLBOX_SRC = @TOOLBOX_SRC@
 TOOLBOX_TABLE = @TOOLBOX_TABLE@
 VERSION = @VERSION@
-ac_ct_AR = @ac_ct_AR@
-ac_ct_AS = @ac_ct_AS@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
-ac_ct_DLLTOOL = @ac_ct_DLLTOOL@
 ac_ct_F77 = @ac_ct_F77@
-ac_ct_OBJDUMP = @ac_ct_OBJDUMP@
-ac_ct_RANLIB = @ac_ct_RANLIB@
-ac_ct_STRIP = @ac_ct_STRIP@
-ac_pt_PKG_CONFIG = @ac_pt_PKG_CONFIG@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
 am__fastdepCXX_FALSE = @am__fastdepCXX_FALSE@
@@ -177,6 +172,9 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 datadir = @datadir@
+datarootdir = @datarootdir@
+docdir = @docdir@
+dvidir = @dvidir@
 exec_prefix = @exec_prefix@
 has_sablotron = @has_sablotron@
 has_scilab = @has_scilab@
@@ -186,17 +184,21 @@ host_alias = @host_alias@
 host_cpu = @host_cpu@
 host_os = @host_os@
 host_vendor = @host_vendor@
+htmldir = @htmldir@
 includedir = @includedir@
 infodir = @infodir@
 install_sh = @install_sh@
 libdir = @TOOLBOXDIR@/lib
 libexecdir = @libexecdir@
+localedir = @localedir@
 localstatedir = @localstatedir@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
+pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
+psdir = @psdir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
@@ -209,8 +211,9 @@ AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
 IMG_IO_SRC = imread.c imwrite.c test.c mat2utfimg.c
 AVI_IO_SRC = aviinfo.c aviopen.c aviclose.c avicloseall.c avilistopened.c avireadframe.c camopen.c
 IMG_TRAN_SRC = imresize.c imabsdiff.c
-IMG_PROC_MAN = canny.c sobel.c    convert.c laplace.c precornerdetec.c imsmooth.c threshold.c adaptativethreshold.c erode.c dilate.c pyrdown.c pyrup.c xor.c not.c cmp.c hough.c
-libsivp_la_SOURCES = libsivp.c common.c sivp_init.c $(IMG_IO_SRC)  $(AVI_IO_SRC) $(IMG_TRAN_SRC) $(IMG_PROC_MAN)
+IMG_FILTER = imfilter.c
+IMG_PROC_OLD = canny.c sobel.c    convert.c laplace.c precornerdetec.c imsmooth.c threshold.c adaptativethreshold.c erode.c dilate.c pyrdown.c pyrup.c xor.c not.c cmp.c hough.c
+libsivp_la_SOURCES = libsivp.c common.c sivp_init.c $(IMG_IO_SRC)  $(AVI_IO_SRC) $(IMG_TRAN_SRC) $(IMG_FILTER) $(IMG_PROC_OLD)
 libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release @PACKAGE_VERSION@
 libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
 EXTRA_DIST = common.h
@@ -319,6 +322,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/erode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hough.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/imabsdiff.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/imfilter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/imread.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/imresize.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/imsmooth.Plo@am__quote@
