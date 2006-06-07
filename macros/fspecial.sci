@@ -106,6 +106,21 @@ function [F] = fspecial(ftype, varargin)
      if sumF~=0 then
        F = F / sum(F);
      end
+   //----------------------------------------------
+   //gaussian low pass filter
+   case 'laplacian' then,
+    if length(varargin)>1 then, 
+      error("Too many arguments for this kind of filter");
+    end
+    if isempty(op1) then, 
+      op1=0.2; 
+    else
+      if (op1 < 0 | op1 > 1) then, error("The second argument should be in range [0, 1]"); end,
+    end
+    op1d=1-op1;
+    F = [op1, op1d, op1; op1d, -4, op1d; op1, op1d, op1]/(op1+1);
+    
+
    else
     error('No such kind of filter: ' + ftype );
   end
