@@ -119,6 +119,47 @@ function [F] = fspecial(ftype, varargin)
     end
     op1d=1-op1;
     F = [op1, op1d, op1; op1d, -4, op1d; op1, op1d, op1]/(op1+1);
+    
+   //----------------------------------------------
+   //log filter:a rotationally symmetric Laplacian of Gaussian filter 
+   case 'log' then,
+    //get faussian filter first
+     if isempty(op1) then
+       siz = [5,5];
+     else
+       if length(op1)==1 then
+	 siz = [op1, op1];
+       elseif length(op1)==2 then
+	 siz = op1;
+       else
+	 error("The second argument should have 1 or 2 elements for log filter");
+       end
+     end
+     //set std for the filter
+     if isempty(op2) then
+       g_std = 0.5;
+     else
+       if length(op2)>1 then
+	 error("The third argument should have only 1 element for log filter");
+       else
+	 g_std = op2;
+       end
+     end
+     //
+     sizx = (siz(2)-1)/2;
+     sizy = (siz(1)-1)/2;
+     x2 = ones(siz(1),1) * ([-sizx:sizx]^2);
+     y2 = ([-sizy:sizy]^2)' * ones(1, siz(2));
+     F = exp( -(x2+y2)/(2*g_std^2) );
+     F(F<%eps*max(F)) = 0;
+     sumF=sum(F);
+     if sumF~=0 then
+       F = F / sum(F);
+     end
+    //now laplacian
+    Ftmp = F.*(x2+y2-2*g_std^2)/(g_std^4);
+    F = Ftmp - sum(Ftmp(:))/prod(siz);
+
    //----------------------------------------------
    //unsharp contrast enhancement filter
    case 'unsharp' then,
