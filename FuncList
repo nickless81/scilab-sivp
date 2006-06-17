@@ -45,7 +45,7 @@ Image Analysis and Statistics
       std2/stdev2
       imhist
    TODO:
-      *edge
+      edge
 
 Image Arithmetic
       imabsdiff
@@ -60,3 +60,5 @@ Image Arithmetic
 Linear Filtering and Transforms
        imfilter
        fspecial
+     TODO:
+       fspecail(disk, motion filter)
