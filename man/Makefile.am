@@ -19,7 +19,7 @@
 IMG_IO_MAN=imread.xml imwrite.xml
 AVI_IO_MAN= aviinfo.xml aviopen.xml aviclose.xml avicloseall.xml avilistopened.xml avireadframe.xml camopen.xml
 IMG_TRAN_MAN=imresize.xml imcrop.xml
-IMG_FILTER=imfilter.xml
+IMG_FILTER=imfilter.xml fspecial.xml
 IMG_GUI_MAN=imshow.xml
 IMG_CONVERT=im2bw.xml im2uint8.xml im2int8.xml im2uint16.xml im2int16.xml im2int32.xml im2double.xml mat2gray.xml rgb2gray.xml
 IMG_ARITHMETIC=imabsdiff.xml 

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>fspecial</TITLE>
+<TYPE>SIVP Toolbox</TYPE>
+<DATE>June, 2006</DATE>
+<SHORT_DESCRIPTION name="fspecial">Create some 2D special filters</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>F = fspecial(type)</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>F = fspecial(type, op1)</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>F = fspecial(type, op1, op2)</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+     <PARAM_NAME>type</PARAM_NAME>
+     <PARAM_DESCRIPTION>
+       Filter type. It can be one of these string: 'sobel', 'prewitt', 'gaussion', 'laplacian', 'log', 'average', 'unsharp'. ('motion', 'disk' in future.)
+     </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+     <PARAM_NAME>op1</PARAM_NAME>
+     <PARAM_DESCRIPTION>
+       The first parameter for the filter. Some type of filters do not need it.
+     </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+     <PARAM_NAME>op2</PARAM_NAME>
+     <PARAM_DESCRIPTION>
+       The second parameter for the filter. Some type of filters do not need it.
+     </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+     <PARAM_NAME>F</PARAM_NAME>
+     <PARAM_DESCRIPTION>
+       The returned filter, which is of type double.
+     </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+
+<DESCRIPTION>
+<P><TT>fspecial</TT> create some 2D special filters. If no parameters are given, <TT>fspecial</TT> will uses default values.</P>
+<P>The supported filters and the syntax for each filter type are listed in the following list:</P>
+   <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+       * <TT>F=fspecial('sobel')</TT> returns a 3x3 horizontal edges sobel filter. If you want avertical edges sobel filter, you can use transposition of <TT>F</TT>. <TT>F</TT> is [ 1 2 1; 0 0 0; -1 -2 -1].
+     </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM>
+       * <TT>F=fspecial('prewitt)</TT> returns a 3x3 horizontal edges prewitt filter. If you want avertical edges prewitt filter, you can use transposition of <TT>F</TT>. <TT>F</TT> is [ 1 1 1; 0 0 0; -1 -1 -1].
+     </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM>
+       * <TT>F=fspecial('gaussian', hsize, sigma)</TT> returns a Gaussian lowpass filter. 
+The size of returned filter is determined by parameter <TT>hsize</TT>. 
+<TT>hsize</TT> can be a 2x1 vector which indicate the rows and columns of <TT>F</TT>. 
+If <TT>hsize</TT> is a scalar, <TT>F</TT> is a square matrix. 
+The default value for <TT>hsize</TT> is [3 3]; the default value for <TT>sigma</TT> is 0.5.
+     </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM>
+       * <TT>F=fspecial('laplacian',alpha)</TT> returns a 3-by-3 Laplacian filter. 
+The returned filter is <TT>[alpha, 1-alpha, alpha; 1-alpha, -4, 1-alpha; alpha, 1-alpha, alpha]/(alpha+1)</TT>.
+The default value for <TT>alpha</TT> is 0.2.
+     </DESCRIPTION_ITEM>
+   </DESCRIPTION_INDENT>
+
+</DESCRIPTION>
+
+<EXAMPLE><![CDATA[
+
+    im = imread(SCI + '/contrib/sivp/images/lena.png');
+    ima = imresize(im, 1.5);
+    imb = imresize(im, 1.5, 'bilinear');
+    imc = imresize(im, [100,200], 'bicubic');
+
+]]></EXAMPLE>
+<!-- ================================= -->
+
+<AUTHORS>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </AUTHORS_ITEM>
+</AUTHORS>
+<!-- ================================= -->
+<SECTION label="Availability">
+The latest version of SIVP can be found at
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+   <SEE_ALSO>
+      <SEE_ALSO_ITEM> <LINK>imfilter</LINK> </SEE_ALSO_ITEM>
+   </SEE_ALSO>
+</MAN>
