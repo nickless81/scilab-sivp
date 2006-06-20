@@ -1,4 +1,4 @@
-------------------------------------------------------------
+N------------------------------------------------------------
 	SIVP 0.3.0
 ------------------------------------------------------------
 features:
@@ -13,4 +13,5 @@ features:
  + Spatial transformation functions: imcrop, imresize
  + Image analysis and statistics functions: mean2, corr2, std2/stdev2
  + Image arithmetic functions: imabsdiff
+ + Linear Filtering and Transforms: imfilter, fspecial
 
