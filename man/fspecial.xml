@@ -53,25 +53,45 @@
      <DESCRIPTION_ITEM>
        * <TT>F=fspecial('gaussian', hsize, sigma)</TT> returns a Gaussian lowpass filter. 
 The size of returned filter is determined by parameter <TT>hsize</TT>. 
-<TT>hsize</TT> can be a 2x1 vector which indicate the rows and columns of <TT>F</TT>. 
+<TT>hsize</TT> can be a 1x2 vector which indicate the rows and columns of <TT>F</TT>. 
 If <TT>hsize</TT> is a scalar, <TT>F</TT> is a square matrix. 
-The default value for <TT>hsize</TT> is [3 3]; the default value for <TT>sigma</TT> is 0.5.
+The default value for <TT>hsize</TT> is [3, 3]; the default value for <TT>sigma</TT> is 0.5.
      </DESCRIPTION_ITEM>
      <DESCRIPTION_ITEM>
        * <TT>F=fspecial('laplacian',alpha)</TT> returns a 3-by-3 Laplacian filter. 
 The returned filter is <TT>[alpha, 1-alpha, alpha; 1-alpha, -4, 1-alpha; alpha, 1-alpha, alpha]/(alpha+1)</TT>.
 The default value for <TT>alpha</TT> is 0.2.
      </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM>
+       * <TT>F=fspecial('log',hsize,sigma)</TT>
+       returns a Laplacian of Gaussian filter. 
+       The size of returned filter is determined by parameter <TT>hsize</TT>. 
+       <TT>hsize</TT> can be a 1x2 vector which indicate the rows and columns of <TT>F</TT>. 
+       If <TT>hsize</TT> is a scalar, <TT>F</TT> is a square matrix. 
+       The default value for <TT>hsize</TT> is [5, 5]; the default value for <TT>sigma</TT> is 0.5.
+     </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM>
+       * <TT>F=fspecial('average',hsize)</TT> returns an averaging filter.
+       The size of returned filter is determined by parameter <TT>hsize</TT>. 
+       <TT>hsize</TT> can be a 1x2 vector which indicate the rows and columns of <TT>F</TT>. 
+       If <TT>hsize</TT> is a scalar, <TT>F</TT> is a square matrix. 
+       The default value for <TT>hsize</TT> is [3, 3].
+     </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM>
+       *<TT>F=fspecial('unsharp',alpha)</TT> returns a 3x3 unsharp contrast enhancement filter.
+       <TT>alpha</TT> must be in the range [0.0, 1.0]. The default value of <TT>alpha</TT> is 0.2.
+     </DESCRIPTION_ITEM>
+
    </DESCRIPTION_INDENT>
 
 </DESCRIPTION>
 
 <EXAMPLE><![CDATA[
 
-    im = imread(SCI + '/contrib/sivp/images/lena.png');
-    ima = imresize(im, 1.5);
-    imb = imresize(im, 1.5, 'bilinear');
-    imc = imresize(im, [100,200], 'bicubic');
+    im = imread('lena.png');
+    filter = fspecial('sobel');
+    imf = imfilter(im, filter);
+    imshow(imf);
 
 ]]></EXAMPLE>
 <!-- ================================= -->

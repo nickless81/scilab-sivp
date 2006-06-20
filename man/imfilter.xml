@@ -44,7 +44,7 @@ equal the nearest array border value.
 <EXAMPLE><![CDATA[
 
     im = imread('lena.png');
-    filter = eye(50,50)/50;
+    filter = fspecial('sobel');
     imf = imfilter(im, filter);
     imshow(imf);
 
