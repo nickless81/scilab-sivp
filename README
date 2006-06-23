@@ -15,9 +15,8 @@ Dependencies
 ------------
 Scilab		>= 3.1		(http://www.scilab.org/)
 OpenCV		>= 0.9.6	(http://sourceforge.net/projects/opencvlibrary/)
-		(if you want video support, OpenCV should be compiled with ffmpeg 0.4.9-pre1)
-FFMPEG		>= 0.4.9     (http://ffmpeg.sourceforge.net/)
-xslproc	or sabcmd		(http://www.xmlsoft.org, http://www.gingerall.com/charlie/ga/xml/p_sab.xml)
+		(if you want video support, OpenCV should be compiled with ffmpeg)
+xslproc	or sabcmd		(http://www.xmlsoft.org, http://www.gingerall.org/)
 
 
 TODO
