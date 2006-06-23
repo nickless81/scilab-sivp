@@ -40,13 +40,13 @@ int int_avireadframe(char * fname)
     {
       GetRhsVar(2, "i", &mR2, &nR2, &lR2);
       CheckDims(2, mR2, nR2, 1, 1);
+
+      nFrameIdx = *((int *)(istk(lR2)));
+      nFrameIdx -= 1;
     }
 
   nFile = *((int *)(istk(lR1)));
   nFile -= 1;
-
-  nFrameIdx = *((int *)(istk(lR2)));
-  nFrameIdx -= 1;
 
   if (!(nFile >= 0 && nFile < MAX_AVI_FILE_NUM))
     {
