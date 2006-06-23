@@ -1,4 +1,4 @@
-filename = SCI + '/contrib/sivp/images/walking.avi';
+filename = SCI + '/contrib/sivp/images/video.avi';
 
 if MSDOS then filename=strsubst(filename,'/','\'),end
 
