@@ -26,9 +26,9 @@ Image type conversion
       mat2gray
       rgb2gray
     TODO:
-      isbw Return true for binary image
-      isgray Return true for intensity image
-      isrgbReturn true for RGB image
+      isbw
+      isgray
+      isrgb
 
 Spatial transformation and registration
 	imcrop
@@ -62,3 +62,12 @@ Linear Filtering and Transforms
        fspecial
      TODO:
        fspecail(disk, motion filter)
+
+Morphological operations
+     TODO:
+	bwboundaries
+	bwdist
+	bwlabel
+	dilate
+	erode
+	
