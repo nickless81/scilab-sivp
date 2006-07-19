@@ -42,6 +42,6 @@ libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
 EXTRA_DIST = common.h
 
 libsivp.c: ilib_gen_gateway.sce
-	$(SCIDIR)/bin/scilab -nw -nb -f ilib_gen_gateway.sce
+	$(SCIEXE) -nw -nb -f ilib_gen_gateway.sce
 
 

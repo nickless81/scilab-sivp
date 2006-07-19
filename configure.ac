@@ -31,18 +31,15 @@ AM_INIT_AUTOMAKE([sivp],[0.3.0])
 # Checks for programs.
 AC_PROG_CC
 #AC_PROG_CXX
-#AC_PROG_CC
 #AC_PROG_CPP
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 
-# ssl begin
 if test x"$ac_cv_prog_cc_stdc" = x'no'; then
    AC_MSG_WARN([[found the $CC compiler but it is not ANSI-C 
                 compliant.]])
 fi
-# ssl end
 
 AC_LIBTOOL_WIN32_DLL
 AC_DISABLE_STATIC
@@ -61,12 +58,15 @@ fi
 #
 native_win32_build='no'
 cygwin_build='no'
+win32_build='no'
 case $host_os in
    cygwin*) 
        cygwin_build='yes'
+       win32_build='yes' 
        ;;
    mingw* )
        native_win32_build='yes' 
+       win32_build='yes' 
        ;;
 esac
 
@@ -93,6 +93,7 @@ if test -z "$SCI"; then
       dnl TODO take SCIDIR from the registry
       AC_MSG_WARN([[hardcoding SCI to /c/scilab]])
       SCIDIR="/c/scilab"
+      SCIEXE="/c/scilab/bin/Scilex.exe"
    else
       AC_CHECK_PROG([has_scilab],[scilab],[yes],[no], , )
       if test x$has_scilab = xno; then
@@ -103,10 +104,17 @@ if test -z "$SCI"; then
               mclose(F);'
          echo "$cmd" | scilab -nw >/dev/null
          SCIDIR=`cat path.incl`
+	 # TODO 
+	 SCIEXE="${SCIDIR}/bin/scilex"
       fi
    fi
 else
    SCIDIR="$SCI"
+   if test $win32_build = yes; then
+      SCIEXE="${SCI}/bin/Scilex.exe"
+   else
+      SCIEXE="${SCI}/bin/scilex"
+   fi
 fi
 
 CPPFLAGS="$CPPFLAGS -I${SCIDIR}/routines"
@@ -123,7 +131,7 @@ TOOLBOXDIR=$prefix
 AC_PREFIX_DEFAULT([$TOOLBOXDIR])
 AC_SUBST(TOOLBOXDIR)
 AC_SUBST(SCIDIR)
-
+AC_SUBST(SCIEXE)
 
 LIBRARY_EXTRA_CPPFLAGS=''
 LIBRARY_EXTRA_LIBS=''

@@ -144,6 +144,7 @@ PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
 RANLIB = @RANLIB@
 SCIDIR = @SCIDIR@
+SCIEXE = @SCIEXE@
 SET_MAKE = @SET_MAKE@
 SHARED_LIB_SUFFIX = @SHARED_LIB_SUFFIX@
 SHELL = @SHELL@
@@ -543,7 +544,7 @@ uninstall-am: uninstall-info-am uninstall-libLTLIBRARIES
 
 
 libsivp.c: ilib_gen_gateway.sce
-	$(SCIDIR)/bin/scilab -nw -nb -f ilib_gen_gateway.sce
+	$(SCIEXE) -nw -nb -f ilib_gen_gateway.sce
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
