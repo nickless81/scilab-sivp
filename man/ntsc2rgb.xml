@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>ntsc2rgb</TITLE>
+<TYPE>SIVP Toolbox</TYPE>
+<DATE>August, 2006</DATE>
+<SHORT_DESCRIPTION name="ntsc2rgb">Convert a NTSC image to the equivalent RGB image.</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>RGB = ntsc2rgb(YIQ)</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+   <PARAM_NAME>YIQ</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   A NTSC image (hypermat). The dimension of <TT>NTSC</TT> should be <TT>M x N x 3</TT>,
+   the type should be double and the element value range should be [0,1]. 
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>RGB</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Output image, which has the same size as <TT>NTSC</TT> and type of double.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+<DESCRIPTION>
+<P>
+   <TT>ntsc2rgb</TT> convert a NTSC image to the equivalent RGB image using:</P>
+<DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM>
+    <TT>R = Y + 0.956*I + 0.621*Q </TT>
+  </DESCRIPTION_ITEM> 
+  <DESCRIPTION_ITEM>
+    <TT>G = Y - 0.272*I - 0.647*Q</TT>
+  </DESCRIPTION_ITEM> 
+  <DESCRIPTION_ITEM>
+    <TT>B = Y - 1.105*I - 1.702*Q</TT>
+  </DESCRIPTION_ITEM> 
+</DESCRIPTION_INDENT>
+
+<P>
+ Supported classe: DOUBLE.
+</P>
+ 
+</DESCRIPTION>
+<EXAMPLE><![CDATA[
+
+    RGB = imread('lena.png');
+    YIQ = rgb2ntsc(RGB);
+    RGB = ntsc2rgb(YIQ);
+    imshow(RGB);
+
+]]></EXAMPLE>
+
+<!-- ================================= -->
+
+<AUTHORS>
+   <AUTHORS_ITEM name="Shiqi">Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </AUTHORS_ITEM>
+   <AUTHORS_ITEM name="Ricardo">Ricardo Fabbri &lt;ricardofabbri[at]users.sf.net&gt;</AUTHORS_ITEM>
+</AUTHORS>
+<!-- ================================= -->
+<SECTION label="Availability">
+The latest version of SIVP can be found at
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+   <SEE_ALSO>
+      <SEE_ALSO_ITEM> <LINK>rgb2gray</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>mat2gray</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>rgb2hsv</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>hsv2rgb</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>rgb2ycbcr</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>ycbcr2rgb</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>rgb2ntsc</LINK> </SEE_ALSO_ITEM>
+   </SEE_ALSO>
+</MAN>

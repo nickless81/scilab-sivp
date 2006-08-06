@@ -43,7 +43,7 @@
       <TABLE_NEW_COLUMN>Integer indicating frame width in pixels.</TABLE_NEW_COLUMN>
     </TABLE_NEW_ROW>
     <TABLE_NEW_ROW>
-      <TABLE_NEW_COLUMN>Width</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>Height</TABLE_NEW_COLUMN>
       <TABLE_NEW_COLUMN>Integer indicating frame height in pixels.</TABLE_NEW_COLUMN>
     </TABLE_NEW_ROW>
     <TABLE_NEW_ROW>
@@ -69,7 +69,7 @@ Video support for SIVP is only available when SIVP is compiled with OpenCV which
 
 <EXAMPLE><![CDATA[
 	
-    info = aviinfo(SCI+'/contrib/sivp/images/walking.avi')
+    info = aviinfo(SCI+'/contrib/sivp/images/video.avi')
 
 ]]></EXAMPLE>
 

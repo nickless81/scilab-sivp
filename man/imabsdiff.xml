@@ -4,7 +4,7 @@
 <LANGUAGE>eng</LANGUAGE>
 <TITLE>imabsdiff</TITLE>
 <TYPE>SIVP Toolbox</TYPE>
-<DATE>March, 2006</DATE>
+<DATE>July, 2006</DATE>
 <SHORT_DESCRIPTION name="imabsdiff">Calculate absolute difference of two images</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>imout = imabsdiff(im1, im2)</CALLING_SEQUENCE_ITEM>
@@ -14,7 +14,7 @@
    <PARAM_ITEM>
      <PARAM_NAME>im1, im2</PARAM_NAME>
      <PARAM_DESCRIPTION>
-       Input images, which can be any kinds of images, but must have the same width, height and number of channels.
+       Input images, which can be any kinds of images, but must have the same width, height, class and number of channels.
      </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
@@ -27,12 +27,18 @@
 </PARAM>
 <DESCRIPTION>
 <P>
-   <TT>imabsdiff</TT> calculate the absolute difference of two images. The two input images must have the same width, height and number of channels. If the two images have the same data type, the returned image will also has the same data type as input images. Otherwise, the two input images will be conerted to double first in the function.</P>
+   <TT>imabsdiff</TT> calculate the absolute difference of two images. The two input images must have the same width, height, class and number of channels.</P>
 <P>
-  Be careful that the elements in <TT>imout</TT> that exceed the range of the data type are truncated. Such as <TT>imabsdiff(int8(127),int8(-1))</TT> will return <TT>-128</TT>.
+If <TT>im1</TT> and <TT>im2</TT> are an integer matrices, 
+the elements in the output matrix <TT>imout</TT> that 
+exceed the range of the integer type will be truncated.
+</P>
+<P>
+  Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
 </P>
 </DESCRIPTION>
 
+<!-- ================================= -->
 <AUTHORS>
    <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </AUTHORS_ITEM>
 </AUTHORS>
@@ -43,5 +49,11 @@ The latest version of SIVP can be found at
 </SECTION>
 <!-- ================================= -->
    <SEE_ALSO>
+      <SEE_ALSO_ITEM><LINK>imadd</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM><LINK>imsubtract</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM><LINK>immultiply</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM><LINK>imdivide</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM><LINK>imcomplement</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM><LINK>imlincomb</LINK> </SEE_ALSO_ITEM>
    </SEE_ALSO>
 </MAN>

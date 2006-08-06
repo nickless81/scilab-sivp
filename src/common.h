@@ -35,6 +35,7 @@ extern "C" {
     #define FALSE 0
 #endif
 
+#define SIVP_ABS(a) ((a) < 0 ? (-(a)) : (a))
 typedef int BOOL;
 
 

@@ -22,6 +22,9 @@
 
 /**********************************************************************
  * imout=imfilter(imin, F);
+ * the difference between filter2 and imfilter is:
+ * the returned matrix of filter2 is double,
+ * but the returned matrix of imfilter is as the same as input image
  **********************************************************************/
 int int_imfilter(char * fname)
 {

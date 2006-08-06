@@ -34,6 +34,8 @@ function [im2] = im2uint16(im)
 		case 'int32' then
 		     im2 = uint16(round((double(im)+2^31)*(2^16-1)/(2^32-1)));
 	 	case 'constant' then
+		     im(im>1.0) = 1.0;
+		     im(im<0.0) = 0.0;
 		     im2 = int16(round(im * (2^16-1)));
 		else
 		     error("Data type " + imtype + " is not supported.");

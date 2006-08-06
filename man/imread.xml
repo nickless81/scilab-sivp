@@ -84,5 +84,6 @@ The latest version of SIVP can be found at
    <SEE_ALSO>
       <SEE_ALSO_ITEM> <LINK>imwrite</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>imshow</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>imfinfo</LINK> </SEE_ALSO_ITEM>
    </SEE_ALSO>
 </MAN>

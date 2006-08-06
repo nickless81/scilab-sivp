@@ -22,11 +22,11 @@
 
 
 AC_PREREQ(2.59)
-AC_INIT([sivp], [0.3.0], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
+AC_INIT([sivp], [0.3.1], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_SRCDIR(src/test.c)
 AM_CONFIG_HEADER(src/config.h)
-AM_INIT_AUTOMAKE([sivp],[0.3.0])
+AM_INIT_AUTOMAKE([sivp],[0.3.1])
 
 # Checks for programs.
 AC_PROG_CC
@@ -225,6 +225,7 @@ TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'sivp_init','int_sivp_init'; \
 		'imread', 'int_imread';\
 		'imwrite', 'int_imwrite';\
+		'imfinfo', 'int_imfinfo';\
 		'aviinfo', 'int_aviinfo';\
 		'aviopen', 'int_aviopen';\
 		'aviclose','int_aviclose';\
@@ -232,16 +233,21 @@ TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'avilistopened', 'int_avilistopened';\
 		'avireadframe', 'int_avireadframe';\
 		'camopen', 'int_camopen';\
-		'imresize', 'int_imresize';\
+		'int_imresize', 'int_imresize';\
 		'int_imabsdiff', 'int_imabsdiff';\
+		'int_imadd', 'int_imadd'; \
+		'int_imsubtract', 'int_imsubtract'; \
+		'int_immultiply', 'int_immultiply'; \
+		'int_imdivide', 'int_imdivide'; \
 		'imfilter', 'int_imfilter'; \
+		'filter2', 'int_filter2'; \
 		'mat2utfimg', 'int_mat2utfimg';\
-		'canny', 'int_canny'; \
-		'convert', 'int_convert'; \
+		'int_canny', 'int_canny'; \
+		'int_sobel', 'int_sobel'; \
+		'int_cvtcolor', 'int_cvtcolor'; \
 		'laplace', 'int_laplace'; \
 		'precornerdetec', 'int_precornerdetec'; \
 		'imsmooth', 'int_imsmooth'; \
-		'sobel', 'int_sobel'; \
 		'threshold', 'int_threshold'; \
 		'adaptativethreshold', 'int_adaptativethreshold'; \
 		'erode', 'int_erode';\
@@ -267,6 +273,7 @@ TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'sivp_init'; \
 		       'imread';\
 		       'imwrite';\
+		       'imfinfo'; \
 		       'aviinfo';\
 		       'aviopen';\
 		       'aviclose';\
@@ -274,16 +281,21 @@ TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'avilistopened';\
 		       'avireadframe';\
 		       'camopen';\
-		       'imresize';\
+		       'int_imresize';\
 		       'int_imabsdiff';\
+		       'int_imadd'; \
+		       'int_imsubtract'; \
+		       'int_immultiply'; \
+		       'int_imdivide'; \
 		       'imfilter'; \
+		       'filter2'; \
 		       'mat2utfimg'; \
-		       'canny'; \
-		       'convert'; \
+		       'int_canny'; \
+		       'int_sobel'; \
+		       'int_cvtcolor'; \
 		       'laplace'; \
 		       'precornerdetec'; \
 		       'imsmooth'; \
-		       'sobel'; \
 		       'threshold'; \
 		       'adaptativethreshold'; \
 		       'erode';\

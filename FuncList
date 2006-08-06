@@ -2,7 +2,6 @@ Image input, output, and display
 	imread
 	imwrite
 	imshow
-    TODO:
 	imfinfo
 	
 
@@ -25,10 +24,6 @@ Image type conversion
       im2double
       mat2gray
       rgb2gray
-    TODO:
-      isbw
-      isgray
-      isrgb
 
 Spatial transformation and registration
 	imcrop
@@ -44,18 +39,29 @@ Image Analysis and Statistics
       corr2
       std2/stdev2
       imhist
-   TODO:
       edge
 
 Image Arithmetic
       imabsdiff
-    TODO:
       imadd
-      imcomplement
       imdivide
-      imlincomb
       immultiply
       imsubtract
+      imcomplement
+      imlincomb
+
+Image Enhancement and Restoration
+      imnoise
+    TODO:
+      adapthisteq
+      decorrstretch
+      histeq
+      imadjust
+      medfilt2
+      ordfilt2
+      stretchlim
+      uintlut
+      wiener2
 
 Linear Filtering and Transforms
        imfilter
@@ -71,3 +77,10 @@ Morphological operations
 	dilate
 	erode
 	
+Color space conversions
+        hsv2rgb
+	rgb2hsv
+	rgb2ycbcr
+	ycbcr2rgb
+	rgb2ntsc
+	ntsc2rgb

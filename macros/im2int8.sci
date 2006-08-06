@@ -34,6 +34,8 @@ function [im2] = im2int8(im)
 		case 'int32' then
 		     im2 = int8(round((double(im)+2^31) * (2^8-1)/(2^32-1) - 128));
 	 	case 'constant' then
+		     im(im>1.0) = 1.0;
+		     im(im<0.0) = 0.0;
 		     im2 = int8(round(im * 255 - 128));
 		else
 		     error("Data type " + imtype + " is not supported.");

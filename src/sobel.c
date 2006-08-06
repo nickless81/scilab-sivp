@@ -32,11 +32,13 @@ int int_sobel(char *fname)
 
   //create variable for parameters
   double *pfThresh=NULL;
-  double fThresh = -1.0;
+  double fThresh = 0.2; //default value
+  double fScaledThresh = 0;
   int *pnDx=NULL;
   int *pnDy=NULL;
   
   IplImage* pSrcImg = NULL;
+  IplImage* pF32SrcImg = NULL;
   IplImage* pSobelImg = NULL;
   IplImage* pEdgeImg = NULL;
 
@@ -49,7 +51,7 @@ int int_sobel(char *fname)
   // check if arg are scalaire
   if (m2*n2 != 1 || m3*n3 != 1) 
     {
-      Scierror(999, "Internal eroror: %s: arguments must be scalars.\r\n", fname);
+      Scierror(999, "eroror: %s: parameters for sobel must be scalars.\r\n", fname);
       return 0;
     }
   //receive the data
@@ -62,28 +64,21 @@ int int_sobel(char *fname)
       // check if arg are scalaire
       if ( m4*n4 != 1) 
 	{
-	  Scierror(999, "Internal eroror: %s: arguments must be scalars.\r\n", fname);
+	  Scierror(999, "error: %s: arguments must be scalars.\r\n", fname);
 	  return 0;
 	}
       pfThresh = stk(l4);
-      //check the values
-      if(pfThresh[0]< 0)
-	{
-	  Scierror(999, "Internal eroror: %s: thresh should greater than zero. \r\n", fname);
-	  return 0;
-	}
     }
   else
     {
-      pfThresh = &fThresh; //the value is -1 to indicate 
-                           //that the thresh should be choosen in this function
+      pfThresh = &fThresh; //use default vallue
     }
 
 
 
   if ( (pnDx[0]>2) || (pnDx[0]<0) || (pnDy[0]>2)|| (pnDy[0]<0))
     {
-      Scierror(999, "Internal eroror: %s: The direction should be 0 or 1.\r\n", fname);
+      Scierror(999, "error: %s: The direction should be 0 or 1.\r\n", fname);
       return 0;
     }
 
@@ -98,56 +93,62 @@ int int_sobel(char *fname)
       return 0;
     }
 
-  //the image must be gray image
-  if(! ((pSrcImg->depth==IPL_DEPTH_8U)  &&  (pSrcImg->nChannels==1)) )
+  //the image must be single channel image
+  if( ! (pSrcImg->nChannels==1)) 
     {
       cvReleaseImage(&pSrcImg);
-      Scierror(999, "%s: The input image must be gray image.\r\n", fname);
+      Scierror(999, "%s: The input image must be singel channel image.\r\n", fname);
       return 0;
     }
 
-  
+  //convert the source image to single float
+  pF32SrcImg = cvCreateImage(cvGetSize(pSrcImg), IPL_DEPTH_32F, 1);
   //create the output image for cvSobel
-  pSobelImg = cvCreateImage(cvGetSize(pSrcImg), IPL_DEPTH_16S, 1);
+  pSobelImg = cvCreateImage(cvGetSize(pSrcImg), IPL_DEPTH_32F, 1);
   // check if the output image is correctly created
-  if(pSobelImg == NULL)
+  if(pF32SrcImg == NULL || pSobelImg == NULL)
     {
       cvReleaseImage(&pSrcImg);
+      cvReleaseImage(&pF32SrcImg);
+      cvReleaseImage(&pSobelImg);
       Scierror(999, "%s: Can't create images.\r\n", fname);
       return 0;
     }
    
+  cvConvert(pSrcImg, pF32SrcImg);
   //Sobel operate
-  cvSobel( pSrcImg, pSobelImg , pnDx[0], pnDy[0], 3);
-  
+  cvSobel( pF32SrcImg, pSobelImg , pnDx[0], pnDy[0], 3);
+  cvAbs(pSobelImg, pSobelImg);
+
+  //scale the thresh value 
+  double fMin, fMax;
+  cvMinMaxLoc(pSobelImg, &fMin, &fMax, NULL, NULL, NULL);
+  fScaledThresh = pfThresh[0] * fMax + (1.0-pfThresh[0])*fMin;
+
   pEdgeImg = cvCreateImage(cvGetSize(pSrcImg), IPL_DEPTH_8U, 1);
   // check if the output image is correctly created
   if(pEdgeImg == NULL)
     {
       cvReleaseImage(&pSrcImg);
+      cvReleaseImage(&pF32SrcImg);
       cvReleaseImage(&pSobelImg);
       Scierror(999, "%s: Can't create images.\r\n", fname);
       return 0;
     }
 
-  //convert the sobel image to [0,255] 8bits image
-  //the range of the sobel image is[-4x255, 4x255]
-  cvConvertScaleAbs(pSobelImg, pEdgeImg, 0.25, 0);
-
-  //choose the thresh value if the user does not specified the value
-  if(pfThresh[0] < 0)
+  //threshold
+  if(pfThresh[0] >= 0)
     {
-      double fMin, fMax;
-      cvMinMaxLoc(pEdgeImg, &fMin, &fMax, NULL, NULL, NULL);
-      pfThresh[0] = cvRound(( 3*fMin/4.0 + fMax/4.0)*4) ;
+      cvThreshold(pSobelImg, pEdgeImg, fScaledThresh, 255, CV_THRESH_BINARY);
+      //translate IplImage to Matrix
+      IplImg2Mat(pEdgeImg, 5);
+    }
+  else
+    {
+      //translate IplImage to Matrix
+      IplImg2Mat(pSobelImg, 5);
     }
 
-  //threshold
-  cvThreshold(pEdgeImg, pEdgeImg, pfThresh[0]/4.0, 255, CV_THRESH_BINARY);
-
-  
-  //translate IplImage to Matrix
-  IplImg2Mat(pEdgeImg, 5);
   CreateVarFromPtr( 6, "d", &One, &One, &pfThresh);
 
   //send the result
@@ -156,6 +157,7 @@ int int_sobel(char *fname)
 
   //release all images
   cvReleaseImage(&pSrcImg);
+  cvReleaseImage(&pF32SrcImg);
   cvReleaseImage(&pSobelImg);
   cvReleaseImage(&pEdgeImg);
 

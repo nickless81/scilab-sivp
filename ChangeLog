@@ -1,4 +1,42 @@
 ------------------------------------------------------------
+	SIVP 0.3.1
+------------------------------------------------------------
+o Added:
+  ------
+	imadd
+	imsubtract
+	immultiply
+	imdivide
+	imcomplement
+	imlincomb
+	imfinfo
+	imnoise
+	edge
+        hsv2rgb
+	rgb2hsv
+	rgb2ycbcr
+	ycbcr2rgb
+	ntsc2rgb
+	rgb2ntsc
+	
+o Changed:
+  --------
+	
+o Removed:
+  --------
+	sobel(replaced by edge(im, 'sobel'))
+	canny(replaced by edge(im, 'canny'))
+	convert(replaced by int_cvtcolor)
+
+o Bug fixed:
+  ----------
+	function imabsdiff: INT8 support bug fixed
+	function imresize: INT8, INT16, INT32, DOUBLE support bug fixed
+	function im2*: If input is double, the output can not be correctly truncated.
+
+
+	
+------------------------------------------------------------
 	SIVP 0.3.0
 ------------------------------------------------------------
 features:

@@ -36,22 +36,31 @@ function [imdiff] = imabsdiff(im1, im2)
         end	    
     end
 
+    //must be the same class, and not be uint32
+    if (type(im1(1))<>type(im2(1)) | ...
+      typeof(im1(1))<>typeof(im2(1)) | ...
+      typeof(im1(1))=='uint32'   ) then
+      error("The two input images must be of the same class and not be"+...
+	     " uint32.");
+    end
+
     //actruely abs(im1-im2) will be more efficient,
-    //but if the two image are all unsigned integer
-    // abs(uint8(8)-uint(9)) will give error result
-    //so we have to use OpenCV cvAbsDiff function for the same type at this situation
+    //but abs(uint8(8)-uint8(9)) 
+    //and abs(int16(2^15-1)-int16(-1))  will give error results 
+    //(255 and -32768 respectively)
+    //so we have to use OpenCV cvAbsDiff function for the same type at
+    //these situations
 
-    tt = str2code(typeof(im1(1)));
-    tt = code2str( tt( 1:min(length(tt),4)));
-
-    //if the same data type and isn't uint32
-    if (type(im1(1))==type(im2(1)) & typeof(im1(1))==typeof(im2(1)) & typeof(im1(1))<>'uint32') then
+    //int8 is not supported by OpenCV function cvAbsDiff
+    //convert to int16 first when int8 class
+    if ( typeof(im1(1))=='constant') then //double
+       imdiff = abs(im1 - im2); 
+    elseif ( typeof(im1(1))=='int8') then //int8
+       imdiff = abs(int16(im1) - int16(im2));
+       imdiff(imdiff > 127) = int16(127);
+       imdiff = int8(imdiff);
+    else 
        imdiff = int_imabsdiff(im1, im2);
-       //imdiff = abs(im1 - im2);
-    else //convert to the same type first
-       //imdiff = int_imabsdiff(double(im1), double(im2));
-       //imdiff = abs(double(im1)-double(im2));
-       error("The two input images must have the same type.");
     end
 
 endfunction

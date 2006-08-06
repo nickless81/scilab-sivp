@@ -34,6 +34,8 @@ function [im2] = im2int32(im)
 		case 'int32' then
 		     im2 = im;
 	 	case 'constant' then
+		     im(im>1.0) = 1.0;
+		     im(im<0.0) = 0.0;
 		     im2 = int32(im * (2^32-1) + 0.5 - 2^31);
 		else
 		     error("Data type " + imtype + " is not supported.");

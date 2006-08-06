@@ -1,6 +1,6 @@
 /***********************************************************************
  * SIVP - Scilab Image and Video Processing toolbox
- * Copyright (C) 2005  Shiqi Yu
+ * Copyright (C) 2006  Shiqi Yu
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,12 +21,7 @@
 #include "common.h"
 
 /************************************************************
- * write an image to a file
- * the first argument should be a matrix; only 8-bit single-channel or 3-channel can be saved.
- *    other formats will be converted to one of these formats
- * the second argument should be the file name 
- * the format of the file is decided by the file name
- * return 0 if succeed, -1 otherwise
+ * imout = imabsdiff(im1, im2)
  ************************************************************/
 
 int int_imabsdiff(char * fname)

@@ -30,7 +30,7 @@ Video support for SIVP is only available when SIVP is compiled with OpenCV which
 </DESCRIPTION>
 <EXAMPLE><![CDATA[
 	
-    n = aviopen(SCI+'/contrib/sivp/images/walking.avi');
+    n = aviopen(SCI+'/contrib/sivp/images/video.avi');
     im = avireadframe(n); //get a frame
     imshow(im);
 

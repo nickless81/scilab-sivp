@@ -2,12 +2,12 @@
 <!DOCTYPE MAN SYSTEM "mansivp.dtd">
 <MAN>
 <LANGUAGE>eng</LANGUAGE>
-<TITLE>imresize</TITLE>
+<TITLE>imfilter</TITLE>
 <TYPE>SIVP Toolbox</TYPE>
 <DATE>May, 2006</DATE>
 <SHORT_DESCRIPTION name="imfilter">Image filtering</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
-   <CALLING_SEQUENCE_ITEM>imf = imresize(im, F)</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>imf = imfilter(im, F)</CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>
 <PARAM>
 <PARAM_INDENT>
@@ -24,9 +24,9 @@
      </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
-     <PARAM_NAME>im</PARAM_NAME>
+     <PARAM_NAME>imf</PARAM_NAME>
      <PARAM_DESCRIPTION>
-       The filtered image which has the same dimension and class with <TT>imf</TT>.
+       The filtered image which has the same dimension and class with <TT>im</TT>.
      </PARAM_DESCRIPTION>
    </PARAM_ITEM>
 </PARAM_INDENT>
@@ -38,6 +38,14 @@ When <TT>im</TT> is a mult-channel image, each channel can be filtered with <TT>
 Input image pixel values outside the bounds of the image are assumed to 
 equal the nearest array border value.
 </P>
+<P>
+The only diffence of <TT>filter2</TT> with <TT>imfilter</TT> is 
+the output of <TT>filter2</TT> is double matrix,
+and the output of <TT>imfilter</TT> has the same type as input 
+and the elements in the output matrix that 
+exceed the range of the integer type will be truncated.
+</P>
+
 </DESCRIPTION>
 
 
@@ -62,5 +70,6 @@ The latest version of SIVP can be found at
 <!-- ================================= -->
    <SEE_ALSO>
       <SEE_ALSO_ITEM> <LINK>fspecial</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>filter2</LINK> </SEE_ALSO_ITEM>
    </SEE_ALSO>
 </MAN>

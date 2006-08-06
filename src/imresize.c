@@ -21,6 +21,7 @@
 #include "common.h"
 
 /**********************************************************************
+ * this function only supports UINT8, UINT16, INT32, SINGLE, DOUBLE
  * imout=imresize(imin, scale);
  * imout=imresize(imin, scale, interp);
  * imout=imresize(imin, [mrows ncols]);
@@ -36,7 +37,11 @@ int int_imresize(char * fname)
   int mR3, nR3, lR3;
 
   IplImage* pSrcImg = NULL;
+  //IplImage* pSrcCvtImg = NULL;
+  //IplImage* pDstCvtImg = NULL;
   IplImage* pDstImg = NULL;
+
+  int nSrcDepth = 0;
   int Interpolation = CV_INTER_NN; //Interpolation method, default method is nearest neigbor
   int nDestW = 0, nDestH = 0;
 
@@ -71,6 +76,25 @@ int int_imresize(char * fname)
       return -1;
     }
 
+  nSrcDepth = pSrcImg->depth;
+  //if the input image is of INT32 or DOUBLE class
+  //convert to FLOAT first
+  if( nSrcDepth==IPL_DEPTH_32S || nSrcDepth==IPL_DEPTH_64F)
+    {
+      IplImage * pTmp;
+      pTmp = cvCreateImage(cvSize(pSrcImg->width, pSrcImg->height),
+			   IPL_DEPTH_32F, pSrcImg->nChannels);
+      if(pTmp == NULL)
+	{
+	  cvReleaseImage(&pSrcImg);
+	  Scierror(999, "%s: Internal error for getting the image data.\r\n", fname);
+	  return -1;
+	}
+      cvConvert(pSrcImg, pTmp);
+      cvReleaseImage(&pSrcImg);
+      pSrcImg = pTmp;
+    }
+
   //descided the size for destination image
   GetRhsVar(2, "d", &mR2, &nR2, &lR2);
   if(mR2 == 1 && nR2 == 1)
@@ -97,7 +121,9 @@ int int_imresize(char * fname)
       return -1;
     }
 
-  pDstImg = cvCreateImage(cvSize(nDestW, nDestH), pSrcImg->depth, pSrcImg->nChannels);
+  pDstImg = cvCreateImage(cvSize(nDestW, nDestH), 
+			  pSrcImg->depth, 
+			  pSrcImg->nChannels);
 
   if(pDstImg == NULL)
     {
@@ -107,6 +133,26 @@ int int_imresize(char * fname)
     }
 
   cvResize(pSrcImg, pDstImg, Interpolation);
+
+
+  //convert the depth to original depth
+  if(nSrcDepth != pDstImg->depth)
+    {
+      IplImage * pTmp;
+      pTmp = cvCreateImage(cvSize(pDstImg->width, pDstImg->height),
+			   nSrcDepth,
+			   pDstImg->nChannels);
+      if(pTmp == NULL)
+	{
+	  cvReleaseImage(&pSrcImg);
+	  cvReleaseImage(&pDstImg);
+	  Scierror(999, "%s: Internal error for getting the image data.\r\n", fname);
+	  return -1;
+	}
+      cvConvert(pDstImg, pTmp);
+      cvReleaseImage(&pDstImg);
+      pDstImg = pTmp;
+    }
 
   
   IplImg2Mat(pDstImg, Rhs+1);

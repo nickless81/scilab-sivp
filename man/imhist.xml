@@ -7,9 +7,9 @@
 <DATE>April, 2006</DATE>
 <SHORT_DESCRIPTION name="imhist">get the histogram of an image</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
-   <CALLING_SEQUENCE_ITEM>[counts, cells] = imread(im)</CALLING_SEQUENCE_ITEM>
-   <CALLING_SEQUENCE_ITEM>[counts, cells] = imread(im, bins)</CALLING_SEQUENCE_ITEM>
-   <CALLING_SEQUENCE_ITEM>[counts, cells] = imread(im, bins [,width [,color]])</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>[counts, cells] = imhist(im)</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>[counts, cells] = imhist(im, bins)</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>[counts, cells] = imhist(im, bins [,width [,color]])</CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>
 <PARAM>
 <PARAM_INDENT>
