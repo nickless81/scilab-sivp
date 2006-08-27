@@ -43,7 +43,7 @@ function [border, thresh]=edge(Img, method, thresh, dir_or_sig, sig)
   end
   
   //check image channel
-  if size( size(im),2) <> 2  then
+  if size( size(Img),2) <> 2  then
     error('The input image should be a single channel image.');
   end
   
