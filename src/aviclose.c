@@ -37,10 +37,10 @@ int int_aviclose(char *fname)
 
   if (nFile >= 0 && nFile < MAX_AVI_FILE_NUM)
     {
-      if(OpenedCap[nFile].cap)
+      if(OpenedAviCap[nFile].video.cap)
 	{
-	  cvReleaseCapture(&(OpenedCap[nFile].cap));
-	  memset(OpenedCap[nFile].filename, 0, sizeof(OpenedCap[nFile].filename) );
+	  cvReleaseCapture(&(OpenedAviCap[nFile].video.cap));
+	  memset(OpenedAviCap[nFile].filename, 0, sizeof(OpenedAviCap[nFile].filename) );
 	}
       else
 	{

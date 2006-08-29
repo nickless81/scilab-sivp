@@ -53,7 +53,7 @@ int int_avireadframe(char * fname)
       Scierror(999, "%s: The argument should >=1 and <= %d.\r\n", fname, MAX_AVI_FILE_NUM);
       return -1;
     }
-  if(! OpenedCap[nFile].cap)
+  if(! OpenedAviCap[nFile].video.cap)
     {
       Scierror(999, "%s: The %d'th file is not opened.\r\n Please use avilistopened command to show opened files.\r\n",
 	       fname, nFile+1);
@@ -67,9 +67,9 @@ int int_avireadframe(char * fname)
 
 
   if(nFrameIdx >=0)
-    cvSetCaptureProperty( OpenedCap[nFile].cap, CV_CAP_PROP_POS_FRAMES, nFrameIdx);
+    cvSetCaptureProperty( OpenedAviCap[nFile].video.cap, CV_CAP_PROP_POS_FRAMES, nFrameIdx);
 
-  pImage = cvQueryFrame(OpenedCap[nFile].cap);
+  pImage = cvQueryFrame(OpenedAviCap[nFile].video.cap);
 
   if (! pImage)
   {

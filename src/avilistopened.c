@@ -40,13 +40,13 @@ int int_avilistopened(char * fname)
 
   for (i = 0; i < MAX_AVI_FILE_NUM; i++)
     {
-      if(OpenedCap[i].cap)
+      if(OpenedAviCap[i].video.cap)
 	{
 	  dIndices[count]=i+1;
 
-          //strcpy(sFileNames[count],  OpenedCap[i].filename);
-          strcpy(sFileNames+offset, OpenedCap[i].filename);
-	  offset += strlen(OpenedCap[i].filename)+1;
+          //strcpy(sFileNames[count],  OpenedAviCap[i].filename);
+          strcpy(sFileNames+offset, OpenedAviCap[i].filename);
+	  offset += strlen(OpenedAviCap[i].filename)+1;
 	  count++;
 	}
     }

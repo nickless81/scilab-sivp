@@ -60,12 +60,16 @@ typedef int BOOL;
 #define MAX_AVI_FILE_NUM 32
 #define MAX_FILENAME_LENGTH 2048
 
-  typedef struct OpenedCapture{
-    CvCapture * cap;
+  typedef struct OpenedAvifileCap{
+    union{
+      CvCapture * cap; //for reading from video files or cameras
+      CvVideoWriter * writer; // for writing to video files 
+    }video;
     char filename[MAX_FILENAME_LENGTH];
-  } OpenedCapture;
+  } OpenedAvifileCap;
 
-  OpenedCapture OpenedCap[MAX_AVI_FILE_NUM];
+  OpenedAvifileCap OpenedAviCap[MAX_AVI_FILE_NUM];
+
 //#ifdef HAVE_FFMPEG
 //#include <ffmpeg/avcodec.h>
 //#include <ffmpeg/avformat.h>

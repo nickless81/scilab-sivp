@@ -29,7 +29,7 @@ int int_sivp_init(char * fname)
   CheckLhs(0,1);
 
   cvSetErrMode(CV_ErrModeParent);
-  memset(OpenedCap, 0, sizeof(OpenedCap));
+  memset(OpenedAviCap, 0, sizeof(OpenedAvifileCap));
 
   return 0;
 
