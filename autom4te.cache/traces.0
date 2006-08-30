@@ -141,7 +141,7 @@ m4trace:configure.ac:25: -1- AC_SUBST_TRACE([target_alias])
 m4trace:configure.ac:25: -1- m4_pattern_allow([^target_alias$])
 m4trace:configure.ac:26: -1- AC_CONFIG_AUX_DIR([config])
 m4trace:configure.ac:28: -1- _m4_warn([obsolete], [The macro `AM_CONFIG_HEADER' is obsolete.
-You should run autoupdate.], [aclocal.m4:6879: AM_CONFIG_HEADER is expanded from...
+You should run autoupdate.], [aclocal.m4:6880: AM_CONFIG_HEADER is expanded from...
 configure.ac:28: the top level])
 m4trace:configure.ac:28: -1- AC_CONFIG_HEADERS([src/config.h])
 m4trace:configure.ac:29: -1- AM_INIT_AUTOMAKE([sivp], [0.3.1])
@@ -404,7 +404,7 @@ aclocal.m4:81: _AC_PROG_LIBTOOL is expanded from...
 aclocal.m4:61: AC_PROG_LIBTOOL is expanded from...
 configure.ac:46: the top level])
 m4trace:configure.ac:46: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
-You should run autoupdate.], [autoconf/general.m4:2426: AC_TRY_LINK is expanded from...
+You should run autoupdate.], [autoconf/general.m4:2429: AC_TRY_LINK is expanded from...
 ../../lib/m4sugar/m4sh.m4:519: AS_IF is expanded from...
 autoconf/general.m4:1922: AC_CACHE_VAL is expanded from...
 autoconf/general.m4:1935: AC_CACHE_CHECK is expanded from...
@@ -679,19 +679,19 @@ m4trace:configure.ac:203: -1- AH_OUTPUT([HAVE_STDBOOL_H], [/* Define to 1 if std
 m4trace:configure.ac:208: -1- AC_CHECK_FUNCS([malloc])
 m4trace:configure.ac:208: -1- AH_OUTPUT([HAVE_MALLOC], [/* Define to 1 if you have the `malloc\' function. */
 #undef HAVE_MALLOC])
-m4trace:configure.ac:311: -1- AC_SUBST([PACKAGE_NAME])
-m4trace:configure.ac:311: -1- AC_SUBST_TRACE([PACKAGE_NAME])
-m4trace:configure.ac:311: -1- m4_pattern_allow([^PACKAGE_NAME$])
-m4trace:configure.ac:312: -1- AC_SUBST([TOOLBOX_SRC])
-m4trace:configure.ac:312: -1- AC_SUBST_TRACE([TOOLBOX_SRC])
-m4trace:configure.ac:312: -1- m4_pattern_allow([^TOOLBOX_SRC$])
-m4trace:configure.ac:313: -1- AC_SUBST([TOOLBOX_TABLE])
-m4trace:configure.ac:313: -1- AC_SUBST_TRACE([TOOLBOX_TABLE])
-m4trace:configure.ac:313: -1- m4_pattern_allow([^TOOLBOX_TABLE$])
-m4trace:configure.ac:314: -1- AC_SUBST([TOOLBOX_FUNCTIONS])
-m4trace:configure.ac:314: -1- AC_SUBST_TRACE([TOOLBOX_FUNCTIONS])
-m4trace:configure.ac:314: -1- m4_pattern_allow([^TOOLBOX_FUNCTIONS$])
-m4trace:configure.ac:323: -1- AC_CONFIG_FILES([Makefile 
+m4trace:configure.ac:315: -1- AC_SUBST([PACKAGE_NAME])
+m4trace:configure.ac:315: -1- AC_SUBST_TRACE([PACKAGE_NAME])
+m4trace:configure.ac:315: -1- m4_pattern_allow([^PACKAGE_NAME$])
+m4trace:configure.ac:316: -1- AC_SUBST([TOOLBOX_SRC])
+m4trace:configure.ac:316: -1- AC_SUBST_TRACE([TOOLBOX_SRC])
+m4trace:configure.ac:316: -1- m4_pattern_allow([^TOOLBOX_SRC$])
+m4trace:configure.ac:317: -1- AC_SUBST([TOOLBOX_TABLE])
+m4trace:configure.ac:317: -1- AC_SUBST_TRACE([TOOLBOX_TABLE])
+m4trace:configure.ac:317: -1- m4_pattern_allow([^TOOLBOX_TABLE$])
+m4trace:configure.ac:318: -1- AC_SUBST([TOOLBOX_FUNCTIONS])
+m4trace:configure.ac:318: -1- AC_SUBST_TRACE([TOOLBOX_FUNCTIONS])
+m4trace:configure.ac:318: -1- m4_pattern_allow([^TOOLBOX_FUNCTIONS$])
+m4trace:configure.ac:327: -1- AC_CONFIG_FILES([Makefile 
 		 macros/Makefile
 		 images/Makefile
 		 man/Makefile
@@ -699,18 +699,18 @@ m4trace:configure.ac:323: -1- AC_CONFIG_FILES([Makefile
 		 demos/Makefile
 		 src/ilib_gen_gateway.sce
 		 loader.sce])
-m4trace:configure.ac:325: -1- AC_SUBST([LIB@&t@OBJS], [$ac_libobjs])
-m4trace:configure.ac:325: -1- AC_SUBST_TRACE([LIB@&t@OBJS])
-m4trace:configure.ac:325: -1- m4_pattern_allow([^LIB@&t@OBJS$])
-m4trace:configure.ac:325: -1- AC_SUBST([LTLIBOBJS], [$ac_ltlibobjs])
-m4trace:configure.ac:325: -1- AC_SUBST_TRACE([LTLIBOBJS])
-m4trace:configure.ac:325: -1- m4_pattern_allow([^LTLIBOBJS$])
-m4trace:configure.ac:325: -1- AC_SUBST_TRACE([top_builddir])
-m4trace:configure.ac:325: -1- AC_SUBST_TRACE([srcdir])
-m4trace:configure.ac:325: -1- AC_SUBST_TRACE([abs_srcdir])
-m4trace:configure.ac:325: -1- AC_SUBST_TRACE([top_srcdir])
-m4trace:configure.ac:325: -1- AC_SUBST_TRACE([abs_top_srcdir])
-m4trace:configure.ac:325: -1- AC_SUBST_TRACE([builddir])
-m4trace:configure.ac:325: -1- AC_SUBST_TRACE([abs_builddir])
-m4trace:configure.ac:325: -1- AC_SUBST_TRACE([abs_top_builddir])
-m4trace:configure.ac:325: -1- AC_SUBST_TRACE([INSTALL])
+m4trace:configure.ac:329: -1- AC_SUBST([LIB@&t@OBJS], [$ac_libobjs])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([LIB@&t@OBJS])
+m4trace:configure.ac:329: -1- m4_pattern_allow([^LIB@&t@OBJS$])
+m4trace:configure.ac:329: -1- AC_SUBST([LTLIBOBJS], [$ac_ltlibobjs])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([LTLIBOBJS])
+m4trace:configure.ac:329: -1- m4_pattern_allow([^LTLIBOBJS$])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([top_builddir])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([srcdir])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([abs_srcdir])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([top_srcdir])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([abs_top_srcdir])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([builddir])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([abs_builddir])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([abs_top_builddir])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([INSTALL])

@@ -32,7 +32,13 @@ int int_avicloseall(char *fname)
     {
       if(OpenedAviCap[i].video.cap)
 	{
-	  cvReleaseCapture( &(OpenedAviCap[i].video.cap) );
+	  //if it is reader for video/camera
+	  if (! OpenedAviCap[i].iswriter)
+	    cvReleaseCapture( &(OpenedAviCap[i].video.cap) );
+	  //if it is reader for video/camera
+	  else
+	    cvReleaseVideoWriter(&(OpenedAviCap[i].video.writer));
+
 	  memset(OpenedAviCap[i].filename, 0, sizeof(OpenedAviCap[i].filename) );
 	}
     }

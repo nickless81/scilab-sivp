@@ -29,11 +29,11 @@ AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
 #
 
 IMG_IO_SRC=imread.c imwrite.c imfinfo.c test.c mat2utfimg.c
-AVI_IO_SRC=aviinfo.c aviopen.c aviclose.c avicloseall.c avilistopened.c avireadframe.c camopen.c
+AVI_IO_SRC=aviinfo.c aviopen.c avifile.c aviclose.c avicloseall.c avilistopened.c avireadframe.c camopen.c addframe.c
 IMG_TRAN_SRC=imresize.c imabsdiff.c imadd.c imsubtract.c immultiply.c imdivide.c
-IMG_FILTER=imfilter.c filter2.c canny.c  
+IMG_FILTER=sobel.c imfilter.c filter2.c canny.c  
 IMG_COLOR=cvtcolor.c
-IMG_PROC_OLD= sobel.c   laplace.c precornerdetec.c imsmooth.c threshold.c adaptativethreshold.c erode.c dilate.c pyrdown.c pyrup.c xor.c not.c cmp.c hough.c
+IMG_PROC_OLD= ##laplace.c precornerdetec.c imsmooth.c threshold.c adaptativethreshold.c erode.c dilate.c pyrdown.c pyrup.c xor.c not.c cmp.c hough.c
 
 libsivp_la_SOURCES = libsivp.c common.c sivp_init.c $(IMG_IO_SRC)  $(AVI_IO_SRC) $(IMG_TRAN_SRC) $(IMG_FILTER) $(IMG_COLOR) $(IMG_PROC_OLD)
 

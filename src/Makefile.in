@@ -57,15 +57,14 @@ libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libsivp_la_DEPENDENCIES =
 am__objects_1 = imread.lo imwrite.lo imfinfo.lo test.lo mat2utfimg.lo
-am__objects_2 = aviinfo.lo aviopen.lo aviclose.lo avicloseall.lo \
-	avilistopened.lo avireadframe.lo camopen.lo
+am__objects_2 = aviinfo.lo aviopen.lo avifile.lo aviclose.lo \
+	avicloseall.lo avilistopened.lo avireadframe.lo camopen.lo \
+	addframe.lo
 am__objects_3 = imresize.lo imabsdiff.lo imadd.lo imsubtract.lo \
 	immultiply.lo imdivide.lo
-am__objects_4 = imfilter.lo filter2.lo canny.lo
+am__objects_4 = sobel.lo imfilter.lo filter2.lo canny.lo
 am__objects_5 = cvtcolor.lo
-am__objects_6 = sobel.lo laplace.lo precornerdetec.lo imsmooth.lo \
-	threshold.lo adaptativethreshold.lo erode.lo dilate.lo \
-	pyrdown.lo pyrup.lo xor.lo not.lo cmp.lo hough.lo
+am__objects_6 =
 am_libsivp_la_OBJECTS = libsivp.lo common.lo sivp_init.lo \
 	$(am__objects_1) $(am__objects_2) $(am__objects_3) \
 	$(am__objects_4) $(am__objects_5) $(am__objects_6)
@@ -211,11 +210,11 @@ AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
 #vdrw.c goodfeaturestotrack.c 
 #
 IMG_IO_SRC = imread.c imwrite.c imfinfo.c test.c mat2utfimg.c
-AVI_IO_SRC = aviinfo.c aviopen.c aviclose.c avicloseall.c avilistopened.c avireadframe.c camopen.c
+AVI_IO_SRC = aviinfo.c aviopen.c avifile.c aviclose.c avicloseall.c avilistopened.c avireadframe.c camopen.c addframe.c
 IMG_TRAN_SRC = imresize.c imabsdiff.c imadd.c imsubtract.c immultiply.c imdivide.c
-IMG_FILTER = imfilter.c filter2.c canny.c  
+IMG_FILTER = sobel.c imfilter.c filter2.c canny.c  
 IMG_COLOR = cvtcolor.c
-IMG_PROC_OLD = sobel.c   laplace.c precornerdetec.c imsmooth.c threshold.c adaptativethreshold.c erode.c dilate.c pyrdown.c pyrup.c xor.c not.c cmp.c hough.c
+IMG_PROC_OLD = ##laplace.c precornerdetec.c imsmooth.c threshold.c adaptativethreshold.c erode.c dilate.c pyrdown.c pyrup.c xor.c not.c cmp.c hough.c
 libsivp_la_SOURCES = libsivp.c common.c sivp_init.c $(IMG_IO_SRC)  $(AVI_IO_SRC) $(IMG_TRAN_SRC) $(IMG_FILTER) $(IMG_COLOR) $(IMG_PROC_OLD)
 libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release @PACKAGE_VERSION@
 libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
@@ -309,22 +308,19 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/adaptativethreshold.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/addframe.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/aviclose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/avicloseall.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/avifile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/aviinfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/avilistopened.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/aviopen.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/avireadframe.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/camopen.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/canny.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/common.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cvtcolor.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dilate.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/erode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/filter2.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hough.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/imabsdiff.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/imadd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/imdivide.Plo@am__quote@
@@ -333,21 +329,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/immultiply.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/imread.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/imresize.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/imsmooth.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/imsubtract.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/imwrite.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/laplace.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsivp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mat2utfimg.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/not.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/precornerdetec.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pyrdown.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pyrup.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sivp_init.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sobel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/threshold.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xor.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	if $(COMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \

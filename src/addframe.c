@@ -1,6 +1,6 @@
 /***********************************************************************
  * SIVP - Scilab Image and Video Processing toolbox
- * Copyright (C) 2005  Shiqi Yu
+ * Copyright (C) 2006  Shiqi Yu
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,77 +21,58 @@
 #include "common.h"
 
 /* read a frame from an opened video file*/
-int int_avireadframe(char * fname)
+int int_addframe(char * fname)
 {
   int mR1, nR1, lR1;
-  int mR2, nR2, lR2;
 
   int nFile;
-  int nFrameIdx = -1;
-
   IplImage * pImage;
 
-  CheckRhs(1,2);
-  CheckLhs(0,1);
+  CheckRhs(2,2);
+  CheckLhs(1,1);
 
+  //get opened file index
   GetRhsVar(1, "i", &mR1, &nR1, &lR1);
   CheckDims(1, mR1, nR1, 1, 1);
-  if(Rhs == 2)
-    {
-      GetRhsVar(2, "i", &mR2, &nR2, &lR2);
-      CheckDims(2, mR2, nR2, 1, 1);
-
-      nFrameIdx = *((int *)(istk(lR2)));
-      nFrameIdx -= 1;
-    }
-
   nFile = *((int *)(istk(lR1)));
   nFile -= 1;
 
+  //check whether the nFile'th is a video writer
   if (!(nFile >= 0 && nFile < MAX_AVI_FILE_NUM))
     {
       Scierror(999, "%s: The argument should >=1 and <= %d.\r\n", fname, MAX_AVI_FILE_NUM);
       return -1;
     }
 
-  if ( OpenedAviCap[nFile].iswriter )
+  if (! OpenedAviCap[nFile].iswriter )
     {
-      Scierror(999, "%s: The opened file is for writing.\r\n", fname);
+      Scierror(999, "%s: The opened file is not for writing.\r\n", fname);
       return -1;
     }
 
-
-  if(! OpenedAviCap[nFile].video.cap)
+  if(! OpenedAviCap[nFile].video.writer)
     {
       Scierror(999, "%s: The %d'th file is not opened.\r\n Please use avilistopened command to show opened files.\r\n",
 	       fname, nFile+1);
       return -1;
     }
-  if(Rhs ==2 && nFrameIdx < 0)
+
+  //load the input image
+  pImage = Mat2IplImg(2);
+
+  if(pImage == NULL)
     {
-      Scierror(999, "%s: The frame index should >=1, but your input is %d.\r\n", fname, nFrameIdx+1);
+      Scierror(999, "%s: Internal error for getting the image data.\r\n", fname);
       return -1;
     }
 
-
-  if(nFrameIdx >=0)
-    cvSetCaptureProperty( OpenedAviCap[nFile].video.cap, CV_CAP_PROP_POS_FRAMES, nFrameIdx);
-
-  pImage = cvQueryFrame(OpenedAviCap[nFile].video.cap);
-
-  if (! pImage)
-  {
-      Scierror(999, "%s: No frame.\r\n", fname);
-      return -1;
-  }
-
-  if(! IplImg2Mat(pImage, Rhs+1))
+  if( cvWriteFrame(OpenedAviCap[nFile].video.writer, pImage) != 0)
     {
-      Scierror(999, "%s: SIVP interal error.\r\n", fname);
+      Scierror(999, "%s: Write frame error, please check input image size and depth.\r\n", fname);
       return -1;
     }
 
-  LhsVar(1) = Rhs+1;
+  LhsVar(1) = 1;
 
   return 0;
 }

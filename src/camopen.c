@@ -64,10 +64,11 @@ int int_camopen(char *fname)
   cvSetCaptureProperty(OpenedAviCap[nCurrFile].video.cap, CV_CAP_PROP_FPS, 25);
 
   strcpy(OpenedAviCap[nCurrFile].filename, "camera");
+  OpenedAviCap[nCurrFile].iswriter = 0;
+
+
   //the output is the opened index
   nCurrFile += 1;
-
-
 
   mL = 1;
   nL = 1;

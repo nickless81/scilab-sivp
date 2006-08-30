@@ -5957,7 +5957,7 @@ else
         _pkg_short_errors_supported=no
 fi[]dnl
 ])
-m4trace:/usr/share/aclocal/pkg.m4:156: -1- AC_DEFUN([PKG_CHECK_MODULES], [AC_REQUIRE([PKG_PROG_PKG_CONFIG])dnl
+m4trace:/usr/share/aclocal/pkg.m4:157: -1- AC_DEFUN([PKG_CHECK_MODULES], [AC_REQUIRE([PKG_PROG_PKG_CONFIG])dnl
 AC_ARG_VAR([$1][_CFLAGS], [C compiler flags for $1, overriding pkg-config])dnl
 AC_ARG_VAR([$1][_LIBS], [linker flags for $1, overriding pkg-config])dnl
 
@@ -5991,7 +5991,8 @@ installed software in a non-standard prefix.
 
 _PKG_TEXT
 ])],
-		[$4])
+		[AC_MSG_RESULT([no])
+                $4])
 elif test $pkg_failed = untried; then
 	ifelse([$4], , [AC_MSG_FAILURE(dnl
 [The pkg-config script could not be found or is too old.  Make sure it
@@ -6495,7 +6496,7 @@ AC_MSG_RESULT([$am_cv_prog_tar_$1])])
 AC_SUBST([am__tar])
 AC_SUBST([am__untar])
 ])
-m4trace:configure.ac:25: -1- AC_INIT([sivp], [0.3.0], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
+m4trace:configure.ac:25: -1- AC_INIT([sivp], [0.3.1], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
 m4trace:configure.ac:25: -1- m4_pattern_forbid([^_?A[CHUM]_])
 m4trace:configure.ac:25: -1- m4_pattern_forbid([_AC_])
 m4trace:configure.ac:25: -1- m4_pattern_forbid([^LIBOBJS$], [do not use LIBOBJS directly, use AC_LIBOBJ (see section `AC_LIBOBJ vs LIBOBJS'])
@@ -6642,7 +6643,7 @@ m4trace:configure.ac:28: -1- _m4_warn([obsolete], [The macro `AM_CONFIG_HEADER' 
 You should run autoupdate.], [/usr/share/aclocal-1.9/header.m4:12: AM_CONFIG_HEADER is expanded from...
 configure.ac:28: the top level])
 m4trace:configure.ac:28: -1- AC_CONFIG_HEADERS([src/config.h])
-m4trace:configure.ac:29: -1- AM_INIT_AUTOMAKE([sivp], [0.3.0])
+m4trace:configure.ac:29: -1- AM_INIT_AUTOMAKE([sivp], [0.3.1])
 m4trace:configure.ac:29: -1- m4_pattern_allow([^AM_[A-Z]+FLAGS$])
 m4trace:configure.ac:29: -1- AM_SET_CURRENT_AUTOMAKE_VERSION
 m4trace:configure.ac:29: -1- AM_AUTOMAKE_VERSION([1.9.6])
@@ -6663,7 +6664,7 @@ m4trace:configure.ac:29: -1- m4_pattern_allow([^CYGPATH_W$])
 m4trace:configure.ac:29: -1- AC_SUBST([PACKAGE], [sivp])
 m4trace:configure.ac:29: -1- AC_SUBST_TRACE([PACKAGE])
 m4trace:configure.ac:29: -1- m4_pattern_allow([^PACKAGE$])
-m4trace:configure.ac:29: -1- AC_SUBST([VERSION], [0.3.0])
+m4trace:configure.ac:29: -1- AC_SUBST([VERSION], [0.3.1])
 m4trace:configure.ac:29: -1- AC_SUBST_TRACE([VERSION])
 m4trace:configure.ac:29: -1- m4_pattern_allow([^VERSION$])
 m4trace:configure.ac:29: -1- _AM_IF_OPTION([no-define], [], [AC_DEFINE_UNQUOTED(PACKAGE, "$PACKAGE", [Name of package])
@@ -7215,7 +7216,7 @@ m4trace:configure.ac:46: -1- _LT_AC_TAGVAR([lt_cv_prog_compiler_c_o], [])
 m4trace:configure.ac:46: -1- AC_LIBTOOL_SYS_HARD_LINK_LOCKS([])
 m4trace:configure.ac:46: -1- _LT_AC_LOCK
 m4trace:configure.ac:46: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
-You should run autoupdate.], [autoconf/general.m4:2426: AC_TRY_LINK is expanded from...
+You should run autoupdate.], [autoconf/general.m4:2429: AC_TRY_LINK is expanded from...
 ../../lib/m4sugar/m4sh.m4:519: AS_IF is expanded from...
 autoconf/general.m4:1922: AC_CACHE_VAL is expanded from...
 autoconf/general.m4:1935: AC_CACHE_CHECK is expanded from...
@@ -9524,19 +9525,19 @@ m4trace:configure.ac:203: -1- AH_OUTPUT([HAVE_STDBOOL_H], [/* Define to 1 if std
 m4trace:configure.ac:208: -1- AC_CHECK_FUNCS([malloc])
 m4trace:configure.ac:208: -1- AH_OUTPUT([HAVE_MALLOC], [/* Define to 1 if you have the `malloc\' function. */
 #undef HAVE_MALLOC])
-m4trace:configure.ac:299: -1- AC_SUBST([PACKAGE_NAME])
-m4trace:configure.ac:299: -1- AC_SUBST_TRACE([PACKAGE_NAME])
-m4trace:configure.ac:299: -1- m4_pattern_allow([^PACKAGE_NAME$])
-m4trace:configure.ac:300: -1- AC_SUBST([TOOLBOX_SRC])
-m4trace:configure.ac:300: -1- AC_SUBST_TRACE([TOOLBOX_SRC])
-m4trace:configure.ac:300: -1- m4_pattern_allow([^TOOLBOX_SRC$])
-m4trace:configure.ac:301: -1- AC_SUBST([TOOLBOX_TABLE])
-m4trace:configure.ac:301: -1- AC_SUBST_TRACE([TOOLBOX_TABLE])
-m4trace:configure.ac:301: -1- m4_pattern_allow([^TOOLBOX_TABLE$])
-m4trace:configure.ac:302: -1- AC_SUBST([TOOLBOX_FUNCTIONS])
-m4trace:configure.ac:302: -1- AC_SUBST_TRACE([TOOLBOX_FUNCTIONS])
-m4trace:configure.ac:302: -1- m4_pattern_allow([^TOOLBOX_FUNCTIONS$])
-m4trace:configure.ac:311: -1- AC_CONFIG_FILES([Makefile 
+m4trace:configure.ac:315: -1- AC_SUBST([PACKAGE_NAME])
+m4trace:configure.ac:315: -1- AC_SUBST_TRACE([PACKAGE_NAME])
+m4trace:configure.ac:315: -1- m4_pattern_allow([^PACKAGE_NAME$])
+m4trace:configure.ac:316: -1- AC_SUBST([TOOLBOX_SRC])
+m4trace:configure.ac:316: -1- AC_SUBST_TRACE([TOOLBOX_SRC])
+m4trace:configure.ac:316: -1- m4_pattern_allow([^TOOLBOX_SRC$])
+m4trace:configure.ac:317: -1- AC_SUBST([TOOLBOX_TABLE])
+m4trace:configure.ac:317: -1- AC_SUBST_TRACE([TOOLBOX_TABLE])
+m4trace:configure.ac:317: -1- m4_pattern_allow([^TOOLBOX_TABLE$])
+m4trace:configure.ac:318: -1- AC_SUBST([TOOLBOX_FUNCTIONS])
+m4trace:configure.ac:318: -1- AC_SUBST_TRACE([TOOLBOX_FUNCTIONS])
+m4trace:configure.ac:318: -1- m4_pattern_allow([^TOOLBOX_FUNCTIONS$])
+m4trace:configure.ac:327: -1- AC_CONFIG_FILES([Makefile 
 		 macros/Makefile
 		 images/Makefile
 		 man/Makefile
@@ -9544,20 +9545,20 @@ m4trace:configure.ac:311: -1- AC_CONFIG_FILES([Makefile
 		 demos/Makefile
 		 src/ilib_gen_gateway.sce
 		 loader.sce])
-m4trace:configure.ac:313: -1- AC_SUBST([LIB@&t@OBJS], [$ac_libobjs])
-m4trace:configure.ac:313: -1- AC_SUBST_TRACE([LIB@&t@OBJS])
-m4trace:configure.ac:313: -1- m4_pattern_allow([^LIB@&t@OBJS$])
-m4trace:configure.ac:313: -1- AC_SUBST([LTLIBOBJS], [$ac_ltlibobjs])
-m4trace:configure.ac:313: -1- AC_SUBST_TRACE([LTLIBOBJS])
-m4trace:configure.ac:313: -1- m4_pattern_allow([^LTLIBOBJS$])
-m4trace:configure.ac:313: -1- AC_SUBST_TRACE([top_builddir])
-m4trace:configure.ac:313: -1- AC_SUBST_TRACE([srcdir])
-m4trace:configure.ac:313: -1- AC_SUBST_TRACE([abs_srcdir])
-m4trace:configure.ac:313: -1- AC_SUBST_TRACE([top_srcdir])
-m4trace:configure.ac:313: -1- AC_SUBST_TRACE([abs_top_srcdir])
-m4trace:configure.ac:313: -1- AC_SUBST_TRACE([builddir])
-m4trace:configure.ac:313: -1- AC_SUBST_TRACE([abs_builddir])
-m4trace:configure.ac:313: -1- AC_SUBST_TRACE([abs_top_builddir])
-m4trace:configure.ac:313: -1- AC_SUBST_TRACE([INSTALL])
-m4trace:configure.ac:313: -1- _AC_AM_CONFIG_HEADER_HOOK([$ac_file])
-m4trace:configure.ac:313: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS
+m4trace:configure.ac:329: -1- AC_SUBST([LIB@&t@OBJS], [$ac_libobjs])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([LIB@&t@OBJS])
+m4trace:configure.ac:329: -1- m4_pattern_allow([^LIB@&t@OBJS$])
+m4trace:configure.ac:329: -1- AC_SUBST([LTLIBOBJS], [$ac_ltlibobjs])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([LTLIBOBJS])
+m4trace:configure.ac:329: -1- m4_pattern_allow([^LTLIBOBJS$])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([top_builddir])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([srcdir])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([abs_srcdir])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([top_srcdir])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([abs_top_srcdir])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([builddir])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([abs_builddir])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([abs_top_builddir])
+m4trace:configure.ac:329: -1- AC_SUBST_TRACE([INSTALL])
+m4trace:configure.ac:329: -1- _AC_AM_CONFIG_HEADER_HOOK([$ac_file])
+m4trace:configure.ac:329: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS

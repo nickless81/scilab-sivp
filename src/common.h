@@ -61,6 +61,7 @@ typedef int BOOL;
 #define MAX_FILENAME_LENGTH 2048
 
   typedef struct OpenedAvifileCap{
+    int iswriter; //reader or writer
     union{
       CvCapture * cap; //for reading from video files or cameras
       CvVideoWriter * writer; // for writing to video files 

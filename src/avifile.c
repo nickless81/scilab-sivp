@@ -17,24 +17,47 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ***********************************************************************/
 
+//create video file
 
 #include "common.h"
 
-int int_aviopen(char *fname)
+int int_avifile(char *fname)
 {
   int mL, nL;
-  int mR, nR, lR;
+  int mR1, nR1, lR1;
+  int mR2, nR2, lR2;
+  int mR3, nR3, lR3;
+  int nPos = 0;
+
   int nCurrFile = 0;
   int *pret = &nCurrFile;
+  int nWidth, nHeight;
+  int nFPS = 25;
 
-  CheckRhs(1,1);
+  CheckRhs(2,3);
   CheckLhs(1,1);
 
-  GetRhsVar(1, "c", &mR, &nR, &lR);
+  //get file name
+  GetRhsVar(++nPos, "c", &mR1, &nR1, &lR1);
 
+  //get dims
+  GetRhsVar(++nPos, "i", &mR2, &nR2, &lR2);
+  CheckDims(nPos, mR2, nR2, 2, 1);
+  nWidth = *((int *)(istk(lR2)));
+  nHeight = *(( (int *)(istk(lR2)) )+1);
+
+  //get fps
+  if(Rhs == 3)
+    {
+      GetRhsVar(++nPos, "i", &mR3, &nR3, &lR3);
+      CheckDims(nPos, mR3, nR3, 1, 1);
+      nFPS = *((int *)(istk(lR3)));
+    }
+
+  //find empty pointer
   for (nCurrFile = 0; nCurrFile < MAX_AVI_FILE_NUM; nCurrFile++)
     {
-      if( !(OpenedAviCap[nCurrFile].video.cap))
+      if( !(OpenedAviCap[nCurrFile].video.writer))
 	break;
     }
 
@@ -45,22 +68,27 @@ int int_aviopen(char *fname)
     }
 
 
-  OpenedAviCap[nCurrFile].video.cap = cvCaptureFromFile(cstk(lR));
-  if(OpenedAviCap[nCurrFile].video.cap == 0)
+  OpenedAviCap[nCurrFile].video.writer = cvCreateVideoWriter(cstk(lR1), 
+							     CV_FOURCC('P','I','M','1'),
+							     (double)nFPS, 
+							     cvSize(nWidth, nHeight),
+							     1);
+  if(OpenedAviCap[nCurrFile].video.writer == 0)
     {
-      Scierror(999, "%s: Can not open video file %s. \nMaybe the codec of the video can not be handled or the file does not exist.\r\n", fname, cstk(lR));
+      Scierror(999, "%s: Can not create video file %s.\r\n", fname, cstk(lR1));
       return -1;
     }
-  
-  OpenedAviCap[nCurrFile].iswriter = 0;
-  strcpy(OpenedAviCap[nCurrFile].filename, cstk(lR));
+
+  strcpy(OpenedAviCap[nCurrFile].filename, cstk(lR1));
+  OpenedAviCap[nCurrFile].iswriter = 1;
+
   //the output is the opened index
   nCurrFile += 1;
 
   mL = 1;
   nL = 1;
-  CreateVarFromPtr(2, "i", &mL, &nL, &pret);
+  CreateVarFromPtr(++nPos, "i", &mL, &nL, &pret);
   
-  LhsVar(1) =2 ;
+  LhsVar(1) =nPos ;
   return 0;
 }

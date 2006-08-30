@@ -219,6 +219,19 @@ PACKAGE_NAME=sivp
 #		'vdclose', 'int_vdclose'; \
 #		'vdcloseall', 'int_vdcloseall'; \
 #		'goodfeaturestotrack', 'int_goodfeaturestotrack';\
+#		'laplace', 'int_laplace'; \
+#		'precornerdetec', 'int_precornerdetec'; \
+#		'imsmooth', 'int_imsmooth'; \
+#		'threshold', 'int_threshold'; \
+#		'adaptativethreshold', 'int_adaptativethreshold'; \
+#		'erode', 'int_erode';\
+#		'dilate', 'int_dilate';\
+#		'pyrdown', 'int_pyrdown';\
+#		'pyrup', 'int_pyrup';\
+#		'xor', 'int_xor';\
+#		'not', 'int_not';\
+#		'cmp', 'int_cmp';\
+#		'hough', 'int_hough';\
 
 
 TOOLBOX_TABLE="	'sivptest', 'int_test'; \
@@ -228,11 +241,13 @@ TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'imfinfo', 'int_imfinfo';\
 		'aviinfo', 'int_aviinfo';\
 		'aviopen', 'int_aviopen';\
+		'camopen', 'int_camopen';\
+		'avifile', 'int_avifile';\
 		'aviclose','int_aviclose';\
 		'avicloseall','int_avicloseall';\
 		'avilistopened', 'int_avilistopened';\
 		'avireadframe', 'int_avireadframe';\
-		'camopen', 'int_camopen';\
+		'addframe', 'int_addframe';\ 
 		'int_imresize', 'int_imresize';\
 		'int_imabsdiff', 'int_imabsdiff';\
 		'int_imadd', 'int_imadd'; \
@@ -245,19 +260,6 @@ TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'int_canny', 'int_canny'; \
 		'int_sobel', 'int_sobel'; \
 		'int_cvtcolor', 'int_cvtcolor'; \
-		'laplace', 'int_laplace'; \
-		'precornerdetec', 'int_precornerdetec'; \
-		'imsmooth', 'int_imsmooth'; \
-		'threshold', 'int_threshold'; \
-		'adaptativethreshold', 'int_adaptativethreshold'; \
-		'erode', 'int_erode';\
-		'dilate', 'int_dilate';\
-		'pyrdown', 'int_pyrdown';\
-		'pyrup', 'int_pyrup';\
-		'xor', 'int_xor';\
-		'not', 'int_not';\
-		'cmp', 'int_cmp';\
-		'hough', 'int_hough';\
 		"
 # for loader.sce
 # TOOLBOX_FUNCTIONS is the first colum of TOOLBOX_TABLE 
@@ -268,6 +270,19 @@ TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 #		       'vdclose'; \
 #		       'vdcloseall'; \
 #		       'goodfeaturestotrack';\
+#		       'laplace'; \
+#		       'precornerdetec'; \
+#		       'imsmooth'; \
+#		       'threshold'; \
+#		       'adaptativethreshold'; \
+#		       'erode';\
+#		       'dilate';\
+#		       'pyrdown';\
+#		       'pyrup';\
+#		       'xor';\
+#		       'not';\
+#		       'cmp';\
+#		       'hough';\
 
 TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'sivp_init'; \
@@ -276,11 +291,13 @@ TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'imfinfo'; \
 		       'aviinfo';\
 		       'aviopen';\
+		       'camopen';\
+		       'avifile';\
 		       'aviclose';\
 		       'avicloseall';\
 		       'avilistopened';\
 		       'avireadframe';\
-		       'camopen';\
+		       'addframe';\
 		       'int_imresize';\
 		       'int_imabsdiff';\
 		       'int_imadd'; \
@@ -293,19 +310,6 @@ TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'int_canny'; \
 		       'int_sobel'; \
 		       'int_cvtcolor'; \
-		       'laplace'; \
-		       'precornerdetec'; \
-		       'imsmooth'; \
-		       'threshold'; \
-		       'adaptativethreshold'; \
-		       'erode';\
-		       'dilate';\
-		       'pyrdown';\
-		       'pyrup';\
-		       'xor';\
-		       'not';\
-		       'cmp';\
-		       'hough';\
 		   "
 
 AC_SUBST(PACKAGE_NAME)
