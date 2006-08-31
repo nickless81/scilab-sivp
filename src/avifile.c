@@ -69,7 +69,7 @@ int int_avifile(char *fname)
 
 
   OpenedAviCap[nCurrFile].video.writer = cvCreateVideoWriter(cstk(lR1), 
-							     CV_FOURCC('P','I','M','1'),
+							     CV_FOURCC('X','V','I','D'),
 							     (double)nFPS, 
 							     cvSize(nWidth, nHeight),
 							     1);

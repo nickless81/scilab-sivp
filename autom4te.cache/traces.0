@@ -1,4 +1,4 @@
-m4trace:configure.ac:25: -1- AC_INIT([sivp], [0.3.1], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
+m4trace:configure.ac:25: -1- AC_INIT([sivp], [0.3.9], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
 m4trace:configure.ac:25: -1- m4_pattern_forbid([^_?A[CHUM]_])
 m4trace:configure.ac:25: -1- m4_pattern_forbid([_AC_])
 m4trace:configure.ac:25: -1- m4_pattern_forbid([^LIBOBJS$], [do not use LIBOBJS directly, use AC_LIBOBJ (see section `AC_LIBOBJ vs LIBOBJS'])
@@ -144,7 +144,7 @@ m4trace:configure.ac:28: -1- _m4_warn([obsolete], [The macro `AM_CONFIG_HEADER' 
 You should run autoupdate.], [aclocal.m4:6880: AM_CONFIG_HEADER is expanded from...
 configure.ac:28: the top level])
 m4trace:configure.ac:28: -1- AC_CONFIG_HEADERS([src/config.h])
-m4trace:configure.ac:29: -1- AM_INIT_AUTOMAKE([sivp], [0.3.1])
+m4trace:configure.ac:29: -1- AM_INIT_AUTOMAKE([sivp], [0.3.9])
 m4trace:configure.ac:29: -1- m4_pattern_allow([^AM_[A-Z]+FLAGS$])
 m4trace:configure.ac:29: -1- AM_AUTOMAKE_VERSION([1.9.6])
 m4trace:configure.ac:29: -1- AC_PROG_INSTALL
@@ -164,7 +164,7 @@ m4trace:configure.ac:29: -1- m4_pattern_allow([^CYGPATH_W$])
 m4trace:configure.ac:29: -1- AC_SUBST([PACKAGE], [sivp])
 m4trace:configure.ac:29: -1- AC_SUBST_TRACE([PACKAGE])
 m4trace:configure.ac:29: -1- m4_pattern_allow([^PACKAGE$])
-m4trace:configure.ac:29: -1- AC_SUBST([VERSION], [0.3.1])
+m4trace:configure.ac:29: -1- AC_SUBST([VERSION], [0.3.9])
 m4trace:configure.ac:29: -1- AC_SUBST_TRACE([VERSION])
 m4trace:configure.ac:29: -1- m4_pattern_allow([^VERSION$])
 m4trace:configure.ac:29: -1- AC_DEFINE_TRACE_LITERAL([PACKAGE])

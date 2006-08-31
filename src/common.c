@@ -319,7 +319,7 @@ IplImage * CreateIplImgFromHm(int nPos)
   
   /*get the dimension information, it's stored in the second element of the mlist*/
 
-  GetListRhsVar(1,2,"I", &m2, &n2,&Dims);
+  GetListRhsVar(nPos,2,"I", &m2, &n2,&Dims);
   if( m2*n2 !=2 && m2*n2 !=3)
     goto NOT_HM;
 
