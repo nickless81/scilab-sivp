@@ -53,6 +53,8 @@ The latest version of SIVP can be found at
       <SEE_ALSO_ITEM> <LINK>aviinfo</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>aviopen</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>camopen</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>avifile</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>addframe</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>aviclose</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>avicloseall</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>avireadframe</LINK> </SEE_ALSO_ITEM>

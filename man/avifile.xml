@@ -2,19 +2,32 @@
 <!DOCTYPE MAN SYSTEM "mansivp.dtd">
 <MAN>
 <LANGUAGE>eng</LANGUAGE>
-<TITLE>aviopen</TITLE>
+<TITLE>avifile</TITLE>
 <TYPE>SIVP Toolbox</TYPE>
-<DATE>April, 2006</DATE>
-<SHORT_DESCRIPTION name="aviopen">Open a video file. (experimental)</SHORT_DESCRIPTION>
+<DATE>Sep, 2006</DATE>
+<SHORT_DESCRIPTION name="avifile">Create a new video file to write. (experimental)</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
-   <CALLING_SEQUENCE_ITEM>n = aviopen(filename)</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>n = avifile(filename, dims)</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>n = avifile(filename, dims, fps)</CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>
 <PARAM>
 <PARAM_INDENT>
    <PARAM_ITEM>
    <PARAM_NAME>filename</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   A string, the video filename to be read.
+   A string, the video filename to be created.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>dims</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   A 2x1 vector, which indicates the frame size (width, height).
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>fps</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   A integer scalar, and the default value is 25.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
@@ -27,7 +40,7 @@
 </PARAM>
 <DESCRIPTION>
 <P>
-   <TT>aviopen</TT> open a video file, but it does not read frames from the file. Please use <TT>im=avireadframe(n)</TT> to get a frame from the n'th opened video file. Remember to close the opened file using <TT>aviclose(n)</TT> or <TT>avicloseall()</TT>.
+   <TT>avifile</TT> create a new video file. After the video file is created, <TT>addframe</TT> can be used to add frame to the file. Remember to close the opened file using <TT>aviclose(n)</TT> or <TT>avicloseall()</TT>.
 </P>
 <P>
 Video support for SIVP is only available when SIVP is compiled with OpenCV which support video I/O.
@@ -36,11 +49,14 @@ Video support for SIVP is only available when SIVP is compiled with OpenCV which
 
 <EXAMPLE><![CDATA[
 	
-    n = aviopen(SCI+'/contrib/sivp/images/video.avi');
-    im = avireadframe(n); //get a frame
-    imshow(im);
+    im = imread('lena.png');
+    n = avifile('lena.avi', [200;200], 30);
 
-    avilistopened()
+    for ii=1:300
+        ims = im(200:399, ii:ii+199, :);
+        addframe(n, ims);
+    end
+
     aviclose(n);
 
 ]]></EXAMPLE>
@@ -57,8 +73,8 @@ The latest version of SIVP can be found at
 <!-- ================================= -->
    <SEE_ALSO>
       <SEE_ALSO_ITEM> <LINK>aviinfo</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>aviopen</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>camopen</LINK> </SEE_ALSO_ITEM>
-      <SEE_ALSO_ITEM> <LINK>avifile</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>addframe</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>aviclose</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>avicloseall</LINK> </SEE_ALSO_ITEM>
