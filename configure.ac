@@ -119,10 +119,10 @@ fi
 
 CPPFLAGS="$CPPFLAGS -I${SCIDIR}/routines"
 
-AC_PREFIX_DEFAULT([SCI/contrib/sivp])
+AC_PREFIX_DEFAULT([SCI/contrib/sivp-0.4.0])
 
 if test "x$prefix"  = xNONE; then 
-   prefix="${SCIDIR}/contrib/sivp"
+   prefix="${SCIDIR}/contrib/sivp-0.4.0"
 fi
 
 TOOLBOXDIR=$prefix

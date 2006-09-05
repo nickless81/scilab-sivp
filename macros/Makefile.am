@@ -40,11 +40,15 @@ EXTRA_DIST = $(macros_sci)  imshow.tcl
 
 
 #
-# The following code is an adaptation to Automake from @SCIDIR@/macros/Make.lib
-#
-
+# revised by SHANG Shulin
+# export name=$(patsubst %.sci, %, $<);
 %.bin : %.sci
-	@SCI=$(SCIDIR);export SCI;$(SCIDIR)/bin/scilab -comp  $<
+	@SCI=$(SCIDIR);export SCI; umask 002;rm -f repor;
+	@name=`basename $< .sci`;
+	@echo "predef();getf('$(name).sci');save('$(name).bin');quit"| $(SCIEXE) -ns -nw | sed 1,8d 1>report 2>&1;umask 022;
+#
+#%.bin : %.sci
+#	@SCI=$(SCIDIR);export SCI;$(SCIDIR)/bin/scilab -comp  $<
 
 ##.sci.bin:
 ##	@SCI=$(SCIDIR);export SCI;$(SCIDIR)/bin/scilab -comp  $*.sci

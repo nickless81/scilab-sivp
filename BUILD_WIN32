@@ -20,8 +20,8 @@ in the following steps
 2) Install gtk-win32-devel-2.6.x in C:\GTK (download it from http://gladewin32.sourceforge.net/),
    execute commands below under MSYS:
 
-   cp /c/GTK/bin/* /local/bin/
-   cp /c/GTK/share/aclocal/pkg.m4  /local/share/aclocal/
+   cp /c/GTK/bin/* /usr/local/bin/
+   cp /c/GTK/share/aclocal/pkg.m4  /usr/local/share/aclocal/
    
 3) Your scilab installation must be in c:\scilab (/c/scilab in MSYS), 
    because this path is hardcoded in the build process.  Please move 
@@ -53,8 +53,6 @@ in the following steps
    --------------------------------------------------
    
    # Package Information for pkg-config
-   
-   
    prefix=/usr/
    exec_prefix=${prefix}/bin
    libdir=${prefix}/lib/opencv
@@ -62,15 +60,16 @@ in the following steps
    
    Name: OpenCV
    Description: Intel(R) Open Source Computer Vision Library
-   Version: 0.9.6
+   Version: 0.9.7
    Libs: -L${libdir} -lcxcore -lcv -lhighgui -lcvaux
    Cflags: -I${includedir}
-   
    
    --------------------------------------------------
    opencv/opencv.sh
    --------------------------------------------------
    
+   #!/bin/sh
+   rm *.def *.dll.a 
    echo EXPORTS > cxcore.def
    nm /c/opencv/lib/cxcore.lib | grep ' T _' | sed 's/.* T _//' >> cxcore.def
    dlltool --def cxcore.def --dllname cxcore097.dll --output-lib libcxcore.dll.a
@@ -91,7 +90,9 @@ in the following steps
    nm /c/opencv/lib/cvcam.lib | grep ' T _' | sed 's/.* T _//' >> cvcam.def
    dlltool --def cvcam.def --dllname cvcam097.dll --output-lib libcvcam.dll.a
    
-   mkdir /usr/lib/opencv
+   if test ! -d "/usr/lib/opencv"; then
+      mkdir /usr/lib/opencv
+   fi
    cp lib*.a /usr/lib/opencv
    cp opencv.pc /usr/lib/opencv
    
@@ -101,7 +102,9 @@ in the following steps
    cp /c/opencv/bin/highgui097.dll /usr/bin
    cp /c/opencv/bin/cvcam097.dll /usr/bin
    
-   mkdir /usr/include/opencv
+   if test ! -d "/usr/include/opencv"; then
+      mkdir /usr/include/opencv
+   fi
    cp /c/opencv/cxcore/include/*.h /usr/include/opencv
    cp /c/opencv/cv/include/*.h /usr/include/opencv
    cp /c/opencv/cvaux/include/*.h /usr/include/opencv
@@ -127,7 +130,7 @@ in the following steps
 
       cp src/.libs/libsivp*.dll /c/scilab/contrib/sivp/lib/libsivp.dll
 
-8) Copy the cv09x.dll, cxcore09x.dll, highgui09x.dll to SCI/contrib/sivp/lib by hand.
+8) Copy the cv097.dll, cxcore097.dll, highgui097.dll to SCI/contrib/sivp/lib by hand.
    For example,
    cp /c/opencv/bin/cxcore097.dll /c/scilab/contrib/sivp/lib
    cp /c/opencv/bin/cv097.dll /c/scilab/contrib/sivp/lib
@@ -154,8 +157,8 @@ MinGW (Minimallist GNU for Windows) 是可以生成windwows本地代码的一组开发工具。
    它安装到 C:\GTK 目录下,
    在MSYS执行如下命令:
 
-   cp /c/GTK/bin/* /local/bin/
-   cp /c/GTK/share/aclocal/pkg.m4  /local/share/aclocal/
+   cp /c/GTK/bin/* /usr/local/bin/
+   cp /c/GTK/share/aclocal/pkg.m4  /usr/local/share/aclocal/
 
 3) scilab必须安装在c:\scilab这个目录(在MSYS中对应着/c/scilab)，另一种方法是你在
    MSYS对应的/etc/fstab这个文件中添加相应的mount目录。
@@ -181,8 +184,6 @@ MinGW (Minimallist GNU for Windows) 是可以生成windwows本地代码的一组开发工具。
    --------------------------------------------------
    
    # Package Information for pkg-config
-   
-   
    prefix=/usr/
    exec_prefix=${prefix}/bin
    libdir=${prefix}/lib/opencv
@@ -190,15 +191,16 @@ MinGW (Minimallist GNU for Windows) 是可以生成windwows本地代码的一组开发工具。
    
    Name: OpenCV
    Description: Intel(R) Open Source Computer Vision Library
-   Version: 0.9.6
+   Version: 0.9.7
    Libs: -L${libdir} -lcxcore -lcv -lhighgui -lcvaux
    Cflags: -I${includedir}
-   
    
    --------------------------------------------------
    opencv/opencv.sh
    --------------------------------------------------
    
+   #!/bin/sh
+   rm *.def *.dll.a 
    echo EXPORTS > cxcore.def
    nm /c/opencv/lib/cxcore.lib | grep ' T _' | sed 's/.* T _//' >> cxcore.def
    dlltool --def cxcore.def --dllname cxcore097.dll --output-lib libcxcore.dll.a
@@ -219,7 +221,9 @@ MinGW (Minimallist GNU for Windows) 是可以生成windwows本地代码的一组开发工具。
    nm /c/opencv/lib/cvcam.lib | grep ' T _' | sed 's/.* T _//' >> cvcam.def
    dlltool --def cvcam.def --dllname cvcam097.dll --output-lib libcvcam.dll.a
    
-   mkdir /usr/lib/opencv
+   if test ! -d "/usr/lib/opencv"; then
+      mkdir /usr/lib/opencv
+   fi
    cp lib*.a /usr/lib/opencv
    cp opencv.pc /usr/lib/opencv
    
@@ -229,7 +233,9 @@ MinGW (Minimallist GNU for Windows) 是可以生成windwows本地代码的一组开发工具。
    cp /c/opencv/bin/highgui097.dll /usr/bin
    cp /c/opencv/bin/cvcam097.dll /usr/bin
    
-   mkdir /usr/include/opencv
+   if test !-d "/usr/include/opencv"; then
+      mkdir /usr/include/opencv
+   fi
    cp /c/opencv/cxcore/include/*.h /usr/include/opencv
    cp /c/opencv/cv/include/*.h /usr/include/opencv
    cp /c/opencv/cvaux/include/*.h /usr/include/opencv
@@ -251,8 +257,7 @@ MinGW (Minimallist GNU for Windows) 是可以生成windwows本地代码的一组开发工具。
 
       cp src/.libs/libsivp*.dll /c/scilab/contrib/sivp/lib/libsivp.dll
 
-8) 把cv09x.dll, cxcore09x.dll, highgui09x.dll 这几个文件（随版本不同文件名有所区别）拷到 SCI/contrib/sivp/lib 
-   这个目录下. 例如：
+8) 把cv097.dll, cxcore097.dll, highgui097.dll 拷到 SCI/contrib/sivp/lib 这个目录下。例如：
    cp /c/opencv/bin/cxcore097.dll /c/scilab/contrib/sivp/lib
    cp /c/opencv/bin/cv097.dll /c/scilab/contrib/sivp/lib
    cp /c/opencv/bin/highgui097.dll /c/scilab/contrib/sivp/lib
