@@ -145,10 +145,10 @@ Now enter Scilab and click the menuitem ‘sivp’ button in ‘toolbox’.
 
 SIVP的windows移植步骤
 
-MinGW (Minimallist GNU for Windows) 是可以生成windwows本地代码的一组开发工具。
+MinGW (Minimallist GNU for Windows) 是可以生成Windows本地代码的一组开发工具。
 你可以使用它像在Unix/Linux一样configure, make 这个工具箱。
 
-为了使用MinGW编译这个工具箱，我们需要手动作一些配置。整个过程是由如下步骤组成：
+为了使用MinGW编译这个工具箱，我们需要手动做一些配置。整个过程是由如下步骤组成：
 
 1) 访问www.mingw.org并下载安装MinGW, MSYS, MSYS-DTK。然后分别升级autoconf, automake
    到2.59,1.8.2版。并为MSYS安装libxslt-1.1.14+.win32。
