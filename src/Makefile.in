@@ -64,10 +64,9 @@ am__objects_3 = imresize.lo imabsdiff.lo imadd.lo imsubtract.lo \
 	immultiply.lo imdivide.lo
 am__objects_4 = sobel.lo imfilter.lo filter2.lo canny.lo
 am__objects_5 = cvtcolor.lo
-am__objects_6 =
 am_libsivp_la_OBJECTS = libsivp.lo common.lo sivp_init.lo \
 	$(am__objects_1) $(am__objects_2) $(am__objects_3) \
-	$(am__objects_4) $(am__objects_5) $(am__objects_6)
+	$(am__objects_4) $(am__objects_5)
 libsivp_la_OBJECTS = $(am_libsivp_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I.
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -214,11 +213,10 @@ AVI_IO_SRC = aviinfo.c aviopen.c avifile.c aviclose.c avicloseall.c avilistopene
 IMG_TRAN_SRC = imresize.c imabsdiff.c imadd.c imsubtract.c immultiply.c imdivide.c
 IMG_FILTER = sobel.c imfilter.c filter2.c canny.c  
 IMG_COLOR = cvtcolor.c
-IMG_PROC_OLD = ##laplace.c precornerdetec.c imsmooth.c threshold.c adaptativethreshold.c erode.c dilate.c pyrdown.c pyrup.c xor.c not.c cmp.c hough.c
-libsivp_la_SOURCES = libsivp.c common.c sivp_init.c $(IMG_IO_SRC)  $(AVI_IO_SRC) $(IMG_TRAN_SRC) $(IMG_FILTER) $(IMG_COLOR) $(IMG_PROC_OLD)
+libsivp_la_SOURCES = libsivp.c common.c sivp_init.c $(IMG_IO_SRC)  $(AVI_IO_SRC) $(IMG_TRAN_SRC) $(IMG_FILTER) $(IMG_COLOR) 
 libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release @PACKAGE_VERSION@
 libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
-EXTRA_DIST = common.h libsivp.c
+EXTRA_DIST = common.h 
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -540,6 +538,7 @@ uninstall-am: uninstall-info-am uninstall-libLTLIBRARIES
 
 
 libsivp.c: ilib_gen_gateway.sce
+	rm -f libsivp.c
 	$(SCIEXE) -nw -nb -f ilib_gen_gateway.sce
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
