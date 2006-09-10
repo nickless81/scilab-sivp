@@ -105,7 +105,8 @@ if test -z "$SCI"; then
          echo "$cmd" | scilab -nw >/dev/null
          SCIDIR=`cat path.incl`
 	 # TODO 
-	 SCIEXE="${SCIDIR}/bin/scilex"
+	 #SCIEXE="${SCIDIR}/bin/scilex"
+	 SCIEXE="${SCIDIR}/bin/scilab"
       fi
    fi
 else
