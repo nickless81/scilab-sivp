@@ -27,16 +27,16 @@ libtitle='SIVP - Scilab Image and Video Processing Toolbox @PACKAGE_VERSION@';
 
 write(%io(2), libtitle);
 
-libsivp_path=get_absolute_file_path('loader.sce');
+SIVP_PATH=get_absolute_file_path('loader.sce');
 
 // load the library macros
-execstr(libname+'=lib(""'+libsivp_path+'macros/'+'"")')
+execstr(libname+'=lib(""'+SIVP_PATH+'macros/'+'"")')
 
 // add the help chapter
 if getversion()=="scilab-2.7" then
-   %helps = [%helps; libsivp_path+'/man', libtitle]
+   %helps = [%helps; SIVP_PATH+'/man', libtitle]
 else
-   add_help_chapter(libtitle,libsivp_path+'/man');
+   add_help_chapter(libtitle,SIVP_PATH+'/man');
 end
 
 // add demos to demos menu
@@ -48,7 +48,7 @@ for num=1:size(demolist, 1),
 	end
 end
 if have_sivp==0 then
-	demolist = [demolist; 'SIVP', SCI+'/contrib/sivp/demos/sivp.dem'];
+	demolist = [demolist; 'SIVP', SIVP_PATH+'/demos/sivp.dem'];
 end
 clear have_sivp num;
 
@@ -57,14 +57,14 @@ functions=[@TOOLBOX_FUNCTIONS@];
 
 if MSDOS then 
 	// load the OpenCV dlls for Windows version
-	OpenCV= libsivp_path + 'lib\';
+	OpenCV= SIVP_PATH + 'lib\';
 	link(OpenCV + 'cxcore097.dll');
 	link(OpenCV + 'cv097.dll');
 	link(OpenCV + 'highgui097.dll');
 
-	addinter(libsivp_path+'/lib/libsivp.dll','libsivp',functions);
+	addinter(SIVP_PATH+'/lib/libsivp.dll','libsivp',functions);
 else
-	addinter(libsivp_path+'/lib/libsivp.so','libsivp',functions);
+	addinter(SIVP_PATH+'/lib/libsivp.so','libsivp',functions);
 end
 
 
@@ -72,5 +72,6 @@ end
 
 sivp_init();
 
+clear functions;
 clear libname;
 clear libtitle;

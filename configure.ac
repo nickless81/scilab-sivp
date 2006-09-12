@@ -22,11 +22,11 @@
 
 
 AC_PREREQ(2.59)
-AC_INIT([sivp], [0.4.0], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
+AC_INIT([sivp], [0.4.1], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_SRCDIR(src/test.c)
 AM_CONFIG_HEADER(src/config.h)
-AM_INIT_AUTOMAKE([sivp],[0.4.0])
+AM_INIT_AUTOMAKE([sivp],[0.4.1])
 
 # Checks for programs.
 AC_PROG_CC
@@ -114,16 +114,17 @@ else
    if test $win32_build = yes; then
       SCIEXE="${SCI}/bin/Scilex.exe"
    else
-      SCIEXE="${SCI}/bin/scilex"
+      #SCIEXE="${SCI}/bin/scilex"
+      SCIEXE="${SCI}/bin/scilab"
    fi
 fi
 
 CPPFLAGS="$CPPFLAGS -I${SCIDIR}/routines"
 
-AC_PREFIX_DEFAULT([SCI/contrib/sivp-0.4.0])
+AC_PREFIX_DEFAULT([SCI/contrib/${PACKAGE_NAME}-${PACKAGE_VERSION}])
 
 if test "x$prefix"  = xNONE; then 
-   prefix="${SCIDIR}/contrib/sivp-0.4.0"
+   prefix="${SCIDIR}/contrib/${PACKAGE_NAME}-${PACKAGE_VERSION}"
 fi
 
 TOOLBOXDIR=$prefix
@@ -313,7 +314,7 @@ TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'int_cvtcolor'; \
 		   "
 
-AC_SUBST(PACKAGE_NAME)
+##AC_SUBST(PACKAGE_NAME)
 AC_SUBST(TOOLBOX_SRC)
 AC_SUBST(TOOLBOX_TABLE)
 AC_SUBST(TOOLBOX_FUNCTIONS)
@@ -340,7 +341,7 @@ Configuration:
 	LDFLAGS  = $LDFLAGS
 	LIBS     = $LIBS
 =====================================================
-This toolbox will be installed in $TOOLBOXDIR.
+This toolbox will be installed in $TOOLBOXDIR
 Please run 'make' and 'make install' to compile and install the toolbox. 
 ]) 
 else
@@ -353,7 +354,7 @@ Configuration:
 	LDFLAGS  = $LDFLAGS
 	LIBS     = $LIBS
 =====================================================
-This toolbox will be installed in $TOOLBOXDIR.
+This toolbox will be installed in $TOOLBOXDIR
 Please run 'make' and 'make install' to compile and install the toolbox. 
 ]) 
 fi

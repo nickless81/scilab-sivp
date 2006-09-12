@@ -11,7 +11,7 @@ lines(0)
 
 deff('[]=demoex(num)','execstr(demolist(num,2))')
 
-sivpdemopath=SCI+'/contrib/sivp/demos/'
+sivpdemopath=SIVP_PATH+'/demos/'
 
 if MSDOS then sivpdemopath=strsubst(sivpdemopath,'/','\'),end
 
