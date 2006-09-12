@@ -1,4 +1,13 @@
 ------------------------------------------------------------
+	SIVP 0.4.1
+------------------------------------------------------------
+o Bug fixed:
+  ----------
+	Fixed the install path error. From now SIVP will be 
+	install in path SCI/contrib/sivp-@VERSION@, and a 
+	newer version will not overwrite the older oversion.
+	
+------------------------------------------------------------
 	SIVP 0.4.0
 ------------------------------------------------------------
 o Added:
