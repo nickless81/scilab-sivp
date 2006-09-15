@@ -331,7 +331,6 @@ AC_CONFIG_FILES([Makefile
 AC_OUTPUT
 
 
-if test $native_win32_build = no; then
 AC_MSG_RESULT([
 =====================================================
 Configuration:
@@ -344,17 +343,3 @@ Configuration:
 This toolbox will be installed in $TOOLBOXDIR
 Please run 'make' and 'make install' to compile and install the toolbox. 
 ]) 
-else
-AC_MSG_RESULT([
-=====================================================
-Configuration:
-	CC       = $CC
-	CFLAGS   = $CFLAGS
-	CPPFLAGS = $CPPFLAGS
-	LDFLAGS  = $LDFLAGS
-	LIBS     = $LIBS
-=====================================================
-This toolbox will be installed in $TOOLBOXDIR
-Please run 'make' and 'make install' to compile and install the toolbox. 
-]) 
-fi

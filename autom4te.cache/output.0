@@ -22963,7 +22963,6 @@ fi
 
 
 
-if test $native_win32_build = no; then
 { echo "$as_me:$LINENO: result: 
 =====================================================
 Configuration:
@@ -22988,29 +22987,3 @@ Configuration:
 This toolbox will be installed in $TOOLBOXDIR
 Please run 'make' and 'make install' to compile and install the toolbox. 
 " >&6; } 
-else
-{ echo "$as_me:$LINENO: result: 
-=====================================================
-Configuration:
-	CC       = $CC
-	CFLAGS   = $CFLAGS
-	CPPFLAGS = $CPPFLAGS
-	LDFLAGS  = $LDFLAGS
-	LIBS     = $LIBS
-=====================================================
-This toolbox will be installed in $TOOLBOXDIR
-Please run 'make' and 'make install' to compile and install the toolbox. 
-" >&5
-echo "${ECHO_T}
-=====================================================
-Configuration:
-	CC       = $CC
-	CFLAGS   = $CFLAGS
-	CPPFLAGS = $CPPFLAGS
-	LDFLAGS  = $LDFLAGS
-	LIBS     = $LIBS
-=====================================================
-This toolbox will be installed in $TOOLBOXDIR
-Please run 'make' and 'make install' to compile and install the toolbox. 
-" >&6; } 
-fi
