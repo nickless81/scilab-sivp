@@ -1,3 +1,2 @@
 BUGS:
-* convert double images to integer images, double(1.1)->UINT8(25), but is should be UINT8(255)
-* Where some errors arise in OpenCV, scilab will exit.
+

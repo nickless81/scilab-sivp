@@ -226,6 +226,13 @@ BOOL IplImg2Mat(IplImage * pImage, int nPos)
   if(pImage == NULL)
     return FALSE;
 
+  //if bottom-left origin
+  if(pImage->origin==1)
+    {
+      cvFlip(pImage, NULL, 0);
+      pImage->origin=0;
+    }
+
   /*how many bytes per pixel per channel*/
   nBytes = pImage->depth;
   if (nBytes > IPL_DEPTH_SIGN)

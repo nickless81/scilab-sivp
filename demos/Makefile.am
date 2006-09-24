@@ -15,7 +15,7 @@
 ## along with this program; if not, write to the Free Software
 ## Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-demos = sivp.dem image.sce canny.sce video.sce
+demos = sivp.dem image.sce canny.sce noise.sce video.sce camera.sce
 demosdir=@TOOLBOXDIR@/demos
 
 demos_DATA = $(demos)
