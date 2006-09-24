@@ -74,5 +74,6 @@ int int_addframe(char * fname)
 
   LhsVar(1) = 1;
 
+  cvReleaseImage(&pImage);
   return 0;
 }
