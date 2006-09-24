@@ -871,7 +871,6 @@ LIBRARY_EXTRA_LIBS
 PKG_CONFIG
 OPENCV_CFLAGS
 OPENCV_LIBS
-TOOLBOX_SRC
 TOOLBOX_TABLE
 TOOLBOX_FUNCTIONS
 LIB@&t@OBJS
@@ -2257,8 +2256,8 @@ fi
 
 
 # Define the identity of the package.
- PACKAGE=sivp
- VERSION=0.4.1
+ PACKAGE='sivp'
+ VERSION='0.4.1'
 
 
 cat >>confdefs.h <<_ACEOF
@@ -20532,27 +20531,6 @@ _ACEOF
 
 fi
 
-#AC_CHECK_LIB(highgui0.9, cvCaptureFromFile,, AC_MSG_ERROR([[OpenCV does not support video file R/W, 
-#		      please recompile OpenCV with FFMPEG.]]))
-#AC_CHECK_LIB(highgui0.9, cvCaptureFromCAM,, AC_MSG_ERROR([[OpenCV does not support camera capture, 
-#		      please recompile OpenCV with FFMPEG and Video4Linux.]]))
-
-# check for ffmpeg
-#if test $native_win32_build = no; then
-#have_ffmpeg=no
-#AC_CHECK_HEADER(ffmpeg/avcodec.h,
-#   AC_CHECK_LIB(avcodec, avcodec_decode_video,
-#       [AC_CHECK_LIB(avformat, av_read_frame,
-#			[have_ffmpeg=yes
-#			 AC_DEFINE(HAVE_FFMPEG,[],[define HAVE_FFMPEG if you have ffmpeg])
-#			 LIBS="$LIBS -lavcodec -lavformat"],
-#			 AC_MSG_ERROR([[ libavformat (FFMPEG) was not found. ]]),
-#			[-lavcodec])]), 
-#			 AC_MSG_ERROR([[ libavcodec (FFMPEG) was not found. ]]))
-#fi
-
-
-
 # Checks for header files. 
 { echo "$as_me:$LINENO: checking for ANSI C header files" >&5
 echo $ECHO_N "checking for ANSI C header files... $ECHO_C" >&6; }
@@ -21352,7 +21330,7 @@ fi
 
 
 # Checks for library functions.
-#AC_FUNC_MALLOC
+##AC_FUNC_MALLOC
 
 for ac_func in malloc
 do
@@ -21464,31 +21442,28 @@ fi
 done
 
 
-PACKAGE_NAME=sivp
-## for src/Makefile
-# TOOLBOX_SRC=" test.c"
 
 # for src/ilib_gen_gateway.sce
 
-#		'vdopen', 'int_vdopen'; \
-#		'vdgetframe', 'int_vdgetframe'; \
-#		'vdshowopened', 'int_vdshowopened'; \
-#		'vdclose', 'int_vdclose'; \
-#		'vdcloseall', 'int_vdcloseall'; \
-#		'goodfeaturestotrack', 'int_goodfeaturestotrack';\
-#		'laplace', 'int_laplace'; \
-#		'precornerdetec', 'int_precornerdetec'; \
-#		'imsmooth', 'int_imsmooth'; \
-#		'threshold', 'int_threshold'; \
-#		'adaptativethreshold', 'int_adaptativethreshold'; \
-#		'erode', 'int_erode';\
-#		'dilate', 'int_dilate';\
-#		'pyrdown', 'int_pyrdown';\
-#		'pyrup', 'int_pyrup';\
-#		'xor', 'int_xor';\
-#		'not', 'int_not';\
-#		'cmp', 'int_cmp';\
-#		'hough', 'int_hough';\
+##		'vdopen', 'int_vdopen'; \
+##		'vdgetframe', 'int_vdgetframe'; \
+##		'vdshowopened', 'int_vdshowopened'; \
+##		'vdclose', 'int_vdclose'; \
+##		'vdcloseall', 'int_vdcloseall'; \
+##		'goodfeaturestotrack', 'int_goodfeaturestotrack';\
+##		'laplace', 'int_laplace'; \
+##		'precornerdetec', 'int_precornerdetec'; \
+##		'imsmooth', 'int_imsmooth'; \
+##		'threshold', 'int_threshold'; \
+##		'adaptativethreshold', 'int_adaptativethreshold'; \
+##		'erode', 'int_erode';\
+##		'dilate', 'int_dilate';\
+##		'pyrdown', 'int_pyrdown';\
+##		'pyrup', 'int_pyrup';\
+##		'xor', 'int_xor';\
+##		'not', 'int_not';\
+##		'cmp', 'int_cmp';\
+##		'hough', 'int_hough';\
 
 
 TOOLBOX_TABLE="	'sivptest', 'int_test'; \
@@ -21521,25 +21496,25 @@ TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 # for loader.sce
 # TOOLBOX_FUNCTIONS is the first colum of TOOLBOX_TABLE 
 
-#		       'vdopen'; \
-#		       'vdgetframe'; \
-#		       'vdshowopened'; \
-#		       'vdclose'; \
-#		       'vdcloseall'; \
-#		       'goodfeaturestotrack';\
-#		       'laplace'; \
-#		       'precornerdetec'; \
-#		       'imsmooth'; \
-#		       'threshold'; \
-#		       'adaptativethreshold'; \
-#		       'erode';\
-#		       'dilate';\
-#		       'pyrdown';\
-#		       'pyrup';\
-#		       'xor';\
-#		       'not';\
-#		       'cmp';\
-#		       'hough';\
+##		       'vdopen'; \
+##		       'vdgetframe'; \
+##		       'vdshowopened'; \
+##		       'vdclose'; \
+##		       'vdcloseall'; \
+##		       'goodfeaturestotrack';\
+##		       'laplace'; \
+##		       'precornerdetec'; \
+##		       'imsmooth'; \
+##		       'threshold'; \
+##		       'adaptativethreshold'; \
+##		       'erode';\
+##		       'dilate';\
+##		       'pyrdown';\
+##		       'pyrup';\
+##		       'xor';\
+##		       'not';\
+##		       'cmp';\
+##		       'hough';\
 
 TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'sivp_init'; \
@@ -21568,8 +21543,6 @@ TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'int_sobel'; \
 		       'int_cvtcolor'; \
 		   "
-
-##AC_SUBST(PACKAGE_NAME)
 
 
 
@@ -22375,14 +22348,13 @@ LIBRARY_EXTRA_LIBS!$LIBRARY_EXTRA_LIBS$ac_delim
 PKG_CONFIG!$PKG_CONFIG$ac_delim
 OPENCV_CFLAGS!$OPENCV_CFLAGS$ac_delim
 OPENCV_LIBS!$OPENCV_LIBS$ac_delim
-TOOLBOX_SRC!$TOOLBOX_SRC$ac_delim
 TOOLBOX_TABLE!$TOOLBOX_TABLE$ac_delim
 TOOLBOX_FUNCTIONS!$TOOLBOX_FUNCTIONS$ac_delim
 LIB@&t@OBJS!$LIB@&t@OBJS$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 23; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 22; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5

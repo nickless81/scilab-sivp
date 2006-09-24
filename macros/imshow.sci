@@ -43,14 +43,14 @@ function imshow(im)
 	imc=mat2utfimg(im2uint8(im));
 
 	if (channel==1)
-		imc='P5'+char(10)+msprintf('%d %d",width,height)+char(10)+'255'+char(10)+char(imc); 
+		imc='P5'+char(10)+msprintf("%d %d",width,height)+char(10)+'255'+char(10)+char(imc); 
 	else
-		imc='P6'+char(10)+msprintf('%d %d",width,height)+char(10)+'255'+char(10)+char(imc); 
+		imc='P6'+char(10)+msprintf("%d %d",width,height)+char(10)+'255'+char(10)+char(imc); 
 	end
 
-	TCL_SetVar('imagewidth',msprintf('%d',width));
-	TCL_SetVar('imageheight',msprintf('%d',height));
-	TCL_SetVar('imagechannel',msprintf('%d',channel));
+	TCL_SetVar('imagewidth',msprintf("%d",width));
+	TCL_SetVar('imageheight',msprintf("%d",height));
+	TCL_SetVar('imagechannel',msprintf("%d",channel));
 	TCL_SetVar('imagedata', imc);
 
 	TCL_EvalFile(SIVP_PATH +'/macros/imshow.tcl');

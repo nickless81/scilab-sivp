@@ -26,7 +26,7 @@ AC_INIT([sivp], [0.4.1], [https://sourceforge.net/tracker/?group_id=134898&atid=
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_SRCDIR(src/test.c)
 AM_CONFIG_HEADER(src/config.h)
-AM_INIT_AUTOMAKE([sivp],[0.4.1])
+AM_INIT_AUTOMAKE
 
 # Checks for programs.
 AC_PROG_CC
@@ -171,27 +171,6 @@ PKG_CHECK_MODULES(OPENCV,
 		 AC_DEFINE(HAVE_OPENCV,[], [define HAVE_OPENCV if you have opencv])],
 		[AC_MSG_ERROR([[ OpenCV version >= 0.9.6 was not found. ]])])
 
-#AC_CHECK_LIB(highgui0.9, cvCaptureFromFile,, AC_MSG_ERROR([[OpenCV does not support video file R/W, 
-#		      please recompile OpenCV with FFMPEG.]]))
-#AC_CHECK_LIB(highgui0.9, cvCaptureFromCAM,, AC_MSG_ERROR([[OpenCV does not support camera capture, 
-#		      please recompile OpenCV with FFMPEG and Video4Linux.]]))
-
-# check for ffmpeg
-#if test $native_win32_build = no; then
-#have_ffmpeg=no
-#AC_CHECK_HEADER(ffmpeg/avcodec.h,
-#   AC_CHECK_LIB(avcodec, avcodec_decode_video,
-#       [AC_CHECK_LIB(avformat, av_read_frame,
-#			[have_ffmpeg=yes
-#			 AC_DEFINE(HAVE_FFMPEG,[],[define HAVE_FFMPEG if you have ffmpeg])
-#			 LIBS="$LIBS -lavcodec -lavformat"],
-#			 AC_MSG_ERROR([[ libavformat (FFMPEG) was not found. ]]),
-#			[-lavcodec])]), 
-#			 AC_MSG_ERROR([[ libavcodec (FFMPEG) was not found. ]]))
-#fi
-
-
-
 # Checks for header files. 
 AC_HEADER_STDC
 if test x"$ac_cv_header_stdc" = x'no'; then
@@ -206,34 +185,31 @@ AC_HEADER_STDBOOL
 
 
 # Checks for library functions.
-#AC_FUNC_MALLOC
+##AC_FUNC_MALLOC
 AC_CHECK_FUNCS([malloc])
 
-PACKAGE_NAME=sivp
-## for src/Makefile
-# TOOLBOX_SRC=" test.c"
 
 # for src/ilib_gen_gateway.sce
 
-#		'vdopen', 'int_vdopen'; \
-#		'vdgetframe', 'int_vdgetframe'; \
-#		'vdshowopened', 'int_vdshowopened'; \
-#		'vdclose', 'int_vdclose'; \
-#		'vdcloseall', 'int_vdcloseall'; \
-#		'goodfeaturestotrack', 'int_goodfeaturestotrack';\
-#		'laplace', 'int_laplace'; \
-#		'precornerdetec', 'int_precornerdetec'; \
-#		'imsmooth', 'int_imsmooth'; \
-#		'threshold', 'int_threshold'; \
-#		'adaptativethreshold', 'int_adaptativethreshold'; \
-#		'erode', 'int_erode';\
-#		'dilate', 'int_dilate';\
-#		'pyrdown', 'int_pyrdown';\
-#		'pyrup', 'int_pyrup';\
-#		'xor', 'int_xor';\
-#		'not', 'int_not';\
-#		'cmp', 'int_cmp';\
-#		'hough', 'int_hough';\
+##		'vdopen', 'int_vdopen'; \
+##		'vdgetframe', 'int_vdgetframe'; \
+##		'vdshowopened', 'int_vdshowopened'; \
+##		'vdclose', 'int_vdclose'; \
+##		'vdcloseall', 'int_vdcloseall'; \
+##		'goodfeaturestotrack', 'int_goodfeaturestotrack';\
+##		'laplace', 'int_laplace'; \
+##		'precornerdetec', 'int_precornerdetec'; \
+##		'imsmooth', 'int_imsmooth'; \
+##		'threshold', 'int_threshold'; \
+##		'adaptativethreshold', 'int_adaptativethreshold'; \
+##		'erode', 'int_erode';\
+##		'dilate', 'int_dilate';\
+##		'pyrdown', 'int_pyrdown';\
+##		'pyrup', 'int_pyrup';\
+##		'xor', 'int_xor';\
+##		'not', 'int_not';\
+##		'cmp', 'int_cmp';\
+##		'hough', 'int_hough';\
 
 
 TOOLBOX_TABLE="	'sivptest', 'int_test'; \
@@ -266,25 +242,25 @@ TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 # for loader.sce
 # TOOLBOX_FUNCTIONS is the first colum of TOOLBOX_TABLE 
 
-#		       'vdopen'; \
-#		       'vdgetframe'; \
-#		       'vdshowopened'; \
-#		       'vdclose'; \
-#		       'vdcloseall'; \
-#		       'goodfeaturestotrack';\
-#		       'laplace'; \
-#		       'precornerdetec'; \
-#		       'imsmooth'; \
-#		       'threshold'; \
-#		       'adaptativethreshold'; \
-#		       'erode';\
-#		       'dilate';\
-#		       'pyrdown';\
-#		       'pyrup';\
-#		       'xor';\
-#		       'not';\
-#		       'cmp';\
-#		       'hough';\
+##		       'vdopen'; \
+##		       'vdgetframe'; \
+##		       'vdshowopened'; \
+##		       'vdclose'; \
+##		       'vdcloseall'; \
+##		       'goodfeaturestotrack';\
+##		       'laplace'; \
+##		       'precornerdetec'; \
+##		       'imsmooth'; \
+##		       'threshold'; \
+##		       'adaptativethreshold'; \
+##		       'erode';\
+##		       'dilate';\
+##		       'pyrdown';\
+##		       'pyrup';\
+##		       'xor';\
+##		       'not';\
+##		       'cmp';\
+##		       'hough';\
 
 TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'sivp_init'; \
@@ -314,8 +290,6 @@ TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'int_cvtcolor'; \
 		   "
 
-##AC_SUBST(PACKAGE_NAME)
-AC_SUBST(TOOLBOX_SRC)
 AC_SUBST(TOOLBOX_TABLE)
 AC_SUBST(TOOLBOX_FUNCTIONS)
 
