@@ -20,7 +20,7 @@
    <PARAM_ITEM>
    <PARAM_NAME>im</PARAM_NAME>
    <PARAM_DESCRIPTION>
-   The input image which must be UINT8 RGB image and the size must be the same as the argument <TT>dims</TT> of function <TT>avifile</TT>.
+   The input image which must be UINT8 RGB image. If the image size is not the same with the argument <TT>dims</TT> of function <TT>avifile</TT>, the image will be resized to <TT>dims</TT>.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
 </PARAM_INDENT>
@@ -37,10 +37,10 @@ Video support for SIVP is only available when SIVP is compiled with OpenCV which
 <EXAMPLE><![CDATA[
 	
     im = imread('lena.png');
-    n = avifile('lena.avi', [200;200], 30);
+    n = avifile('lena.avi', [300;300], 30);
 
-    for ii=1:300
-        ims = im(200:399, ii:ii+199, :);
+    for ii=1:200
+        ims = im(ii:512-ii, ii:512-ii, :);
         addframe(n, ims);
     end
 

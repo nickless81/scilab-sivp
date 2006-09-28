@@ -4,7 +4,7 @@
 <LANGUAGE>eng</LANGUAGE>
 <TITLE>imwrite</TITLE>
 <TYPE>SIVP Toolbox</TYPE>
-<DATE>Oct, 2005</DATE>
+<DATE>Oct, 2006</DATE>
 <SHORT_DESCRIPTION name="imwrite">Write image to file</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>ret=imwrite(im, filename)</CALLING_SEQUENCE_ITEM>
@@ -15,7 +15,7 @@
    <PARAM_NAME>im</PARAM_NAME>
    <PARAM_DESCRIPTION>
 	<TT>im</TT> can be an M-by-N (greyscale image) or M-by-N-by-3 (color image) matrix. 
-If <TT>im</TT> is not of class uint8,  <TT>imwrite</TT> convert the datatype before writing, using <TT>uint8(im)</TT>.
+If <TT>im</TT> is not of class uint8,  <TT>imwrite</TT> will convert the datatype before writing using <TT>im2uint8(im)</TT>.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
@@ -56,7 +56,7 @@ If <TT>im</TT> is not of class uint8,  <TT>imwrite</TT> convert the datatype bef
 
 </DESCRIPTION>
 <EXAMPLE><![CDATA[
-    im=rand(200,300)*255;
+    im=rand(200,300);
     ret = imwrite(im, 'rand.png');
 ]]></EXAMPLE>
 <!-- ================================= -->

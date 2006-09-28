@@ -65,6 +65,34 @@ int int_addframe(char * fname)
       Scierror(999, "%s: Internal error for getting the image data.\r\n", fname);
       return -1;
     }
+  //only UINT8 images are supported by cvWriteFrame
+  if(pImage->depth != IPL_DEPTH_8U)
+    {
+      cvReleaseImage(&pImage);
+      Scierror(999, "%s: The input image must be UINT8.\r\n", fname);
+      return -1;
+    }
+
+  //if the input frame is not the same size as pre-defined video writer
+  //resize the input image
+  if(pImage->width != OpenedAviCap[nFile].width
+     ||pImage->height != OpenedAviCap[nFile].height)
+    {
+      IplImage * pTmp = cvCreateImage(cvSize(OpenedAviCap[nFile].width, 
+					     OpenedAviCap[nFile].height),
+				      IPL_DEPTH_8U,
+				      pImage->nChannels);
+      if(!pTmp)
+	{
+	  cvReleaseImage(&pImage);
+	  Scierror(999, "%s: Can not alloc memory.\r\n", fname);
+	  return -1;
+	}
+      cvResize(pImage, pTmp, CV_INTER_LINEAR);
+
+      cvReleaseImage(&pImage);
+      pImage = pTmp;
+    }
 
   if( cvWriteFrame(OpenedAviCap[nFile].video.writer, pImage) != 0)
     {

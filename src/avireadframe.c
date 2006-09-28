@@ -92,7 +92,8 @@ int int_avireadframe(char * fname)
     }
 
   LhsVar(1) = Rhs+1;
-  cvReleaseImage(&pImage);
+
+  //pImage can not be released!!
 
   return 0;
 }

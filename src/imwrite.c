@@ -56,11 +56,13 @@ int int_imwrite(char * fname)
   pImage = Mat2IplImg(1);
   
   if(pImage == NULL)
-    goto EXIST_TAG;
+    {
+      Scierror(999, "%s: Internal error: can not alloc memory.\r\n", fname);
+    }
 
   if(pImage->nChannels != 1 && pImage->nChannels != 3)
     {
-      Scierror(999, "%s: Single-channel or 3-channel can be saved.\r\n", fname);
+      Scierror(999, "%s: Only single-channel or 3-channel can be saved.\r\n", fname);
     }
 
 
@@ -70,36 +72,40 @@ int int_imwrite(char * fname)
     }
   else
     {
-      /*only unsigned char image can be saved
-	convert other type to unsigned char*/
-      /*
-      switch(pImage->depth){
-      case IPL_DEPTH_8S:     dScale = 1.0;   dShift = 128.0 ; break;
-      case IPL_DEPTH_16U:    dScale = (double)(2^8-1)/(double)(2^16-1);   dShift = 0.0 ; break;
-      case IPL_DEPTH_16S:    dScale = 1.0/(double)(2^8); dShift = 128.0; break;
-      case IPL_DEPTH_32S:    dScale = 1.0/(double)(2^24); dShift = (double)(2^23); break;
-      case IPL_DEPTH_32F:
-      case IPL_DEPTH_64F:    dScale = 255.0; dShift = 0.0; break;
-      }
-      */
-      dScale = 1.0;
-      dShift = 0.0;
-
-
-      pDstImage = cvCreateImage(cvSize(pImage->width, pImage->height), IPL_DEPTH_8U, pImage->nChannels);
-      if(!pDstImage)
-	{
-	  cvReleaseImage(&pImage);
-	  Scierror(999, "%f: Create IplImage error.\r\n",fname);
-	}
-      cvConvertScale(pImage, pDstImage, dScale, dShift);
-      *stk(lL) = cvSaveImage(cstk(lR), pDstImage);
-      cvReleaseImage(&pDstImage);
+      *stk(1L) = -1;
+      cvReleaseImage(&pImage);
+      Scierror(999, "%s: Only UINT8 image can be saved.\r\n", fname);
     }
+//  else
+//    {
+//      /*only unsigned char image can be saved
+//	convert other type to unsigned char*/
+//      /*
+//      switch(pImage->depth){
+//      case IPL_DEPTH_8S:     dScale = 1.0;   dShift = 128.0 ; break;
+//      case IPL_DEPTH_16U:    dScale = (double)(2^8-1)/(double)(2^16-1);   dShift = 0.0 ; break;
+//      case IPL_DEPTH_16S:    dScale = 1.0/(double)(2^8); dShift = 128.0; break;
+//      case IPL_DEPTH_32S:    dScale = 1.0/(double)(2^24); dShift = (double)(2^23); break;
+//      case IPL_DEPTH_32F:
+//      case IPL_DEPTH_64F:    dScale = 255.0; dShift = 0.0; break;
+//      }
+//      */
+//      dScale = 1.0;
+//      dShift = 0.0;
+//
+//
+//      pDstImage = cvCreateImage(cvSize(pImage->width, pImage->height), IPL_DEPTH_8U, pImage->nChannels);
+//      if(!pDstImage)
+//	{
+//	  cvReleaseImage(&pImage);
+//	  Scierror(999, "%f: Create IplImage error.\r\n",fname);
+//	}
+//      cvConvertScale(pImage, pDstImage, dScale, dShift);
+//      *stk(lL) = cvSaveImage(cstk(lR), pDstImage);
+//      cvReleaseImage(&pDstImage);
+//    }
   
 
-      //  *stk(lL) = 0;
- EXIST_TAG:
   LhsVar(1) = 3;
   
   cvReleaseImage(&pImage);

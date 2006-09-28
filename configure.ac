@@ -215,7 +215,7 @@ AC_CHECK_FUNCS([malloc])
 TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'sivp_init','int_sivp_init'; \
 		'imread', 'int_imread';\
-		'imwrite', 'int_imwrite';\
+		'int_imwrite', 'int_imwrite';\
 		'imfinfo', 'int_imfinfo';\
 		'aviinfo', 'int_aviinfo';\
 		'aviopen', 'int_aviopen';\
@@ -265,7 +265,7 @@ TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'sivp_init'; \
 		       'imread';\
-		       'imwrite';\
+		       'int_imwrite';\
 		       'imfinfo'; \
 		       'aviinfo';\
 		       'aviopen';\

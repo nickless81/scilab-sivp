@@ -81,6 +81,8 @@ int int_avifile(char *fname)
 
   strcpy(OpenedAviCap[nCurrFile].filename, cstk(lR1));
   OpenedAviCap[nCurrFile].iswriter = 1;
+  OpenedAviCap[nCurrFile].width = nWidth;
+  OpenedAviCap[nCurrFile].height = nHeight;
 
   //the output is the opened index
   nCurrFile += 1;

@@ -47,7 +47,7 @@ $w.can configure -scrollregion [$w.can bbox all]
 set zoomscale 1.0
 
 
-proc zoom_out {} {
+proc zoom_in {} {
     global w tkimage zoomscale
     if ($zoomscale>=8.0) {
 	set zoomscale 8.0
@@ -71,7 +71,7 @@ proc zoom_out {} {
 
 } 
 
-proc zoom_in {} {
+proc zoom_out {} {
     global w tkimage zoomscale
     if ($zoomscale<=0.125) {
 	set zoomscale 0.125

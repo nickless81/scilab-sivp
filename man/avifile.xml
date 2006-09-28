@@ -50,10 +50,10 @@ Video support for SIVP is only available when SIVP is compiled with OpenCV which
 <EXAMPLE><![CDATA[
 	
     im = imread('lena.png');
-    n = avifile('lena.avi', [200;200], 30);
+    n = avifile('lena.avi', [300;300], 30);
 
-    for ii=1:300
-        ims = im(200:399, ii:ii+199, :);
+    for ii=1:200
+        ims = im(ii:512-ii, ii:512-ii, :);
         addframe(n, ims);
     end
 

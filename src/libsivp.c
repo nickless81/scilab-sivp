@@ -30,7 +30,7 @@ static GenericTable Tab[]={
   {(Myinterfun)sci_gateway,int_test,"sivptest"},
   {(Myinterfun)sci_gateway,int_sivp_init,"sivp_init"},
   {(Myinterfun)sci_gateway,int_imread,"imread"},
-  {(Myinterfun)sci_gateway,int_imwrite,"imwrite"},
+  {(Myinterfun)sci_gateway,int_imwrite,"int_imwrite"},
   {(Myinterfun)sci_gateway,int_imfinfo,"imfinfo"},
   {(Myinterfun)sci_gateway,int_aviinfo,"aviinfo"},
   {(Myinterfun)sci_gateway,int_aviopen,"aviopen"},
