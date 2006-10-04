@@ -5,13 +5,14 @@ o Changed:
   --------
 	imwrite convert an image using im2uint8() nor uint8() before writing to a file
 	addframe can add varying size images to a video file
+	imshow window can auto-resize
 	
 o Bug fixed:
   ----------
 	Fixed memory leak bug in addframe and avireadframe function
 	Fixed image flip bug when image origin is bottom-left
 	Correct the labels of button "Zoom In" and "Zoom Out" on imshow window
-	
+	Fixed the bug of imshow that the older image can not be cleared when a new one is drawn
 
 ------------------------------------------------------------
 	SIVP 0.4.1
