@@ -20,7 +20,7 @@ demolist=[
 'Canny edge detector',       'exec(sivpdemopath+''canny.sce'')';
 'Add Gussian noise',         'exec(sivpdemopath+''noise.sce'')';
 'Video reading and showing', 'exec(sivpdemopath+''video.sce'')';
-'Gray frames from a camera', 'exec(sivpdemopath+''camera.sce'')';
+'Grab frames from a camera', 'exec(sivpdemopath+''camera.sce'')';
 ]
 
 while %t then
