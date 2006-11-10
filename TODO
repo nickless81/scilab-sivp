@@ -1,6 +1,4 @@
 TODO List:
-	make video read reliable
-	video write 
 	speckle noise algorithm in function imnoise
 	Implemente 'poisson' noise in function imnoise
 others:
