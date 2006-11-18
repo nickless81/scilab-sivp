@@ -19,7 +19,7 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ## -------------------------------------------------------------------------
 ##
-macros_sci = imwrite.sci imshow.sci imcrop.sci imresize.sci \
+macros_sci = imwrite.sci imshow.sci xs2im.sci imcrop.sci imresize.sci \
 	imadd.sci imsubtract.sci immultiply.sci imdivide.sci \
 	imabsdiff.sci imcomplement.sci imlincomb.sci \
 	imnoise.sci \
