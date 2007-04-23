@@ -50,6 +50,7 @@ int int_imdivide(char * fname)
   //if the second input is a scalar double
   if ((pImage2->width == 1) && (pImage2->height ==1))
     {
+	  IplImage * pOnesTmp;
       //if not be a scalar double
       if( pImage2->depth != IPL_DEPTH_64F ||
 	  pImage2->nChannels != 1)
@@ -63,7 +64,7 @@ int int_imdivide(char * fname)
       pImageOut = cvCreateImage(cvGetSize(pImage1), pImage1->depth, pImage1->nChannels);
 
       //create an all-one matrix
-      IplImage * pOnesTmp = cvCloneImage(pImage1);
+      pOnesTmp = cvCloneImage(pImage1);
       cvSet(pOnesTmp, cvScalarAll(1.0), NULL);
 
       cvMul(pImage1,  

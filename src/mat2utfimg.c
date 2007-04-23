@@ -34,6 +34,9 @@ int int_mat2utfimg(char * fname)
   int nCurr = 0;
   BOOL isOK;
 
+  int w,h,c;
+  unsigned char Pixel;
+
   CheckRhs(1, 1);
   CheckLhs(1, 1);
 
@@ -45,8 +48,6 @@ int int_mat2utfimg(char * fname)
   
   pUTFData=(unsigned char*)malloc(pImg->width * pImg->height * pImg->nChannels * 2);
 
-  int w,h,c;
-  unsigned char Pixel;
   for(h=0; h < pImg->height; h++)
     for(w=0; w < pImg->width; w++)
       for(c=pImg->nChannels-1; c>=0; c--)

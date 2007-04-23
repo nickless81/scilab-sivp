@@ -42,9 +42,15 @@ int_aviinfo(char *fname)
   double *pfValue = &fValue;
   int iValue;
   int *piValue = &iValue;
-  
-  CvCapture * pCapture = NULL;
 
+#ifdef WIN_SIVP
+  struct _stat fileStat;
+#else
+  struct stat fileStat;
+#endif
+ 
+  CvCapture * pCapture = NULL;
+  
   CheckRhs(1,1);
   CheckLhs(1,1);
 
@@ -81,10 +87,8 @@ int_aviinfo(char *fname)
 
   //get the file size
 #ifdef WIN_SIVP
-  struct _stat fileStat;
   if( _stat(pFilename, &fileStat) != 0)
 #else
-  struct stat fileStat;
   if( stat(pFilename, &fileStat) != 0)
 #endif
     {

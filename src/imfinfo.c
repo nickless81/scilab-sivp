@@ -44,6 +44,13 @@ int_imfinfo(char *fname)
   
   IplImage * pImage = NULL;
 
+#ifdef WIN_SIVP
+  struct _stat fileStat;
+#else
+  struct stat fileStat;
+#endif
+
+  
   CheckRhs(1,1);
   CheckLhs(1,1);
 
@@ -73,10 +80,8 @@ int_imfinfo(char *fname)
 
   //get the file size
 #ifdef WIN_SIVP
-  struct _stat fileStat;
   if( _stat(pFilename, &fileStat) != 0)
 #else
-  struct stat fileStat;
   if( stat(pFilename, &fileStat) != 0)
 #endif
     {

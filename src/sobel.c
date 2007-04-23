@@ -36,7 +36,8 @@ int int_sobel(char *fname)
   double fScaledThresh = 0;
   int *pnDx=NULL;
   int *pnDy=NULL;
-  
+  double fMin, fMax;
+
   IplImage* pSrcImg = NULL;
   IplImage* pF32SrcImg = NULL;
   IplImage* pSobelImg = NULL;
@@ -121,7 +122,6 @@ int int_sobel(char *fname)
   cvAbs(pSobelImg, pSobelImg);
 
   //scale the thresh value 
-  double fMin, fMax;
   cvMinMaxLoc(pSobelImg, &fMin, &fMax, NULL, NULL, NULL);
   fScaledThresh = pfThresh[0] * fMax + (1.0-pfThresh[0])*fMin;
 
