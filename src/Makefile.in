@@ -204,9 +204,6 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 lib_LTLIBRARIES = libsivp.la
 AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
-
-#vdrw.c goodfeaturestotrack.c 
-#
 IMG_IO_SRC = imread.c imwrite.c imfinfo.c test.c mat2utfimg.c
 AVI_IO_SRC = aviinfo.c aviopen.c avifile.c aviclose.c avicloseall.c avilistopened.c avireadframe.c camopen.c addframe.c
 IMG_TRAN_SRC = imresize.c imabsdiff.c imadd.c imsubtract.c immultiply.c imdivide.c
