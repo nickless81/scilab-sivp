@@ -53,9 +53,7 @@ typedef int BOOL;
 #include <stack-c.h>
 
 
-#include <sys/types.h>
 #include <sys/stat.h>
-#include <unistd.h>
 
 #define MAX_AVI_FILE_NUM 32
 #define MAX_FILENAME_LENGTH 2048
