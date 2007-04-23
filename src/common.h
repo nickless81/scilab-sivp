@@ -26,8 +26,6 @@ extern "C" {
 #endif
 
 
-#define CV_INLINE static
-
 #ifndef TRUE
     #define TRUE 1
 #endif
@@ -42,7 +40,9 @@ typedef int BOOL;
 #define SIVP_FLOAT 32
 #define SIVP_DOUBLE 64
 
-#include "config.h"
+#ifndef WIN_SIVP
+  #include "config.h"
+#endif
 
 #include <stdio.h>
 
