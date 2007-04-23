@@ -119,7 +119,7 @@ else
    fi
 fi
 
-CPPFLAGS="$CPPFLAGS -I${SCIDIR}/routines"
+CFLAGS="$CFLAGS -I${SCIDIR}/routines"
 
 AC_PREFIX_DEFAULT([SCI/contrib/${PACKAGE_NAME}-${PACKAGE_VERSION}])
 
@@ -142,13 +142,13 @@ then
   if test "${libtool_build_shared_libs}" = 'yes'
   then
     SHARED_LIB_SUFFIX=dll
-    CPPFLAGS="$CPPFLAGS -DFORDLL"
+    CFLAGS="$CFLAGS -DFORDLL"
     AC_MSG_WARN([[Don't forget to rename SCI/bin/LibScilab* to lowercase]])
     LDFLAGS="$LDFLAGS -L${SCIDIR}/bin"
-    #LIBRARY_EXTRA_CPPFLAGS="-D_SIMPLELIB"
+    #LIBRARY_EXTRA_CFLAGS="-D_SIMPLELIB"
     LIBRARY_EXTRA_LIBS="-lscilab"
   else
-    CPPFLAGS="$CPPFLAGS -D_LIB"
+    CFLAGS="$CFLAGS -D_LIB"
   fi
 else
    SHARED_LIB_SUFFIX=so
@@ -164,7 +164,7 @@ AC_SUBST(LIBRARY_EXTRA_LIBS)
 have_opencv=no
 PKG_CHECK_MODULES(OPENCV, 
 		[opencv >= 0.9.6],
-		[CPPFLAGS="$CPPFLAGS $OPENCV_CFLAGS"
+		[CFLAGS="$CFLAGS $OPENCV_CFLAGS"
 		 LDFLAGS="$LDFLAGS -L${SCIDIR}/bin"
 		 LIBS="$LIBS $OPENCV_LIBS"
 		 have_opencv=yes
