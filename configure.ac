@@ -190,29 +190,7 @@ AC_HEADER_STDBOOL
 ##AC_FUNC_MALLOC
 AC_CHECK_FUNCS([malloc])
 
-
 # for src/ilib_gen_gateway.sce
-
-##		'vdopen', 'int_vdopen'; \
-##		'vdgetframe', 'int_vdgetframe'; \
-##		'vdshowopened', 'int_vdshowopened'; \
-##		'vdclose', 'int_vdclose'; \
-##		'vdcloseall', 'int_vdcloseall'; \
-##		'goodfeaturestotrack', 'int_goodfeaturestotrack';\
-##		'laplace', 'int_laplace'; \
-##		'precornerdetec', 'int_precornerdetec'; \
-##		'imsmooth', 'int_imsmooth'; \
-##		'threshold', 'int_threshold'; \
-##		'adaptativethreshold', 'int_adaptativethreshold'; \
-##		'erode', 'int_erode';\
-##		'dilate', 'int_dilate';\
-##		'pyrdown', 'int_pyrdown';\
-##		'pyrup', 'int_pyrup';\
-##		'xor', 'int_xor';\
-##		'not', 'int_not';\
-##		'cmp', 'int_cmp';\
-##		'hough', 'int_hough';\
-
 
 TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'sivp_init','int_sivp_init'; \
@@ -241,28 +219,6 @@ TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'int_sobel', 'int_sobel'; \
 		'int_cvtcolor', 'int_cvtcolor'; \
 		"
-# for loader.sce
-# TOOLBOX_FUNCTIONS is the first colum of TOOLBOX_TABLE 
-
-##		       'vdopen'; \
-##		       'vdgetframe'; \
-##		       'vdshowopened'; \
-##		       'vdclose'; \
-##		       'vdcloseall'; \
-##		       'goodfeaturestotrack';\
-##		       'laplace'; \
-##		       'precornerdetec'; \
-##		       'imsmooth'; \
-##		       'threshold'; \
-##		       'adaptativethreshold'; \
-##		       'erode';\
-##		       'dilate';\
-##		       'pyrdown';\
-##		       'pyrup';\
-##		       'xor';\
-##		       'not';\
-##		       'cmp';\
-##		       'hough';\
 
 TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'sivp_init'; \
@@ -297,11 +253,12 @@ AC_SUBST(TOOLBOX_FUNCTIONS)
 
 AC_CONFIG_FILES([Makefile 
 		 macros/Makefile
-		 images/Makefile
 		 man/Makefile
-		 src/Makefile
+		 images/Makefile
 		 demos/Makefile
+		 src/Makefile
 		 src/ilib_gen_gateway.sce
+		 src/Makefile.win
 		 loader.sce])
 
 AC_OUTPUT

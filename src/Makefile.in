@@ -38,14 +38,15 @@ build_triplet = @build@
 host_triplet = @host@
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(srcdir)/config.h.in $(srcdir)/ilib_gen_gateway.sce.in
+	$(srcdir)/Makefile.win.in $(srcdir)/config.h.in \
+	$(srcdir)/ilib_gen_gateway.sce.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = config.h
-CONFIG_CLEAN_FILES = ilib_gen_gateway.sce
+CONFIG_CLEAN_FILES = ilib_gen_gateway.sce Makefile.win
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
@@ -64,9 +65,10 @@ am__objects_3 = imresize.lo imabsdiff.lo imadd.lo imsubtract.lo \
 	immultiply.lo imdivide.lo
 am__objects_4 = sobel.lo imfilter.lo filter2.lo canny.lo
 am__objects_5 = cvtcolor.lo
-am_libsivp_la_OBJECTS = libsivp.lo common.lo sivp_init.lo \
-	$(am__objects_1) $(am__objects_2) $(am__objects_3) \
-	$(am__objects_4) $(am__objects_5)
+am__objects_6 = libsivp.lo common.lo sivp_init.lo $(am__objects_1) \
+	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
+	$(am__objects_5)
+am_libsivp_la_OBJECTS = $(am__objects_6)
 libsivp_la_OBJECTS = $(am_libsivp_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I.
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -202,14 +204,15 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-lib_LTLIBRARIES = libsivp.la
-AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
 IMG_IO_SRC = imread.c imwrite.c imfinfo.c test.c mat2utfimg.c
 AVI_IO_SRC = aviinfo.c aviopen.c avifile.c aviclose.c avicloseall.c avilistopened.c avireadframe.c camopen.c addframe.c
 IMG_TRAN_SRC = imresize.c imabsdiff.c imadd.c imsubtract.c immultiply.c imdivide.c
-IMG_FILTER = sobel.c imfilter.c filter2.c canny.c  
-IMG_COLOR = cvtcolor.c
-libsivp_la_SOURCES = libsivp.c common.c sivp_init.c $(IMG_IO_SRC)  $(AVI_IO_SRC) $(IMG_TRAN_SRC) $(IMG_FILTER) $(IMG_COLOR) 
+IMG_FILTER_SRC = sobel.c imfilter.c filter2.c canny.c  
+IMG_COLOR_SRC = cvtcolor.c
+ALL_SRC = libsivp.c common.c sivp_init.c $(IMG_IO_SRC)  $(AVI_IO_SRC) $(IMG_TRAN_SRC) $(IMG_FILTER_SRC) $(IMG_COLOR_SRC)
+lib_LTLIBRARIES = libsivp.la
+AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
+libsivp_la_SOURCES = $(ALL_SRC)
 libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release @PACKAGE_VERSION@
 libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
 EXTRA_DIST = common.h 
@@ -265,6 +268,8 @@ $(srcdir)/config.h.in:  $(am__configure_deps)
 distclean-hdr:
 	-rm -f config.h stamp-h1
 ilib_gen_gateway.sce: $(top_builddir)/config.status $(srcdir)/ilib_gen_gateway.sce.in
+	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
+Makefile.win: $(top_builddir)/config.status $(srcdir)/Makefile.win.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 install-libLTLIBRARIES: $(lib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)

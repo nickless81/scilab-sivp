@@ -58,9 +58,9 @@ functions=[@TOOLBOX_FUNCTIONS@];
 if MSDOS then 
 	// load the OpenCV dlls for Windows version
 	OpenCV= SIVP_PATH + 'lib\';
-	link(OpenCV + 'cxcore097.dll');
-	link(OpenCV + 'cv097.dll');
-	link(OpenCV + 'highgui097.dll');
+	link(OpenCV + 'cxcore100.dll');
+	link(OpenCV + 'cv100.dll');
+	link(OpenCV + 'highgui100.dll');
 
 	addinter(SIVP_PATH+'/lib/libsivp.dll','libsivp',functions);
 else

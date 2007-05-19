@@ -20771,29 +20771,7 @@ fi
 done
 
 
-
 # for src/ilib_gen_gateway.sce
-
-##		'vdopen', 'int_vdopen'; \
-##		'vdgetframe', 'int_vdgetframe'; \
-##		'vdshowopened', 'int_vdshowopened'; \
-##		'vdclose', 'int_vdclose'; \
-##		'vdcloseall', 'int_vdcloseall'; \
-##		'goodfeaturestotrack', 'int_goodfeaturestotrack';\
-##		'laplace', 'int_laplace'; \
-##		'precornerdetec', 'int_precornerdetec'; \
-##		'imsmooth', 'int_imsmooth'; \
-##		'threshold', 'int_threshold'; \
-##		'adaptativethreshold', 'int_adaptativethreshold'; \
-##		'erode', 'int_erode';\
-##		'dilate', 'int_dilate';\
-##		'pyrdown', 'int_pyrdown';\
-##		'pyrup', 'int_pyrup';\
-##		'xor', 'int_xor';\
-##		'not', 'int_not';\
-##		'cmp', 'int_cmp';\
-##		'hough', 'int_hough';\
-
 
 TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'sivp_init','int_sivp_init'; \
@@ -20822,28 +20800,6 @@ TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'int_sobel', 'int_sobel'; \
 		'int_cvtcolor', 'int_cvtcolor'; \
 		"
-# for loader.sce
-# TOOLBOX_FUNCTIONS is the first colum of TOOLBOX_TABLE
-
-##		       'vdopen'; \
-##		       'vdgetframe'; \
-##		       'vdshowopened'; \
-##		       'vdclose'; \
-##		       'vdcloseall'; \
-##		       'goodfeaturestotrack';\
-##		       'laplace'; \
-##		       'precornerdetec'; \
-##		       'imsmooth'; \
-##		       'threshold'; \
-##		       'adaptativethreshold'; \
-##		       'erode';\
-##		       'dilate';\
-##		       'pyrdown';\
-##		       'pyrup';\
-##		       'xor';\
-##		       'not';\
-##		       'cmp';\
-##		       'hough';\
 
 TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'sivp_init'; \
@@ -20876,7 +20832,7 @@ TOOLBOX_FUNCTIONS="    'sivptest'; \
 
 
 
-ac_config_files="$ac_config_files Makefile macros/Makefile images/Makefile man/Makefile src/Makefile demos/Makefile src/ilib_gen_gateway.sce loader.sce"
+ac_config_files="$ac_config_files Makefile macros/Makefile man/Makefile images/Makefile demos/Makefile src/Makefile src/ilib_gen_gateway.sce src/Makefile.win loader.sce"
 
 
 cat >confcache <<\_ACEOF
@@ -21466,11 +21422,12 @@ do
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "macros/Makefile") CONFIG_FILES="$CONFIG_FILES macros/Makefile" ;;
-    "images/Makefile") CONFIG_FILES="$CONFIG_FILES images/Makefile" ;;
     "man/Makefile") CONFIG_FILES="$CONFIG_FILES man/Makefile" ;;
-    "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
+    "images/Makefile") CONFIG_FILES="$CONFIG_FILES images/Makefile" ;;
     "demos/Makefile") CONFIG_FILES="$CONFIG_FILES demos/Makefile" ;;
+    "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
     "src/ilib_gen_gateway.sce") CONFIG_FILES="$CONFIG_FILES src/ilib_gen_gateway.sce" ;;
+    "src/Makefile.win") CONFIG_FILES="$CONFIG_FILES src/Makefile.win" ;;
     "loader.sce") CONFIG_FILES="$CONFIG_FILES loader.sce" ;;
 
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5

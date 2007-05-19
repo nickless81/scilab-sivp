@@ -1,8 +1,7 @@
 ##
 ## -------------------------------------------------------------------------
 ## SIVP - Scilab Image and Video Processing toolbox
-## Copyright (C) 2005-2006  Shiqi Yu, Shulin Shang
-## Copyright (C) 2003 Ricardo Fabbri
+## Copyright (C) 2007  Shiqi Yu
 ##
 ## This program is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -20,6 +19,7 @@
 ## -------------------------------------------------------------------------
 ##
 
+# list of *.c files
 IMG_IO_SRC=imread.c imwrite.c imfinfo.c test.c mat2utfimg.c
 AVI_IO_SRC=aviinfo.c aviopen.c avifile.c aviclose.c avicloseall.c avilistopened.c avireadframe.c camopen.c addframe.c
 IMG_TRAN_SRC=imresize.c imabsdiff.c imadd.c imsubtract.c immultiply.c imdivide.c
@@ -28,22 +28,27 @@ IMG_COLOR_SRC=cvtcolor.c
 
 ALL_SRC=libsivp.c common.c sivp_init.c $(IMG_IO_SRC)  $(AVI_IO_SRC) $(IMG_TRAN_SRC) $(IMG_FILTER_SRC) $(IMG_COLOR_SRC)
 
-libdir=@TOOLBOXDIR@/lib
+# list of objects file
+OBJS=$(ALL_SRC:.c=.obj)
 
-lib_LTLIBRARIES = libsivp.la
-
-AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
-
-libsivp_la_SOURCES = $(ALL_SRC)
-
-libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release @PACKAGE_VERSION@
-
-libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
-
-EXTRA_DIST = common.h 
-
-libsivp.c: ilib_gen_gateway.sce
-	rm -f libsivp.c
-	$(SCIEXE) -nw -nb -f ilib_gen_gateway.sce
+# software install path
+SCIDIR =C:/PROGRA~1/scilab-4.1
+SCIDIR1 =C:\PROGRA~1\scilab-4.1
+OPENCV_PATH=C:\PROGRA~1\OpenCV
 
 
+# name of the dll to be built
+LIBRARY = ..\lib\libsivp
+
+# added libraries 
+OTHERLIBS = cxcore.lib cv.lib highgui.lib 
+
+!include $(SCIDIR1)\Makefile.incl.mak
+
+CFLAGS = -D"WIN_SIVP"  $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)\routines" -Dmexfunction_=mex$*_  -DmexFunction=mex_$*  -I"..\config" -I"$(OPENCV_PATH)\cxcore\include" -I"$(OPENCV_PATH)\cv\include" -I"$(OPENCV_PATH)\otherlibs\highgui" 
+
+FFLAGS = $(FC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines" -Dmexfunction=mex$* 
+
+EXTRA_LDFLAGS = -LIBPATH:$(OPENCV_PATH)\lib 
+
+!include $(SCIDIR1)\config\Makedll.incl 

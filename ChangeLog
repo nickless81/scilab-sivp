@@ -1,6 +1,9 @@
 ------------------------------------------------------------
 	SIVP 0.4.3
 ------------------------------------------------------------
+o Changed:
+	The OpenCV dll files in Windows binary version have been updated version 
+1.0.0 
 o Bug fixed:
   --------
 	Add file macros/Sci_Name.c and macros/Sci_Lib.c. Because macros/Name.c and macros/Lib.c in Scilab were removed from its debian package, we copied these two files to SIVP from Scilab. So Debian users who use Scilab deb can use SIVP now.
