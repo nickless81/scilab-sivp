@@ -34,7 +34,7 @@ macros_bin = $(macros_sci:.sci=.bin)
 macrodir=@TOOLBOXDIR@/macros
 macro_DATA = $(macros_bin) genlib names lib imshow.tcl
 
-EXTRA_DIST = $(macros_sci)  imshow.tcl
+EXTRA_DIST = $(macros_sci)  imshow.tcl Sci_Name.c Sci_Lib.c
 
 ## dist_macro_DATA = $(macros_sci) sip-intro.dem sipdemo_gui.dem interferometry_gui.dem mogrify.dem
 
@@ -46,15 +46,10 @@ EXTRA_DIST = $(macros_sci)  imshow.tcl
 	@SCI=$(SCIDIR);export SCI; umask 002;rm -f repor;
 	@name=`basename $< .sci`;
 	@echo "predef();getf('$(name).sci');save('$(name).bin');quit"| $(SCIEXE) -ns -nw | sed 1,8d 1>report 2>&1;umask 022;
-#
-#%.bin : %.sci
-#	@SCI=$(SCIDIR);export SCI;$(SCIDIR)/bin/scilab -comp  $<
 
-##.sci.bin:
-##	@SCI=$(SCIDIR);export SCI;$(SCIDIR)/bin/scilab -comp  $*.sci
-
-lib: $(macros_sci)
-	@echo $? > tmp_comp ;$(SCIDIR)/macros/Lib Xtmp_comp; rm -f tmp_comp
+lib: $(macros_sci) Sci_Lib
+#	@echo $? > tmp_comp ;$(SCIDIR)/macros/Lib Xtmp_comp; rm -f tmp_comp
+	@echo $(macros_sci) > tmp_comp ; ./Sci_Lib Xtmp_comp; rm -f tmp_comp
 	@rm -f `cat tmp_Bin`
 	@echo Starting Compilation 
 	@if ( $(SCIDIR)/util/scibatch $(SCIDIR) tmp_Macros ) ;\
@@ -64,11 +59,18 @@ lib: $(macros_sci)
 	fi
 	@echo End of compilation
 
-names genlib: 	$(macros_sci) Makefile 
+names genlib: 	$(macros_sci) Makefile Sci_Name
 	@echo $(PWD) > tmp_comp ;
 	@echo $(PACKAGE_NAME) >> tmp_comp ;
 	@echo $(macros_sci) >> tmp_comp ;
-	@$(SCIDIR)/macros/Name Xtmp_comp; rm -f tmp_comp
+#	@$(SCIDIR)/macros/Name Xtmp_comp; rm -f tmp_comp
+	@./Sci_Name Xtmp_comp; rm -f tmp_comp
+
+Sci_Name: Sci_Name.c
+	$(CC) $^ -o $@ 
+
+Sci_Lib: Sci_Lib.c
+	$(CC) $^ -o $@ 
 
 clean-local:
-	rm -f tmp_* *.bin lib names Lib.mak Macros.mak genlib
+	rm -f tmp_* *.bin lib names Lib.mak Macros.mak genlib Sci_Name Sci_Lib

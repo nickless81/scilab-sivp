@@ -125,6 +125,8 @@ AC_PREFIX_DEFAULT([SCI/contrib/${PACKAGE_NAME}-${PACKAGE_VERSION}])
 
 if test "x$prefix"  = xNONE; then 
    prefix="${SCIDIR}/contrib/${PACKAGE_NAME}-${PACKAGE_VERSION}"
+else
+   prefix="${prefix}/${PACKAGE_NAME}-${PACKAGE_VERSION}"
 fi
 
 TOOLBOXDIR=$prefix
@@ -310,7 +312,6 @@ AC_MSG_RESULT([
 Configuration:
 	CC       = $CC
 	CFLAGS   = $CFLAGS
-	CPPFLAGS = $CPPFLAGS
 	LDFLAGS  = $LDFLAGS
 	LIBS     = $LIBS
 =====================================================
