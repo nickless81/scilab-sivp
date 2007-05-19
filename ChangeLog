@@ -1,4 +1,11 @@
 ------------------------------------------------------------
+	SIVP 0.4.3
+------------------------------------------------------------
+o Bug fixed:
+  --------
+	Add file macros/Sci_Name.c and macros/Sci_Lib.c. Because macros/Name.c and macros/Lib.c in Scilab were removed from its debian package, we copied these two files to SIVP from Scilab. So Debian users who use Scilab deb can use SIVP now.
+
+------------------------------------------------------------
 	SIVP 0.4.2
 ------------------------------------------------------------
 o Changed:
