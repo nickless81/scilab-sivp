@@ -46,7 +46,20 @@ Section "Install section"
   SetOutPath $INSTDIR
   
   ;ADD YOUR OWN FILES HERE...
-  File /r ".\" 
+  File /r ".\demos" 
+  File /r ".\images" 
+  File /r ".\lib"
+  File /r ".\macros" 
+  File /r ".\man" 
+  File /r ".\src" 
+  File ".\AUTHORS"
+  File ".\BUGS"
+  File ".\builder.sce"
+  File ".\COPYING"
+  File ".\loader.sce"
+  File ".\NEWS"
+  File ".\README"
+  File ".\TODO"
   
   ; Create an item in program menu
   CreateDirectory "$SMPROGRAMS\SIVP-0.4.3\"
