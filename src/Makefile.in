@@ -57,7 +57,8 @@ am__installdirs = "$(DESTDIR)$(libdir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libsivp_la_DEPENDENCIES =
-am__objects_1 = imread.lo imwrite.lo imfinfo.lo test.lo mat2utfimg.lo
+am__objects_1 = imread.lo imwrite.lo imfinfo.lo test.lo mat2utfimg.lo \
+	ind2rgb.lo
 am__objects_2 = aviinfo.lo aviopen.lo avifile.lo aviclose.lo \
 	avicloseall.lo avilistopened.lo avireadframe.lo camopen.lo \
 	addframe.lo
@@ -204,7 +205,7 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-IMG_IO_SRC = imread.c imwrite.c imfinfo.c test.c mat2utfimg.c
+IMG_IO_SRC = imread.c imwrite.c imfinfo.c test.c mat2utfimg.c ind2rgb.c
 AVI_IO_SRC = aviinfo.c aviopen.c avifile.c aviclose.c avicloseall.c avilistopened.c avireadframe.c camopen.c addframe.c
 IMG_TRAN_SRC = imresize.c imabsdiff.c imadd.c imsubtract.c immultiply.c imdivide.c
 IMG_FILTER_SRC = sobel.c imfilter.c filter2.c canny.c  
@@ -330,6 +331,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/imresize.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/imsubtract.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/imwrite.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ind2rgb.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsivp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mat2utfimg.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sivp_init.Plo@am__quote@

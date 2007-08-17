@@ -20,7 +20,7 @@
 ## -------------------------------------------------------------------------
 ##
 
-IMG_IO_SRC=imread.c imwrite.c imfinfo.c test.c mat2utfimg.c
+IMG_IO_SRC=imread.c imwrite.c imfinfo.c test.c mat2utfimg.c ind2rgb.c
 AVI_IO_SRC=aviinfo.c aviopen.c avifile.c aviclose.c avicloseall.c avilistopened.c avireadframe.c camopen.c addframe.c
 IMG_TRAN_SRC=imresize.c imabsdiff.c imadd.c imsubtract.c immultiply.c imdivide.c
 IMG_FILTER_SRC=sobel.c imfilter.c filter2.c canny.c  
