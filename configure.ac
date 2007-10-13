@@ -22,27 +22,24 @@
 
 
 AC_PREREQ(2.59)
-AC_INIT([sivp], [cvs], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
+AC_INIT([sivp], [0.4.3], [https://sourceforge.net/tracker/?group_id=134898&atid=731349])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_SRCDIR(src/test.c)
 AM_CONFIG_HEADER(src/config.h)
-AM_INIT_AUTOMAKE([sivp],[cvs])
+AM_INIT_AUTOMAKE
 
 # Checks for programs.
 AC_PROG_CC
-AC_PROG_CXX
-AC_PROG_CC
-AC_PROG_CPP
+#AC_PROG_CXX
+#AC_PROG_CPP
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 
-# ssl begin
 if test x"$ac_cv_prog_cc_stdc" = x'no'; then
    AC_MSG_WARN([[found the $CC compiler but it is not ANSI-C 
                 compliant.]])
 fi
-# ssl end
 
 AC_LIBTOOL_WIN32_DLL
 AC_DISABLE_STATIC
@@ -61,12 +58,15 @@ fi
 #
 native_win32_build='no'
 cygwin_build='no'
+win32_build='no'
 case $host_os in
    cygwin*) 
        cygwin_build='yes'
+       win32_build='yes' 
        ;;
    mingw* )
        native_win32_build='yes' 
+       win32_build='yes' 
        ;;
 esac
 
@@ -93,6 +93,7 @@ if test -z "$SCI"; then
       dnl TODO take SCIDIR from the registry
       AC_MSG_WARN([[hardcoding SCI to /c/scilab]])
       SCIDIR="/c/scilab"
+      SCIEXE="/c/scilab/bin/Scilex.exe"
    else
       AC_CHECK_PROG([has_scilab],[scilab],[yes],[no], , )
       if test x$has_scilab = xno; then
@@ -103,18 +104,29 @@ if test -z "$SCI"; then
               mclose(F);'
          echo "$cmd" | scilab -nw >/dev/null
          SCIDIR=`cat path.incl`
+	 # TODO 
+	 #SCIEXE="${SCIDIR}/bin/scilex"
+	 SCIEXE="${SCIDIR}/bin/scilab"
       fi
    fi
 else
    SCIDIR="$SCI"
+   if test $win32_build = yes; then
+      SCIEXE="${SCI}/bin/Scilex.exe"
+   else
+      #SCIEXE="${SCI}/bin/scilex"
+      SCIEXE="${SCI}/bin/scilab"
+   fi
 fi
 
-CPPFLAGS="$CPPFLAGS -I${SCIDIR}/routines"
+CFLAGS="$CFLAGS -I${SCIDIR}/routines"
 
-AC_PREFIX_DEFAULT([SCI/contrib/sivp])
+AC_PREFIX_DEFAULT([SCI/contrib/${PACKAGE_NAME}-${PACKAGE_VERSION}])
 
 if test "x$prefix"  = xNONE; then 
-   prefix="${SCIDIR}/contrib/sivp"
+   prefix="${SCIDIR}/contrib/${PACKAGE_NAME}-${PACKAGE_VERSION}"
+else
+   prefix="${prefix}/${PACKAGE_NAME}-${PACKAGE_VERSION}"
 fi
 
 TOOLBOXDIR=$prefix
@@ -123,7 +135,7 @@ TOOLBOXDIR=$prefix
 AC_PREFIX_DEFAULT([$TOOLBOXDIR])
 AC_SUBST(TOOLBOXDIR)
 AC_SUBST(SCIDIR)
-
+AC_SUBST(SCIEXE)
 
 LIBRARY_EXTRA_CPPFLAGS=''
 LIBRARY_EXTRA_LIBS=''
@@ -132,13 +144,13 @@ then
   if test "${libtool_build_shared_libs}" = 'yes'
   then
     SHARED_LIB_SUFFIX=dll
-    CPPFLAGS="$CPPFLAGS -DFORDLL"
+    CFLAGS="$CFLAGS -DFORDLL"
     AC_MSG_WARN([[Don't forget to rename SCI/bin/LibScilab* to lowercase]])
     LDFLAGS="$LDFLAGS -L${SCIDIR}/bin"
-    #LIBRARY_EXTRA_CPPFLAGS="-D_SIMPLELIB"
+    #LIBRARY_EXTRA_CFLAGS="-D_SIMPLELIB"
     LIBRARY_EXTRA_LIBS="-lscilab"
   else
-    CPPFLAGS="$CPPFLAGS -D_LIB"
+    CFLAGS="$CFLAGS -D_LIB"
   fi
 else
    SHARED_LIB_SUFFIX=so
@@ -154,33 +166,12 @@ AC_SUBST(LIBRARY_EXTRA_LIBS)
 have_opencv=no
 PKG_CHECK_MODULES(OPENCV, 
 		[opencv >= 0.9.6],
-		[CPPFLAGS="$CPPFLAGS $OPENCV_CFLAGS"
+		[CFLAGS="$CFLAGS $OPENCV_CFLAGS"
 		 LDFLAGS="$LDFLAGS -L${SCIDIR}/bin"
 		 LIBS="$LIBS $OPENCV_LIBS"
 		 have_opencv=yes
 		 AC_DEFINE(HAVE_OPENCV,[], [define HAVE_OPENCV if you have opencv])],
 		[AC_MSG_ERROR([[ OpenCV version >= 0.9.6 was not found. ]])])
-
-#AC_CHECK_LIB(highgui0.9, cvCaptureFromFile,, AC_MSG_ERROR([[OpenCV does not support video file R/W, 
-#		      please recompile OpenCV with FFMPEG.]]))
-#AC_CHECK_LIB(highgui0.9, cvCaptureFromCAM,, AC_MSG_ERROR([[OpenCV does not support camera capture, 
-#		      please recompile OpenCV with FFMPEG and Video4Linux.]]))
-
-# check for ffmpeg
-#if test $native_win32_build = no; then
-#have_ffmpeg=no
-#AC_CHECK_HEADER(ffmpeg/avcodec.h,
-#   AC_CHECK_LIB(avcodec, avcodec_decode_video,
-#       [AC_CHECK_LIB(avformat, av_read_frame,
-#			[have_ffmpeg=yes
-#			 AC_DEFINE(HAVE_FFMPEG,[],[define HAVE_FFMPEG if you have ffmpeg])
-#			 LIBS="$LIBS -lavcodec -lavformat"],
-#			 AC_MSG_ERROR([[ libavformat (FFMPEG) was not found. ]]),
-#			[-lavcodec])]), 
-#			 AC_MSG_ERROR([[ libavcodec (FFMPEG) was not found. ]]))
-#fi
-
-
 
 # Checks for header files. 
 AC_HEADER_STDC
@@ -196,135 +187,93 @@ AC_HEADER_STDBOOL
 
 
 # Checks for library functions.
-#AC_FUNC_MALLOC
+##AC_FUNC_MALLOC
 AC_CHECK_FUNCS([malloc])
 
-PACKAGE_NAME=sivp
-## for src/Makefile
-# TOOLBOX_SRC=" test.c"
-
 # for src/ilib_gen_gateway.sce
-
-#		'vdopen', 'int_vdopen'; \
-#		'vdgetframe', 'int_vdgetframe'; \
-#		'vdshowopened', 'int_vdshowopened'; \
-#		'vdclose', 'int_vdclose'; \
-#		'vdcloseall', 'int_vdcloseall'; \
-#		'goodfeaturestotrack', 'int_goodfeaturestotrack';\
-
 
 TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'sivp_init','int_sivp_init'; \
 		'imread', 'int_imread';\
-		'imwrite', 'int_imwrite';\
+		'int_imwrite', 'int_imwrite';\
+		'imfinfo', 'int_imfinfo';\
 		'aviinfo', 'int_aviinfo';\
 		'aviopen', 'int_aviopen';\
+		'camopen', 'int_camopen';\
+		'avifile', 'int_avifile';\
 		'aviclose','int_aviclose';\
 		'avicloseall','int_avicloseall';\
 		'avilistopened', 'int_avilistopened';\
 		'avireadframe', 'int_avireadframe';\
-		'camopen', 'int_camopen';\
-		'imresize', 'int_imresize';\
+		'addframe', 'int_addframe';\ 
+		'int_imresize', 'int_imresize';\
+		'int_imabsdiff', 'int_imabsdiff';\
+		'int_imadd', 'int_imadd'; \
+		'int_imsubtract', 'int_imsubtract'; \
+		'int_immultiply', 'int_immultiply'; \
+		'int_imdivide', 'int_imdivide'; \
+		'imfilter', 'int_imfilter'; \
+		'filter2', 'int_filter2'; \
 		'mat2utfimg', 'int_mat2utfimg';\
-		'canny', 'int_canny'; \
-		'convert', 'int_convert'; \
-		'laplace', 'int_laplace'; \
-		'precornerdetec', 'int_precornerdetec'; \
-		'imsmooth', 'int_imsmooth'; \
-		'sobel', 'int_sobel'; \
-		'threshold', 'int_threshold'; \
-		'adaptativethreshold', 'int_adaptativethreshold'; \
-		'erode', 'int_erode';\
-		'dilate', 'int_dilate';\
-		'pyrdown', 'int_pyrdown';\
-		'pyrup', 'int_pyrup';\
-		'xor', 'int_xor';\
-		'not', 'int_not';\
-		'cmp', 'int_cmp';\
-		'hough', 'int_hough';\
+		'int_canny', 'int_canny'; \
+		'int_sobel', 'int_sobel'; \
+		'int_cvtcolor', 'int_cvtcolor'; \
+		'ind2rgb', 'int_ind2rgb'; \
 		"
-# for loader.sce
-# TOOLBOX_FUNCTIONS is the first colum of TOOLBOX_TABLE 
-
-#		       'vdopen'; \
-#		       'vdgetframe'; \
-#		       'vdshowopened'; \
-#		       'vdclose'; \
-#		       'vdcloseall'; \
-#		       'goodfeaturestotrack';\
 
 TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'sivp_init'; \
 		       'imread';\
-		       'imwrite';\
+		       'int_imwrite';\
+		       'imfinfo'; \
 		       'aviinfo';\
 		       'aviopen';\
+		       'camopen';\
+		       'avifile';\
 		       'aviclose';\
 		       'avicloseall';\
 		       'avilistopened';\
 		       'avireadframe';\
-		       'camopen';\
-		       'imresize';\
+		       'addframe';\
+		       'int_imresize';\
+		       'int_imabsdiff';\
+		       'int_imadd'; \
+		       'int_imsubtract'; \
+		       'int_immultiply'; \
+		       'int_imdivide'; \
+		       'imfilter'; \
+		       'filter2'; \
 		       'mat2utfimg'; \
-		       'canny'; \
-		       'convert'; \
-		       'laplace'; \
-		       'precornerdetec'; \
-		       'imsmooth'; \
-		       'sobel'; \
-		       'threshold'; \
-		       'adaptativethreshold'; \
-		       'erode';\
-		       'dilate';\
-		       'pyrdown';\
-		       'pyrup';\
-		       'xor';\
-		       'not';\
-		       'cmp';\
-		       'hough';\
+		       'int_canny'; \
+		       'int_sobel'; \
+		       'int_cvtcolor'; \
+		       'ind2rgb'; \
 		   "
 
-AC_SUBST(PACKAGE_NAME)
-AC_SUBST(TOOLBOX_SRC)
 AC_SUBST(TOOLBOX_TABLE)
 AC_SUBST(TOOLBOX_FUNCTIONS)
 
 AC_CONFIG_FILES([Makefile 
 		 macros/Makefile
-		 images/Makefile
 		 man/Makefile
-		 src/Makefile
+		 images/Makefile
 		 demos/Makefile
+		 src/Makefile
 		 src/ilib_gen_gateway.sce
+		 src/Makefile.win
 		 loader.sce])
 
 AC_OUTPUT
 
 
-if test $native_win32_build = no; then
 AC_MSG_RESULT([
 =====================================================
 Configuration:
 	CC       = $CC
 	CFLAGS   = $CFLAGS
-	CPPFLAGS = $CPPFLAGS
 	LDFLAGS  = $LDFLAGS
 	LIBS     = $LIBS
 =====================================================
-This toolbox will be installed in $TOOLBOXDIR.
+This toolbox will be installed in $TOOLBOXDIR
 Please run 'make' and 'make install' to compile and install the toolbox. 
 ]) 
-else
-AC_MSG_RESULT([
-=====================================================
-Configuration:
-	CC       = $CC
-	CFLAGS   = $CFLAGS
-	CPPFLAGS = $CPPFLAGS
-	LDFLAGS  = $LDFLAGS
-	LIBS     = $LIBS
-=====================================================
-This toolbox will be installed in $TOOLBOXDIR.
-Please run 'make' and 'make install' to compile and install the toolbox. 
-]) 
-fi

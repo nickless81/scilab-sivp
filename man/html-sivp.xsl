@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 <xsl:output method="html" indent="yes"  />
 
+<!-- revisited: Shiqi Yu, July 24, 2006 -->
 <!-- from hml.xsl matt. revisited: jpc 21 sept 2003 -->
 
 <xsl:strip-space elements="*"/>
@@ -14,6 +15,7 @@
  </head>
  <body bgcolor="#FFFFFF">
  <center><xsl:value-of select="./TYPE"/></center>
+<div align="right">Last update : <xsl:value-of select="./DATE"/></div>
  <xsl:for-each select="./SHORT_DESCRIPTION">
    <p><b><xsl:value-of select="@name"/></b> - <xsl:value-of select="text()"/></p>
  </xsl:for-each>

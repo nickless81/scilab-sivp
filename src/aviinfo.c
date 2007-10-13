@@ -42,9 +42,15 @@ int_aviinfo(char *fname)
   double *pfValue = &fValue;
   int iValue;
   int *piValue = &iValue;
-  
-  CvCapture * pCapture = NULL;
 
+#ifdef WIN_SIVP
+  struct _stat fileStat;
+#else
+  struct stat fileStat;
+#endif
+ 
+  CvCapture * pCapture = NULL;
+  
   CheckRhs(1,1);
   CheckLhs(1,1);
 
@@ -80,8 +86,11 @@ int_aviinfo(char *fname)
   CreateListVarFromPtr(2, ++element, "c", &mxL, &One, &pFilename);
 
   //get the file size
-  struct stat fileStat;
+#ifdef WIN_SIVP
+  if( _stat(pFilename, &fileStat) != 0)
+#else
   if( stat(pFilename, &fileStat) != 0)
+#endif
     {
       Scierror(999, "%s: Can not get the information of file %s.\r\n", fname, pFilename);
       cvReleaseCapture(&pCapture);

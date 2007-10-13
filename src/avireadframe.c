@@ -40,20 +40,28 @@ int int_avireadframe(char * fname)
     {
       GetRhsVar(2, "i", &mR2, &nR2, &lR2);
       CheckDims(2, mR2, nR2, 1, 1);
+
+      nFrameIdx = *((int *)(istk(lR2)));
+      nFrameIdx -= 1;
     }
 
   nFile = *((int *)(istk(lR1)));
   nFile -= 1;
-
-  nFrameIdx = *((int *)(istk(lR2)));
-  nFrameIdx -= 1;
 
   if (!(nFile >= 0 && nFile < MAX_AVI_FILE_NUM))
     {
       Scierror(999, "%s: The argument should >=1 and <= %d.\r\n", fname, MAX_AVI_FILE_NUM);
       return -1;
     }
-  if(! OpenedCap[nFile].cap)
+
+  if ( OpenedAviCap[nFile].iswriter )
+    {
+      Scierror(999, "%s: The opened file is for writing.\r\n", fname);
+      return -1;
+    }
+
+
+  if(! OpenedAviCap[nFile].video.cap)
     {
       Scierror(999, "%s: The %d'th file is not opened.\r\n Please use avilistopened command to show opened files.\r\n",
 	       fname, nFile+1);
@@ -67,9 +75,9 @@ int int_avireadframe(char * fname)
 
 
   if(nFrameIdx >=0)
-    cvSetCaptureProperty( OpenedCap[nFile].cap, CV_CAP_PROP_POS_FRAMES, nFrameIdx);
+    cvSetCaptureProperty( OpenedAviCap[nFile].video.cap, CV_CAP_PROP_POS_FRAMES, nFrameIdx);
 
-  pImage = cvQueryFrame(OpenedCap[nFile].cap);
+  pImage = cvQueryFrame(OpenedAviCap[nFile].video.cap);
 
   if (! pImage)
   {
@@ -84,6 +92,8 @@ int int_avireadframe(char * fname)
     }
 
   LhsVar(1) = Rhs+1;
+
+  //pImage can not be released!!
 
   return 0;
 }

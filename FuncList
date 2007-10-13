@@ -2,6 +2,7 @@ Image input, output, and display
 	imread
 	imwrite
 	imshow
+	imfinfo
 	
 
 Video/camera input, output
@@ -13,5 +14,73 @@ Video/camera input, output
 	avilistopened
 	avireadframe
 
+Image type conversion
+      im2bw
+      im2uint8
+      im2int8
+      im2uint16
+      im2int16
+      im2int32
+      im2double
+      mat2gray
+      rgb2gray
+
 Spatial transformation and registration
+	imcrop
 	imresize
+    TODO:
+	imrotate
+	interp2
+	imtransform
+
+
+Image Analysis and Statistics
+      mean2
+      corr2
+      std2/stdev2
+      imhist
+      edge
+
+Image Arithmetic
+      imabsdiff
+      imadd
+      imdivide
+      immultiply
+      imsubtract
+      imcomplement
+      imlincomb
+
+Image Enhancement and Restoration
+      imnoise
+    TODO:
+      adapthisteq
+      decorrstretch
+      histeq
+      imadjust
+      medfilt2
+      ordfilt2
+      stretchlim
+      uintlut
+      wiener2
+
+Linear Filtering and Transforms
+       imfilter
+       fspecial
+     TODO:
+       fspecail(disk, motion filter)
+
+Morphological operations
+     TODO:
+	bwboundaries
+	bwdist
+	bwlabel
+	dilate
+	erode
+	
+Color space conversions
+        hsv2rgb
+	rgb2hsv
+	rgb2ycbcr
+	ycbcr2rgb
+	rgb2ntsc
+	ntsc2rgb

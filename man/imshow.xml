@@ -44,7 +44,7 @@ Only one imshow window can pop up.
 <!-- ================================= -->
 
 <AUTHORS>
-   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;yushiqi (AT) yahoo DOT com DOT cn&gt; </AUTHORS_ITEM>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </AUTHORS_ITEM>
 </AUTHORS>
 <!-- ================================= -->
 <SECTION label="Availability">
@@ -55,5 +55,6 @@ The latest version of SIVP can be found at
    <SEE_ALSO>
       <SEE_ALSO_ITEM> <LINK>imread</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>imwrite</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>imfinfo</LINK> </SEE_ALSO_ITEM>
    </SEE_ALSO>
 </MAN>

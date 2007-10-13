@@ -11,14 +11,16 @@ lines(0)
 
 deff('[]=demoex(num)','execstr(demolist(num,2))')
 
-sivpdemopath=SCI+'/contrib/sivp/demos/'
+sivpdemopath=SIVP_PATH+'/demos/'
 
 if MSDOS then sivpdemopath=strsubst(sivpdemopath,'/','\'),end
 
 demolist=[
 'Image reading and showing', 'exec(sivpdemopath+''image.sce'')';
 'Canny edge detector',       'exec(sivpdemopath+''canny.sce'')';
+'Add Gussian noise',         'exec(sivpdemopath+''noise.sce'')';
 'Video reading and showing', 'exec(sivpdemopath+''video.sce'')';
+'Grab frames from a camera', 'exec(sivpdemopath+''camera.sce'')';
 ]
 
 while %t then

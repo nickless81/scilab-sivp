@@ -42,7 +42,7 @@ int int_camopen(char *fname)
 
   for (nCurrFile = 0; nCurrFile < MAX_AVI_FILE_NUM; nCurrFile++)
     {
-      if( !(OpenedCap[nCurrFile].cap))
+      if( !(OpenedAviCap[nCurrFile].video.cap))
 	break;
     }
 
@@ -53,21 +53,22 @@ int int_camopen(char *fname)
     }
 
 
-  OpenedCap[nCurrFile].cap = cvCaptureFromCAM(nCamIdx);
-  if(OpenedCap[nCurrFile].cap == 0)
+  OpenedAviCap[nCurrFile].video.cap = cvCaptureFromCAM(nCamIdx);
+  if(OpenedAviCap[nCurrFile].video.cap == 0)
     {
-      Scierror(999, "$s, Can not open the camera.\r\n", fname);
+      Scierror(999, "%s, Can not open the camera.\r\n", fname);
       return -1;
     }
-  cvSetCaptureProperty(OpenedCap[nCurrFile].cap, CV_CAP_PROP_FRAME_WIDTH, 320);
-  cvSetCaptureProperty(OpenedCap[nCurrFile].cap, CV_CAP_PROP_FRAME_HEIGHT, 240);
-  cvSetCaptureProperty(OpenedCap[nCurrFile].cap, CV_CAP_PROP_FPS, 25);
+  cvSetCaptureProperty(OpenedAviCap[nCurrFile].video.cap, CV_CAP_PROP_FRAME_WIDTH, 320);
+  cvSetCaptureProperty(OpenedAviCap[nCurrFile].video.cap, CV_CAP_PROP_FRAME_HEIGHT, 240);
+  cvSetCaptureProperty(OpenedAviCap[nCurrFile].video.cap, CV_CAP_PROP_FPS, 25);
 
-  strcpy(OpenedCap[nCurrFile].filename, "camera");
+  strcpy(OpenedAviCap[nCurrFile].filename, "camera");
+  OpenedAviCap[nCurrFile].iswriter = 0;
+
+
   //the output is the opened index
   nCurrFile += 1;
-
-
 
   mL = 1;
   nL = 1;

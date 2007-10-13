@@ -30,6 +30,10 @@ double * param1=NULL;
 double * param2=NULL;
 int * param3=NULL;
 
+IplImage * img1 = NULL;
+IplImage * img2 = NULL;
+IplImage * imgTmp = NULL;
+
 //check the number of in/out parametres
 Rhs=Max(Lhs,Rhs);
 
@@ -55,7 +59,6 @@ param2 =  stk(l3);
 param3 =  istk(l4);
 
 //load the input image for cvcanny
-IplImage* img1 = NULL ;
 img1=Mat2IplImg(1);
 
 // check if input image is correctly loaded
@@ -65,7 +68,7 @@ if(img1==NULL)
    return 0;
   }
 
- IplImage * img2 = cvCreateImage(cvGetSize(img1),  IPL_DEPTH_8U, 1);
+ img2 = cvCreateImage(cvGetSize(img1),  IPL_DEPTH_8U, 1);
  if(img2==NULL)
    {
      cvReleaseImage( &img1 );
@@ -75,7 +78,6 @@ if(img1==NULL)
 
 
  //convert the input to UING8 Gray image
- IplImage * imgTmp = NULL;
  if(img1->depth != IPL_DEPTH_8U)
    {
      imgTmp = cvCreateImage(cvGetSize(img1), IPL_DEPTH_8U, img1->nChannels);

@@ -22,10 +22,11 @@
 
 int int_test(char * fname)
 {
+  IplImage * pImg;
+
   CheckRhs(1,1);
   CheckLhs(0,1);
 
-  IplImage * pImg;
   pImg = Mat2IplImg(1);
   if(pImg != NULL)
     {

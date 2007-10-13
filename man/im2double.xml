@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>im2double</TITLE>
+<TYPE>SIVP Toolbox</TYPE>
+<DATE>April, 2006</DATE>
+<SHORT_DESCRIPTION name="im2double">Convert image to double precision</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>im2 = im2double(im)</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+   <PARAM_NAME>im</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+     An matrix/image, which can be ANY image supported by SIVP.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>im2</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+     Output image, a double precision matrix.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+<DESCRIPTION>
+<P>
+<TT>im2double</TT> convert intensity or RGB images to double precision.
+If the input is of class <TT>double</TT>, the output image is identical to it. 
+Otherwise, <TT>im2double</TT> rescales or offsets the data, and returns the equivalent image of class <TT>double</TT>.
+</P>
+</DESCRIPTION>
+
+<!-- ================================= -->
+
+<AUTHORS>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </AUTHORS_ITEM>
+</AUTHORS>
+<!-- ================================= -->
+<SECTION label="Availability">
+The latest version of SIVP can be found at
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+   <SEE_ALSO>
+      <SEE_ALSO_ITEM> <LINK>im2bw</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>im2uint8</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>im2int8</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>im2uint16</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>im2int16</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>im2int32</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>mat2gray</LINK> </SEE_ALSO_ITEM>
+   </SEE_ALSO>
+</MAN>

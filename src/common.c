@@ -226,6 +226,13 @@ BOOL IplImg2Mat(IplImage * pImage, int nPos)
   if(pImage == NULL)
     return FALSE;
 
+  //if bottom-left origin
+  if(pImage->origin==1)
+    {
+      cvFlip(pImage, NULL, 0);
+      pImage->origin=0;
+    }
+
   /*how many bytes per pixel per channel*/
   nBytes = pImage->depth;
   if (nBytes > IPL_DEPTH_SIGN)
@@ -319,7 +326,7 @@ IplImage * CreateIplImgFromHm(int nPos)
   
   /*get the dimension information, it's stored in the second element of the mlist*/
 
-  GetListRhsVar(1,2,"I", &m2, &n2,&Dims);
+  GetListRhsVar(nPos,2,"I", &m2, &n2,&Dims);
   if( m2*n2 !=2 && m2*n2 !=3)
     goto NOT_HM;
 
@@ -453,16 +460,20 @@ IplImage * Mat2IplImg(int nPos)
  ************************************************************/
 BOOL MatData2ImgData(IplImage * pImage, void * pMatData)
 {
-  if (pImage == NULL || pMatData == NULL)
-    return FALSE;
   //  IPL_DEPTH_8U, IPL_DEPTH_8S, IPL_DEPTH_16U,
   //IPL_DEPTH_16S, IPL_DEPTH_32S, IPL_DEPTH_32F and IPL_DEPTH_64F 
   int row, col, ch;
   long nCount = 0;
   int nBytes;
 
-  char * pDst = (char*)(pImage->imageData);
-  char * pSrc = (char*)pMatData;
+  char * pDst = NULL;
+  char * pSrc = NULL;
+
+  if (pImage == NULL || pMatData == NULL)
+    return FALSE;
+
+  pDst = (char*)(pImage->imageData);
+  pSrc = (char*)pMatData;
 
   /*how many bytes per pixel per channel*/
   nBytes = pImage->depth;
@@ -487,16 +498,20 @@ BOOL MatData2ImgData(IplImage * pImage, void * pMatData)
  ************************************************************/
 BOOL ImgData2MatData(IplImage * pImage, void * pMatData)
 {
-  if (pImage == NULL || pMatData == NULL)
-    return FALSE;
   //  IPL_DEPTH_8U, IPL_DEPTH_8S, IPL_DEPTH_16U,
   //IPL_DEPTH_16S, IPL_DEPTH_32S, IPL_DEPTH_32F and IPL_DEPTH_64F 
   int row, col, ch;
   long nCount = 0;
   int nBytes;
 
-  char * pSrc = (char*)(pImage->imageData);
-  char * pDst = (char*)pMatData;
+  char * pSrc = NULL;
+  char * pDst = NULL;
+
+  if (pImage == NULL || pMatData == NULL)
+    return FALSE;
+
+  pSrc = (char*)(pImage->imageData);
+  pDst = (char*)pMatData;
 
   /*how many bytes per pixel per channel*/
   nBytes = pImage->depth;

@@ -19,28 +19,31 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ## -------------------------------------------------------------------------
 ##
+
+IMG_IO_SRC=imread.c imwrite.c imfinfo.c test.c mat2utfimg.c ind2rgb.c
+AVI_IO_SRC=aviinfo.c aviopen.c avifile.c aviclose.c avicloseall.c avilistopened.c avireadframe.c camopen.c addframe.c
+IMG_TRAN_SRC=imresize.c imabsdiff.c imadd.c imsubtract.c immultiply.c imdivide.c
+IMG_FILTER_SRC=sobel.c imfilter.c filter2.c canny.c  
+IMG_COLOR_SRC=cvtcolor.c
+
+ALL_SRC=libsivp.c common.c sivp_init.c $(IMG_IO_SRC)  $(AVI_IO_SRC) $(IMG_TRAN_SRC) $(IMG_FILTER_SRC) $(IMG_COLOR_SRC)
+
 libdir=@TOOLBOXDIR@/lib
 
 lib_LTLIBRARIES = libsivp.la
 
 AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
 
-#vdrw.c goodfeaturestotrack.c 
-#
-IMG_IO_SRC=imread.c imwrite.c test.c mat2utfimg.c
-AVI_IO_SRC=aviinfo.c aviopen.c aviclose.c avicloseall.c avilistopened.c avireadframe.c camopen.c
-IMG_TRAN_SRC=imresize.c
-IMG_PROC_MAN= canny.c sobel.c    convert.c laplace.c precornerdetec.c imsmooth.c threshold.c adaptativethreshold.c erode.c dilate.c pyrdown.c pyrup.c xor.c not.c cmp.c hough.c
-
-libsivp_la_SOURCES = libsivp.c common.c sivp_init.c $(IMG_IO_SRC)  $(AVI_IO_SRC) $(IMG_TRAN_SRC) $(IMG_PROC_MAN)
+libsivp_la_SOURCES = $(ALL_SRC)
 
 libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release @PACKAGE_VERSION@
 
 libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
 
-EXTRA_DIST = common.h
+EXTRA_DIST = common.h 
 
 libsivp.c: ilib_gen_gateway.sce
-	$(SCIDIR)/bin/scilab -nw -nb -f ilib_gen_gateway.sce
+	rm -f libsivp.c
+	$(SCIEXE) -nw -nb -f ilib_gen_gateway.sce
 
 

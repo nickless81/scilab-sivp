@@ -26,8 +26,6 @@ extern "C" {
 #endif
 
 
-#define CV_INLINE static
-
 #ifndef TRUE
     #define TRUE 1
 #endif
@@ -35,13 +33,16 @@ extern "C" {
     #define FALSE 0
 #endif
 
+#define SIVP_ABS(a) ((a) < 0 ? (-(a)) : (a))
 typedef int BOOL;
 
 
 #define SIVP_FLOAT 32
 #define SIVP_DOUBLE 64
 
-#include "config.h"
+#ifndef WIN_SIVP
+  #include "config.h"
+#endif
 
 #include <stdio.h>
 
@@ -51,20 +52,25 @@ typedef int BOOL;
 
 #include <stack-c.h>
 
-
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <unistd.h>
 
 #define MAX_AVI_FILE_NUM 32
 #define MAX_FILENAME_LENGTH 2048
 
-  typedef struct OpenedCapture{
-    CvCapture * cap;
+  typedef struct OpenedAvifileCap{
+    int iswriter; //reader or writer
+    union{
+      CvCapture * cap; //for reading from video files or cameras
+      CvVideoWriter * writer; // for writing to video files 
+    }video;
+    int width; //now only used by writer
+    int height;//now only used by writer
     char filename[MAX_FILENAME_LENGTH];
-  } OpenedCapture;
+  } OpenedAvifileCap;
 
-  OpenedCapture OpenedCap[MAX_AVI_FILE_NUM];
+  OpenedAvifileCap OpenedAviCap[MAX_AVI_FILE_NUM];
+
 //#ifdef HAVE_FFMPEG
 //#include <ffmpeg/avcodec.h>
 //#include <ffmpeg/avformat.h>

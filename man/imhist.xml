@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>imhist</TITLE>
+<TYPE>SIVP Toolbox</TYPE>
+<DATE>April, 2006</DATE>
+<SHORT_DESCRIPTION name="imhist">get the histogram of an image</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>[counts, cells] = imhist(im)</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>[counts, cells] = imhist(im, bins)</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>[counts, cells] = imhist(im, bins [,width [,color]])</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+   <PARAM_NAME>im</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   An image, which can be a boolean, <TT>uint8</TT>, <TT>int8</TT>, <TT>uint16</TT>, <TT>int16</TT>, <TT>int32</TT> or <TT>double</TT> image.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>bins</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+     The number of bins of the histogram. If <TT>bins</TT> is not specified, the function will used default value which determined by the image type: 2 for boolen, 2^8 for uint8 and int8, 2^16 for uint16 and int16, 2^16 for int32 (2^32 will need huge computer memory), and 10 for double.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>width</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+     This argument will be sent to <TT>bar</TT> function. It is a real scalar, defines the width (a percentage of the available room) for the bar (default: 0.8, i.e 80%). 
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>color</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+    This argument will be sent to <TT>bar</TT> function. It is a string (default: 'blue'), specifing the inside color bar. 
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>counts</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+     the returned histogram.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>cells</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+     the intervals for bins.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+
+<DESCRIPTION>
+<P>
+   <TT>imhist</TT> return the histogram of an image. If more than 2 arguments are give, the histogram will be shown in a figure.
+</P>
+
+<P>
+If <TT>step</TT> is the step of scalar <TT>cells</TT> (<TT>cells(i+1)=cells(i)+step</TT>),
+the i'th bin is half-open interval <TT>(cells(i)-step/2, cells(i)+step/2]</TT> for <TT>i &gt; 1</TT>,
+and  <TT>[cells(1)-step/2, cells(1)+step/2]</TT> for <TT>i=1</TT>.
+</P>
+
+<P>
+If more than 2 arguments are given, the function will call <TT>bar(cells, counts, ...)</TT> and send rest arguments to <TT>bar</TT> function to display the histogram.
+</P>
+
+</DESCRIPTION>
+<!-- ================================= -->
+<SECTION label="Supported image type">
+  <P>BOOLEAN, UINT8, INT8, UINT16, INT16, INT32, DOUBLE.</P>
+</SECTION>
+<!-- ================================= -->
+
+<EXAMPLE><![CDATA[
+
+    im = imread('lena.png');
+    im = rgb2gray(im);
+    [count, cells]=imhist(im);
+    [count, cells]=imhist(im, 10);
+    scf(0); imhist(im, 10, '');
+    scf(1); imhist(im, 10, 0.5);
+    scf(2); imhist(im, 10, 'green');
+    scf(3); imhist(im, 10, 0.8, 'green');
+
+]]></EXAMPLE>
+<!-- ================================= -->
+
+<AUTHORS>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </AUTHORS_ITEM>
+</AUTHORS>
+<!-- ================================= -->
+<SECTION label="Availability">
+The latest version of SIVP can be found at
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+   <SEE_ALSO>
+      <SEE_ALSO_ITEM> <LINK>mean2</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>corr2</LINK> </SEE_ALSO_ITEM>
+   </SEE_ALSO>
+</MAN>

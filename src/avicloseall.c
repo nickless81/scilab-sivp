@@ -30,10 +30,16 @@ int int_avicloseall(char *fname)
 
   for (i = 0; i < MAX_AVI_FILE_NUM; i++)
     {
-      if(OpenedCap[i].cap)
+      if(OpenedAviCap[i].video.cap)
 	{
-	  cvReleaseCapture( &(OpenedCap[i].cap) );
-	  memset(OpenedCap[i].filename, 0, sizeof(OpenedCap[i].filename) );
+	  //if it is reader for video/camera
+	  if (! OpenedAviCap[i].iswriter)
+	    cvReleaseCapture( &(OpenedAviCap[i].video.cap) );
+	  //if it is reader for video/camera
+	  else
+	    cvReleaseVideoWriter(&(OpenedAviCap[i].video.writer));
+
+	  memset(OpenedAviCap[i].filename, 0, sizeof(OpenedAviCap[i].filename) );
 	}
     }
 

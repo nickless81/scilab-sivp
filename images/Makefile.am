@@ -15,7 +15,7 @@
 ## along with this program; if not, write to the Free Software
 ## Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-images = lena.png baboon.png peppers.png walking.avi
+images = lena.png baboon.png peppers.png video.avi
 imagesdir=@TOOLBOXDIR@/images
 
 images_DATA = $(images)

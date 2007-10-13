@@ -1,16 +1,95 @@
-=============================================================================
-	SIVP 0.2 rc4
-=============================================================================
->>> new features <<<
-	- SIVP demos added
-	- canny can handle true color image now
+o Added:
+	ind2rgb function added.
 
-=============================================================================
-	SIVP 0.2 rc3
-=============================================================================
->>> new features <<<
-	- video reading
-	- rewrite image show GUI.
-	- add some image processing functions
-	- add some French and Chinese man pages
+------------------------------------------------------------
+	SIVP 0.4.3
+------------------------------------------------------------
+o Changed:
+	The OpenCV dll files in Windows binary version have been updated version 
+1.0.0 
+o Bug fixed:
+  --------
+	Add file macros/Sci_Name.c and macros/Sci_Lib.c. Because macros/Name.c and macros/Lib.c in Scilab were removed from its debian package, we copied these two files to SIVP from Scilab. So Debian users who use Scilab deb can use SIVP now.
+
+------------------------------------------------------------
+	SIVP 0.4.2
+------------------------------------------------------------
+o Changed:
+  --------
+	imwrite convert an image using im2uint8() nor uint8() before writing to a file
+	addframe can add varying size images to a video file
+	imshow window can auto-resize
+	
+o Bug fixed:
+  ----------
+	Fixed memory leak bug in addframe and avireadframe function
+	Fixed image flip bug when image origin is bottom-left
+	Correct the labels of button "Zoom In" and "Zoom Out" on imshow window
+	Fixed the bug of imshow that the older image can not be cleared when a new one is drawn
+
+------------------------------------------------------------
+	SIVP 0.4.1
+------------------------------------------------------------
+o Bug fixed:
+  ----------
+	Fixed the install path error. From now SIVP will be 
+	install in path SCI/contrib/sivp-@VERSION@, and a 
+	newer version will not overwrite the older oversion.
+	
+------------------------------------------------------------
+	SIVP 0.4.0
+------------------------------------------------------------
+o Added:
+  ------
+	imadd
+	imsubtract
+	immultiply
+	imdivide
+	imcomplement
+	imlincomb
+	imfinfo
+	imnoise
+	edge
+        hsv2rgb
+	rgb2hsv
+	rgb2ycbcr
+	ycbcr2rgb
+	ntsc2rgb
+	rgb2ntsc
+	avifile
+	addframe
+	
+o Changed:
+  --------
+	
+o Removed:
+  --------
+	sobel(replaced by edge(im, 'sobel'))
+	canny(replaced by edge(im, 'canny'))
+	convert(replaced by int_cvtcolor)
+
+o Bug fixed:
+  ----------
+	function imabsdiff: INT8 support bug fixed
+	function imresize: INT8, INT16, INT32, DOUBLE support bug fixed
+	function im2*: If input is double, the output can not be correctly truncated.
+
+
+	
+------------------------------------------------------------
+	SIVP 0.3.0
+------------------------------------------------------------
+features:
+ + Supported image:
+	channel: 1-channel (binary or grayscale image), 3-channel (RGB image)
+	data type: boolean, uint8, int8, uint16, int16, int32, double
+ + Image I/O functions: imread, imwrite
+ + GUI: imshow
+ + Video I/O, camera read functions: aviinfo, aviopen, camopen, aviclose, 
+		avicloseall, avilistopened, avireadframe
+ + Image type conversion: im2bw, im2uint8, im2int8, im2uint16, im2int16, im2int32, im2double, mat2gray
+ + Spatial transformation functions: imcrop, imresize
+ + Image analysis and statistics functions: mean2, corr2, std2/stdev2
+ + Image arithmetic functions: imabsdiff
+ + Linear Filtering and Transforms: imfilter, fspecial
 

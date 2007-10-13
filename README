@@ -15,26 +15,23 @@ Dependencies
 ------------
 Scilab		>= 3.1		(http://www.scilab.org/)
 OpenCV		>= 0.9.6	(http://sourceforge.net/projects/opencvlibrary/)
-FFMPEG		>= 0.4.9     (http://ffmpeg.sourceforge.net/)
-xslproc	or sabcmd		(http://www.xmlsoft.org, http://www.gingerall.com/charlie/ga/xml/p_sab.xml)
+		(if you want video support, OpenCV should be compiled with ffmpeg)
+xslproc	or sabcmd		(http://www.xmlsoft.org, http://www.gingerall.org/)
 
 
 TODO
 ------------
-Video file write support
-V4L support
-1394 support
 More image processing functions
 
 
 Authors
 ------------
-Shiqi Yu (yushiqi[at]yahoo.com.cn)
-Vincent Etienne (vincent.etienne[at]gmail.com)
+Shiqi Yu (shiqi.yu[at]gmail.com)
 Shulin Shang (shangsl2000[at]yahoo.com.cn)
+Vincent Etienne (vincent.etienne[at]gmail.com)
 
 
 Bugs
 ------------
 Bugs can be reported at
-http://sourceforge.net/tracker/?group_id=134898&atid=731349
+http://sourceforge.net/tracker/?func=add&group_id=134898&atid=731349

@@ -5,7 +5,7 @@
 <TITLE>imread</TITLE>
 <TYPE>SIVP Toolbox</TYPE>
 <DATE>July, 2005</DATE>
-<SHORT_DESCRIPTION name="imread">Reads image file in ANY format</SHORT_DESCRIPTION>
+<SHORT_DESCRIPTION name="imread">Reads image file</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>im = imread(filename)</CALLING_SEQUENCE_ITEM>
 </CALLING_SEQUENCE>
@@ -27,14 +27,27 @@
 </PARAM>
 <DESCRIPTION>
 <P>
-   <TT>imread</TT> reads many types of image files into Scilab. The format of the  file is inferred from the extension in the filename parameter. Currently the following file formats are supported:
-    * Windows bitmaps - BMP, DIB;
-    * JPEG files - JPEG, JPG, JPE;
-    * Portable Network Graphics - PNG;
-    * Portable image format - PBM, PGM, PPM;
-    * Sun rasters - SR, RAS;
-    * TIFF files - TIFF, TIF. 
-</P>
+   <TT>imread</TT> reads many types of image files into Scilab. The format of the  file is inferred from the extension in the filename parameter. Currently the following file formats are supported:</P>
+   <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+       * Windows bitmaps - BMP, DIB;
+     </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM>
+       * JPEG files - JPEG, JPG, JPE;
+     </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM>
+       * Portable Network Graphics - PNG;
+     </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM>
+       * Portable image format - PBM, PGM, PPM;
+     </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM>
+       * Sun rasters - SR, RAS;
+     </DESCRIPTION_ITEM><DESCRIPTION_ITEM>
+       * TIFF files - TIFF, TIF. 
+     </DESCRIPTION_ITEM>
+</DESCRIPTION_INDENT>
+
    <DESCRIPTION_INDENT>
    <DESCRIPTION_ITEM label="im = imread(filename)">
       reads image in filename into <TT>im</TT>
@@ -60,7 +73,7 @@ All kinds of images are converted to gray images or RGB images.
 <!-- ================================= -->
 
 <AUTHORS>
-   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;yushiqi (AT) yahoo DOT com DOT cn&gt; </AUTHORS_ITEM>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </AUTHORS_ITEM>
 </AUTHORS>
 <!-- ================================= -->
 <SECTION label="Availability">
@@ -71,5 +84,6 @@ The latest version of SIVP can be found at
    <SEE_ALSO>
       <SEE_ALSO_ITEM> <LINK>imwrite</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>imshow</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>imfinfo</LINK> </SEE_ALSO_ITEM>
    </SEE_ALSO>
 </MAN>

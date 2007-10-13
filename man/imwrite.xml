@@ -4,7 +4,7 @@
 <LANGUAGE>eng</LANGUAGE>
 <TITLE>imwrite</TITLE>
 <TYPE>SIVP Toolbox</TYPE>
-<DATE>Oct, 2005</DATE>
+<DATE>Oct, 2006</DATE>
 <SHORT_DESCRIPTION name="imwrite">Write image to file</SHORT_DESCRIPTION>
 <CALLING_SEQUENCE>
    <CALLING_SEQUENCE_ITEM>ret=imwrite(im, filename)</CALLING_SEQUENCE_ITEM>
@@ -15,7 +15,7 @@
    <PARAM_NAME>im</PARAM_NAME>
    <PARAM_DESCRIPTION>
 	<TT>im</TT> can be an M-by-N (greyscale image) or M-by-N-by-3 (color image) matrix. 
-If <TT>im</TT> is not of class uint8,  <TT>imwrite</TT> convert the datatype before writing, using <TT>uint8(im)</TT>.
+If <TT>im</TT> is not of class uint8,  <TT>imwrite</TT> will convert the datatype before writing using <TT>im2uint8(im)</TT>.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
@@ -34,14 +34,25 @@ If <TT>im</TT> is not of class uint8,  <TT>imwrite</TT> convert the datatype bef
 </PARAM>
 <DESCRIPTION>
 <P>
-   <TT>imwrite</TT> writes a matrix into a image file. The format of the  file is inferred from the extension in the <TT>filename</TT> parameter. Currently the following file formats are supported:
+   <TT>imwrite</TT> writes a matrix into a image file. The format of the  file is inferred from the extension in the <TT>filename</TT> parameter. Currently the following file formats are supported:</P>
+   <DESCRIPTION_INDENT><DESCRIPTION_ITEM>
     * Windows bitmaps - BMP, DIB;
+   </DESCRIPTION_ITEM></DESCRIPTION_INDENT>
+   <DESCRIPTION_INDENT><DESCRIPTION_ITEM>
     * JPEG files - JPEG, JPG, JPE;
+   </DESCRIPTION_ITEM></DESCRIPTION_INDENT>
+   <DESCRIPTION_INDENT><DESCRIPTION_ITEM>
     * Portable Network Graphics - PNG;
+   </DESCRIPTION_ITEM></DESCRIPTION_INDENT>
+   <DESCRIPTION_INDENT><DESCRIPTION_ITEM>
     * Portable image format - PBM, PGM, PPM;
+   </DESCRIPTION_ITEM></DESCRIPTION_INDENT>
+   <DESCRIPTION_INDENT><DESCRIPTION_ITEM>
     * Sun rasters - SR, RAS;
-    * TIFF files - TIFF, TIF.
-</P>
+   </DESCRIPTION_ITEM></DESCRIPTION_INDENT>
+   <DESCRIPTION_INDENT><DESCRIPTION_ITEM>
+    * TIFF files - TIFF, TIF. 
+   </DESCRIPTION_ITEM></DESCRIPTION_INDENT>
 
 </DESCRIPTION>
 <EXAMPLE><![CDATA[
@@ -51,7 +62,7 @@ If <TT>im</TT> is not of class uint8,  <TT>imwrite</TT> convert the datatype bef
 <!-- ================================= -->
 
 <AUTHORS>
-   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;yushiqi (AT) yahoo DOT com DOT cn&gt; </AUTHORS_ITEM>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </AUTHORS_ITEM>
 </AUTHORS>
 <!-- ================================= -->
 <SECTION label="Bugs and Shortcomings">
@@ -68,5 +79,6 @@ The latest version of SIVP can be found at
    <SEE_ALSO>
       <SEE_ALSO_ITEM> <LINK>imread</LINK> </SEE_ALSO_ITEM>
       <SEE_ALSO_ITEM> <LINK>imshow</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>imfinfo</LINK> </SEE_ALSO_ITEM>
    </SEE_ALSO>
 </MAN>

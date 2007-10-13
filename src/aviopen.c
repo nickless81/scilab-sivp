@@ -34,7 +34,7 @@ int int_aviopen(char *fname)
 
   for (nCurrFile = 0; nCurrFile < MAX_AVI_FILE_NUM; nCurrFile++)
     {
-      if( !(OpenedCap[nCurrFile].cap))
+      if( !(OpenedAviCap[nCurrFile].video.cap))
 	break;
     }
 
@@ -45,14 +45,15 @@ int int_aviopen(char *fname)
     }
 
 
-  OpenedCap[nCurrFile].cap = cvCaptureFromFile(cstk(lR));
-  if(OpenedCap[nCurrFile].cap == 0)
+  OpenedAviCap[nCurrFile].video.cap = cvCaptureFromFile(cstk(lR));
+  if(OpenedAviCap[nCurrFile].video.cap == 0)
     {
       Scierror(999, "%s: Can not open video file %s. \nMaybe the codec of the video can not be handled or the file does not exist.\r\n", fname, cstk(lR));
       return -1;
     }
-
-  strcpy(OpenedCap[nCurrFile].filename, cstk(lR));
+  
+  OpenedAviCap[nCurrFile].iswriter = 0;
+  strcpy(OpenedAviCap[nCurrFile].filename, cstk(lR));
   //the output is the opened index
   nCurrFile += 1;
 

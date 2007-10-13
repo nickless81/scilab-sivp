@@ -16,17 +16,18 @@
 ## along with this program; if not, write to the Free Software
 ## Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-IMG_IO_MAN=imread.xml imwrite.xml
-AVI_IO_MAN= #aviinfo.xml aviopen.xml aviclose.xml avicloseall.xml avilistopened.xml avireadframe.xml camopen.xml
-IMG_GUI_MAN=imshow.xml
-IMG_TRAN_MAN=imresize.xml
-IMG_PROC_MAN= canny.xml
+IMG_IO_MAN=imread.xml imwrite.xml imfinfo.xml
+AVI_IO_MAN= aviinfo.xml aviopen.xml aviclose.xml avicloseall.xml avilistopened.xml avireadframe.xml camopen.xml avifile.xml addframe.xml
+IMG_TRAN_MAN=imresize.xml imcrop.xml
+IMG_FILTER=imfilter.xml fspecial.xml filter2.xml edge.xml
+IMG_GUI_MAN=imshow.xml xs2im.xml
+IMG_CONVERT=im2bw.xml im2uint8.xml im2int8.xml im2uint16.xml im2int16.xml im2int32.xml im2double.xml mat2gray.xml rgb2gray.xml rgb2hsv.xml hsv2rgb.xml rgb2ycbcr.xml ycbcr2rgb.xml rgb2ntsc.xml ntsc2rgb.xml ind2rgb.xml
+IMG_ARITHMETIC=imabsdiff.xml imadd.xml imsubtract.xml immultiply.xml imdivide.xml imcomplement.xml imlincomb.xml
+IMG_ENHANCE=imnoise.xml
+IMG_PROC_MAN= 
+IMG_STAT_MAN=mean2.xml corr2.xml std2.xml imhist.xml
 
-manpages_xml = $(IMG_IO_MAN) $(AVI_IO_MAN) $(IMG_GUI_MAN) $(IMG_TRAN_MAN) $(IMG_PROC_MAN)
-
-## adaptativethreshold.fr.xml adaptativethreshold.xml  cmp.fr.xml cmp.xml dilate.fr.xml dilate.xml erode.fr.xml erode.xml goodfeaturestotrack.fr.xml goodfeaturestotrack.xml  imsmooth.fr.xml imsmooth.xml laplace.fr.xml laplace.xml precornerdetec.fr.xml precornerdetec.xml pyrdown.fr.xml pyrdown.xml pyrup.fr.xml pyrup.xml sobel.fr.xml sobel.xml threshold.fr.xml threshold.xml xor.fr.xml xor.xml
-
-## manpages_xml  = adaptativethreshold.fr.xml adaptativethreshold.xml canny.fr.xml canny.xml cmp.fr.xml cmp.xml convert.fr.xml convert.xml dilate.fr.xml dilate.xml erode.fr.xml erode.xml goodfeaturestotrack.fr.xml goodfeaturestotrack.xml imread.xml imread.zh-s.xml imshow.fr.xml imshow.xml imshow.zh-s.xml imsmooth.fr.xml imsmooth.xml imwrite.fr.xml imwrite.xml imwrite.zh-s.xml laplace.fr.xml laplace.xml precornerdetec.fr.xml precornerdetec.xml pyrdown.fr.xml pyrdown.xml pyrup.fr.xml pyrup.xml sobel.fr.xml sobel.xml threshold.fr.xml threshold.xml vdcloseall.fr.xml vdcloseall.xml vdcloseall.zh-s.xml vdclose.fr.xml vdclose.xml vdclose.zh-s.xml vdgetframe.fr.xml vdgetframe.xml vdgetframe.zh-s.xml vdopen.fr.xml vdopen.xml vdopen.zh-s.xml vdshowopened.fr.xml vdshowopened.xml vdshowopened.zh-s.xml xor.fr.xml xor.xml
+manpages_xml = $(IMG_IO_MAN) $(AVI_IO_MAN) $(IMG_FILTER) $(IMG_GUI_MAN) $(IMG_CONVERT) $(IMG_TRAN_MAN) $(IMG_ENHANCE) $(IMG_PROC_MAN) $(IMG_ARITHMETIC) $(IMG_STAT_MAN)
 
 manpages_cat  = $(manpages_xml:.xml=.cat)
 
@@ -41,8 +42,10 @@ EXTRA_DIST = $(manpages_xml) html-sivp.xsl mansivp.dtd Makefile.am.input
 
 %.htm: %.xml
 	@echo "Creating html help files"
-	@$(SCIDIR)/bin/scilab -nwni -nb -e "exec('$(top_srcdir)/config/sivp_xmltohtml.sci');%helps=[PWD,'SIVP';%helps];sivp_xmltohtml(PWD,'SIVP','html-sivp.xsl','whatis');quit"
-	@$(SCIDIR)/bin/scilab -nwni -nb -e "exec('$(top_srcdir)/config/sivp_xmltohtml.sci');%helps=[PWD,'SIVP';%helps];sivp_xmltohtml(PWD,'SIVP','html-sivp.xsl','html');quit"
+	@$(SCIEXE) -nwni -nb -e "exec('$(top_srcdir)/config/sivp_xmltohtml.sci');%helps=[PWD,'SIVP';%helps];sivp_xmltohtml(PWD,'SIVP','html-sivp.xsl','whatis');quit"
+	@$(SCIEXE) -nwni -nb -e "exec('$(top_srcdir)/config/sivp_xmltohtml.sci');%helps=[PWD,'SIVP';%helps];sivp_xmltohtml(PWD,'SIVP','html-sivp.xsl','html');quit"
+#@$(SCIDIR)/bin/scilab -nwni -nb -e "exec('$(top_srcdir)/config/sivp_xmltohtml.sci');%helps=[PWD,'SIVP';%helps];sivp_xmltohtml(PWD,'SIVP','html-sivp.xsl','whatis');quit"
+#@$(SCIDIR)/bin/scilab -nwni -nb -e "exec('$(top_srcdir)/config/sivp_xmltohtml.sci');%helps=[PWD,'SIVP';%helps];sivp_xmltohtml(PWD,'SIVP','html-sivp.xsl','html');quit"
 
 Makefile.am: Makefile.am.input
 	$(top_srcdir)/config/subst_input_files.sh

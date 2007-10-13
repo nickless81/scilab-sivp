@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>imcomplement</TITLE>
+<TYPE>SIVP Toolbox</TYPE>
+<DATE>July, 2006</DATE>
+<SHORT_DESCRIPTION name="imcomplement">Complement image</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>imout = imcomplement(im)</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+     <PARAM_NAME>im</PARAM_NAME>
+     <PARAM_DESCRIPTION>
+       Input image.
+     </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+     <PARAM_NAME>imout</PARAM_NAME>
+     <PARAM_DESCRIPTION>
+       The complement image, which has the same size and class with <TT>im</TT>.
+     </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+<DESCRIPTION>
+<P>
+<TT>imcomplement</TT> computes the complement image of <TT>im</TT>.
+In the output image <TT>imout</TT>, 
+dark pixels become lighter and light pixels become darker.
+</P>
+<P>
+  Supported classes: BOOLEAN, INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
+</P>
+</DESCRIPTION>
+
+<!-- ================================= -->
+<EXAMPLE><![CDATA[
+
+    im = [%F, %T];
+    imcomplement(im)
+
+    im = uint8([0, 50, 100; 150, 200, 250]);
+    imcomplement(im)
+
+    im = int8([-100, -50, 0; 50, 100, 150]);
+    imcomplement(im)
+
+    im = [0, 0.2, 0.4; 0.6, 0.8, 1.0];
+    imcomplement(im)
+
+]]></EXAMPLE>
+
+<!-- ================================= -->
+<AUTHORS>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </AUTHORS_ITEM>
+</AUTHORS>
+<!-- ================================= -->
+<SECTION label="Availability">
+The latest version of SIVP can be found at
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+   <SEE_ALSO>
+      <SEE_ALSO_ITEM><LINK>imabsdiff</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM><LINK>imadd</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM><LINK>imsubtract</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM><LINK>immultiply</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM><LINK>imdivide</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM><LINK>imlincomb</LINK> </SEE_ALSO_ITEM>
+   </SEE_ALSO>
+</MAN>

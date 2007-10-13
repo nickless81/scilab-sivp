@@ -1,0 +1,8 @@
+for OpenCV 0.9.7
+
+Function	Supported Depth
+---------------------------------------
+cvResize:	UINT8, UINT16, SINGLE
+cvAbsDiff:	UINT8, INT16, UINT16, SINGLE, DOUBLE
+cvAdd:		UINT8, INT16, UINT16, SINGLE, DOUBLE
+cvFilter2D:	UINT8, UINT16, SINGLE

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>aviopen</TITLE>
+<TYPE>SIVP Toolbox</TYPE>
+<DATE>April, 2006</DATE>
+<SHORT_DESCRIPTION name="aviopen">Open a video file. (experimental)</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>n = aviopen(filename)</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+   <PARAM_NAME>filename</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   A string, the video filename to be read.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>n</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   A number, the opened video file index.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+<DESCRIPTION>
+<P>
+   <TT>aviopen</TT> open a video file, but it does not read frames from the file. Please use <TT>im=avireadframe(n)</TT> to get a frame from the n'th opened video file. Remember to close the opened file using <TT>aviclose(n)</TT> or <TT>avicloseall()</TT>.
+</P>
+<P>
+Video support for SIVP is only available when SIVP is compiled with OpenCV which support video I/O.
+</P>
+</DESCRIPTION>
+
+<EXAMPLE><![CDATA[
+	
+    n = aviopen(SCI+'/contrib/sivp/images/video.avi');
+    im = avireadframe(n); //get a frame
+    imshow(im);
+
+    avilistopened()
+    aviclose(n);
+
+]]></EXAMPLE>
+<!-- ================================= -->
+
+<AUTHORS>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </AUTHORS_ITEM>
+</AUTHORS>
+<!-- ================================= -->
+<SECTION label="Availability">
+The latest version of SIVP can be found at
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+   <SEE_ALSO>
+      <SEE_ALSO_ITEM> <LINK>aviinfo</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>camopen</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>avifile</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>addframe</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>aviclose</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>avicloseall</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>avilistopened</LINK> </SEE_ALSO_ITEM>
+      <SEE_ALSO_ITEM> <LINK>avireadframe</LINK> </SEE_ALSO_ITEM>
+   </SEE_ALSO>
+</MAN>
