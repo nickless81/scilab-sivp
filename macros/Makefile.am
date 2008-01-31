@@ -23,7 +23,7 @@ macros_sci = imwrite.sci imshow.sci xs2im.sci imcrop.sci imresize.sci \
 	imadd.sci imsubtract.sci immultiply.sci imdivide.sci \
 	imabsdiff.sci imcomplement.sci imlincomb.sci \
 	imnoise.sci \
-	mean2.sci corr2.sci std2.sci imhist.sci\
+	mean2.sci corr2.sci std2.sci stdev2.sci imhist.sci\
 	isbw.sci \
 	im2bw.sci im2int8.sci im2uint8.sci im2int16.sci im2uint16.sci im2int32.sci im2double.sci \
 	mat2gray.sci rgb2gray.sci \
