@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////
 
 function [s] = std2(im)
-	 if (size(size(imA), 2) >=3) then
+	 if (size(size(im), 2) >=3) then
 	    error("The input must be 2D matrix.");
 	 end
 

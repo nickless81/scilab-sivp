@@ -1,5 +1,9 @@
 o Added:
+  --------
 	ind2rgb function added.
+o Bug fixed:
+  --------
+	Bugs in std2 and stdev2 fixed.
 
 ------------------------------------------------------------
 	SIVP 0.4.3
