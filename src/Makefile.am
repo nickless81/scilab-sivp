@@ -25,8 +25,9 @@ AVI_IO_SRC=aviinfo.c aviopen.c avifile.c aviclose.c avicloseall.c avilistopened.
 IMG_TRAN_SRC=imresize.c imabsdiff.c imadd.c imsubtract.c immultiply.c imdivide.c
 IMG_FILTER_SRC=sobel.c imfilter.c filter2.c canny.c  
 IMG_COLOR_SRC=cvtcolor.c
+IMG_APP=detectfaces.c
 
-ALL_SRC=libsivp.c common.c sivp_init.c $(IMG_IO_SRC)  $(AVI_IO_SRC) $(IMG_TRAN_SRC) $(IMG_FILTER_SRC) $(IMG_COLOR_SRC)
+ALL_SRC=libsivp.c common.c sivp_init.c $(IMG_IO_SRC)  $(AVI_IO_SRC) $(IMG_TRAN_SRC) $(IMG_FILTER_SRC) $(IMG_COLOR_SRC) $(IMG_APP)
 
 libdir=@TOOLBOXDIR@/lib
 
