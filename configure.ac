@@ -219,6 +219,7 @@ TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'int_sobel', 'int_sobel'; \
 		'int_cvtcolor', 'int_cvtcolor'; \
 		'ind2rgb', 'int_ind2rgb'; \
+		'detectfaces', 'int_detectfaces'; \
 		"
 
 TOOLBOX_FUNCTIONS="    'sivptest'; \
@@ -248,6 +249,7 @@ TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'int_sobel'; \
 		       'int_cvtcolor'; \
 		       'ind2rgb'; \
+		       'detectfaces'; \
 		   "
 
 AC_SUBST(TOOLBOX_TABLE)

@@ -30,16 +30,19 @@
 int int_detectfaces(char * fname)
 {
   static CvHaarClassifierCascade* pCascade = NULL;
+
   CvMemStorage* pStorage = NULL;
   IplImage * pSrcImg = NULL;
-  IplImage * pLocations = NULL;
+  IplImage * pGray = NULL;
+  CvSeq    * pFaces = NULL;
+  double     tmp;
 
   CheckRhs(1, 1);
   CheckLhs(1, 1);
 
   //load haar cascade xml file
   if(!pCascade)
-    pCascade = (CvHaarClassifierCascade*)cvLoad( "haarcascade_frontalface_alt2.xml", 0, 0, 0 );
+    pCascade = (CvHaarClassifierCascade*)cvLoad( "/home/yushiqi/sivp/sivp/etc/haarcascade_frontalface_alt2.xml", 0, 0, 0 );
   
   if( !pCascade )
     {
@@ -70,7 +73,65 @@ int int_detectfaces(char * fname)
       return -1;
     }
 
-  
+  //convert the input image to gray
+  pGray = cvCreateImage( cvSize(pSrcImg->width,pSrcImg->height), pSrcImg->depth, 1 );
+  if( pGray == NULL )
+    {
+      cvReleaseImage(&pSrcImg);
+      cvReleaseMemStorage(&pStorage);
+      Scierror(999, "%s: Can not create image for detection.\r\n", fname);
+      return -1;
+    }
+  if( pSrcImg->nChannels == 1)
+    {
+      cvCopy(pSrcImg, pGray, NULL);
+    }
+  else
+    {
+      cvCvtColor(pSrcImg, pGray, CV_BGR2GRAY);
+    }
 
-  cvReleaseStorage(&pStorage);
+
+  pFaces = cvHaarDetectObjects( pGray, pCascade, pStorage,
+                                            1.1, 3, 0/*CV_HAAR_DO_CANNY_PRUNING*/,
+                                            cvSize(30, 30) );
+
+  //copy face locations to output matrix
+  if(pFaces == NULL)
+    {
+      Create2DDoubleMat(Rhs+1, 0, 0, &tmp); //return []
+    }
+  else
+    {
+      if(pFaces->total == 0)
+	{
+	  Create2DDoubleMat(Rhs+1, 0, 0, &tmp); //return []
+	}
+      else
+	{
+	  int idx;
+	  
+	  IplImage * pLocations = cvCreateImage(cvSize(4, pFaces->total),
+						IPL_DEPTH_64F, 1);
+
+	  for( idx = 0; idx < (pFaces ? pFaces->total : 0); idx++ )
+	    {
+	      CvRect* r = (CvRect*)cvGetSeqElem( pFaces, idx );
+	      CV_IMAGE_ELEM(pLocations, double, idx, 0) = r->x;
+	      CV_IMAGE_ELEM(pLocations, double, idx, 1) = r->y;
+	      CV_IMAGE_ELEM(pLocations, double, idx, 2) = r->width;
+	      CV_IMAGE_ELEM(pLocations, double, idx, 3) = r->height;
+	    }
+	  IplImg2Mat(pLocations, Rhs+1);
+	  cvReleaseImage(&pLocations);
+	}
+    }
+
+  
+  LhsVar(1) = Rhs+1;
+
+
+  cvReleaseMemStorage(&pStorage);
+  cvReleaseImage(&pSrcImg);
+  cvReleaseImage(&pGray);
 }

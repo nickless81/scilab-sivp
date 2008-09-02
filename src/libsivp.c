@@ -27,6 +27,7 @@ extern Gatefunc int_canny;
 extern Gatefunc int_sobel;
 extern Gatefunc int_cvtcolor;
 extern Gatefunc int_ind2rgb;
+extern Gatefunc int_detectfaces;
 static GenericTable Tab[]={
   {(Myinterfun)sci_gateway,int_test,"sivptest"},
   {(Myinterfun)sci_gateway,int_sivp_init,"sivp_init"},
@@ -55,6 +56,7 @@ static GenericTable Tab[]={
   {(Myinterfun)sci_gateway,int_sobel,"int_sobel"},
   {(Myinterfun)sci_gateway,int_cvtcolor,"int_cvtcolor"},
   {(Myinterfun)sci_gateway,int_ind2rgb,"ind2rgb"},
+  {(Myinterfun)sci_gateway,int_detectfaces,"detectfaces"},
 };
  
 int C2F(libsivp)()
