@@ -58,6 +58,8 @@ typedef int BOOL;
 #define MAX_AVI_FILE_NUM 32
 #define MAX_FILENAME_LENGTH 2048
 
+  char sSIVP_PATH[MAX_FILENAME_LENGTH];  
+
   typedef struct OpenedAvifileCap{
     int iswriter; //reader or writer
     union{

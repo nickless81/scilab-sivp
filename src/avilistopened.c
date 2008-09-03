@@ -44,8 +44,8 @@ int int_avilistopened(char * fname)
 	{
 	  dIndices[count]=i+1;
 
-          //strcpy(sFileNames[count],  OpenedAviCap[i].filename);
-          strcpy(sFileNames+offset, OpenedAviCap[i].filename);
+      //strcpy(sFileNames[count],  OpenedAviCap[i].filename, MAX_FILENAME_LENGTH);
+      strncpy(sFileNames+offset, OpenedAviCap[i].filename, MAX_FILENAME_LENGTH);
 	  offset += strlen(OpenedAviCap[i].filename)+1;
 	  count++;
 	}

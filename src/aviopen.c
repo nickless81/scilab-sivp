@@ -53,7 +53,7 @@ int int_aviopen(char *fname)
     }
   
   OpenedAviCap[nCurrFile].iswriter = 0;
-  strcpy(OpenedAviCap[nCurrFile].filename, cstk(lR));
+  strncpy(OpenedAviCap[nCurrFile].filename, cstk(lR), MAX_FILENAME_LENGTH);
   //the output is the opened index
   nCurrFile += 1;
 

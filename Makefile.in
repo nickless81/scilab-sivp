@@ -217,7 +217,7 @@ EXTRA_DIST = ChangeLog TODO BUGS COPYING INSTALL libtool Makefile.in NEWS README
 		config/subst_input_files.sh \
 		src/ilib_gen_gateway.sce
 
-SUBDIRS = src macros man images demos
+SUBDIRS = src macros man images demos etc
 toolboxdir = @TOOLBOXDIR@
 toolbox_DATA = loader.sce builder.sce
 all: all-recursive

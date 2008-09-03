@@ -35,18 +35,20 @@ int int_detectfaces(char * fname)
   IplImage * pSrcImg = NULL;
   IplImage * pGray = NULL;
   CvSeq    * pFaces = NULL;
+  char       sFileName[MAX_FILENAME_LENGTH];
   double     tmp;
 
   CheckRhs(1, 1);
   CheckLhs(1, 1);
 
   //load haar cascade xml file
+  sprintf(sFileName, "%s/etc/haarcascade_frontalface_alt2.xml", sSIVP_PATH);
   if(!pCascade)
-    pCascade = (CvHaarClassifierCascade*)cvLoad( "/home/yushiqi/sivp/sivp/etc/haarcascade_frontalface_alt2.xml", 0, 0, 0 );
+    pCascade = (CvHaarClassifierCascade*)cvLoad( sFileName, 0, 0, 0 );
   
   if( !pCascade )
     {
-      Scierror(999, "%s: Failed to load face haar cascade file.\r\n", fname);
+      Scierror(999, "%s: Failed to load face haar cascade file %s.\r\n", fname, sFileName);
       return -1;
     }
 

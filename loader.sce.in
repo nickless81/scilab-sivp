@@ -54,7 +54,6 @@ clear have_sivp num;
 
 functions=[@TOOLBOX_FUNCTIONS@];
 
-
 if MSDOS then 
 	// load the OpenCV dlls for Windows version
 	OpenCV= SIVP_PATH + 'lib\';
@@ -68,10 +67,7 @@ else
 	addinter(SIVP_PATH+'/lib/libsivp.so','libsivp',functions);
 end
 
-
-
-
-sivp_init();
+sivp_init(SIVP_PATH);
 
 clear functions;
 clear libname;

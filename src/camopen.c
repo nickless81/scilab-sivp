@@ -63,7 +63,7 @@ int int_camopen(char *fname)
   cvSetCaptureProperty(OpenedAviCap[nCurrFile].video.cap, CV_CAP_PROP_FRAME_HEIGHT, 240);
   cvSetCaptureProperty(OpenedAviCap[nCurrFile].video.cap, CV_CAP_PROP_FPS, 25);
 
-  strcpy(OpenedAviCap[nCurrFile].filename, "camera");
+  strncpy(OpenedAviCap[nCurrFile].filename, "camera", MAX_FILENAME_LENGTH);
   OpenedAviCap[nCurrFile].iswriter = 0;
 
 

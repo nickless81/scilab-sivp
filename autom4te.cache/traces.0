@@ -676,6 +676,7 @@ m4trace:configure.ac:256: -1- AC_SUBST([TOOLBOX_FUNCTIONS])
 m4trace:configure.ac:256: -1- AC_SUBST_TRACE([TOOLBOX_FUNCTIONS])
 m4trace:configure.ac:256: -1- m4_pattern_allow([^TOOLBOX_FUNCTIONS$])
 m4trace:configure.ac:258: -1- AC_CONFIG_FILES([Makefile 
+		 etc/Makefile
 		 macros/Makefile
 		 man/Makefile
 		 images/Makefile
@@ -684,19 +685,19 @@ m4trace:configure.ac:258: -1- AC_CONFIG_FILES([Makefile
 		 src/ilib_gen_gateway.sce
 		 src/Makefile.win
 		 loader.sce])
-m4trace:configure.ac:268: -1- AC_SUBST([LIB@&t@OBJS], [$ac_libobjs])
-m4trace:configure.ac:268: -1- AC_SUBST_TRACE([LIB@&t@OBJS])
-m4trace:configure.ac:268: -1- m4_pattern_allow([^LIB@&t@OBJS$])
-m4trace:configure.ac:268: -1- AC_SUBST([LTLIBOBJS], [$ac_ltlibobjs])
-m4trace:configure.ac:268: -1- AC_SUBST_TRACE([LTLIBOBJS])
-m4trace:configure.ac:268: -1- m4_pattern_allow([^LTLIBOBJS$])
-m4trace:configure.ac:268: -1- AC_SUBST_TRACE([top_builddir])
-m4trace:configure.ac:268: -1- AC_SUBST_TRACE([srcdir])
-m4trace:configure.ac:268: -1- AC_SUBST_TRACE([abs_srcdir])
-m4trace:configure.ac:268: -1- AC_SUBST_TRACE([top_srcdir])
-m4trace:configure.ac:268: -1- AC_SUBST_TRACE([abs_top_srcdir])
-m4trace:configure.ac:268: -1- AC_SUBST_TRACE([builddir])
-m4trace:configure.ac:268: -1- AC_SUBST_TRACE([abs_builddir])
-m4trace:configure.ac:268: -1- AC_SUBST_TRACE([abs_top_builddir])
-m4trace:configure.ac:268: -1- AC_SUBST_TRACE([INSTALL])
-m4trace:configure.ac:268: -1- AC_SUBST_TRACE([MKDIR_P])
+m4trace:configure.ac:269: -1- AC_SUBST([LIB@&t@OBJS], [$ac_libobjs])
+m4trace:configure.ac:269: -1- AC_SUBST_TRACE([LIB@&t@OBJS])
+m4trace:configure.ac:269: -1- m4_pattern_allow([^LIB@&t@OBJS$])
+m4trace:configure.ac:269: -1- AC_SUBST([LTLIBOBJS], [$ac_ltlibobjs])
+m4trace:configure.ac:269: -1- AC_SUBST_TRACE([LTLIBOBJS])
+m4trace:configure.ac:269: -1- m4_pattern_allow([^LTLIBOBJS$])
+m4trace:configure.ac:269: -1- AC_SUBST_TRACE([top_builddir])
+m4trace:configure.ac:269: -1- AC_SUBST_TRACE([srcdir])
+m4trace:configure.ac:269: -1- AC_SUBST_TRACE([abs_srcdir])
+m4trace:configure.ac:269: -1- AC_SUBST_TRACE([top_srcdir])
+m4trace:configure.ac:269: -1- AC_SUBST_TRACE([abs_top_srcdir])
+m4trace:configure.ac:269: -1- AC_SUBST_TRACE([builddir])
+m4trace:configure.ac:269: -1- AC_SUBST_TRACE([abs_builddir])
+m4trace:configure.ac:269: -1- AC_SUBST_TRACE([abs_top_builddir])
+m4trace:configure.ac:269: -1- AC_SUBST_TRACE([INSTALL])
+m4trace:configure.ac:269: -1- AC_SUBST_TRACE([MKDIR_P])

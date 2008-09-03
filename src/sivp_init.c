@@ -25,8 +25,15 @@
  ***************************************************/
 int int_sivp_init(char * fname)
 {
-  CheckRhs(0,0);
+
+  int mR, nR, lR;
+
+  CheckRhs(1,1);
   CheckLhs(0,1);
+
+  //get the directory where SIVP is intalled
+  GetRhsVar(1, "c", &mR, &nR, &lR);
+  strncpy(sSIVP_PATH, cstk(lR), MAX_FILENAME_LENGTH);
 
   cvSetErrMode(CV_ErrModeParent);
   memset(OpenedAviCap, 0, sizeof(OpenedAvifileCap));

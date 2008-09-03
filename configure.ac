@@ -256,6 +256,7 @@ AC_SUBST(TOOLBOX_TABLE)
 AC_SUBST(TOOLBOX_FUNCTIONS)
 
 AC_CONFIG_FILES([Makefile 
+		 etc/Makefile
 		 macros/Makefile
 		 man/Makefile
 		 images/Makefile

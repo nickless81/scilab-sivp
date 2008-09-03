@@ -79,7 +79,7 @@ int int_avifile(char *fname)
       return -1;
     }
 
-  strcpy(OpenedAviCap[nCurrFile].filename, cstk(lR1));
+  strncpy(OpenedAviCap[nCurrFile].filename, cstk(lR1), MAX_FILENAME_LENGTH);
   OpenedAviCap[nCurrFile].iswriter = 1;
   OpenedAviCap[nCurrFile].width = nWidth;
   OpenedAviCap[nCurrFile].height = nHeight;
