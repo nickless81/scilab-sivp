@@ -32,7 +32,7 @@ int int_mat2utfimg(char * fname)
 
   unsigned char * pUTFData = NULL;
   int nCurr = 0;
-  BOOL isOK;
+  int isOK;
 
   int w,h,c;
   unsigned char Pixel;

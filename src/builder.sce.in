@@ -41,7 +41,7 @@ files = strsubst(files, '.c', '.o');
 
 scilab_version=getversion();
 if (str2code( part(scilab_version, 8)) >= 5) then //version >= 5.x.x
-   files = [files, 'common.h'];
+   files = [files, 'common.h', 'config.h'];
 end
 
 // name known in scilab , C function called

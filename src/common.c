@@ -26,7 +26,7 @@
  * pData: pData is the data for matrix, and it can be freed after this function is called.
  * nType: I_CHAR, I_INT16, I_INT32, I_UCHAR,  I_UINT16,  I_UINT32
  **************************************************/
-BOOL
+int
 Create2DIntMat(int nPos, int nRow, int nCol, void * pData, int nType)
 {
   SciIntMat IntMat;
@@ -49,7 +49,7 @@ Create2DIntMat(int nPos, int nRow, int nCol, void * pData, int nType)
  * nCol: the second dim
  * pData: pData is the data for matrix, and it can be freed after this function is called.
  **************************************************/
-BOOL
+int
 Create2DFloatMat(int nPos, int nRow, int nCol, float * pData)
 {
   CreateVarFromPtr(nPos,"r",&nRow, &nCol, &pData); 
@@ -62,7 +62,7 @@ Create2DFloatMat(int nPos, int nRow, int nCol, float * pData)
  * nCol: the second dim
  * pData: pData is the data for matrix, and it can be freed after this function is called.
  **************************************************/
-BOOL
+int
 Create2DDoubleMat(int nPos, int nRow, int nCol, double * pData)
 {
   CreateVarFromPtr(nPos,"d",&nRow, &nCol, &pData); 
@@ -77,7 +77,7 @@ Create2DDoubleMat(int nPos, int nRow, int nCol, double * pData)
  * pData: pData is the data for matrix, and it can be freed after this function is called.
  * nType: I_CHAR, I_INT16, I_INT32, I_UCHAR,  I_UINT16,  I_UINT32
  **************************************************/
-BOOL 
+int 
 Create3DIntMat(int nPos, int nRow, int nCol, int nCh, void* pData, int nType)
 {
   static char *Str[]= { "hm","dims","entries"}; 
@@ -128,7 +128,7 @@ Create3DIntMat(int nPos, int nRow, int nCol, int nCh, void* pData, int nType)
  * nCh:  the third dim
  * pData: pData is the data for matrix, and it can be freed after this function is called.
  **************************************************/
-BOOL 
+int 
 Create3DFloatMat(int nPos, int nRow, int nCol, int nCh, float* pData)
 {
   static char *Str[]= { "hm","dims","entries"}; 
@@ -174,7 +174,7 @@ Create3DFloatMat(int nPos, int nRow, int nCol, int nCh, float* pData)
  * nCh:  the third dim
  * pData: pData is the data for matrix, and it can be freed after this function is called.
  **************************************************/
-BOOL 
+int 
 Create3DDoubleMat(int nPos, int nRow, int nCol, int nCh, double* pData)
 {
   static char *Str[]= { "hm","dims","entries"}; 
@@ -217,7 +217,7 @@ Create3DDoubleMat(int nPos, int nRow, int nCol, int nCh, double* pData)
 /************************************************************
  * convert IplImage to SCI matrix
 ************************************************************/
-BOOL IplImg2Mat(IplImage * pImage, int nPos)
+int IplImg2Mat(IplImage * pImage, int nPos)
 {
   void * pMatData;
   int nBytes;
@@ -458,7 +458,7 @@ IplImage * Mat2IplImg(int nPos)
 /************************************************************
  * change the data order from column-wise to row-wise
  ************************************************************/
-BOOL MatData2ImgData(IplImage * pImage, void * pMatData)
+int MatData2ImgData(IplImage * pImage, void * pMatData)
 {
   //  IPL_DEPTH_8U, IPL_DEPTH_8S, IPL_DEPTH_16U,
   //IPL_DEPTH_16S, IPL_DEPTH_32S, IPL_DEPTH_32F and IPL_DEPTH_64F 
@@ -496,7 +496,7 @@ BOOL MatData2ImgData(IplImage * pImage, void * pMatData)
 /************************************************************
  * change the data order from row-wise to column-wise
  ************************************************************/
-BOOL ImgData2MatData(IplImage * pImage, void * pMatData)
+int ImgData2MatData(IplImage * pImage, void * pMatData)
 {
   //  IPL_DEPTH_8U, IPL_DEPTH_8S, IPL_DEPTH_16U,
   //IPL_DEPTH_16S, IPL_DEPTH_32S, IPL_DEPTH_32F and IPL_DEPTH_64F 

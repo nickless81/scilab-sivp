@@ -34,15 +34,9 @@ extern "C" {
 #endif
 
 #define SIVP_ABS(a) ((a) < 0 ? (-(a)) : (a))
-typedef int BOOL;
-
 
 #define SIVP_FLOAT 32
 #define SIVP_DOUBLE 64
-
-#ifndef WIN_SIVP
-  #include "config.h"
-#endif
 
 #include <stdio.h>
 
@@ -73,25 +67,20 @@ typedef int BOOL;
 
   OpenedAvifileCap OpenedAviCap[MAX_AVI_FILE_NUM];
 
-//#ifdef HAVE_FFMPEG
-//#include <ffmpeg/avcodec.h>
-//#include <ffmpeg/avformat.h>
-//#endif
+  int IplImg2Mat(IplImage * pImage, int nPos);
 
-  BOOL IplImg2Mat(IplImage * pImage, int nPos);
-
-  BOOL Create2DIntMat(int nPos, int nRow, int nCol, void * pData, int nType);
-  BOOL Create2DFloatMat(int nPos, int nRow, int nCol, float * pData);
-  BOOL Create2DDoubleMat(int nPos, int nRow, int nCol, double * pData);
-  BOOL Create3DIntMat(int nPos, int nRow, int nCol, int nCh, void * pData, int nType);
-  BOOL Create3DFloatMat(int nPos, int nRow, int nCol, int nCh, float* pData);
-  BOOL Create3DDoubleMat(int nPos, int nRow, int nCol, int nCh, double* pData);
+  int Create2DIntMat(int nPos, int nRow, int nCol, void * pData, int nType);
+  int Create2DFloatMat(int nPos, int nRow, int nCol, float * pData);
+  int Create2DDoubleMat(int nPos, int nRow, int nCol, double * pData);
+  int Create3DIntMat(int nPos, int nRow, int nCol, int nCh, void * pData, int nType);
+  int Create3DFloatMat(int nPos, int nRow, int nCol, int nCh, float* pData);
+  int Create3DDoubleMat(int nPos, int nRow, int nCol, int nCh, double* pData);
 
   IplImage * Mat2IplImg(int nPos);
   IplImage * CreateIplImgFromHm(int nPos);
 
-  BOOL MatData2ImgData(IplImage * pImage, void * pMatData);
-  BOOL ImgData2MatData(IplImage * pImage, void * pMatData);
+  int MatData2ImgData(IplImage * pImage, void * pMatData);
+  int ImgData2MatData(IplImage * pImage, void * pMatData);
   
   
   int IplType2SciType(int IplType);
