@@ -41,8 +41,8 @@ if test x"$ac_cv_prog_cc_stdc" = x'no'; then
                 compliant.]])
 fi
 
-AC_LIBTOOL_WIN32_DLL
-AC_DISABLE_STATIC
+#AC_LIBTOOL_WIN32_DLL
+#AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
 # Check to see if building shared libraries
@@ -53,22 +53,22 @@ then
 fi
 
 
-#
-# Tests for windows
-#
-native_win32_build='no'
-cygwin_build='no'
-win32_build='no'
-case $host_os in
-   cygwin*) 
-       cygwin_build='yes'
-       win32_build='yes' 
-       ;;
-   mingw* )
-       native_win32_build='yes' 
-       win32_build='yes' 
-       ;;
-esac
+###
+### Tests for windows
+###
+##native_win32_build='no'
+##cygwin_build='no'
+##win32_build='no'
+##case $host_os in
+##   cygwin*) 
+##       cygwin_build='yes'
+##       win32_build='yes' 
+##       ;;
+##   mingw* )
+##       native_win32_build='yes' 
+##       win32_build='yes' 
+##       ;;
+##esac
 
 
 # checks for xsltproc (to buld HTML help pages)
@@ -89,25 +89,18 @@ fi
 # test if SCI is defined. If not, test if scilab is in path,
 # then get SCI from scilab -nw.
 if test -z "$SCI"; then
-   if test $native_win32_build = yes; then
-      dnl TODO take SCIDIR from the registry
-      AC_MSG_WARN([[hardcoding SCI to /c/scilab]])
-      SCIDIR="/c/scilab"
-      SCIEXE="/c/scilab/bin/Scilex.exe"
+   AC_CHECK_PROG([has_scilab],[scilab],[yes],[no], , )
+   if test x$has_scilab = xno; then
+      AC_MSG_ERROR([[neither Scilab was found in your PATH nor a SCI variable has been defined]])
    else
-      AC_CHECK_PROG([has_scilab],[scilab],[yes],[no], , )
-      if test x$has_scilab = xno; then
-         AC_MSG_ERROR([[neither Scilab was found in your PATH nor a SCI variable has been defined]])
-      else
-         cmd='F=mopen("path.incl","w");
-              mfprintf(F,SCI);
-              mclose(F);'
-         echo "$cmd" | scilab -nw >/dev/null
-         SCIDIR=`cat path.incl`
+      cmd='F=mopen("path.incl","w");
+           mfprintf(F,SCI);
+           mclose(F);'
+      echo "$cmd" | scilab -nw >/dev/null
+      SCIDIR=`cat path.incl`
 	 # TODO 
 	 #SCIEXE="${SCIDIR}/bin/scilex"
 	 SCIEXE="${SCIDIR}/bin/scilab"
-      fi
    fi
 else
    SCIDIR="$SCI"
@@ -119,7 +112,7 @@ else
    fi
 fi
 
-CFLAGS="$CFLAGS -I${SCIDIR}/routines"
+#CFLAGS="$CFLAGS -I${SCIDIR}/routines"
 
 AC_PREFIX_DEFAULT([SCI/contrib/${PACKAGE_NAME}-${PACKAGE_VERSION}])
 
@@ -137,38 +130,12 @@ AC_SUBST(TOOLBOXDIR)
 AC_SUBST(SCIDIR)
 AC_SUBST(SCIEXE)
 
-LIBRARY_EXTRA_CPPFLAGS=''
-LIBRARY_EXTRA_LIBS=''
-if test "${native_win32_build}" = 'yes'
-then
-  if test "${libtool_build_shared_libs}" = 'yes'
-  then
-    SHARED_LIB_SUFFIX=dll
-    CFLAGS="$CFLAGS -DFORDLL"
-    AC_MSG_WARN([[Don't forget to rename SCI/bin/LibScilab* to lowercase]])
-    LDFLAGS="$LDFLAGS -L${SCIDIR}/bin"
-    #LIBRARY_EXTRA_CFLAGS="-D_SIMPLELIB"
-    LIBRARY_EXTRA_LIBS="-lscilab"
-  else
-    CFLAGS="$CFLAGS -D_LIB"
-  fi
-else
-   SHARED_LIB_SUFFIX=so
-fi
-AC_SUBST(SHARED_LIB_SUFFIX)
-
-AC_SUBST(LIBRARY_EXTRA_CPPFLAGS)
-AC_SUBST(LIBRARY_EXTRA_LIBS)
-
-# Checks for libs. 
-
 # check for OpenCV >= 0.9.6
 have_opencv=no
 PKG_CHECK_MODULES(OPENCV, 
 		[opencv >= 0.9.6],
 		[CFLAGS="$CFLAGS $OPENCV_CFLAGS"
-		 LDFLAGS="$LDFLAGS -L${SCIDIR}/bin"
-		 LIBS="$LIBS $OPENCV_LIBS"
+		 LDFLAGS="$LDFLAGS $OPENCV_LIBS"
 		 have_opencv=yes
 		 AC_DEFINE(HAVE_OPENCV,[], [define HAVE_OPENCV if you have opencv])],
 		[AC_MSG_ERROR([[ OpenCV version >= 0.9.6 was not found. ]])])
@@ -190,7 +157,6 @@ AC_HEADER_STDBOOL
 ##AC_FUNC_MALLOC
 AC_CHECK_FUNCS([malloc])
 
-# for src/ilib_gen_gateway.sce
 
 TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'sivp_init','int_sivp_init'; \
@@ -262,7 +228,7 @@ AC_CONFIG_FILES([Makefile
 		 images/Makefile
 		 demos/Makefile
 		 src/Makefile
-		 src/ilib_gen_gateway.sce
+		 src/builder.sce
 		 src/Makefile.win
 		 loader.sce])
 
@@ -272,10 +238,8 @@ AC_OUTPUT
 AC_MSG_RESULT([
 =====================================================
 Configuration:
-	CC       = $CC
 	CFLAGS   = $CFLAGS
 	LDFLAGS  = $LDFLAGS
-	LIBS     = $LIBS
 =====================================================
 This toolbox will be installed in $TOOLBOXDIR
 Please run 'make' and 'make install' to compile and install the toolbox. 

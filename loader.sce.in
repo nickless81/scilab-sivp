@@ -62,9 +62,9 @@ if MSDOS then
 	link(OpenCV + 'cv100.dll');
 	link(OpenCV + 'highgui100.dll');
 
-	addinter(SIVP_PATH+'/lib/libsivp.dll','libsivp',functions);
+	addinter(SIVP_PATH+'lib\libsivp.dll','libsivp',functions);
 else
-	addinter(SIVP_PATH+'/lib/libsivp.so','libsivp',functions);
+	addinter(SIVP_PATH+'lib/libsivp.so','libsivp',functions);
 end
 
 sivp_init(SIVP_PATH);

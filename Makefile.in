@@ -85,7 +85,6 @@ distcleancheck_listfiles = find . -type f -print
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AR = @AR@
-AS = @AS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -102,7 +101,6 @@ CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
-DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
 ECHO = @ECHO@
 ECHO_C = @ECHO_C@
@@ -120,8 +118,6 @@ INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
-LIBRARY_EXTRA_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
-LIBRARY_EXTRA_LIBS = @LIBRARY_EXTRA_LIBS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LN_S = @LN_S@
@@ -129,7 +125,6 @@ LTLIBOBJS = @LTLIBOBJS@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
 NMEDIT = @NMEDIT@
-OBJDUMP = @OBJDUMP@
 OBJEXT = @OBJEXT@
 OPENCV_CFLAGS = @OPENCV_CFLAGS@
 OPENCV_LIBS = @OPENCV_LIBS@
@@ -146,7 +141,6 @@ SCIDIR = @SCIDIR@
 SCIEXE = @SCIEXE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
-SHARED_LIB_SUFFIX = @SHARED_LIB_SUFFIX@
 SHELL = @SHELL@
 STRIP = @STRIP@
 TOOLBOXDIR = @TOOLBOXDIR@
@@ -214,8 +208,7 @@ EXTRA_DIST = ChangeLog TODO BUGS COPYING INSTALL libtool Makefile.in NEWS README
 		config/config.guess config/config.sub config/install-sh \
 		config/ltmain.sh config/missing config/mkinstalldirs \
 		config/sivp_xmltohtml.sci   \
-		config/subst_input_files.sh \
-		src/ilib_gen_gateway.sce
+		config/subst_input_files.sh 
 
 SUBDIRS = src macros man images demos etc
 toolboxdir = @TOOLBOXDIR@

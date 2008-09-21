@@ -56,7 +56,6 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AR = @AR@
-AS = @AS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -73,7 +72,6 @@ CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
-DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
 ECHO = @ECHO@
 ECHO_C = @ECHO_C@
@@ -91,8 +89,6 @@ INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
-LIBRARY_EXTRA_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
-LIBRARY_EXTRA_LIBS = @LIBRARY_EXTRA_LIBS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LN_S = @LN_S@
@@ -100,7 +96,6 @@ LTLIBOBJS = @LTLIBOBJS@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
 NMEDIT = @NMEDIT@
-OBJDUMP = @OBJDUMP@
 OBJEXT = @OBJEXT@
 OPENCV_CFLAGS = @OPENCV_CFLAGS@
 OPENCV_LIBS = @OPENCV_LIBS@
@@ -117,7 +112,6 @@ SCIDIR = @SCIDIR@
 SCIEXE = @SCIEXE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
-SHARED_LIB_SUFFIX = @SHARED_LIB_SUFFIX@
 SHELL = @SHELL@
 STRIP = @STRIP@
 TOOLBOXDIR = @TOOLBOXDIR@
@@ -178,17 +172,7 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-macros_sci = imwrite.sci imshow.sci xs2im.sci imcrop.sci imresize.sci \
-	imadd.sci imsubtract.sci immultiply.sci imdivide.sci \
-	imabsdiff.sci imcomplement.sci imlincomb.sci \
-	imnoise.sci \
-	mean2.sci corr2.sci std2.sci stdev2.sci imhist.sci\
-	isbw.sci \
-	im2bw.sci im2int8.sci im2uint8.sci im2int16.sci im2uint16.sci im2int32.sci im2double.sci \
-	mat2gray.sci rgb2gray.sci \
-	rgb2hsv.sci hsv2rgb.sci rgb2ycbcr.sci ycbcr2rgb.sci rgb2ntsc.sci ntsc2rgb.sci \
-	fspecial.sci edge.sci
-
+macros_sci = $(wildcard *.sci)
 macros_bin = $(macros_sci:.sci=.bin)
 macrodir = @TOOLBOXDIR@/macros
 macro_DATA = $(macros_bin) genlib names lib imshow.tcl

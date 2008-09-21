@@ -863,9 +863,6 @@ AR
 RANLIB
 DSYMUTIL
 NMEDIT
-DLLTOOL
-AS
-OBJDUMP
 CPP
 CXX
 CXXFLAGS
@@ -884,9 +881,6 @@ has_scilab
 TOOLBOXDIR
 SCIDIR
 SCIEXE
-SHARED_LIB_SUFFIX
-LIBRARY_EXTRA_CPPFLAGS
-LIBRARY_EXTRA_LIBS
 PKG_CONFIG
 OPENCV_CFLAGS
 OPENCV_LIBS
@@ -1494,8 +1488,8 @@ Optional Features:
   --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
   --disable-dependency-tracking  speeds up one-time build
   --enable-dependency-tracking   do not reject slow dependency extractors
-  --enable-static@<:@=PKGS@:>@  build static libraries @<:@default=no@:>@
   --enable-shared@<:@=PKGS@:>@  build shared libraries @<:@default=yes@:>@
+  --enable-static@<:@=PKGS@:>@  build static libraries @<:@default=yes@:>@
   --enable-fast-install@<:@=PKGS@:>@ 
                           optimize for fast installation @<:@default=yes@:>@
   --disable-libtool-lock  avoid locking (might break parallel builds)
@@ -3666,6 +3660,30 @@ echo "$as_me: WARNING: found the $CC compiler but it is not ANSI-C
                 compliant." >&2;}
 fi
 
+#AC_LIBTOOL_WIN32_DLL
+#AC_DISABLE_STATIC
+# Check whether --enable-shared was given.
+if test "${enable_shared+set}" = set; then
+  enableval=$enable_shared; p=${PACKAGE-default}
+    case $enableval in
+    yes) enable_shared=yes ;;
+    no) enable_shared=no ;;
+    *)
+      enable_shared=no
+      # Look at the argument we got.  We use all the common list separators.
+      lt_save_ifs="$IFS"; IFS="${IFS}$PATH_SEPARATOR,"
+      for pkg in $enableval; do
+	IFS="$lt_save_ifs"
+	if test "X$pkg" = "X$p"; then
+	  enable_shared=yes
+	fi
+      done
+      IFS="$lt_save_ifs"
+      ;;
+    esac
+else
+  enable_shared=yes
+fi
 
 
 # Check whether --enable-static was given.
@@ -3688,32 +3706,7 @@ if test "${enable_static+set}" = set; then
       ;;
     esac
 else
-  enable_static=no
-fi
-
-
-
-# Check whether --enable-shared was given.
-if test "${enable_shared+set}" = set; then
-  enableval=$enable_shared; p=${PACKAGE-default}
-    case $enableval in
-    yes) enable_shared=yes ;;
-    no) enable_shared=no ;;
-    *)
-      enable_shared=no
-      # Look at the argument we got.  We use all the common list separators.
-      lt_save_ifs="$IFS"; IFS="${IFS}$PATH_SEPARATOR,"
-      for pkg in $enableval; do
-	IFS="$lt_save_ifs"
-	if test "X$pkg" = "X$p"; then
-	  enable_shared=yes
-	fi
-      done
-      IFS="$lt_save_ifs"
-      ;;
-    esac
-else
-  enable_shared=yes
+  enable_static=yes
 fi
 
 
@@ -4650,297 +4643,7 @@ sparc*-*solaris*)
   rm -rf conftest*
   ;;
 
-*-*-cygwin* | *-*-mingw* | *-*-pw32*)
-  if test -n "$ac_tool_prefix"; then
-  # Extract the first word of "${ac_tool_prefix}dlltool", so it can be a program name with args.
-set dummy ${ac_tool_prefix}dlltool; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_DLLTOOL+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$DLLTOOL"; then
-  ac_cv_prog_DLLTOOL="$DLLTOOL" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_DLLTOOL="${ac_tool_prefix}dlltool"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
 
-fi
-fi
-DLLTOOL=$ac_cv_prog_DLLTOOL
-if test -n "$DLLTOOL"; then
-  { echo "$as_me:$LINENO: result: $DLLTOOL" >&5
-echo "${ECHO_T}$DLLTOOL" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-fi
-if test -z "$ac_cv_prog_DLLTOOL"; then
-  ac_ct_DLLTOOL=$DLLTOOL
-  # Extract the first word of "dlltool", so it can be a program name with args.
-set dummy dlltool; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_ac_ct_DLLTOOL+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$ac_ct_DLLTOOL"; then
-  ac_cv_prog_ac_ct_DLLTOOL="$ac_ct_DLLTOOL" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_ac_ct_DLLTOOL="dlltool"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-fi
-fi
-ac_ct_DLLTOOL=$ac_cv_prog_ac_ct_DLLTOOL
-if test -n "$ac_ct_DLLTOOL"; then
-  { echo "$as_me:$LINENO: result: $ac_ct_DLLTOOL" >&5
-echo "${ECHO_T}$ac_ct_DLLTOOL" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-  if test "x$ac_ct_DLLTOOL" = x; then
-    DLLTOOL="false"
-  else
-    case $cross_compiling:$ac_tool_warned in
-yes:)
-{ echo "$as_me:$LINENO: WARNING: In the future, Autoconf will not detect cross-tools
-whose name does not start with the host triplet.  If you think this
-configuration is useful to you, please write to autoconf@gnu.org." >&5
-echo "$as_me: WARNING: In the future, Autoconf will not detect cross-tools
-whose name does not start with the host triplet.  If you think this
-configuration is useful to you, please write to autoconf@gnu.org." >&2;}
-ac_tool_warned=yes ;;
-esac
-    DLLTOOL=$ac_ct_DLLTOOL
-  fi
-else
-  DLLTOOL="$ac_cv_prog_DLLTOOL"
-fi
-
-  if test -n "$ac_tool_prefix"; then
-  # Extract the first word of "${ac_tool_prefix}as", so it can be a program name with args.
-set dummy ${ac_tool_prefix}as; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_AS+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$AS"; then
-  ac_cv_prog_AS="$AS" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_AS="${ac_tool_prefix}as"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-fi
-fi
-AS=$ac_cv_prog_AS
-if test -n "$AS"; then
-  { echo "$as_me:$LINENO: result: $AS" >&5
-echo "${ECHO_T}$AS" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-fi
-if test -z "$ac_cv_prog_AS"; then
-  ac_ct_AS=$AS
-  # Extract the first word of "as", so it can be a program name with args.
-set dummy as; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_ac_ct_AS+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$ac_ct_AS"; then
-  ac_cv_prog_ac_ct_AS="$ac_ct_AS" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_ac_ct_AS="as"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-fi
-fi
-ac_ct_AS=$ac_cv_prog_ac_ct_AS
-if test -n "$ac_ct_AS"; then
-  { echo "$as_me:$LINENO: result: $ac_ct_AS" >&5
-echo "${ECHO_T}$ac_ct_AS" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-  if test "x$ac_ct_AS" = x; then
-    AS="false"
-  else
-    case $cross_compiling:$ac_tool_warned in
-yes:)
-{ echo "$as_me:$LINENO: WARNING: In the future, Autoconf will not detect cross-tools
-whose name does not start with the host triplet.  If you think this
-configuration is useful to you, please write to autoconf@gnu.org." >&5
-echo "$as_me: WARNING: In the future, Autoconf will not detect cross-tools
-whose name does not start with the host triplet.  If you think this
-configuration is useful to you, please write to autoconf@gnu.org." >&2;}
-ac_tool_warned=yes ;;
-esac
-    AS=$ac_ct_AS
-  fi
-else
-  AS="$ac_cv_prog_AS"
-fi
-
-  if test -n "$ac_tool_prefix"; then
-  # Extract the first word of "${ac_tool_prefix}objdump", so it can be a program name with args.
-set dummy ${ac_tool_prefix}objdump; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_OBJDUMP+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$OBJDUMP"; then
-  ac_cv_prog_OBJDUMP="$OBJDUMP" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_OBJDUMP="${ac_tool_prefix}objdump"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-fi
-fi
-OBJDUMP=$ac_cv_prog_OBJDUMP
-if test -n "$OBJDUMP"; then
-  { echo "$as_me:$LINENO: result: $OBJDUMP" >&5
-echo "${ECHO_T}$OBJDUMP" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-fi
-if test -z "$ac_cv_prog_OBJDUMP"; then
-  ac_ct_OBJDUMP=$OBJDUMP
-  # Extract the first word of "objdump", so it can be a program name with args.
-set dummy objdump; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_ac_ct_OBJDUMP+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$ac_ct_OBJDUMP"; then
-  ac_cv_prog_ac_ct_OBJDUMP="$ac_ct_OBJDUMP" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_ac_ct_OBJDUMP="objdump"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-fi
-fi
-ac_ct_OBJDUMP=$ac_cv_prog_ac_ct_OBJDUMP
-if test -n "$ac_ct_OBJDUMP"; then
-  { echo "$as_me:$LINENO: result: $ac_ct_OBJDUMP" >&5
-echo "${ECHO_T}$ac_ct_OBJDUMP" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-  if test "x$ac_ct_OBJDUMP" = x; then
-    OBJDUMP="false"
-  else
-    case $cross_compiling:$ac_tool_warned in
-yes:)
-{ echo "$as_me:$LINENO: WARNING: In the future, Autoconf will not detect cross-tools
-whose name does not start with the host triplet.  If you think this
-configuration is useful to you, please write to autoconf@gnu.org." >&5
-echo "$as_me: WARNING: In the future, Autoconf will not detect cross-tools
-whose name does not start with the host triplet.  If you think this
-configuration is useful to you, please write to autoconf@gnu.org." >&2;}
-ac_tool_warned=yes ;;
-esac
-    OBJDUMP=$ac_ct_OBJDUMP
-  fi
-else
-  OBJDUMP="$ac_cv_prog_OBJDUMP"
-fi
-
-  ;;
-  
 esac
 
 need_locks="$enable_libtool_lock"
@@ -7721,7 +7424,7 @@ echo "${ECHO_T}$lt_cv_ld_exported_symbols_list" >&6; }
 
 
 enable_dlopen=no
-enable_win32_dll=yes
+enable_win32_dll=no
 
 # Check whether --enable-libtool-lock was given.
 if test "${enable_libtool_lock+set}" = set; then
@@ -7788,10 +7491,6 @@ _lt_linker_boilerplate=`cat conftest.err`
 $rm -r conftest*
 
 
-## CAVEAT EMPTOR:
-## There is no encapsulation within the following macros, do not change
-## the running order or otherwise move them around unless you know exactly
-## what you are doing...
 
 lt_prog_compiler_no_builtin_flag=
 
@@ -12610,10 +12309,6 @@ test "$ld_shlibs_CXX" = no && can_build_shared=no
 GCC_CXX="$GXX"
 LD_CXX="$LD"
 
-## CAVEAT EMPTOR:
-## There is no encapsulation within the following macros, do not change
-## the running order or otherwise move them around unless you know exactly
-## what you are doing...
 cat > conftest.$ac_ext <<EOF
 class Foo
 {
@@ -17094,10 +16789,6 @@ archive_cmds_need_lc_GCJ=no
 
 old_archive_cmds_GCJ=$old_archive_cmds
 
-## CAVEAT EMPTOR:
-## There is no encapsulation within the following macros, do not change
-## the running order or otherwise move them around unless you know exactly
-## what you are doing...
 
 lt_prog_compiler_no_builtin_flag_GCJ=
 
@@ -20216,22 +19907,22 @@ then
 fi
 
 
-#
-# Tests for windows
-#
-native_win32_build='no'
-cygwin_build='no'
-win32_build='no'
-case $host_os in
-   cygwin*) 
-       cygwin_build='yes'
-       win32_build='yes' 
-       ;;
-   mingw* )
-       native_win32_build='yes' 
-       win32_build='yes' 
-       ;;
-esac
+###
+### Tests for windows
+###
+##native_win32_build='no'
+##cygwin_build='no'
+##win32_build='no'
+##case $host_os in
+##   cygwin*) 
+##       cygwin_build='yes'
+##       win32_build='yes' 
+##       ;;
+##   mingw* )
+##       native_win32_build='yes' 
+##       win32_build='yes' 
+##       ;;
+##esac
 
 
 # checks for xsltproc (to buld HTML help pages)
@@ -20333,13 +20024,7 @@ fi
 # test if SCI is defined. If not, test if scilab is in path,
 # then get SCI from scilab -nw.
 if test -z "$SCI"; then
-   if test $native_win32_build = yes; then
-            { echo "$as_me:$LINENO: WARNING: hardcoding SCI to /c/scilab" >&5
-echo "$as_me: WARNING: hardcoding SCI to /c/scilab" >&2;}
-      SCIDIR="/c/scilab"
-      SCIEXE="/c/scilab/bin/Scilex.exe"
-   else
-      # Extract the first word of "scilab", so it can be a program name with args.
+   # Extract the first word of "scilab", so it can be a program name with args.
 set dummy scilab; ac_word=$2
 { echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
@@ -20377,20 +20062,19 @@ echo "${ECHO_T}no" >&6; }
 fi
 
 
-      if test x$has_scilab = xno; then
-         { { echo "$as_me:$LINENO: error: neither Scilab was found in your PATH nor a SCI variable has been defined" >&5
+   if test x$has_scilab = xno; then
+      { { echo "$as_me:$LINENO: error: neither Scilab was found in your PATH nor a SCI variable has been defined" >&5
 echo "$as_me: error: neither Scilab was found in your PATH nor a SCI variable has been defined" >&2;}
    { (exit 1); exit 1; }; }
-      else
-         cmd='F=mopen("path.incl","w");
-              mfprintf(F,SCI);
-              mclose(F);'
-         echo "$cmd" | scilab -nw >/dev/null
-         SCIDIR=`cat path.incl`
+   else
+      cmd='F=mopen("path.incl","w");
+           mfprintf(F,SCI);
+           mclose(F);'
+      echo "$cmd" | scilab -nw >/dev/null
+      SCIDIR=`cat path.incl`
 	 # TODO 
 	 #SCIEXE="${SCIDIR}/bin/scilex"
 	 SCIEXE="${SCIDIR}/bin/scilab"
-      fi
    fi
 else
    SCIDIR="$SCI"
@@ -20402,7 +20086,7 @@ else
    fi
 fi
 
-CFLAGS="$CFLAGS -I${SCIDIR}/routines"
+#CFLAGS="$CFLAGS -I${SCIDIR}/routines"
 
 
 
@@ -20419,32 +20103,6 @@ TOOLBOXDIR=$prefix
 
 
 
-
-LIBRARY_EXTRA_CPPFLAGS=''
-LIBRARY_EXTRA_LIBS=''
-if test "${native_win32_build}" = 'yes'
-then
-  if test "${libtool_build_shared_libs}" = 'yes'
-  then
-    SHARED_LIB_SUFFIX=dll
-    CFLAGS="$CFLAGS -DFORDLL"
-    { echo "$as_me:$LINENO: WARNING: Don't forget to rename SCI/bin/LibScilab* to lowercase" >&5
-echo "$as_me: WARNING: Don't forget to rename SCI/bin/LibScilab* to lowercase" >&2;}
-    LDFLAGS="$LDFLAGS -L${SCIDIR}/bin"
-    #LIBRARY_EXTRA_CFLAGS="-D_SIMPLELIB"
-    LIBRARY_EXTRA_LIBS="-lscilab"
-  else
-    CFLAGS="$CFLAGS -D_LIB"
-  fi
-else
-   SHARED_LIB_SUFFIX=so
-fi
-
-
-
-
-
-# Checks for libs. 
 
 # check for OpenCV >= 0.9.6
 have_opencv=no
@@ -20642,8 +20300,7 @@ else
         { echo "$as_me:$LINENO: result: yes" >&5
 echo "${ECHO_T}yes" >&6; }
 	CFLAGS="$CFLAGS $OPENCV_CFLAGS"
-		 LDFLAGS="$LDFLAGS -L${SCIDIR}/bin"
-		 LIBS="$LIBS $OPENCV_LIBS"
+		 LDFLAGS="$LDFLAGS $OPENCV_LIBS"
 		 have_opencv=yes
 		 
 cat >>confdefs.h <<\_ACEOF
@@ -21438,7 +21095,6 @@ fi
 done
 
 
-# for src/ilib_gen_gateway.sce
 
 TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'sivp_init','int_sivp_init'; \
@@ -21503,7 +21159,7 @@ TOOLBOX_FUNCTIONS="    'sivptest'; \
 
 
 
-ac_config_files="$ac_config_files Makefile etc/Makefile macros/Makefile man/Makefile images/Makefile demos/Makefile src/Makefile src/ilib_gen_gateway.sce src/Makefile.win loader.sce"
+ac_config_files="$ac_config_files Makefile etc/Makefile macros/Makefile man/Makefile images/Makefile demos/Makefile src/Makefile src/builder.sce src/Makefile.win loader.sce"
 
 
 cat >confcache <<\_ACEOF
@@ -22099,7 +21755,7 @@ do
     "images/Makefile") CONFIG_FILES="$CONFIG_FILES images/Makefile" ;;
     "demos/Makefile") CONFIG_FILES="$CONFIG_FILES demos/Makefile" ;;
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
-    "src/ilib_gen_gateway.sce") CONFIG_FILES="$CONFIG_FILES src/ilib_gen_gateway.sce" ;;
+    "src/builder.sce") CONFIG_FILES="$CONFIG_FILES src/builder.sce" ;;
     "src/Makefile.win") CONFIG_FILES="$CONFIG_FILES src/Makefile.win" ;;
     "loader.sce") CONFIG_FILES="$CONFIG_FILES loader.sce" ;;
 
@@ -22256,11 +21912,11 @@ AR!$AR$ac_delim
 RANLIB!$RANLIB$ac_delim
 DSYMUTIL!$DSYMUTIL$ac_delim
 NMEDIT!$NMEDIT$ac_delim
-DLLTOOL!$DLLTOOL$ac_delim
-AS!$AS$ac_delim
-OBJDUMP!$OBJDUMP$ac_delim
 CPP!$CPP$ac_delim
 CXX!$CXX$ac_delim
+CXXFLAGS!$CXXFLAGS$ac_delim
+ac_ct_CXX!$ac_ct_CXX$ac_delim
+CXXDEPMODE!$CXXDEPMODE$ac_delim
 _ACEOF
 
   if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 97; then
@@ -22302,9 +21958,6 @@ _ACEOF
 ac_delim='%!_!# '
 for ac_last_try in false false false false false :; do
   cat >conf$$subs.sed <<_ACEOF
-CXXFLAGS!$CXXFLAGS$ac_delim
-ac_ct_CXX!$ac_ct_CXX$ac_delim
-CXXDEPMODE!$CXXDEPMODE$ac_delim
 am__fastdepCXX_TRUE!$am__fastdepCXX_TRUE$ac_delim
 am__fastdepCXX_FALSE!$am__fastdepCXX_FALSE$ac_delim
 CXXCPP!$CXXCPP$ac_delim
@@ -22318,9 +21971,6 @@ has_scilab!$has_scilab$ac_delim
 TOOLBOXDIR!$TOOLBOXDIR$ac_delim
 SCIDIR!$SCIDIR$ac_delim
 SCIEXE!$SCIEXE$ac_delim
-SHARED_LIB_SUFFIX!$SHARED_LIB_SUFFIX$ac_delim
-LIBRARY_EXTRA_CPPFLAGS!$LIBRARY_EXTRA_CPPFLAGS$ac_delim
-LIBRARY_EXTRA_LIBS!$LIBRARY_EXTRA_LIBS$ac_delim
 PKG_CONFIG!$PKG_CONFIG$ac_delim
 OPENCV_CFLAGS!$OPENCV_CFLAGS$ac_delim
 OPENCV_LIBS!$OPENCV_LIBS$ac_delim
@@ -22330,7 +21980,7 @@ LIB@&t@OBJS!$LIB@&t@OBJS$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 26; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 20; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5
@@ -22934,10 +22584,8 @@ fi
 { echo "$as_me:$LINENO: result: 
 =====================================================
 Configuration:
-	CC       = $CC
 	CFLAGS   = $CFLAGS
 	LDFLAGS  = $LDFLAGS
-	LIBS     = $LIBS
 =====================================================
 This toolbox will be installed in $TOOLBOXDIR
 Please run 'make' and 'make install' to compile and install the toolbox. 
@@ -22945,10 +22593,8 @@ Please run 'make' and 'make install' to compile and install the toolbox.
 echo "${ECHO_T}
 =====================================================
 Configuration:
-	CC       = $CC
 	CFLAGS   = $CFLAGS
 	LDFLAGS  = $LDFLAGS
-	LIBS     = $LIBS
 =====================================================
 This toolbox will be installed in $TOOLBOXDIR
 Please run 'make' and 'make install' to compile and install the toolbox. 

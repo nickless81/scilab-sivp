@@ -20,31 +20,24 @@
 ## -------------------------------------------------------------------------
 ##
 
-IMG_IO_SRC=imread.c imwrite.c imfinfo.c test.c mat2utfimg.c ind2rgb.c
-AVI_IO_SRC=aviinfo.c aviopen.c avifile.c aviclose.c avicloseall.c avilistopened.c avireadframe.c camopen.c addframe.c
-IMG_TRAN_SRC=imresize.c imabsdiff.c imadd.c imsubtract.c immultiply.c imdivide.c
-IMG_FILTER_SRC=sobel.c imfilter.c filter2.c canny.c  
-IMG_COLOR_SRC=cvtcolor.c
-IMG_APP=detectfaces.c
+ALL_SRC=$(wildcard *.c *.h)
 
-ALL_SRC=libsivp.c common.c sivp_init.c $(IMG_IO_SRC)  $(AVI_IO_SRC) $(IMG_TRAN_SRC) $(IMG_FILTER_SRC) $(IMG_COLOR_SRC) $(IMG_APP)
+libsivpdir=@TOOLBOXDIR@/lib
 
-libdir=@TOOLBOXDIR@/lib
+libsivp_DATA = libsivp.so
+EXTRA_DIST = $(ALL_SRC)
 
-lib_LTLIBRARIES = libsivp.la
+all: libsivp.so
 
-AM_CPPFLAGS = @LIBRARY_EXTRA_CPPFLAGS@
-
-libsivp_la_SOURCES = $(ALL_SRC)
-
-libsivp_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release @PACKAGE_VERSION@
-
-libsivp_la_LIBADD = @LIBRARY_EXTRA_LIBS@
-
-EXTRA_DIST = common.h 
-
-libsivp.c: ilib_gen_gateway.sce
+libsivp.so: builder.sce
+	$(SCIEXE) -nwni -nb -f builder.sce
+	rm -f loader.sce
 	rm -f libsivp.c
-	$(SCIEXE) -nw -nb -f ilib_gen_gateway.sce
+
+clean:
+	rm -f *.a *.o *.lo *.so stamp-h1 Makelib
+
+distclean:
+	rm -fr *.a *.o *.lo *.so stamp-h1 Makelib Makefile.in Makefile Makefile.win builder.sce .libs
 
 
