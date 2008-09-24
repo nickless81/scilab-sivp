@@ -16,18 +16,7 @@
 ## along with this program; if not, write to the Free Software
 ## Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-IMG_IO_MAN=imread.xml imwrite.xml imfinfo.xml
-AVI_IO_MAN= aviinfo.xml aviopen.xml aviclose.xml avicloseall.xml avilistopened.xml avireadframe.xml camopen.xml avifile.xml addframe.xml
-IMG_TRAN_MAN=imresize.xml imcrop.xml
-IMG_FILTER=imfilter.xml fspecial.xml filter2.xml edge.xml
-IMG_GUI_MAN=imshow.xml xs2im.xml
-IMG_CONVERT=im2bw.xml im2uint8.xml im2int8.xml im2uint16.xml im2int16.xml im2int32.xml im2double.xml mat2gray.xml rgb2gray.xml rgb2hsv.xml hsv2rgb.xml rgb2ycbcr.xml ycbcr2rgb.xml rgb2ntsc.xml ntsc2rgb.xml ind2rgb.xml
-IMG_ARITHMETIC=imabsdiff.xml imadd.xml imsubtract.xml immultiply.xml imdivide.xml imcomplement.xml imlincomb.xml
-IMG_ENHANCE=imnoise.xml
-IMG_PROC_MAN= 
-IMG_STAT_MAN=mean2.xml corr2.xml std2.xml imhist.xml
-
-manpages_xml = $(IMG_IO_MAN) $(AVI_IO_MAN) $(IMG_FILTER) $(IMG_GUI_MAN) $(IMG_CONVERT) $(IMG_TRAN_MAN) $(IMG_ENHANCE) $(IMG_PROC_MAN) $(IMG_ARITHMETIC) $(IMG_STAT_MAN)
+manpages_xml = addframe.xml avicloseall.xml aviclose.xml avifile.xml aviinfo.xml avilistopened.xml aviopen.xml avireadframe.xml camopen.xml camshift.xml corr2.xml detecteyes.xml detectfaces.xml detectforeground.xml edge.xml filter2.xml fspecial.xml hsv2rgb.xml im2bw.xml im2double.xml im2int16.xml im2int32.xml im2int8.xml im2uint16.xml im2uint8.xml imabsdiff.xml imadd.xml imcomplement.xml imcrop.xml imdivide.xml imfilter.xml imfinfo.xml imhist.xml imlincomb.xml immultiply.xml imnoise.xml impyramid.xml imread.xml imresize.xml imshow.xml imsubtract.xml imwrite.xml ind2rgb.xml mat2gray.xml mean2.xml meanshift.xml ntsc2rgb.xml rectangle.xml rgb2gray.xml rgb2hsv.xml rgb2ntsc.xml rgb2ycbcr.xml std2.xml xs2im.xml ycbcr2rgb.xml 
 
 manpages_cat  = $(manpages_xml:.xml=.cat)
 

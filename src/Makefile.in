@@ -32,15 +32,17 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = images
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
+subdir = src
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(srcdir)/Makefile.win.in $(srcdir)/builder.sce.in \
+	$(srcdir)/config.h.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
-CONFIG_HEADER = $(top_builddir)/src/config.h
-CONFIG_CLEAN_FILES =
+CONFIG_HEADER = config.h
+CONFIG_CLEAN_FILES = builder.sce Makefile.win
 SOURCES =
 DIST_SOURCES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
@@ -49,9 +51,9 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(imagesdir)"
-imagesDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(images_DATA)
+am__installdirs = "$(DESTDIR)$(libsivpdir)"
+libsivpDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libsivp_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -172,11 +174,12 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-images = lena.png baboon.png peppers.png video.avi red-car-video.avi
-imagesdir = @TOOLBOXDIR@/images
-images_DATA = $(images)
-EXTRA_DIST = $(images)
-all: all-am
+ALL_SRC = addframe.c avicloseall.c aviclose.c avifile.c aviinfo.c avilistopened.c aviopen.c avireadframe.c camopen.c camshift.c canny.c common.c cvtcolor.c detectforeground.c detectobjects.c filter2.c imabsdiff.c imadd.c imdivide.c imfilter.c imfinfo.c immultiply.c impyramid.c imread.c imresize.c imsubtract.c imwrite.c ind2rgb.c mat2utfimg.c meanshift.c sivp_init.c sobel.c test.c 
+libsivpdir = @TOOLBOXDIR@/lib
+libsivp_DATA = libsivp.so
+EXTRA_DIST = $(ALL_SRC)
+all: config.h
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
@@ -188,9 +191,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu  images/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu  src/Makefile'; \
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu  images/Makefile
+	  $(AUTOMAKE) --gnu  src/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -209,27 +212,48 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 
+config.h: stamp-h1
+	@if test ! -f $@; then \
+	  rm -f stamp-h1; \
+	  $(MAKE) $(AM_MAKEFLAGS) stamp-h1; \
+	else :; fi
+
+stamp-h1: $(srcdir)/config.h.in $(top_builddir)/config.status
+	@rm -f stamp-h1
+	cd $(top_builddir) && $(SHELL) ./config.status src/config.h
+$(srcdir)/config.h.in:  $(am__configure_deps) 
+	cd $(top_srcdir) && $(AUTOHEADER)
+	rm -f stamp-h1
+	touch $@
+
+distclean-hdr:
+	-rm -f config.h stamp-h1
+builder.sce: $(top_builddir)/config.status $(srcdir)/builder.sce.in
+	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
+Makefile.win: $(top_builddir)/config.status $(srcdir)/Makefile.win.in
+	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-imagesDATA: $(images_DATA)
+install-libsivpDATA: $(libsivp_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(imagesdir)" || $(MKDIR_P) "$(DESTDIR)$(imagesdir)"
-	@list='$(images_DATA)'; for p in $$list; do \
+	test -z "$(libsivpdir)" || $(MKDIR_P) "$(DESTDIR)$(libsivpdir)"
+	@list='$(libsivp_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(imagesDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(imagesdir)/$$f'"; \
-	  $(imagesDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(imagesdir)/$$f"; \
+	  echo " $(libsivpDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsivpdir)/$$f'"; \
+	  $(libsivpDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsivpdir)/$$f"; \
 	done
 
-uninstall-imagesDATA:
+uninstall-libsivpDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(images_DATA)'; for p in $$list; do \
+	@list='$(libsivp_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(imagesdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(imagesdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libsivpdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsivpdir)/$$f"; \
 	done
 tags: TAGS
 TAGS:
@@ -266,9 +290,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(DATA)
+all-am: Makefile $(DATA) config.h
 installdirs:
-	for dir in "$(DESTDIR)$(imagesdir)"; do \
+	for dir in "$(DESTDIR)$(libsivpdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -295,13 +319,9 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
-clean: clean-am
-
 clean-am: clean-generic clean-libtool mostlyclean-am
 
-distclean: distclean-am
-	-rm -f Makefile
-distclean-am: clean-am distclean-generic
+distclean-am: clean-am distclean-generic distclean-hdr
 
 dvi: dvi-am
 
@@ -313,7 +333,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-imagesDATA
+install-data-am: install-libsivpDATA
 
 install-dvi: install-dvi-am
 
@@ -347,22 +367,36 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-imagesDATA
+uninstall-am: uninstall-libsivpDATA
 
 .MAKE: install-am install-strip
 
 .PHONY: all all-am check check-am clean clean-generic clean-libtool \
-	distclean distclean-generic distclean-libtool distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-imagesDATA install-info install-info-am install-man \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	uninstall uninstall-am uninstall-imagesDATA
+	distclean distclean-generic distclean-hdr distclean-libtool \
+	distdir dvi dvi-am html html-am info info-am install \
+	install-am install-data install-data-am install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am \
+	install-libsivpDATA install-man install-pdf install-pdf-am \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
+	uninstall-libsivpDATA
 
+
+all: libsivp.so
+
+libsivp.so: builder.sce
+	$(SCIEXE) -nwni -nb -f builder.sce
+	rm -f loader.sce
+	rm -f libsivp.c
+
+clean:
+	rm -f *.a *.o *.lo *.so stamp-h1 Makelib libsivp.c loader.sce
+
+distclean:
+	rm -fr *.a *.o *.lo *.so stamp-h1 Makelib Makefile Makefile.win builder.sce .libs
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

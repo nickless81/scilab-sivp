@@ -20,7 +20,7 @@
 ## -------------------------------------------------------------------------
 ##
 
-ALL_SRC=$(wildcard *.c *.h)
+ALL_SRC=addframe.c avicloseall.c aviclose.c avifile.c aviinfo.c avilistopened.c aviopen.c avireadframe.c camopen.c camshift.c canny.c common.c cvtcolor.c detectforeground.c detectobjects.c filter2.c imabsdiff.c imadd.c imdivide.c imfilter.c imfinfo.c immultiply.c impyramid.c imread.c imresize.c imsubtract.c imwrite.c ind2rgb.c mat2utfimg.c meanshift.c sivp_init.c sobel.c test.c 
 
 libsivpdir=@TOOLBOXDIR@/lib
 
@@ -35,9 +35,9 @@ libsivp.so: builder.sce
 	rm -f libsivp.c
 
 clean:
-	rm -f *.a *.o *.lo *.so stamp-h1 Makelib
+	rm -f *.a *.o *.lo *.so stamp-h1 Makelib libsivp.c loader.sce
 
 distclean:
-	rm -fr *.a *.o *.lo *.so stamp-h1 Makelib Makefile.in Makefile Makefile.win builder.sce .libs
+	rm -fr *.a *.o *.lo *.so stamp-h1 Makelib Makefile Makefile.win builder.sce .libs
 
 

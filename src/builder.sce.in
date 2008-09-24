@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////
 
-mode(-1);
+lines(0);
 
 gateway_dir = get_absolute_file_path('builder.sce');
 
@@ -32,7 +32,7 @@ srcfiles = listfiles('*.c');
 //remove libsivp.c
 files=[];
 for myindex=1:size(srcfiles,1)
-    if( srcfiles(myindex) <> 'libsivp.c')
+    if( srcfiles(myindex) <> 'libsivp.c' ) then
         files = [files, srcfiles(myindex)];
     end
 end
@@ -40,16 +40,18 @@ end
 files = strsubst(files, '.c', '.o');
 
 scilab_version=getversion();
-if (str2code( part(scilab_version, 8)) >= 5) then //version >= 5.x.x
+if ~(str2code( part(scilab_version, 8)) <= 4) & (MSDOS==%F) then //version >= 5.x.x
    files = [files, 'common.h', 'config.h'];
 end
 
 // name known in scilab , C function called
 table=[@TOOLBOX_TABLE@];
 
-
-libname = ilib_build(ilib_name,table,files,[],'Makelib','@LDFLAGS@', '@CFLAGS@');
-
+if (MSDOS) then
+	libname = ilib_build(ilib_name,table,files,[],'Makelib',' '"C:\\PROGRA~1\\OpenCV\\lib\\cxcore.lib'" '"C:\\PROGRA~1\\OpenCV\\lib\\cv.lib'" '"C:\\PROGRA~1\\OpenCV\\lib\\cvaux.lib'" '"C:\\PROGRA~1\\OpenCV\\lib\\highgui.lib'" ', '-I'"C:\\PROGRA~1\\OpenCV\\cxcore\\include'"  -I'"C:\\PROGRA~1\\OpenCV\\cv\\include'"  -I'"C:\\PROGRA~1\\OpenCV\\cvaux\\include'" -I'"C:\\PROGRA~1\\OpenCV\\otherlibs\\highgui'"');
+else
+	libname = ilib_build(ilib_name,table,files,[],'Makelib','@LDFLAGS@', '@CFLAGS@');
+end
 
 cd(previous_dir);
 // ====================================================================

@@ -1,6 +1,6 @@
 /***********************************************************************
  * SIVP - Scilab Image and Video Processing toolbox
- * Copyright (C) 2005  Shiqi Yu
+ * Copyright (C) 2005-2008  Shiqi Yu
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,6 +30,8 @@ int int_avireadframe(char * fname)
   int nFrameIdx = -1;
 
   IplImage * pImage;
+
+  double tmp;
 
   CheckRhs(1,2);
   CheckLhs(0,1);
@@ -81,11 +83,10 @@ int int_avireadframe(char * fname)
 
   if (! pImage)
   {
-      Scierror(999, "%s: No frame.\r\n", fname);
-      return -1;
+      Create2DDoubleMat(Rhs+1, 0, 0, &tmp);
+      sciprint("Warning: No frame.\r\n", fname);
   }
-
-  if(! IplImg2Mat(pImage, Rhs+1))
+  else if(! IplImg2Mat(pImage, Rhs+1))
     {
       Scierror(999, "%s: SIVP interal error.\r\n", fname);
       return -1;

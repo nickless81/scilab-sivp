@@ -185,7 +185,11 @@ TOOLBOX_TABLE="	'sivptest', 'int_test'; \
 		'int_sobel', 'int_sobel'; \
 		'int_cvtcolor', 'int_cvtcolor'; \
 		'ind2rgb', 'int_ind2rgb'; \
-		'detectfaces', 'int_detectfaces'; \
+		'int_detectobjects', 'int_detectobjects'; \
+		'camshift', 'int_camshift'; \
+		'meanshift', 'int_meanshift';\
+		'detectforeground', 'int_detectforeground';\
+		'impyramid', 'int_impyramid';\
 		"
 
 TOOLBOX_FUNCTIONS="    'sivptest'; \
@@ -216,6 +220,11 @@ TOOLBOX_FUNCTIONS="    'sivptest'; \
 		       'int_cvtcolor'; \
 		       'ind2rgb'; \
 		       'detectfaces'; \
+		       'int_detectobjects'; \
+		       'camshift'; \
+		       'meanshift';\
+		       'detectforeground';\
+		       'impyramid';\
 		   "
 
 AC_SUBST(TOOLBOX_TABLE)

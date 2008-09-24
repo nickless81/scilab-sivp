@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>rectangle</TITLE>
+<TYPE>SIVP Toolbox</TYPE>
+<DATE>September, 2008</DATE>
+<SHORT_DESCRIPTION name="rectangle">Draw a rectangle on image</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>imr = rectangle(im, rect, rgb)</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+   <PARAM_NAME>im</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+     An image, which can be one channel or three channel image.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>rect</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   <TT>rect=[x, y, width, height]</TT> is a vector. <TT>(x, y)</TT> is the top-left corner of the rectangle.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>imr</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   <TT>imr</TT> is the the output image with the rectangle.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+<EXAMPLE><![CDATA[
+
+    im = imread(SCI + '/contrib/sivp/images/lena.png');
+    imr = rectangle(im, [20, 30, 50, 100]);
+    imshow(imr);
+
+]]></EXAMPLE>
+<!-- ================================= -->
+
+<AUTHORS>
+   <AUTHORS_ITEM name="Jia"> Jia Wu &lt;jiawu83[at]gmail.com&gt; </AUTHORS_ITEM>
+</AUTHORS>
+<!-- ================================= -->
+<SECTION label="Availability">
+The latest version of SIVP can be found at
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+   <SEE_ALSO>
+      
+   </SEE_ALSO>
+</MAN>

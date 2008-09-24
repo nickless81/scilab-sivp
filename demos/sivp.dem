@@ -21,6 +21,10 @@ demolist=[
 'Add Gussian noise',         'exec(sivpdemopath+''noise.sce'')';
 'Video reading and showing', 'exec(sivpdemopath+''video.sce'')';
 'Grab frames from a camera', 'exec(sivpdemopath+''camera.sce'')';
+'Track object using CamShift', 'exec(sivpdemopath+''camshift.sce'')';
+'Foreground detection', 'exec(sivpdemopath+''bgfg.sce'')';
+'Face detection', 'exec(sivpdemopath+''face.sce'')';
+'Eye detection', 'exec(sivpdemopath+''eye.sce'')';
 ]
 
 while %t then

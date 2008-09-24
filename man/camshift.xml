@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>camshift</TITLE>
+<TYPE>SIVP Toolbox</TYPE>
+<DATE>September, 2008</DATE>
+<SHORT_DESCRIPTION name="camshift">Track an object by color. It gets the object position, size and orientation.</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>obj_win = camshift(im, init_win)</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>obj_win = camshift(im)</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+   <PARAM_NAME>im</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Input image which must be a 3-channel image.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>init_win</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Initial search window which is a 1x4 matrix [x,y,w,h].
+   <TT><b>x</b></TT> is the x-coordinate of the left-top window corner.
+   <TT><b>y</b></TT> is the y-coordinate of the left-top window corner.
+   <TT><b>w</b></TT> is the width of the window.
+   <TT><b>h</b></TT> is the height of the window.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>obj_win</PARAM_NAME>
+   <PARAM_DESCRIPTION>
+   Object window which is a 1x5 matrix [x,y,w,h,theta].
+   <TT><b>x</b></TT> is the x-coordinate of the left-top window corner.
+   <TT><b>y</b></TT> is the y-coordinate of the left-top window corner.
+   <TT><b>w</b></TT> is the width of the window.
+   <TT><b>h</b></TT> is the height of the window.
+   </PARAM_DESCRIPTION>
+   </PARAM_ITEM>    
+</PARAM_INDENT>
+</PARAM>
+<DESCRIPTION>
+<P>
+   The function implements CAMSHIFT object tracking algorithm. When using it, please first use <TT><b>obj_win=camshift(im, init_win)</b></TT> to initialize the tracker, then use <TT><b>obj_win=camshift(im)</b></TT> to track the object.    
+</P>
+</DESCRIPTION>
+
+<EXAMPLE><![CDATA[
+	
+    n = aviopen(SCI+'/contrib/sivp-svn-trunk/images/red_car_video.avi');
+    im = avireadframe(n); //get a frame
+    obj_win = camshift(im, [12, 6, 39, 13]); //initialize tracker
+
+    while ~isempty(im),
+          obj_win = camshift(im); //camshift tracking          
+          
+          im = rectangle(im, obj_win, [0,255,0]);
+          imshow(im);
+
+          im = avireadframe(n);
+    end;
+
+    aviclose(n);
+
+]]></EXAMPLE>
+<!-- ================================= -->
+
+<AUTHORS>
+   <AUTHORS_ITEM name="Jia"> Jia Wu &lt;jiawu83[at]gmail.com&gt; </AUTHORS_ITEM>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </AUTHORS_ITEM>   
+</AUTHORS>
+<!-- ================================= -->
+
+<BIBLIO>
+ <P>
+    "Computer vision face tracking as a component of a perceptual user interface", G.R. Bradski, in Workshop on Applications of Computer Vision, pages 214, Princeton, NJ, Oct. 1998. 
+ </P>
+</BIBLIO>
+<!-- ================================= -->
+
+<SECTION label="Availability">
+The latest version of SIVP can be found at
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+
+<SEE_ALSO>
+   <SEE_ALSO_ITEM><LINK>meanshift</LINK></SEE_ALSO_ITEM>
+</SEE_ALSO>
+</MAN>

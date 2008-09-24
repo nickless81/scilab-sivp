@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "mansivp.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>edge</TITLE>
+<TYPE>SIVP Toolbox</TYPE>
+<DATE>September, 2008</DATE>
+<SHORT_DESCRIPTION name="detectforeground">Background modeling and get foreground mask.</SHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>fg = detectforeground(im)</CALLING_SEQUENCE_ITEM>
+   <CALLING_SEQUENCE_ITEM>fg = detectforeground(im, method)</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+   <PARAM_ITEM>
+     <PARAM_NAME>im</PARAM_NAME>
+     <PARAM_DESCRIPTION>
+       The input image.
+     </PARAM_DESCRIPTION>
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+     <PARAM_NAME>method</PARAM_NAME>
+     <PARAM_DESCRIPTION>
+       Background modeling methods. Can be <b>&apos;LI&apos;</b>(default), <b>&apos;GMM&apos;</b>. Other methods will appear in the future.      
+     </PARAM_DESCRIPTION>
+   </PARAM_ITEM> 
+   <PARAM_ITEM>
+     <PARAM_NAME>fg</PARAM_NAME>
+     <PARAM_DESCRIPTION>
+       If <b>detectforeground</b> is used to create background model, then fg is an empty matrix.
+       If <b>detectforeground</b> is used to detect foreground, then fg is the foreground mask.     
+     </PARAM_DESCRIPTION>
+   </PARAM_ITEM> 
+</PARAM_INDENT>
+</PARAM>
+
+<DESCRIPTION>
+  <P>
+  The function <TT>detectforeground</TT> creates background model and gets the foreground mask from an input video. The user should first use <TT>fg=detectforeground(im,method)</TT> or <TT>fg=detectforeground(im)</TT> to create the background model by the assigned method or the default method. Then use <TT>fg=detectforeground(im)</TT> to detect foreground and get the foreground mask.
+  </P>
+   <DESCRIPTION_INDENT>
+   <DESCRIPTION_ITEM label="fg=detectforeground(im, 'LI')">
+   Create background model using the algorithm proposed by Liyuan Li etc. on ACM MM2003.
+   </DESCRIPTION_ITEM>
+   <DESCRIPTION_ITEM label="fg=detectforeground(im, 'GMM')">
+   Create background model using the algorithm proposed by P. KadewTraKuPong and R. Bowden in 2001.
+   </DESCRIPTION_ITEM>
+   <DESCRIPTION_ITEM label="fg=detectforeground(im)">
+   Create background model using the default algorthm('LI').
+   Or detect foreground and get the foreground mask;
+   </DESCRIPTION_ITEM>   
+   </DESCRIPTION_INDENT>
+</DESCRIPTION>
+
+<!-- ================================= -->
+<EXAMPLE><![CDATA[ 
+    
+    n = aviopen(SCI+'/contrib/sivp-svn-trunk/images/video.avi');
+    im = avireadframe(n);
+    fg = detectforeground(im, 'GMM');//or:fg = detectforeground(im). create background model
+  
+    while ~isempty(im),
+          fg = detectforeground(im);//get the foreground mask
+          imshow(fg);   
+          im = avireadframe(n);
+    end;
+
+    aviclose(n);
+
+]]></EXAMPLE>
+
+<!-- ================================= -->
+<AUTHORS> 
+   <AUTHORS_ITEM name="Jia"> Jia Wu &lt;jiawu83[at]gmail.com&gt; </AUTHORS_ITEM>
+   <AUTHORS_ITEM name="Shiqi"> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </AUTHORS_ITEM>  
+</AUTHORS>
+
+<!-- ================================= -->
+<BIBLIO>
+   <P>
+    &apos;LI&apos;: "Foreground Object Detection from Videos Containing Complex Background", Liyuan Li, Weimin Huang, Irene Y.H. Gu, and Qi Tian, ACM MM2003.
+   </P>
+   <P>
+    &apos;GMM&apos;: "An improved adaptive background mixture model for real-time tracking with shadow detection", P. KadewTraKuPong and R. Bowden, in Proc. 2nd European Workshp on Advanced Video-Based Surveillance Systems, 2001.
+   </P>
+</BIBLIO>
+<!-- ================================= -->
+
+<SECTION label="Availability">
+The latest version of SIVP can be found at
+<P><A href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</A></P>
+</SECTION>
+<!-- ================================= -->
+   <SEE_ALSO>  
+   </SEE_ALSO>
+</MAN>

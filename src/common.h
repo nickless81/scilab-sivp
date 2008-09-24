@@ -40,8 +40,9 @@ extern "C" {
 
 #include <stdio.h>
 
-#include <cv.h>
 #include <cxcore.h>
+#include <cv.h>
+#include <cvaux.h>
 #include <highgui.h>
 
 #include <stack-c.h>

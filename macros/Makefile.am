@@ -19,7 +19,7 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ## -------------------------------------------------------------------------
 ##
-macros_sci = $(wildcard *.sci)
+macros_sci = corr2.sci detectfaces.sci detectlefteyes.sci detectrighteyes.sci edge.sci fspecial.sci hsv2rgb.sci im2bw.sci im2double.sci im2int16.sci im2int32.sci im2int8.sci im2uint16.sci im2uint8.sci imabsdiff.sci imadd.sci imcomplement.sci imcrop.sci imdivide.sci imhist.sci imlincomb.sci immultiply.sci imnoise.sci imresize.sci imshow.sci imsubtract.sci imwrite.sci isbw.sci mat2gray.sci mean2.sci ntsc2rgb.sci rectangle.sci rgb2gray.sci rgb2hsv.sci rgb2ntsc.sci rgb2ycbcr.sci std2.sci stdev2.sci xs2im.sci ycbcr2rgb.sci 
 
 macros_bin = $(macros_sci:.sci=.bin)
 
