@@ -1,4 +1,4 @@
-filename = SIVP_PATH + '/images/red_car_video.avi';
+filename = SIVP_PATH + '/images/red-car-video.avi';
 if MSDOS then filename=strsubst(filename,'/','\'),end
 n = aviopen(filename);
 im = avireadframe(n); //get a frame
