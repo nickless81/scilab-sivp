@@ -33,10 +33,11 @@ SIVP_PATH=get_absolute_file_path('loader.sce');
 execstr(libname+'=lib(""'+SIVP_PATH+'macros/'+'"")')
 
 // add the help chapter
-if getversion()=="scilab-2.7" then
-   %helps = [%helps; SIVP_PATH+'/man', libtitle]
-else
+scilab_version=getversion();
+if (str2code( part(scilab_version, 8)) <= 4) then //version <= 4.x.x
    add_help_chapter(libtitle,SIVP_PATH+'/man');
+else
+   //scilab 5
 end
 
 // add demos to demos menu

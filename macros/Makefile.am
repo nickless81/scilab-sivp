@@ -24,43 +24,14 @@ macros_sci = corr2.sci detectfaces.sci detectlefteyes.sci detectrighteyes.sci ed
 macros_bin = $(macros_sci:.sci=.bin)
 
 macrodir=@TOOLBOXDIR@/macros
-macro_DATA = $(macros_bin) genlib names lib imshow.tcl
+macro_DATA = $(macros_bin) names lib imshow.tcl
 
-EXTRA_DIST = $(macros_sci)  imshow.tcl Sci_Name.c Sci_Lib.c
+EXTRA_DIST = $(macros_sci)  imshow.tcl buildmacros.sce
 
 
-#
-# revised by SHANG Shulin
-# export name=$(patsubst %.sci, %, $<);
-%.bin : %.sci
-	@SCI=$(SCIDIR);export SCI; umask 002;rm -f repor;
-	@name=`basename $< .sci`;
-	@echo "predef();getf('$(name).sci');save('$(name).bin');quit"| $(SCIEXE) -ns -nw | sed 1,8d 1>report 2>&1;umask 022;
 
-lib: $(macros_sci) Sci_Lib
-#	@echo $? > tmp_comp ;$(SCIDIR)/macros/Lib Xtmp_comp; rm -f tmp_comp
-	@echo $(macros_sci) > tmp_comp ; ./Sci_Lib Xtmp_comp; rm -f tmp_comp
-	@rm -f `cat tmp_Bin`
-	@echo Starting Compilation 
-	@if ( $(SCIDIR)/util/scibatch $(SCIDIR) tmp_Macros ) ;\
-	then echo generating lib and names;\
-	     $(SCIDIR)/util/scibatch $(SCIDIR) genlib;\
-	else echo "Compilation failed"; rm -f `cat tmp_Bin` ;exit 1; \
-	fi
-	@echo End of compilation
-
-names genlib: 	$(macros_sci) Makefile Sci_Name
-	@echo $(PWD) > tmp_comp ;
-	@echo $(PACKAGE_NAME) >> tmp_comp ;
-	@echo $(macros_sci) >> tmp_comp ;
-#	@$(SCIDIR)/macros/Name Xtmp_comp; rm -f tmp_comp
-	@./Sci_Name Xtmp_comp; rm -f tmp_comp
-
-Sci_Name: Sci_Name.c
-	$(CC) $^ -o $@ 
-
-Sci_Lib: Sci_Lib.c
-	$(CC) $^ -o $@ 
+$(macros_bin) names lib: 	$(macros_sci) 
+	$(SCIEXE) -nw -nb -f buildmacros.sce ;
 
 clean-local:
 	rm -f tmp_* *.bin lib names Lib.mak Macros.mak genlib Sci_Name Sci_Lib

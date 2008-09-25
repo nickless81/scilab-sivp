@@ -53,66 +53,60 @@ then
 fi
 
 
-###
-### Tests for windows
-###
-##native_win32_build='no'
-##cygwin_build='no'
-##win32_build='no'
-##case $host_os in
-##   cygwin*) 
-##       cygwin_build='yes'
-##       win32_build='yes' 
-##       ;;
-##   mingw* )
-##       native_win32_build='yes' 
-##       win32_build='yes' 
-##       ;;
-##esac
-
-
-# checks for xsltproc (to buld HTML help pages)
-AC_CHECK_PROG([has_xsltproc],[xsltproc],[yes],[no], , )
-if test x$has_xsltproc = xno; then
-   # checks for sabcmd as an alternative
-   AC_CHECK_PROG([has_sablotron],[sabcmd],[yes],[no], , )
-   if test x$has_sablotron = xno; then
-      AC_MSG_ERROR([[xsltproc or sabcmd programs were not found but \
-at least one of them is required to build the SIVP manual pages.
-Download xslproc (from libxml) at:
-   http://www.xmlsoft.org 
-or sabcmd (from sablotron) at:
-   http://www.gingerall.com/charlie/ga/xml/p_sab.xml]])
-   fi
+# check for Scilab
+AC_CHECK_PROG([has_scilab],[scilab],[yes],[no], , )
+if test x$has_scilab = xno; then
+    AC_MSG_ERROR([[scilab binary program was found in your PATH], your PATH is $PATH])
 fi
-
+SCIEXE="scilab"
 # test if SCI is defined. If not, test if scilab is in path,
-# then get SCI from scilab -nw.
+# then get SCI from scilab -nwni.
 if test -z "$SCI"; then
-   AC_CHECK_PROG([has_scilab],[scilab],[yes],[no], , )
-   if test x$has_scilab = xno; then
-      AC_MSG_ERROR([[neither Scilab was found in your PATH nor a SCI variable has been defined]])
-   else
-      cmd='F=mopen("path.incl","w");
+      cmd='F=mopen("getpath.incl","w");
            mfprintf(F,SCI);
-           mclose(F);'
-      echo "$cmd" | scilab -nw >/dev/null
-      SCIDIR=`cat path.incl`
-	 # TODO 
-	 #SCIEXE="${SCIDIR}/bin/scilex"
-	 SCIEXE="${SCIDIR}/bin/scilab"
-   fi
+           mclose(F);exit;'
+      echo "$cmd" > getpath.sci
+      scilab -nw -f getpath.sci >/dev/null
+      SCIDIR=`cat getpath.incl`
+      rm -f getpath.sci getpath.incl 
 else
    SCIDIR="$SCI"
-   if test $win32_build = yes; then
-      SCIEXE="${SCI}/bin/Scilex.exe"
-   else
-      #SCIEXE="${SCI}/bin/scilex"
-      SCIEXE="${SCI}/bin/scilab"
-   fi
 fi
 
-#CFLAGS="$CFLAGS -I${SCIDIR}/routines"
+#get scilab version
+cmd='F=mopen("version.incl","w");
+     ver=getversion();
+     ver=part(ver, 8);
+     mfprintf(F,ver);
+     mclose(F);exit;'
+echo "$cmd" > version.sci
+scilab -nwni -f version.sci >/dev/null
+SCIVERSION=`cat version.incl`
+rm -f version.sci version.incl 
+
+echo "Scilab version is $SCIVERSION"
+
+HELPDIR=""
+if test $SCIVERSION -le 4; then
+   # checks for xsltproc (to buld HTML help pages)
+   AC_CHECK_PROG([has_xsltproc],[xsltproc],[yes],[no], , )
+   if test x$has_xsltproc = xno; then
+      # checks for sabcmd as an alternative
+         AC_CHECK_PROG([has_sablotron],[sabcmd],[yes],[no], , )
+         if test x$has_sablotron = xno; then
+                  AC_MSG_ERROR([[xsltproc or sabcmd programs were not found but \
+                   at least one of them is required to build the SIVP manual pages.
+                   Download xslproc (from libxml) at:
+                     http://www.xmlsoft.org 
+                   or sabcmd (from sablotron) at:
+                     http://www.gingerall.com/charlie/ga/xml/p_sab.xml]])
+         fi
+    fi
+    HELPDIR="man"
+else
+    HELPDIR=""  
+fi
+
 
 AC_PREFIX_DEFAULT([SCI/contrib/${PACKAGE_NAME}-${PACKAGE_VERSION}])
 
@@ -129,6 +123,7 @@ AC_PREFIX_DEFAULT([$TOOLBOXDIR])
 AC_SUBST(TOOLBOXDIR)
 AC_SUBST(SCIDIR)
 AC_SUBST(SCIEXE)
+AC_SUBST(HELPDIR)
 
 # check for OpenCV >= 0.9.6
 have_opencv=no

@@ -9441,34 +9441,35 @@ m4trace:configure.ac:46: -1- _LT_AC_SHELL_INIT([tagnames=${tagnames+${tagnames},
 m4trace:configure.ac:46: -1- AC_LIBTOOL_F77
 m4trace:configure.ac:46: -1- _LT_AC_LANG_F77
 m4trace:configure.ac:46: -1- _LT_AC_SHELL_INIT([tagnames=${tagnames+${tagnames},}F77])
-m4trace:configure.ac:75: -1- m4_pattern_allow([^has_xsltproc$])
-m4trace:configure.ac:78: -1- m4_pattern_allow([^has_sablotron$])
-m4trace:configure.ac:92: -1- m4_pattern_allow([^has_scilab$])
-m4trace:configure.ac:129: -1- m4_pattern_allow([^TOOLBOXDIR$])
-m4trace:configure.ac:130: -1- m4_pattern_allow([^SCIDIR$])
-m4trace:configure.ac:131: -1- m4_pattern_allow([^SCIEXE$])
-m4trace:configure.ac:135: -1- PKG_CHECK_MODULES([OPENCV], [opencv >= 0.9.6], [CFLAGS="$CFLAGS $OPENCV_CFLAGS"
+m4trace:configure.ac:57: -1- m4_pattern_allow([^has_scilab$])
+m4trace:configure.ac:92: -1- m4_pattern_allow([^has_xsltproc$])
+m4trace:configure.ac:95: -1- m4_pattern_allow([^has_sablotron$])
+m4trace:configure.ac:123: -1- m4_pattern_allow([^TOOLBOXDIR$])
+m4trace:configure.ac:124: -1- m4_pattern_allow([^SCIDIR$])
+m4trace:configure.ac:125: -1- m4_pattern_allow([^SCIEXE$])
+m4trace:configure.ac:126: -1- m4_pattern_allow([^HELPDIR$])
+m4trace:configure.ac:130: -1- PKG_CHECK_MODULES([OPENCV], [opencv >= 0.9.6], [CFLAGS="$CFLAGS $OPENCV_CFLAGS"
 		 LDFLAGS="$LDFLAGS $OPENCV_LIBS"
 		 have_opencv=yes
 		 AC_DEFINE(HAVE_OPENCV,[], [define HAVE_OPENCV if you have opencv])], [AC_MSG_ERROR([[ OpenCV version >= 0.9.6 was not found. ]])])
-m4trace:configure.ac:135: -1- PKG_PROG_PKG_CONFIG
-m4trace:configure.ac:135: -1- m4_pattern_forbid([^_?PKG_[A-Z_]+$])
-m4trace:configure.ac:135: -1- m4_pattern_allow([^PKG_CONFIG(_PATH)?$])
-m4trace:configure.ac:135: -1- m4_pattern_allow([^PKG_CONFIG$])
-m4trace:configure.ac:135: -1- m4_pattern_allow([^PKG_CONFIG$])
-m4trace:configure.ac:135: -1- m4_pattern_allow([^OPENCV_CFLAGS$])
-m4trace:configure.ac:135: -1- m4_pattern_allow([^OPENCV_LIBS$])
-m4trace:configure.ac:135: -1- PKG_CHECK_EXISTS([opencv >= 0.9.6], [pkg_cv_[]OPENCV_CFLAGS=`$PKG_CONFIG --[]cflags "opencv >= 0.9.6" 2>/dev/null`], [pkg_failed=yes])
-m4trace:configure.ac:135: -1- PKG_CHECK_EXISTS([opencv >= 0.9.6], [pkg_cv_[]OPENCV_LIBS=`$PKG_CONFIG --[]libs "opencv >= 0.9.6" 2>/dev/null`], [pkg_failed=yes])
-m4trace:configure.ac:135: -1- _PKG_SHORT_ERRORS_SUPPORTED
-m4trace:configure.ac:135: -1- m4_pattern_allow([^HAVE_OPENCV$])
-m4trace:configure.ac:144: -1- m4_pattern_allow([^STDC_HEADERS$])
-m4trace:configure.ac:151: -1- m4_pattern_allow([^const$])
-m4trace:configure.ac:153: -1- m4_pattern_allow([^HAVE__BOOL$])
-m4trace:configure.ac:153: -1- m4_pattern_allow([^HAVE_STDBOOL_H$])
-m4trace:configure.ac:229: -1- m4_pattern_allow([^TOOLBOX_TABLE$])
-m4trace:configure.ac:230: -1- m4_pattern_allow([^TOOLBOX_FUNCTIONS$])
-m4trace:configure.ac:243: -1- m4_pattern_allow([^LIB@&t@OBJS$])
-m4trace:configure.ac:243: -1- m4_pattern_allow([^LTLIBOBJS$])
-m4trace:configure.ac:243: -1- _AC_AM_CONFIG_HEADER_HOOK([$ac_file])
-m4trace:configure.ac:243: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS
+m4trace:configure.ac:130: -1- PKG_PROG_PKG_CONFIG
+m4trace:configure.ac:130: -1- m4_pattern_forbid([^_?PKG_[A-Z_]+$])
+m4trace:configure.ac:130: -1- m4_pattern_allow([^PKG_CONFIG(_PATH)?$])
+m4trace:configure.ac:130: -1- m4_pattern_allow([^PKG_CONFIG$])
+m4trace:configure.ac:130: -1- m4_pattern_allow([^PKG_CONFIG$])
+m4trace:configure.ac:130: -1- m4_pattern_allow([^OPENCV_CFLAGS$])
+m4trace:configure.ac:130: -1- m4_pattern_allow([^OPENCV_LIBS$])
+m4trace:configure.ac:130: -1- PKG_CHECK_EXISTS([opencv >= 0.9.6], [pkg_cv_[]OPENCV_CFLAGS=`$PKG_CONFIG --[]cflags "opencv >= 0.9.6" 2>/dev/null`], [pkg_failed=yes])
+m4trace:configure.ac:130: -1- PKG_CHECK_EXISTS([opencv >= 0.9.6], [pkg_cv_[]OPENCV_LIBS=`$PKG_CONFIG --[]libs "opencv >= 0.9.6" 2>/dev/null`], [pkg_failed=yes])
+m4trace:configure.ac:130: -1- _PKG_SHORT_ERRORS_SUPPORTED
+m4trace:configure.ac:130: -1- m4_pattern_allow([^HAVE_OPENCV$])
+m4trace:configure.ac:139: -1- m4_pattern_allow([^STDC_HEADERS$])
+m4trace:configure.ac:146: -1- m4_pattern_allow([^const$])
+m4trace:configure.ac:148: -1- m4_pattern_allow([^HAVE__BOOL$])
+m4trace:configure.ac:148: -1- m4_pattern_allow([^HAVE_STDBOOL_H$])
+m4trace:configure.ac:224: -1- m4_pattern_allow([^TOOLBOX_TABLE$])
+m4trace:configure.ac:225: -1- m4_pattern_allow([^TOOLBOX_FUNCTIONS$])
+m4trace:configure.ac:238: -1- m4_pattern_allow([^LIB@&t@OBJS$])
+m4trace:configure.ac:238: -1- m4_pattern_allow([^LTLIBOBJS$])
+m4trace:configure.ac:238: -1- _AC_AM_CONFIG_HEADER_HOOK([$ac_file])
+m4trace:configure.ac:238: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS

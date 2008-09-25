@@ -84,6 +84,7 @@ EXEEXT = @EXEEXT@
 F77 = @F77@
 FFLAGS = @FFLAGS@
 GREP = @GREP@
+HELPDIR = @HELPDIR@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -388,7 +389,7 @@ uninstall-am: uninstall-libsivpDATA
 all: libsivp.so
 
 libsivp.so: builder.sce
-	$(SCIEXE) -nwni -nb -f builder.sce
+	$(SCIEXE) -nw -nb -f builder.sce
 	rm -f loader.sce
 	rm -f libsivp.c
 

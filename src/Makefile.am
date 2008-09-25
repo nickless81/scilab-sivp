@@ -30,7 +30,7 @@ EXTRA_DIST = $(ALL_SRC) common.h
 all: libsivp.so
 
 libsivp.so: builder.sce
-	$(SCIEXE) -nwni -nb -f builder.sce
+	$(SCIEXE) -nw -nb -f builder.sce
 	rm -f loader.sce
 	rm -f libsivp.c
 

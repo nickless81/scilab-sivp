@@ -26,7 +26,7 @@ EXTRA_DIST = ChangeLog TODO BUGS COPYING INSTALL libtool Makefile.in NEWS README
 		config/sivp_xmltohtml.sci   \
 		config/subst_input_files.sh 
 
-SUBDIRS = src macros man images demos etc
+SUBDIRS = src macros images demos etc @HELPDIR@
 
 toolboxdir=@TOOLBOXDIR@
 toolbox_DATA = loader.sce builder.sce
