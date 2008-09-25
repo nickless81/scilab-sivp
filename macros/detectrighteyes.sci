@@ -20,7 +20,7 @@
 
 function [reyes]=detectrighteyes(im)
 
-   reyes = int_detectobjects(im, 'righteye.xml');
+   reyes = detectobjects(im, 'righteye.xml');
 
 endfunction
 

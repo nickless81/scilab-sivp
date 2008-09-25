@@ -15,7 +15,7 @@
 ## along with this program; if not, write to the Free Software
 ## Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-etc = haarcascade_frontalface_alt2.xml
+etc = haarcascade_frontalface_alt2.xml lefteye.xml righteye.xml
 etcdir=@TOOLBOXDIR@/etc
 
 etc_DATA = $(etc)

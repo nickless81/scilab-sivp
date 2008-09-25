@@ -25,7 +25,7 @@ ALL_SRC=addframe.c avicloseall.c aviclose.c avifile.c aviinfo.c avilistopened.c 
 libsivpdir=@TOOLBOXDIR@/lib
 
 libsivp_DATA = libsivp.so
-EXTRA_DIST = $(ALL_SRC)
+EXTRA_DIST = $(ALL_SRC) common.h
 
 all: libsivp.so
 

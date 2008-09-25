@@ -177,7 +177,7 @@ top_srcdir = @top_srcdir@
 ALL_SRC = addframe.c avicloseall.c aviclose.c avifile.c aviinfo.c avilistopened.c aviopen.c avireadframe.c camopen.c camshift.c canny.c common.c cvtcolor.c detectforeground.c detectobjects.c filter2.c imabsdiff.c imadd.c imdivide.c imfilter.c imfinfo.c immultiply.c impyramid.c imread.c imresize.c imsubtract.c imwrite.c ind2rgb.c mat2utfimg.c meanshift.c sivp_init.c sobel.c test.c 
 libsivpdir = @TOOLBOXDIR@/lib
 libsivp_DATA = libsivp.so
-EXTRA_DIST = $(ALL_SRC)
+EXTRA_DIST = $(ALL_SRC) common.h
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 

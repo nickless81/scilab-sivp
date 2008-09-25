@@ -20,7 +20,7 @@
 
 function [faces]=detectfaces(im)
 
-   [faces] = int_detectobjects(im, 'haarcascade_frontalface_alt2.xml');
+   [faces] = detectobjects(im, 'haarcascade_frontalface_alt2.xml');
 
 endfunction
 

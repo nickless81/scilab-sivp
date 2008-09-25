@@ -1,6 +1,15 @@
+------------------------------------------------------------
+	SIVP 0.5.0
+------------------------------------------------------------
 o Added:
   --------
-	ind2rgb function added.
+	ind2rgb
+	rectangle
+	detectfaces
+	detectlefteyes
+	detectrighteyes
+	detectforeground
+	
 o Bug fixed:
   --------
 	Bugs in std2 and stdev2 fixed.

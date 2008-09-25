@@ -20,7 +20,7 @@
 
 function [leyes]=detectlefteyes(im)
 
-   leyes = int_detectobjects(im, 'lefteye.xml');
+   leyes = detectobjects(im, 'lefteye.xml');
 
 endfunction
 
