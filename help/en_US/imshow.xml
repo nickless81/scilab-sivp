@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="imshow"><info><pubdate>Aug 2005</pubdate></info><refnamediv><refname>imshow</refname><refpurpose>Displays images in graphic window</refpurpose></refnamediv>
+
+
+
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>imshow(im)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title>
+<variablelist>
+   <varlistentry>
+   <term>im</term>
+   <listitem>
+      MxN matrix, a grayscale (0-255 range) image, or MxNx3, a color (0-255 range) image.
+   </listitem>
+   </varlistentry>
+</variablelist>
+</refsection>
+<refsection><title>Description</title>
+   <variablelist>
+   <varlistentry><term>imshow(im)</term><listitem>
+   <literal>imshow</literal> can only show images in 0-255 range. Before showing a image,
+it convert <literal>im</literal> to unsigned char first using <literal>uint8()</literal>.
+   </listitem></varlistentry>
+   </variablelist>
+</refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+    im = imread(SCI + '/contrib/sivp/images/lena.png');
+    imshow(im);
+
+]]></programlisting></refsection>
+
+<refsection><title>Bugs and Shortcomings</title>
+<para>
+<literal>imshow</literal> using an interface developed by SIVP, not the figure object using in Scilab.
+Only one imshow window can pop up. 
+</para>
+
+</refsection>
+
+
+<refsection><title>Authors</title><simplelist type="vert">
+   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
+</simplelist></refsection>
+
+<refsection><title>Availability</title>
+The latest version of SIVP can be found at
+<para>http://sivp.sf.net </para>
+</refsection>
+
+   <refsection><title>See Also</title><simplelist type="inline">
+      <member> <link linkend="imread">imread</link> </member>
+      <member> <link linkend="imwrite">imwrite</link> </member>
+      <member> <link linkend="imfinfo">imfinfo</link> </member>
+   </simplelist></refsection>
+</refentry>

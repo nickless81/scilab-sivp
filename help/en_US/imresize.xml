@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="imresize"><info><pubdate>July, 2006</pubdate></info><refnamediv><refname>imresize</refname><refpurpose>Resizes image</refpurpose></refnamediv>
+
+
+
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>imout = imresize(imin, scale)
+imout = imresize(imin, scale, interp)
+imout = imresize(imin, [mrows ncols])
+imout = imresize(imin, [mrows ncols], interp)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title>
+<variablelist>
+   <varlistentry>
+     <term>imin</term>
+     <listitem>
+       An image which will be resized.
+     </listitem>
+   </varlistentry>
+   <varlistentry>
+     <term>scale</term>
+     <listitem>
+       The size of resized image is <literal>[width, height] x scale</literal>.
+     </listitem>
+   </varlistentry>
+   <varlistentry>
+     <term>[mrows ncols]</term>
+     <listitem>
+       The size of resized image.
+     </listitem>
+   </varlistentry>
+   <varlistentry>
+     <term>interp</term>
+     <listitem>
+       Interpolation method. The value of <literal>interp</literal> must be one of the follows: 1. 'nearest' - nearest-neigbor interpolation (default value); 2. 'bilinear' - bilinear interpolation; 3. 'bicubic' - bicubic interpolation; 4.  'area' - resampling using pixel area relation.
+     </listitem>
+   </varlistentry>
+</variablelist>
+</refsection>
+<refsection><title>Description</title>
+<para>
+   <literal>imresize</literal> resize the input image. When <literal>scale</literal> parameter is specified, the width and height of the image is resized in the same scale. There are four interpolation method can be used: nearest-neigbor, bilinear, bicubic and area methods. The default method is nearest-neigbor method.
+</para>
+</refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+    im = imread(SCI + '/contrib/sivp/images/lena.png');
+    ima = imresize(im, 1.5);
+    imb = imresize(im, 1.5, 'bilinear');
+    imc = imresize(im, [100,200], 'bicubic');
+
+]]></programlisting></refsection>
+
+
+<refsection><title>Authors</title><simplelist type="vert">
+   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
+</simplelist></refsection>
+
+<refsection><title>Availability</title>
+The latest version of SIVP can be found at
+<para>http://sivp.sf.net </para>
+</refsection>
+
+   <refsection><title>See Also</title><simplelist type="inline">
+      <member> <link linkend="imcrop">imcrop</link> </member>
+   </simplelist></refsection>
+</refentry>

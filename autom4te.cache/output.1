@@ -20091,7 +20091,7 @@ echo "$as_me: error: xsltproc or sabcmd programs were not found but \
     fi
     HELPDIR="man"
 else
-    HELPDIR=""  
+    HELPDIR="help"  
 fi
 
 
@@ -21175,7 +21175,7 @@ TOOLBOX_FUNCTIONS="    'sivptest'; \
 
 
 
-ac_config_files="$ac_config_files Makefile etc/Makefile macros/Makefile man/Makefile images/Makefile demos/Makefile src/Makefile src/builder.sce src/Makefile.win loader.sce"
+ac_config_files="$ac_config_files Makefile etc/Makefile macros/Makefile man/Makefile help/Makefile images/Makefile demos/Makefile src/Makefile src/builder.sce src/Makefile.win loader.sce"
 
 
 cat >confcache <<\_ACEOF
@@ -21768,6 +21768,7 @@ do
     "etc/Makefile") CONFIG_FILES="$CONFIG_FILES etc/Makefile" ;;
     "macros/Makefile") CONFIG_FILES="$CONFIG_FILES macros/Makefile" ;;
     "man/Makefile") CONFIG_FILES="$CONFIG_FILES man/Makefile" ;;
+    "help/Makefile") CONFIG_FILES="$CONFIG_FILES help/Makefile" ;;
     "images/Makefile") CONFIG_FILES="$CONFIG_FILES images/Makefile" ;;
     "demos/Makefile") CONFIG_FILES="$CONFIG_FILES demos/Makefile" ;;
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;

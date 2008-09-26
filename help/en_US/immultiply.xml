@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="immultiply"><info><pubdate>July, 2006</pubdate></info><refnamediv><refname>immultiply</refname><refpurpose>Multiply two images or multiply an image by an constant.</refpurpose></refnamediv>
+
+
+
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>imout = immultiply(im1, im2)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title>
+<variablelist>
+   <varlistentry>
+     <term>im1</term>
+     <listitem>
+       Input image.
+     </listitem>
+   </varlistentry>
+   <varlistentry>
+     <term>im2</term>
+     <listitem>
+       Input image with the same size and same class with <literal>im1</literal>, or a double scalar.
+     </listitem>
+   </varlistentry>
+   <varlistentry>
+     <term>imout</term>
+     <listitem>
+       The product of <literal>im1</literal> and <literal>im2</literal>.
+     </listitem>
+   </varlistentry>
+</variablelist>
+</refsection>
+<refsection><title>Description</title>
+<para>
+If <literal>im1</literal> and <literal>im2</literal> are images with the same size and same class, 
+<literal>immultiply</literal> multiplies each element in <literal>im1</literal> 
+by the corresponding one in <literal>im2</literal>. 
+If <literal>im2</literal> is a double scalar, the element in <literal>imout</literal> 
+is the product of the corresponding one in <literal>im1</literal> with the double scalar.
+<literal>imout</literal> has the same size and class with <literal>im1</literal>.
+</para>
+<para>
+If <literal>im1</literal> is an integer matrix, 
+the elements in the output matrix <literal>imout</literal> that 
+exceed the range of the integer type will be truncated.
+</para>
+<para>
+  Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
+</para>
+</refsection>
+
+
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+    im1 = imread('lena.png');
+    im2 = imread('peppers.png');
+    ims1 = immultiply(im1, im2);
+    ims2 = immultiply(im1, 0.6);
+
+]]></programlisting></refsection>
+
+
+<refsection><title>Authors</title><simplelist type="vert">
+   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
+</simplelist></refsection>
+
+<refsection><title>Availability</title>
+The latest version of SIVP can be found at
+<para>http://sivp.sf.net </para>
+</refsection>
+
+   <refsection><title>See Also</title><simplelist type="inline">
+      <member><link linkend="imabsdiff">imabsdiff</link> </member>
+      <member><link linkend="imadd">imadd</link> </member>
+      <member><link linkend="imsubtract">imsubtract</link> </member>
+      <member><link linkend="imdivide">imdivide</link> </member>
+      <member><link linkend="imcomplement">imcomplement</link> </member>
+      <member><link linkend="imlincomb">imlincomb</link> </member>
+   </simplelist></refsection>
+</refentry>

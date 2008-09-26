@@ -104,7 +104,7 @@ if test $SCIVERSION -le 4; then
     fi
     HELPDIR="man"
 else
-    HELPDIR=""  
+    HELPDIR="help"  
 fi
 
 
@@ -228,6 +228,7 @@ AC_CONFIG_FILES([Makefile
 		 etc/Makefile
 		 macros/Makefile
 		 man/Makefile
+         help/Makefile
 		 images/Makefile
 		 demos/Makefile
 		 src/Makefile

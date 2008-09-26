@@ -38,6 +38,11 @@ if (str2code( part(scilab_version, 8)) <= 4) then //version <= 4.x.x
    add_help_chapter(libtitle,SIVP_PATH+'/man');
 else
    //scilab 5
+   path_addchapter = SIVP_PATH + "jar/";
+   if ( fileinfo(path_addchapter) <> [] ) then
+      add_help_chapter(libtitle, path_addchapter, %F);
+      clear add_help_chapter;
+   end
 end
 
 // add demos to demos menu

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rectangle"><info><pubdate>September, 2008</pubdate></info><refnamediv><refname>rectangle</refname><refpurpose>Draw a rectangle on image</refpurpose></refnamediv>
+
+
+
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>imr = rectangle(im, rect, rgb)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title>
+<variablelist>
+   <varlistentry>
+   <term>im</term>
+   <listitem>
+     An image, which can be one channel or three channel image.
+   </listitem>
+   </varlistentry>
+   <varlistentry>
+   <term>rect</term>
+   <listitem>
+   <literal>rect=[x, y, width, height]</literal> is a vector. <literal>(x, y)</literal> is the top-left corner of the rectangle.
+   </listitem>
+   </varlistentry>
+   <varlistentry>
+   <term>imr</term>
+   <listitem>
+   <literal>imr</literal> is the the output image with the rectangle.
+   </listitem>
+   </varlistentry>
+</variablelist>
+</refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+    im = imread(SCI + '/contrib/sivp/images/lena.png');
+    imr = rectangle(im, [20, 30, 50, 100]);
+    imshow(imr);
+
+]]></programlisting></refsection>
+
+
+<refsection><title>Authors</title><simplelist type="vert">
+   <member> Jia Wu &lt;jiawu83[at]gmail.com&gt; </member>
+</simplelist></refsection>
+
+<refsection><title>Availability</title>
+The latest version of SIVP can be found at
+<para>http://sivp.sf.net </para>
+</refsection>
+
+   <refsection><title>See Also</title><simplelist type="inline">
+      
+   </simplelist></refsection>
+</refentry>

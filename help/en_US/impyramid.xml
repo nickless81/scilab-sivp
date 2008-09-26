@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="impyramid"><info><pubdate>September, 2008</pubdate></info><refnamediv><refname>impyramid</refname><refpurpose>Image pyramid reduction and expansion</refpurpose></refnamediv>
+
+
+
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>imout = imresize(imin, direction)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title>
+<variablelist>
+   <varlistentry>
+     <term>imin</term>
+     <listitem>
+       An image which will be downsampled or upsampled.
+     </listitem>
+   </varlistentry>
+   <varlistentry>
+     <term>direction</term>
+     <listitem>
+       Can be 'reduce' or 'expand'. If direction is 'reduce', <literal>impyramid</literal> computes a Gaussian pyramid reduction of imin by one level. If direction is 'expand', <literal>impyramid</literal> computes a Gaussian pyramid expansion of imin by one level. Gaussian 5x5 filter is currently supported.
+     </listitem>
+   </varlistentry>
+   <varlistentry>
+     <term>imout</term>
+     <listitem>
+       The output reduced or expanded image.
+     </listitem>
+   </varlistentry>   
+</variablelist>
+</refsection>
+<refsection><title>Description</title>
+<para>
+   <literal>imout=impyramid(imin,direction)</literal> computes a Gaussian pyramid reduction or expasion of imin by one level. Direction can be 'reduce' or 'expand'. If imin is mxn and direction is 'reduce', then the size of imout is ceil(m/2)xceil(n/2). If direction is 'expand', then the size of imout is (2xm)x(2xn).
+</para>
+</refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+    Compute a four-level multiresolution pyramid of the 'lena' image.
+    
+    im0 = imread(SCI + '/contrib/sivp/images/lena.png');
+    im1 = impyramid(im0, 'reduce');
+    im2 = impyramid(im1, 'reduce');
+    im3 = impyramid(im2, 'reduce');
+
+    imshow(im0);
+    imshow(im1);
+    imshow(im2);
+    imshow(im3);
+
+]]></programlisting></refsection>
+
+
+<refsection><title>Authors</title><simplelist type="vert">
+   <member> Jia Wu &lt;jiawu83[at]gmail.com&gt; </member>
+</simplelist></refsection>
+
+<refsection><title>Availability</title>
+The latest version of SIVP can be found at
+<para>http://sivp.sf.net </para>
+</refsection>
+
+   <refsection><title>See Also</title><simplelist type="inline">
+      <member> <link linkend="imresize">imresize</link> </member>
+   </simplelist></refsection>
+</refentry>

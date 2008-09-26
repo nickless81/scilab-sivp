@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mean2"><info><pubdate>March, 2006</pubdate></info><refnamediv><refname>mean2</refname><refpurpose>Average/mean of matrix elements</refpurpose></refnamediv>
+
+
+
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>m = mean2(im)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title>
+<variablelist>
+   <varlistentry>
+   <term>im</term>
+   <listitem>
+     An image, which can be integer or double matrix, but must be one channel image.
+   </listitem>
+   </varlistentry>
+   <varlistentry>
+   <term>m</term>
+   <listitem>
+     The mean of the values in <literal>im</literal>, a scalar of class double.
+   </listitem>
+   </varlistentry>
+</variablelist>
+</refsection>
+<refsection><title>Description</title>
+<para><literal>mean2</literal> computes the mean of a matrix using <literal>mean(im(:))</literal>.
+</para>
+</refsection>
+
+
+
+<refsection><title>Authors</title><simplelist type="vert">
+   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
+</simplelist></refsection>
+
+<refsection><title>Availability</title>
+The latest version of SIVP can be found at
+<para>http://sivp.sf.net </para>
+</refsection>
+
+   <refsection><title>See Also</title><simplelist type="inline">
+      <member> <link linkend="corr2">corr2</link> </member>
+      <member> <link linkend="std2">std2</link> </member>
+      <member> <link linkend="stdev2">stdev2</link> </member>
+   </simplelist></refsection>
+</refentry>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="imfilter"><info><pubdate>May, 2006</pubdate></info><refnamediv><refname>imfilter</refname><refpurpose>Image filtering</refpurpose></refnamediv>
+
+
+
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>imf = imfilter(im, F)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title>
+<variablelist>
+   <varlistentry>
+     <term>im</term>
+     <listitem>
+       An image which will be filterd. The image can be UINT8, INT8, UINT16, INT16, INT32, DOUBLE.
+     </listitem>
+   </varlistentry>
+   <varlistentry>
+     <term>F</term>
+     <listitem>
+       A double 2D filter.
+     </listitem>
+   </varlistentry>
+   <varlistentry>
+     <term>imf</term>
+     <listitem>
+       The filtered image which has the same dimension and class with <literal>im</literal>.
+     </listitem>
+   </varlistentry>
+</variablelist>
+</refsection>
+
+<refsection><title>Description</title>
+<para><literal>imfilter</literal> filters an image <literal>im</literal> with filter <literal>F</literal>. 
+When <literal>im</literal> is a mult-channel image, each channel can be filtered with <literal>F</literal> seperately.
+Input image pixel values outside the bounds of the image are assumed to 
+equal the nearest array border value.
+</para>
+<para>
+The only diffence of <literal>filter2</literal> with <literal>imfilter</literal> is 
+the output of <literal>filter2</literal> is double matrix,
+and the output of <literal>imfilter</literal> has the same type as input 
+and the elements in the output matrix that 
+exceed the range of the integer type will be truncated.
+</para>
+
+</refsection>
+
+
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+    im = imread('lena.png');
+    filter = fspecial('sobel');
+    imf = imfilter(im, filter);
+    imshow(imf);
+
+]]></programlisting></refsection>
+
+
+<refsection><title>Authors</title><simplelist type="vert">
+   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
+</simplelist></refsection>
+
+<refsection><title>Availability</title>
+The latest version of SIVP can be found at
+<para>http://sivp.sf.net </para>
+</refsection>
+
+   <refsection><title>See Also</title><simplelist type="inline">
+      <member> <link linkend="fspecial">fspecial</link> </member>
+      <member> <link linkend="filter2">filter2</link> </member>
+   </simplelist></refsection>
+</refentry>

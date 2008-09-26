@@ -21,14 +21,14 @@
    <PARAM_ITEM>
      <PARAM_NAME>method</PARAM_NAME>
      <PARAM_DESCRIPTION>
-       Background modeling methods. Can be <b>&apos;LI&apos;</b>(default), <b>&apos;GMM&apos;</b>. Other methods will appear in the future.      
+       Background modeling methods. Can be <TT>&apos;LI&apos;</TT>(default), <TT>&apos;GMM&apos;</TT>. Other methods will appear in the future.      
      </PARAM_DESCRIPTION>
    </PARAM_ITEM> 
    <PARAM_ITEM>
      <PARAM_NAME>fg</PARAM_NAME>
      <PARAM_DESCRIPTION>
-       If <b>detectforeground</b> is used to create background model, then fg is an empty matrix.
-       If <b>detectforeground</b> is used to detect foreground, then fg is the foreground mask.     
+       If <TT>detectforeground</TT> is used to create background model, then fg is an empty matrix.
+       If <TT>detectforeground</TT> is used to detect foreground, then fg is the foreground mask.     
      </PARAM_DESCRIPTION>
    </PARAM_ITEM> 
 </PARAM_INDENT>

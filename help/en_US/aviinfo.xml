@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="aviinfo"><info><pubdate>April, 2006</pubdate></info><refnamediv><refname>aviinfo</refname><refpurpose>Get the information about video files. (experimental)</refpurpose></refnamediv>
+
+
+
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>info = aviinfo(filename)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title>
+<variablelist>
+   <varlistentry>
+   <term>filename</term>
+   <listitem>
+   A string, the video filename to be read.
+   </listitem>
+   </varlistentry>
+   <varlistentry>
+   <term>info</term>
+   <listitem>
+   A mlist. The set of fields in the <literal>info</literal> structure is shown as follows:
+    <informaltable border="1">
+    <tr>
+      <td>Field Name</td>
+      <td>Description</td>
+    </tr>
+    <tr>
+      <td>Filename</td>
+      <td>String containing the video file name.</td>
+    </tr>
+    <tr>
+      <td>FileSize</td>
+      <td>Integer indicating the size of the video file in bytes.</td>
+    </tr>
+    <tr>
+      <td>FramesPerSecond</td>
+      <td>Integer indicating frames per second (FPS).</td>
+    </tr>
+    <tr>
+      <td>Width</td>
+      <td>Integer indicating frame width in pixels.</td>
+    </tr>
+    <tr>
+      <td>Height</td>
+      <td>Integer indicating frame height in pixels.</td>
+    </tr>
+    <tr>
+      <td>NumFrames</td>
+      <td>Integer indicating the number of frames in the video file.</td>
+    </tr>
+    <tr>
+      <td>VideoCompression</td>
+      <td>String containing the encoder name used to compress the video file.</td>
+    </tr>
+    </informaltable>
+
+
+   </listitem>
+   </varlistentry>
+</variablelist>
+</refsection>
+<refsection><title>Description</title>
+<para>
+Video support for SIVP is only available when SIVP is compiled with OpenCV which support video I/O.
+</para>
+</refsection>
+
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+	
+    info = aviinfo(SCI+'/contrib/sivp/images/video.avi')
+
+]]></programlisting></refsection>
+
+
+
+<refsection><title>Authors</title><simplelist type="vert">
+   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
+</simplelist></refsection>
+
+<refsection><title>Availability</title>
+The latest version of SIVP can be found at
+<para>http://sivp.sf.net </para>
+</refsection>
+
+   <refsection><title>See Also</title><simplelist type="inline">
+      <member> <link linkend="aviopen">aviopen</link> </member>
+      <member> <link linkend="camopen">camopen</link> </member>
+      <member> <link linkend="avifile">avifile</link> </member>
+      <member> <link linkend="addframe">addframe</link> </member>
+      <member> <link linkend="aviclose">aviclose</link> </member>
+      <member> <link linkend="avicloseall">avicloseall</link> </member>
+      <member> <link linkend="avilistopened">avilistopened</link> </member>
+      <member> <link linkend="avireadframe">avireadframe</link> </member>
+   </simplelist></refsection>
+</refentry>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="imcomplement"><info><pubdate>July, 2006</pubdate></info><refnamediv><refname>imcomplement</refname><refpurpose>Complement image</refpurpose></refnamediv>
+
+
+
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>imout = imcomplement(im)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title>
+<variablelist>
+   <varlistentry>
+     <term>im</term>
+     <listitem>
+       Input image.
+     </listitem>
+   </varlistentry>
+   <varlistentry>
+     <term>imout</term>
+     <listitem>
+       The complement image, which has the same size and class with <literal>im</literal>.
+     </listitem>
+   </varlistentry>
+</variablelist>
+</refsection>
+<refsection><title>Description</title>
+<para>
+<literal>imcomplement</literal> computes the complement image of <literal>im</literal>.
+In the output image <literal>imout</literal>, 
+dark pixels become lighter and light pixels become darker.
+</para>
+<para>
+  Supported classes: BOOLEAN, INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
+</para>
+</refsection>
+
+
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+    im = [%F, %T];
+    imcomplement(im)
+
+    im = uint8([0, 50, 100; 150, 200, 250]);
+    imcomplement(im)
+
+    im = int8([-100, -50, 0; 50, 100, 150]);
+    imcomplement(im)
+
+    im = [0, 0.2, 0.4; 0.6, 0.8, 1.0];
+    imcomplement(im)
+
+]]></programlisting></refsection>
+
+
+<refsection><title>Authors</title><simplelist type="vert">
+   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
+</simplelist></refsection>
+
+<refsection><title>Availability</title>
+The latest version of SIVP can be found at
+<para>http://sivp.sf.net </para>
+</refsection>
+
+   <refsection><title>See Also</title><simplelist type="inline">
+      <member><link linkend="imabsdiff">imabsdiff</link> </member>
+      <member><link linkend="imadd">imadd</link> </member>
+      <member><link linkend="imsubtract">imsubtract</link> </member>
+      <member><link linkend="immultiply">immultiply</link> </member>
+      <member><link linkend="imdivide">imdivide</link> </member>
+      <member><link linkend="imlincomb">imlincomb</link> </member>
+   </simplelist></refsection>
+</refentry>

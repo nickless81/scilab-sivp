@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mat2gray"><info><pubdate>April, 2006</pubdate></info><refnamediv><refname>mat2gray</refname><refpurpose>Convert matrix to grayscale image</refpurpose></refnamediv>
+
+
+
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>G = mat2gray(M)
+G = mat2gray(M, [mmin, mmax])</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title>
+<variablelist>
+   <varlistentry>
+   <term>M</term>
+   <listitem>
+     An matrix/image.
+   </listitem>
+   </varlistentry>
+   <varlistentry>
+   <term>[mmin, mmax]</term>
+   <listitem>
+     <literal>[mmin, mmax]</literal> is the values in <literal>M</literal> that correspond to <literal>0.0</literal> and <literal>1.0</literal> in <literal>G</literal>. The elements in <literal>M</literal> which is lower than <literal>mmin</literal> will be converted to <literal>0.0</literal>, and greater than <literal>mmax</literal> will be converted to <literal>1.0</literal>.
+   </listitem>
+   </varlistentry>
+   <varlistentry>
+   <term>G</term>
+   <listitem>
+     A double precision matrix/image which data value in the range [0,1].
+   </listitem>
+   </varlistentry>
+</variablelist>
+</refsection>
+<refsection><title>Description</title>
+<para>
+<literal>mat2gray(M,[mmin, mmax])</literal> converts the matrix <literal>M</literal> to the double precision image. 
+The output matrix contains values in the range <literal>[0.0, 1.0]</literal>. 
+<literal>mmin</literal> and <literal>mmax</literal> are the values in <literal>M</literal> that correspond to 0.0 and 1.0 in the output image.
+</para>
+<para>
+When <literal>[mmin, mmax]</literal> is not specified, <literal>minimum</literal> and <literal>maximum</literal> of <literal>M</literal> are the values in <literal>M</literal> that correspond to 0.0 and 1.0 in the output image.
+</para>
+
+</refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+    M = [0:10;0:10];
+    I = mat2gray(im);
+
+]]></programlisting></refsection>
+
+
+<refsection><title>Authors</title><simplelist type="vert">
+   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
+</simplelist></refsection>
+
+<refsection><title>Availability</title>
+The latest version of SIVP can be found at
+<para>http://sivp.sf.net </para>
+</refsection>
+
+   <refsection><title>See Also</title><simplelist type="inline">
+      <member> <link linkend="rgb2gray">rgb2gray</link> </member>
+      <member> <link linkend="im2bw">im2bw</link> </member>
+      <member> <link linkend="im2uint8">im2uint8</link> </member>
+      <member> <link linkend="im2int8">im2int8</link> </member>
+      <member> <link linkend="im2uint16">im2uint16</link> </member>
+      <member> <link linkend="im2int16">im2int16</link> </member>
+      <member> <link linkend="im2int32">im2int32</link> </member>
+      <member> <link linkend="im2double">im2double</link> </member>
+   </simplelist></refsection>
+</refentry>

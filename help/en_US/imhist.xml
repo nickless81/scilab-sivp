@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="imhist"><info><pubdate>April, 2006</pubdate></info><refnamediv><refname>imhist</refname><refpurpose>get the histogram of an image</refpurpose></refnamediv>
+
+
+
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>[counts, cells] = imhist(im)
+[counts, cells] = imhist(im, bins)
+[counts, cells] = imhist(im, bins [,width [,color]])</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title>
+<variablelist>
+   <varlistentry>
+   <term>im</term>
+   <listitem>
+   An image, which can be a boolean, <literal>uint8</literal>, <literal>int8</literal>, <literal>uint16</literal>, <literal>int16</literal>, <literal>int32</literal> or <literal>double</literal> image.
+   </listitem>
+   </varlistentry>
+   <varlistentry>
+   <term>bins</term>
+   <listitem>
+     The number of bins of the histogram. If <literal>bins</literal> is not specified, the function will used default value which determined by the image type: 2 for boolen, 2^8 for uint8 and int8, 2^16 for uint16 and int16, 2^16 for int32 (2^32 will need huge computer memory), and 10 for double.
+   </listitem>
+   </varlistentry>
+   <varlistentry>
+   <term>width</term>
+   <listitem>
+     This argument will be sent to <literal>bar</literal> function. It is a real scalar, defines the width (a percentage of the available room) for the bar (default: 0.8, i.e 80%). 
+   </listitem>
+   </varlistentry>
+   <varlistentry>
+   <term>color</term>
+   <listitem>
+    This argument will be sent to <literal>bar</literal> function. It is a string (default: 'blue'), specifing the inside color bar. 
+   </listitem>
+   </varlistentry>
+   <varlistentry>
+   <term>counts</term>
+   <listitem>
+     the returned histogram.
+   </listitem>
+   </varlistentry>
+   <varlistentry>
+   <term>cells</term>
+   <listitem>
+     the intervals for bins.
+   </listitem>
+   </varlistentry>
+</variablelist>
+</refsection>
+
+<refsection><title>Description</title>
+<para>
+   <literal>imhist</literal> return the histogram of an image. If more than 2 arguments are give, the histogram will be shown in a figure.
+</para>
+
+<para>
+If <literal>step</literal> is the step of scalar <literal>cells</literal> (<literal>cells(i+1)=cells(i)+step</literal>),
+the i'th bin is half-open interval <literal>(cells(i)-step/2, cells(i)+step/2]</literal> for <literal>i &gt; 1</literal>,
+and  <literal>[cells(1)-step/2, cells(1)+step/2]</literal> for <literal>i=1</literal>.
+</para>
+
+<para>
+If more than 2 arguments are given, the function will call <literal>bar(cells, counts, ...)</literal> and send rest arguments to <literal>bar</literal> function to display the histogram.
+</para>
+
+</refsection>
+
+<refsection><title>Supported image type</title>
+  <para>BOOLEAN, UINT8, INT8, UINT16, INT16, INT32, DOUBLE.</para>
+</refsection>
+
+
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+    im = imread('lena.png');
+    im = rgb2gray(im);
+    [count, cells]=imhist(im);
+    [count, cells]=imhist(im, 10);
+    scf(0); imhist(im, 10, '');
+    scf(1); imhist(im, 10, 0.5);
+    scf(2); imhist(im, 10, 'green');
+    scf(3); imhist(im, 10, 0.8, 'green');
+
+]]></programlisting></refsection>
+
+
+<refsection><title>Authors</title><simplelist type="vert">
+   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
+</simplelist></refsection>
+
+<refsection><title>Availability</title>
+The latest version of SIVP can be found at
+<para>http://sivp.sf.net </para>
+</refsection>
+
+   <refsection><title>See Also</title><simplelist type="inline">
+      <member> <link linkend="mean2">mean2</link> </member>
+      <member> <link linkend="corr2">corr2</link> </member>
+   </simplelist></refsection>
+</refentry>

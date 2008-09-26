@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="imread"><info><pubdate>July, 2005</pubdate></info><refnamediv><refname>imread</refname><refpurpose>Reads image file</refpurpose></refnamediv>
+
+
+
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>im = imread(filename)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title>
+<variablelist>
+   <varlistentry>
+   <term>filename</term>
+   <listitem>
+   A string, the image filename to be read. The extension determines the type of the image.
+   </listitem>
+   </varlistentry>
+   <varlistentry>
+   <term>im</term>
+   <listitem>
+   All images will be converted to gray images or RGB images. For gray images, this is a MxN unsigned char matrix; For RGB images, this is a MxNx3 unsigned char matrix.
+   </listitem>
+   </varlistentry>
+</variablelist>
+</refsection>
+<refsection><title>Description</title>
+<para>
+   <literal>imread</literal> reads many types of image files into Scilab. The format of the  file is inferred from the extension in the filename parameter. Currently the following file formats are supported:</para>
+   
+
+   <variablelist>
+   <varlistentry><term>im = imread(filename)</term><listitem>
+      reads image in filename into <literal>im</literal>
+      matrix. If filename contains a truecolor image, <literal>im</literal> is a
+   MxNx3 hypermatrix, so for example <literal>im(:,:,1)</literal> stands for  the
+   red channel. For gray images, im is a MxNx1 unsigned char matrix.
+   </listitem></varlistentry>
+   </variablelist>
+</refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+    im = imread(SCI + '/contrib/sivp/images/lena.png');
+    imshow(im);
+
+]]></programlisting></refsection>
+
+<refsection><title>Bugs and Shortcomings</title>
+<para>
+Images with a palette are not supported.
+All kinds of images are converted to gray images or RGB images.
+</para>
+</refsection>
+
+
+<refsection><title>Authors</title><simplelist type="vert">
+   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
+</simplelist></refsection>
+
+<refsection><title>Availability</title>
+The latest version of SIVP can be found at
+<para>http://sivp.sf.net </para>
+</refsection>
+
+   <refsection><title>See Also</title><simplelist type="inline">
+      <member> <link linkend="imwrite">imwrite</link> </member>
+      <member> <link linkend="imshow">imshow</link> </member>
+      <member> <link linkend="imfinfo">imfinfo</link> </member>
+   </simplelist></refsection>
+</refentry>

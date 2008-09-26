@@ -33,13 +33,13 @@ it convert <TT>im</TT> to unsigned char first using <TT>uint8()</TT>.
     imshow(im);
 
 ]]></EXAMPLE>
-<REMARKS>
-<TT>imshow</TT> using an interface developed by SIVP, not the figure object using in Scilab.
-</REMARKS>
+
 <SECTION label="Bugs and Shortcomings">
 <P>
+<TT>imshow</TT> using an interface developed by SIVP, not the figure object using in Scilab.
 Only one imshow window can pop up. 
 </P>
+
 </SECTION>
 <!-- ================================= -->
 

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="im2int32"><info><pubdate>April, 2006</pubdate></info><refnamediv><refname>im2int32</refname><refpurpose>Convert image to 32-bit signed integers</refpurpose></refnamediv>
+
+
+
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>im2 = im2int32(im)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title>
+<variablelist>
+   <varlistentry>
+   <term>im</term>
+   <listitem>
+     An matrix/image, which can be ANY image supported by SIVP.
+   </listitem>
+   </varlistentry>
+   <varlistentry>
+   <term>im2</term>
+   <listitem>
+     Output image, a 32-bit signed integer matrix.
+   </listitem>
+   </varlistentry>
+</variablelist>
+</refsection>
+<refsection><title>Description</title>
+<para>
+<literal>im2int32</literal> convert intensity or RGB images to 32-bit signed integers.
+If the input is of class <literal>int32</literal>, the output image is identical to it. 
+Otherwise, <literal>im2int32</literal> rescales or offsets the data, and returns the equivalent image of class <literal>int32</literal>.
+</para>
+</refsection>
+
+
+
+<refsection><title>Authors</title><simplelist type="vert">
+   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
+</simplelist></refsection>
+
+<refsection><title>Availability</title>
+The latest version of SIVP can be found at
+<para>http://sivp.sf.net </para>
+</refsection>
+
+   <refsection><title>See Also</title><simplelist type="inline">
+      <member> <link linkend="im2bw">im2bw</link> </member>
+      <member> <link linkend="im2uint8">im2uint8</link> </member>
+      <member> <link linkend="im2int8">im2int8</link> </member>
+      <member> <link linkend="im2uint16">im2uint16</link> </member>
+      <member> <link linkend="im2int16">im2int16</link> </member>
+      <member> <link linkend="im2double">im2double</link> </member>
+      <member> <link linkend="mat2gray">mat2gray</link> </member>
+   </simplelist></refsection>
+</refentry>

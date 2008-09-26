@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xs2im"><info><pubdate>Nov., 2006</pubdate></info><refnamediv><refname>xs2im</refname><refpurpose>Convert graphics to an image matrix.</refpurpose></refnamediv>
+
+
+
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>im = xs2im(win_num,[color])</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title>
+<variablelist>
+   <varlistentry>
+     <term>win_num</term>
+     <listitem>
+       Integer scalar or vector.
+     </listitem>
+   </varlistentry>
+   <varlistentry>
+     <term>color</term>
+     <listitem>
+       Optional integer. 0 means black and white and 1 means color. The default value is 1.
+     </listitem>
+   </varlistentry>
+   <varlistentry>
+     <term>im</term>
+     <listitem>
+       The returned image, uint8 type hyper-matrix.
+     </listitem>
+   </varlistentry>
+</variablelist>
+</refsection>
+<refsection><title>Description</title>
+<para>
+   <literal>xs2im</literal> convert the recorded graphics of the window <literal>win_num</literal> to an image matrix. This function works only if the selected driver is  "Rec"  in the window  win_num  or if the window is in "new style". 
+</para>
+</refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+    scf(0)
+    plot2d()
+    im = xs2im(0);
+    imshow(im);
+]]></programlisting></refsection>
+
+
+<refsection><title>Authors</title><simplelist type="vert">
+   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
+</simplelist></refsection>
+
+<refsection><title>Availability</title>
+The latest version of SIVP can be found at
+<para>http://sivp.sf.net </para>
+</refsection>
+
+   <refsection><title>See Also</title><simplelist type="inline">
+      <member> <link linkend="im2double">im2double</link> </member>
+   </simplelist></refsection>
+</refentry>

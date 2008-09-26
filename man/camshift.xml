@@ -22,27 +22,27 @@
    <PARAM_NAME>init_win</PARAM_NAME>
    <PARAM_DESCRIPTION>
    Initial search window which is a 1x4 matrix [x,y,w,h].
-   <TT><b>x</b></TT> is the x-coordinate of the left-top window corner.
-   <TT><b>y</b></TT> is the y-coordinate of the left-top window corner.
-   <TT><b>w</b></TT> is the width of the window.
-   <TT><b>h</b></TT> is the height of the window.
+   <TT>x</TT> is the x-coordinate of the left-top window corner.
+   <TT>y</TT> is the y-coordinate of the left-top window corner.
+   <TT>w</TT> is the width of the window.
+   <TT>h</TT> is the height of the window.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>
    <PARAM_ITEM>
    <PARAM_NAME>obj_win</PARAM_NAME>
    <PARAM_DESCRIPTION>
    Object window which is a 1x5 matrix [x,y,w,h,theta].
-   <TT><b>x</b></TT> is the x-coordinate of the left-top window corner.
-   <TT><b>y</b></TT> is the y-coordinate of the left-top window corner.
-   <TT><b>w</b></TT> is the width of the window.
-   <TT><b>h</b></TT> is the height of the window.
+   <TT>x</TT> is the x-coordinate of the left-top window corner.
+   <TT>y</TT> is the y-coordinate of the left-top window corner.
+   <TT>w</TT> is the width of the window.
+   <TT>h</TT> is the height of the window.
    </PARAM_DESCRIPTION>
    </PARAM_ITEM>    
 </PARAM_INDENT>
 </PARAM>
 <DESCRIPTION>
 <P>
-   The function implements CAMSHIFT object tracking algorithm. When using it, please first use <TT><b>obj_win=camshift(im, init_win)</b></TT> to initialize the tracker, then use <TT><b>obj_win=camshift(im)</b></TT> to track the object.    
+   The function implements CAMSHIFT object tracking algorithm. When using it, please first use <TT>obj_win=camshift(im, init_win)</TT> to initialize the tracker, then use <TT>obj_win=camshift(im)</TT> to track the object.    
 </P>
 </DESCRIPTION>
 

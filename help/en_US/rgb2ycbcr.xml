@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rgb2ycbcr"><info><pubdate>August, 2006</pubdate></info><refnamediv><refname>rgb2ycbcr</refname><refpurpose>Convert a RGB image to the equivalent YCbCr image.</refpurpose></refnamediv>
+
+
+
+
+
+<refsynopsisdiv><title>Calling Sequence</title><synopsis>YCC = rgb2ycbcr(RGB)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title>
+<variablelist>
+   <varlistentry>
+   <term>RGB</term>
+   <listitem>
+   A RGB image (hypermat), the dimension of <literal>RGB</literal> should be <literal>M x N x 3</literal>.
+   </listitem>
+   </varlistentry>
+   <varlistentry>
+   <term>YCC</term>
+   <listitem>
+   Output image, which has the same size as <literal>RGB</literal> and type of double.
+   </listitem>
+   </varlistentry>
+</variablelist>
+</refsection>
+<refsection><title>Description</title>
+<para>
+   <literal>rgb2ycbcr</literal> convert a RGB image to the equivalent HSV image using:</para>
+<itemizedlist>
+  <listitem>
+    <literal>Y = 0.299*R + 0.587*G + 0.114*B</literal>
+  </listitem> 
+  <listitem>
+    <literal>Cb = (B-Y)*0.564 + 0.5</literal>
+  </listitem> 
+  <listitem>
+    <literal>Cr = (R-Y)*0.713 + 0.5</literal>
+  </listitem> 
+</itemizedlist>
+
+<para>
+  Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
+If <literal>RGB</literal> is not a double image, it will be converted to double image first
+in the procedure. 
+</para>
+ 
+</refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+    RGB = imread('lena.png');
+    YCC = rgb2ycbcr(RGB);
+    RGB = ycbcr2rgb(YCC);
+    imshow(RGB);
+
+]]></programlisting></refsection>
+
+
+
+<refsection><title>Authors</title><simplelist type="vert">
+   <member>Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
+</simplelist></refsection>
+
+<refsection><title>Availability</title>
+The latest version of SIVP can be found at
+<para>http://sivp.sf.net </para>
+</refsection>
+
+   <refsection><title>See Also</title><simplelist type="inline">
+      <member> <link linkend="rgb2gray">rgb2gray</link> </member>
+      <member> <link linkend="mat2gray">mat2gray</link> </member>
+      <member> <link linkend="rgb2hsv">rgb2hsv</link> </member>
+      <member> <link linkend="hsv2rgb">hsv2rgb</link> </member>
+      <member> <link linkend="ycbcr2rgb">ycbcr2rgb</link> </member>
+      <member> <link linkend="rgb2ntsc">rgb2ntsc</link> </member>
+      <member> <link linkend="ntsc2rgb">ntsc2rgb</link> </member>
+   </simplelist></refsection>
+</refentry>
