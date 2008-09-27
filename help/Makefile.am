@@ -24,7 +24,7 @@ helppages_xml = en_US/addframe.xml en_US/avicloseall.xml en_US/aviclose.xml en_U
 helpdir=@TOOLBOXDIR@/jar
 help_DATA = ../jar/scilab_en_US_help.jar
 
-EXTRA_DIST = $(helppages_xml)
+EXTRA_DIST = $(helppages_xml) en_US/build_help.sce buildhelp.sce 
 
 all: $(help_DATA)
 

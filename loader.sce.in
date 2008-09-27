@@ -66,9 +66,14 @@ if MSDOS then
 	link(OpenCV + 'libguide40.dll');
 	link(OpenCV + 'cxcore100.dll');
 	link(OpenCV + 'cv100.dll');
+	link(OpenCV + 'cvaux100.dll');
 	link(OpenCV + 'highgui100.dll');
 
-	addinter(SIVP_PATH+'lib\libsivp.dll','libsivp',functions);
+	if (scilab_version <= 4) then //version <= 4.x.x
+		addinter(SIVP_PATH+'lib\libsivp4.dll','libsivp',functions);
+	else
+		addinter(SIVP_PATH+'lib\libsivp.dll','libsivp',functions);
+	end
 else
 	addinter(SIVP_PATH+'lib/libsivp.so','libsivp',functions);
 end

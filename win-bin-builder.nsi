@@ -11,8 +11,8 @@
 ;General
 
 ;Name and file
-Name "SIVP 0.4.3"
-OutFile sivp-0.4.3.exe
+Name "SIVP 0.5.0"
+OutFile sivp-0.5.0.exe
 
 ;--------------------------------
 ;Interface Settings
@@ -48,9 +48,11 @@ Section "Install section"
   ;ADD YOUR OWN FILES HERE...
   File /r ".\demos" 
   File /r ".\images" 
+  File /r ".\etc" 
   File /r ".\lib"
   File /r ".\macros" 
   File /r ".\man" 
+  File /r ".\jar" 
   File /r ".\src" 
   File ".\AUTHORS"
   File ".\BUGS"
@@ -62,17 +64,17 @@ Section "Install section"
   File ".\TODO"
   
   ; Create an item in program menu
-  CreateDirectory "$SMPROGRAMS\SIVP-0.4.3\"
-  CreateShortCut "$SMPROGRAMS\SIVP-0.4.3\Unintall.lnk" "$INSTDIR\uninstall.exe"
+  CreateDirectory "$SMPROGRAMS\SIVP-0.5.0\"
+  CreateShortCut "$SMPROGRAMS\SIVP-0.5.0\Unintall.lnk" "$INSTDIR\uninstall.exe"
   
   ; Write the installation path into the registry
-  WriteRegStr HKLM SOFTWARE\SIVP\SIVP-0.4.3 "SIVP_PATH" "$INSTDIR"
+  WriteRegStr HKLM SOFTWARE\SIVP\SIVP-0.5.0 "SIVP_PATH" "$INSTDIR"
   
   ;; Write the uninstall keys for Windows
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SIVP-0.4.3" "DisplayName" "SIVP-0.4.3"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SIVP-0.4.3" "UninstallString" '"$INSTDIR\uninstall.exe"'
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SIVP-0.4.3" "NoModify" 1
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SIVP-0.4.3" "NoRepair" 1
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SIVP-0.5.0" "DisplayName" "SIVP-0.5.0"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SIVP-0.5.0" "UninstallString" '"$INSTDIR\uninstall.exe"'
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SIVP-0.5.0" "NoModify" 1
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SIVP-0.5.0" "NoRepair" 1
   WriteUninstaller "uninstall.exe"
   
 SectionEnd
@@ -80,12 +82,12 @@ SectionEnd
 
 Section "Uninstall"  
   ; Remove registry keys
-  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SIVP-0.4.3"
-  DeleteRegKey HKLM SOFTWARE\SIVP\SIVP-0.4.3
+  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SIVP-0.5.0"
+  DeleteRegKey HKLM SOFTWARE\SIVP\SIVP-0.5.0
 
   ; Remove shortcuts, if any
-  Delete "$SMPROGRAMS\SIVP-0.4.3\*.*"
-  RMDir "$SMPROGRAMS\SIVP-0.4.3"
+  Delete "$SMPROGRAMS\SIVP-0.5.0\*.*"
+  RMDir "$SMPROGRAMS\SIVP-0.5.0"
 
   ; Remove directories used
   Delete "$INSTDIR\config\*"
@@ -96,10 +98,14 @@ Section "Uninstall"
   RMDir "$INSTDIR\images"
   Delete "$INSTDIR\lib\*"
   RMDir "$INSTDIR\lib"
+  Delete "$INSTDIR\etc\*"
+  RMDir "$INSTDIR\etc"
   Delete "$INSTDIR\macros\*"
   RMDir "$INSTDIR\macros"
   Delete "$INSTDIR\man\*"
   RMDir "$INSTDIR\man"
+  Delete "$INSTDIR\jar\*"
+  RMDir "$INSTDIR\jar"
   Delete "$INSTDIR\src\*"
   RMDir "$INSTDIR\src"
   Delete "$INSTDIR\*"
@@ -129,13 +135,13 @@ Function .onInit
 	var /GLOBAL SCIPATH
 	ReadRegStr $SCIVERSION HKLM Software\Scilab "LASTINSTALL"
 	ReadRegStr $SCIPATH HKLM Software\Scilab\$SCIVERSION "SCIPATH"
-	StrCpy $INSTDIR "$SCIPATH\contrib\SIVP-0.4.3"
+	StrCpy $INSTDIR "$SCIPATH\contrib\SIVP-0.5.0"
 	
 	StrCmp $SCIPATH "" 0 +5
 		MessageBox MB_YESNO $(NOSCI_MSG) IDYES NoAbort
 		Abort ; causes installer to quit.
 		NoAbort:
-		StrCpy $INSTDIR "$PROGRAMFILES\SIVP-0.4.3"
+		StrCpy $INSTDIR "$PROGRAMFILES\SIVP-0.5.0"
 		Goto +1
 		
 

@@ -9,6 +9,7 @@ o Added:
 	detectlefteyes
 	detectrighteyes
 	detectforeground
+	Scilab Version 5 support
 	
 o Bug fixed:
   --------
