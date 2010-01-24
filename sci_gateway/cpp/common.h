@@ -21,9 +21,9 @@
 #ifndef SIVP_COMMON_H
 #define SIVP_COMMON_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+//#ifdef __cplusplus
+//extern "C" {
+//#endif
 
 
 #ifndef TRUE
@@ -46,6 +46,8 @@ extern "C" {
 #include <highgui.h>
 
 #include <stack-c.h>
+#include <Scierror.h>
+#include <sciprint.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -91,9 +93,9 @@ extern "C" {
   void mat2img(unsigned char * pMat, unsigned char *pImg, int nWidth, int nHeight, int nCh);
 
 
-#ifdef __cplusplus
-}
-#endif
+//#ifdef __cplusplus
+//}
+//#endif
 
 
 #endif

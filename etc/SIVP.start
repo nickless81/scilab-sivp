@@ -1,0 +1,108 @@
+//
+// -------------------------------------------------------------------------
+// SIVP - Scilab Image Processing toolbox
+// Copyright (C) 2005-2010  Shiqi Yu
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+// -------------------------------------------------------------------------
+//
+
+TOOLBOX_NAME  = "SIVP";
+TOOLBOX_TITLE = "SIVP - Scilab Image and Video Processing Toolbox";
+
+mprintf("Start " + TOOLBOX_TITLE + "\n");
+
+if isdef("sivplib") then
+	warning(TOOLBOX_NAME + " library is already loaded");
+	return;
+end
+
+etc_tlbx  = get_absolute_file_path("SIVP.start");
+etc_tlbx  = getshortpathname(etc_tlbx);
+root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
+
+//Load  functions library
+// =============================================================================
+mprintf("\tLoad macros\n");
+pathmacros = pathconvert( root_tlbx ) + "macros" + filesep();
+toolbox_skeletonlib = lib(pathmacros);
+clear pathmacros;
+
+
+// Load and add help chapter
+// =============================================================================
+if or(getscilabmode() == ["NW";"STD"]) then
+	mprintf("\tLoad help\n");
+	path_addchapter = pathconvert(root_tlbx+"/jar");
+	if ( isdir(path_addchapter) <> [] ) then
+		add_help_chapter(TOOLBOX_TITLE, path_addchapter, %F);
+		clear add_help_chapter;
+	end
+	clear path_addchapter;
+end
+
+
+// Load demos
+// =============================================================================
+if or(getscilabmode() == ["NW";"STD"]) then
+	mprintf("\tLoad demos\n");
+	pathdemos = pathconvert(root_tlbx+"/demos/sivp.dem.sce",%F,%T);
+	add_demo("SIVP",pathdemos);
+	clear pathdemos add_demo;
+end
+
+
+//// load the library macros
+//execstr(libname+'=lib(""'+SIVP_PATH+'macros/'+'"")')
+
+
+//// add demos to demos menu
+//global demolist;
+//have_sivp = 0;
+//for num=1:size(demolist, 1),
+//	if demolist(num,1)=='SIVP' then
+//		have_sivp = 1;
+//	end
+//end
+//if have_sivp==0 then
+//	demolist = [demolist; 'SIVP', SIVP_PATH+'/demos/sivp.dem'];
+//end
+//clear have_sivp num;
+
+//functions=[@TOOLBOX_FUNCTIONS@];
+//
+//if MSDOS then 
+//	// load the OpenCV dlls for Windows version
+//	OpenCV= SIVP_PATH + 'lib\';
+//	link(OpenCV + 'libguide40.dll');
+//	link(OpenCV + 'cxcore100.dll');
+//	link(OpenCV + 'cv100.dll');
+//	link(OpenCV + 'cvaux100.dll');
+//	link(OpenCV + 'highgui100.dll');
+
+//	if (scilab_version <= 4) then //version <= 4.x.x
+//		addinter(SIVP_PATH+'lib\libsivp4.dll','libsivp',functions);
+//	else
+//		addinter(SIVP_PATH+'lib\libsivp.dll','libsivp',functions);
+//	end
+//else
+//	addinter(SIVP_PATH+'lib/libsivp.so','libsivp',functions);
+//end
+
+//sivp_init(SIVP_PATH);
+
+clear functions;
+clear libname;
+clear libtitle;

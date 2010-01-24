@@ -20,7 +20,7 @@
 
 #include "common.h"
 
-int_ind2rgb (char *fname)
+int int_ind2rgb (char *fname)
 {
   static int l1, m1, n1, l2, m2, n2, l3, m3, n3;
   static int minlhs = 1, maxlhs = 1, minrhs = 2, maxrhs = 2;
@@ -72,8 +72,8 @@ int_ind2rgb (char *fname)
   ssi.l = 100;
   ssi.it = 4;
   ssi.D = si;
-  var = malloc(m1*n1*3*sizeof(double));
-  temp = malloc(m1*n1*sizeof(double));
+  var = (double*)malloc(m1*n1*3*sizeof(double));
+  temp = (double*)malloc(m1*n1*sizeof(double));
 
 
   C2F(tpconv)(&M.it,&zero,&mn, M.D, &inc, temp, &inc);

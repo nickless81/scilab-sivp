@@ -40,7 +40,7 @@ int_imfinfo(char *fname)
   double fValue;
   double *pfValue = &fValue;
   char sValue[16];
-  char **psValue = &sValue;
+  char **psValue = (char**)(&sValue);
   
   IplImage * pImage = NULL;
 

@@ -21,6 +21,28 @@
 #include "common.h"
 
 /**************************************************
+  In Scilab 5.2.0, I can't find function FreeRhsSVar(),
+  so I use this function to replace it.
+  The function is from modules/intersci/src/lib/libinter.c
+ **************************************************/
+void myFreeRhsSVar(char **ptrStr)
+{
+        int i=0;
+
+        if (ptrStr)
+        {
+                while ( ptrStr[i] != NULL)
+                {
+                        free(ptrStr[i]);
+                        i++;
+                };
+                free(ptrStr);
+                ptrStr=NULL;
+        }
+}
+
+
+/**************************************************
  * nRow: the first dim
  * nCol: the second dim
  * pData: pData is the data for matrix, and it can be freed after this function is called.
@@ -265,10 +287,10 @@ int IplImg2Mat(IplImage * pImage, int nPos)
 	Create2DIntMat(nPos, pImage->height, pImage->width, pMatData, nType);
 	break;
       case SIVP_FLOAT:
-	Create2DFloatMat(nPos,pImage->height, pImage->width, pMatData);
+	Create2DFloatMat(nPos,pImage->height, pImage->width, (float*)pMatData);
 	break;
       case SIVP_DOUBLE:
-	Create2DDoubleMat(nPos,pImage->height, pImage->width, pMatData);
+	Create2DDoubleMat(nPos,pImage->height, pImage->width, (double*)pMatData);
 	break;
       }
     }
@@ -283,10 +305,10 @@ int IplImg2Mat(IplImage * pImage, int nPos)
 	Create3DIntMat(nPos, pImage->height, pImage->width, pImage->nChannels, pMatData, nType);
 	break;
       case SIVP_FLOAT:
-	Create3DFloatMat(nPos,pImage->height, pImage->width, pImage->nChannels, pMatData);
+	Create3DFloatMat(nPos,pImage->height, pImage->width, pImage->nChannels, (float*)pMatData);
 	break;
       case SIVP_DOUBLE:
-	Create3DDoubleMat(nPos,pImage->height, pImage->width, pImage->nChannels, pMatData);
+	Create3DDoubleMat(nPos,pImage->height, pImage->width, pImage->nChannels, (double*)pMatData);
 	break;
       }
     }
@@ -388,15 +410,15 @@ IplImage * CreateIplImgFromHm(int nPos)
   MatData2ImgData(pImg, pData );
 
   
-  FreeRhsSVar(pStr);
+  myFreeRhsSVar(pStr);
   return pImg;
 
  NOT_HM:
   sciprint("The %d'th argument is not a hypermatrix.\r\n", nPos);
-  FreeRhsSVar(pStr);
+  myFreeRhsSVar(pStr);
   return NULL;
  EXIT_TAG:
-  FreeRhsSVar(pStr);
+  myFreeRhsSVar(pStr);
   return NULL;
   
 }
