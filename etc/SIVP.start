@@ -40,6 +40,11 @@ pathmacros = pathconvert( root_tlbx ) + "macros" + filesep();
 toolbox_skeletonlib = lib(pathmacros);
 clear pathmacros;
 
+// load gateways
+// =============================================================================
+mprintf("\tLoad gateways\n");
+ilib_verbose(0);
+exec(pathconvert(root_tlbx+"/sci_gateway/loader_gateway.sce",%f));
 
 // Load and add help chapter
 // =============================================================================
@@ -53,7 +58,6 @@ if or(getscilabmode() == ["NW";"STD"]) then
 	clear path_addchapter;
 end
 
-
 // Load demos
 // =============================================================================
 if or(getscilabmode() == ["NW";"STD"]) then
@@ -63,46 +67,8 @@ if or(getscilabmode() == ["NW";"STD"]) then
 	clear pathdemos add_demo;
 end
 
+SIVP_PATH=root_tlbx;
+sivp_init(SIVP_PATH);
 
-//// load the library macros
-//execstr(libname+'=lib(""'+SIVP_PATH+'macros/'+'"")')
-
-
-//// add demos to demos menu
-//global demolist;
-//have_sivp = 0;
-//for num=1:size(demolist, 1),
-//	if demolist(num,1)=='SIVP' then
-//		have_sivp = 1;
-//	end
-//end
-//if have_sivp==0 then
-//	demolist = [demolist; 'SIVP', SIVP_PATH+'/demos/sivp.dem'];
-//end
-//clear have_sivp num;
-
-//functions=[@TOOLBOX_FUNCTIONS@];
-//
-//if MSDOS then 
-//	// load the OpenCV dlls for Windows version
-//	OpenCV= SIVP_PATH + 'lib\';
-//	link(OpenCV + 'libguide40.dll');
-//	link(OpenCV + 'cxcore100.dll');
-//	link(OpenCV + 'cv100.dll');
-//	link(OpenCV + 'cvaux100.dll');
-//	link(OpenCV + 'highgui100.dll');
-
-//	if (scilab_version <= 4) then //version <= 4.x.x
-//		addinter(SIVP_PATH+'lib\libsivp4.dll','libsivp',functions);
-//	else
-//		addinter(SIVP_PATH+'lib\libsivp.dll','libsivp',functions);
-//	end
-//else
-//	addinter(SIVP_PATH+'lib/libsivp.so','libsivp',functions);
-//end
-
-//sivp_init(SIVP_PATH);
-
-clear functions;
-clear libname;
-clear libtitle;
+clear root_tlbx;
+clear etc_tlbx;

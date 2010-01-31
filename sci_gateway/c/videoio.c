@@ -20,17 +20,6 @@
 
 #include "common.h"
 
-typedef struct OpenedAvifileCap{
-    int iswriter; //reader or writer
-    union{
-      CvCapture * cap; //for reading from video files or cameras
-      CvVideoWriter * writer; // for writing to video files 
-    }video;
-    int width; //now only used by writer
-    int height;//now only used by writer
-    char filename[MAX_FILENAME_LENGTH];
-} OpenedAvifileCap;
-
 OpenedAvifileCap OpenedAviCap[MAX_AVI_FILE_NUM];
 
 

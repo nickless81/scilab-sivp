@@ -20,6 +20,8 @@
 
 #include "common.h"
 
+char sSIVP_PATH[MAX_FILENAME_LENGTH];  
+
 /***************************************************
  * this function should be called when SIVP is loaded
  ***************************************************/

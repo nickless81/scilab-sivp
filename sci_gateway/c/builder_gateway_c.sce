@@ -1,7 +1,4 @@
-// ====================================================================
-// Allan CORNET
-// DIGITEO 2008
-// This file is released into the public domain
+
 // ====================================================================
 
 inter_names=[	'sivptest', 'int_test';
@@ -37,38 +34,32 @@ inter_names=[	'sivptest', 'int_test';
 		'detectforeground', 'int_detectforeground';
 		'impyramid', 'int_impyramid';];
 
-inter_files=["addframe.cpp", 
-"avicloseall.cpp", 
-"aviclose.cpp", 
-"avifile.cpp", 
-"aviinfo.cpp", 
-"avilistopened.cpp", 
-"aviopen.cpp", 
-"avireadframe.cpp", 
-"camopen.cpp", 
-"camshift.cpp", 
-"canny.cpp", 
-"cvtcolor.cpp", 
-"detectforeground.cpp", 
-"detectobjects.cpp", 
-"filter2.cpp", 
-"imabsdiff.cpp", 
-"imadd.cpp", 
-"imdivide.cpp", 
-"imfilter.cpp", 
-"imfinfo.cpp", 
-"immultiply.cpp", 
-"impyramid.cpp", 
-"imread.cpp", 
-"imresize.cpp", 
-"imsubtract.cpp", 
-"imwrite.cpp", 
-"ind2rgb.cpp", 
-"mat2utfimg.cpp", 
-"meanshift.cpp", 
-"sivp_init.cpp", 
-"sobel.cpp", 
-"test.cpp"];
+inter_files=["common.h", 
+"common.c",
+"camshift.c", 
+"canny.c", 
+"cvtcolor.c", 
+"detectforeground.c", 
+"detectobjects.c", 
+"filter2.c", 
+"imabsdiff.c", 
+"imadd.c", 
+"imdivide.c", 
+"imfilter.c", 
+"imfinfo.c", 
+"immultiply.c", 
+"impyramid.c", 
+"imread.c", 
+"imresize.c", 
+"imsubtract.c", 
+"imwrite.c", 
+"ind2rgb.c", 
+"mat2utfimg.c", 
+"meanshift.c", 
+"sivp_init.c", 
+"sobel.c", 
+"test.c",
+"videoio.c"];
 
 inter_cflags = unix_g('pkg-config --cflags opencv');
 inter_ldflags = unix_g('pkg-config --libs opencv');
@@ -77,8 +68,8 @@ if( (length(inter_cflags)==0) | (length(inter_ldflags)==0))
 	error("Can not find OpenCV. Compiling SIVP needs OpenCV");
 end
 
-tbx_build_gateway('sivp_cpp', inter_names, inter_files, ..
-                  get_absolute_file_path('builder_gateway_cpp.sce'), ..
+tbx_build_gateway('sivp', inter_names, inter_files, ..
+                  get_absolute_file_path('builder_gateway_c.sce'), ..
                      [], inter_ldflags, inter_cflags);
 
 clear tbx_build_gateway inter_names inter_files inter_cflags inter_libs;
