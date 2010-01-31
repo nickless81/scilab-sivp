@@ -13,22 +13,14 @@ thanks to Ricardo Fabbri and other SIP developers.
 
 Dependencies
 ------------
-Scilab		>= 3.1		(http://www.scilab.org/)
-OpenCV		>= 0.9.6	(http://sourceforge.net/projects/opencvlibrary/)
+Scilab		>= 5.2		(http://www.scilab.org/)
+OpenCV		>= 1.0.0	(http://sourceforge.net/projects/opencvlibrary/)
 		(if you want video support, OpenCV should be compiled with ffmpeg)
-xslproc	or sabcmd		(http://www.xmlsoft.org, http://www.gingerall.org/)
 
 
 TODO
 ------------
 More image processing functions
-
-
-Authors
-------------
-Shiqi Yu (shiqi.yu[at]gmail.com)
-Shulin Shang (shangsl2000[at]yahoo.com.cn)
-Vincent Etienne (vincent.etienne[at]gmail.com)
 
 
 Bugs
