@@ -34,8 +34,7 @@ inter_names=[	'sivptest', 'int_test';
 		'detectforeground', 'int_detectforeground';
 		'impyramid', 'int_impyramid';];
 
-inter_files=["common.h", 
-"common.c",
+inter_files=["common.c",
 "camshift.c", 
 "canny.c", 
 "cvtcolor.c", 
@@ -61,15 +60,26 @@ inter_files=["common.h",
 "test.c",
 "videoio.c"];
 
-inter_cflags = unix_g('pkg-config --cflags opencv');
-inter_ldflags = unix_g('pkg-config --libs opencv');
+curr_path=get_absolute_file_path('builder_gateway_c.sce');
+
+opencv_libs="";
+
+if ~MSDOS then  //linux
+	inter_files=["common.h", inter_files];
+	inter_cflags = unix_g('pkg-config --cflags opencv');
+	inter_ldflags = unix_g('pkg-config --libs opencv');
+else
+	inter_cflags = "-I"""+SCI+"/contrib/sivp/opencv/include"" ";
+	inter_ldflags = "-LIBPATH:"""+SCI+"/contrib/sivp/opencv/lib"" ";
+	opencv_libs = ["cxcore200", "cv200", "cvaux200", "highgui200"];
+end
 
 if( (length(inter_cflags)==0) | (length(inter_ldflags)==0))
 	error("Can not find OpenCV. Compiling SIVP needs OpenCV");
 end
 
 tbx_build_gateway('sivp', inter_names, inter_files, ..
-                  get_absolute_file_path('builder_gateway_c.sce'), ..
-                     [], inter_ldflags, inter_cflags);
+                  curr_path, ..
+                     opencv_libs, inter_ldflags, inter_cflags);
 
 clear tbx_build_gateway inter_names inter_files inter_cflags inter_libs;

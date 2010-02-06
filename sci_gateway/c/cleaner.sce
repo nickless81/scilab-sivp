@@ -10,12 +10,17 @@ if fileinfo('loader.sce') <> [] then
   mdelete('loader.sce');
 end
 // ------------------------------------------------------
-if fileinfo('libsivp.so') <> [] then
-  mdelete('libsivp.so');
+if fileinfo('Makelib.mak') <> [] then
+  unix_s('nmake /Y /nologo /f Makelib.mak clean');
+  mdelete('Makelib.mak');
 end
 // ------------------------------------------------------
-if fileinfo('libsivp.c') <> [] then
-  mdelete('libsivp.c');
+if fileinfo('sivp.dll') <> [] then
+  mdelete('sivp.dll');
+end
+// ------------------------------------------------------
+if fileinfo('sivp.c') <> [] then
+  mdelete('sivp.c');
 end
 // ------------------------------------------------------
 chdir(curdir);
