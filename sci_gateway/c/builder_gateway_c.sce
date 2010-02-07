@@ -62,11 +62,23 @@ inter_files=["common.c",
 
 curr_path=get_absolute_file_path('builder_gateway_c.sce');
 
-opencv_libs="";
+opencv_libs=[];
 
 if ~MSDOS then  //linux
-	inter_files=["common.h", inter_files];
-	inter_cflags = unix_g('pkg-config --cflags opencv');
+	inter_files=["common.h"; inter_files];
+
+	opencv_version = unix_g('pkg-config --modversion opencv');
+	if( length(opencv_version) == 0 | ( strtod( strsubst(opencv_version, '.', '')) <= 99.9 ) )
+		error(gettext("OpenCV (version >= 1.0.0) is needed for compiling SIVP."));
+	end;
+
+	if ( strtod( strsubst(opencv_version, '.', '')) < 111 ) then //if opencv version <1.1.1
+		inter_cflags = "-DOPENCV_V1 ";
+	else
+		inter_cflags = "-DOPENCV_V2 ";
+	end;
+
+	inter_cflags = inter_cflags + unix_g('pkg-config --cflags opencv');
 	inter_ldflags = unix_g('pkg-config --libs opencv');
 else
 	inter_cflags = "-I"""+SCI+"/contrib/sivp/opencv/include"" ";

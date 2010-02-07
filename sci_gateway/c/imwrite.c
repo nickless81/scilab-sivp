@@ -68,7 +68,11 @@ int int_imwrite(char * fname)
 
   if(pImage->depth == IPL_DEPTH_8U)
     {
+#ifdef OPENCV_V1
+      *stk(lL) = cvSaveImage(cstk(lR), pImage);
+#else
       *stk(lL) = cvSaveImage(cstk(lR), pImage, 0);
+#endif
     }
   else
     {
