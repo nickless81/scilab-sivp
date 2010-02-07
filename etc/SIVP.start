@@ -62,7 +62,7 @@ end
 // =============================================================================
 if or(getscilabmode() == ["NW";"STD"]) then
 	mprintf("\tLoad demos\n");
-	pathdemos = pathconvert(root_tlbx+"/demos/sivp.dem.sce",%F,%T);
+	pathdemos = pathconvert(root_tlbx+"/demos/sivp.dem.gateway.sce",%F,%T);
 	add_demo("SIVP",pathdemos);
 	clear pathdemos add_demo;
 end
