@@ -1,0 +1,16 @@
+Pre-installation
+------------
+o Install Scilab>=5.2
+o If you want to use SIVP under Linux, you need to install OpenCV>=1.0.0. If you want video support, OpenCV should be compiled with ffmpeg.
+
+Download
+------------
+o Download the compressed toolbox file (such as sivp-0.5.1.zip), and then uncompress it.
+o Suppose the uncompressed directory (fold) name is sivp-0.5.1, move it into SCI/contrib, where SCI is the directory that Scilab is installed.
+
+Build the toolbox
+------------
+o Run the following code in Scilab command window:
+   --> cd SCI/contrib/sivp-0.5.1
+   --> exec('builder.sce')
+  If no error, sivp will appears in Toolbox menu after re-run Scilab.
