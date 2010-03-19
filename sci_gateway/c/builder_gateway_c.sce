@@ -81,8 +81,8 @@ if ~MSDOS then  //linux
 	inter_cflags = inter_cflags + unix_g('pkg-config --cflags opencv');
 	inter_ldflags = unix_g('pkg-config --libs opencv');
 else
-	inter_cflags = "-I"""+SCI+"/contrib/sivp/opencv/include"" ";
-	inter_ldflags = "-LIBPATH:"""+SCI+"/contrib/sivp/opencv/lib"" ";
+	inter_cflags = "-I"""+strsubst(curr_path, "\", "/")+"../../opencv/include"" ";
+	inter_ldflags = "-LIBPATH:"""+strsubst(curr_path, "\", "/")+"../../opencv/lib"" ";
 	opencv_libs = ["cxcore200", "cv200", "cvaux200", "highgui200"];
 end
 
