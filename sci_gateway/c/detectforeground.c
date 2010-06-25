@@ -30,12 +30,12 @@
 int int_detectforeground(char *fname)
 {
    static CvBGStatModel *bg_model = NULL;
- 
+
    double tmp;
    IplImage *pSrcImg = NULL;
 
    CheckRhs(1, 2);
-   CheckLhs(1, 1);   
+   CheckLhs(1, 1);
 
    //load input image
    pSrcImg = Mat2IplImg(1);
@@ -46,7 +46,7 @@ int int_detectforeground(char *fname)
     }
 
     //create background model
-    if(Rhs == 2)  
+    if(Rhs == 2)
      {
        int mR, nR, lR;
        GetRhsVar(2, "c", &mR, &nR, &lR);
@@ -56,15 +56,15 @@ int int_detectforeground(char *fname)
           if(bg_model)
             cvReleaseBGStatModel(&bg_model);
           bg_model = cvCreateFGDStatModel(pSrcImg, NULL);
-           
+
           Create2DDoubleMat(Rhs+1, 0, 0, &tmp);
           }
-        else if(strncmp(cstk(lR), "GMM", MAX_FILENAME_LENGTH) == 0)  //GMM  
+        else if(strncmp(cstk(lR), "GMM", MAX_FILENAME_LENGTH) == 0)  //GMM
           {
           if(bg_model)
             cvReleaseBGStatModel(&bg_model);
           bg_model = cvCreateGaussianBGModel(pSrcImg, NULL);
-           
+
           Create2DDoubleMat(Rhs+1, 0, 0, &tmp);
           }
         else
@@ -79,24 +79,29 @@ int int_detectforeground(char *fname)
        //initialize background model. "LI" is the default method
        if(bg_model == NULL)
          {
-          bg_model = cvCreateFGDStatModel(pSrcImg, NULL);  
-          
+          bg_model = cvCreateFGDStatModel(pSrcImg, NULL);
+
           Create2DDoubleMat(Rhs+1, 0, 0, &tmp);
          }
        else if((bg_model->foreground->width != pSrcImg->width) || (bg_model->foreground->height != pSrcImg->height))
-         {   
+         {
           cvReleaseBGStatModel(&bg_model);
-          bg_model = cvCreateFGDStatModel(pSrcImg, NULL);  
-          
+          bg_model = cvCreateFGDStatModel(pSrcImg, NULL);
+
           Create2DDoubleMat(Rhs+1, 0, 0, &tmp);
          }
        //foreground detection
        else
          {
+          #ifdef _MSC_VER
+           /* we use OpenCV 2.1.0 on Windows */
+           cvUpdateBGStatModel(pSrcImg, bg_model, -1 );
+          #else
            cvUpdateBGStatModel(pSrcImg, bg_model);
+          #endif
 
            IplImg2Mat(bg_model->foreground, Rhs+1);
-         }   
+         }
      }
 
     LhsVar(1) = Rhs+1;

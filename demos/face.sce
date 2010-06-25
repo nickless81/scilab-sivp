@@ -1,6 +1,8 @@
-sts=stacksize(); if (sts(1)-sts(2)<10000000) then, stacksize(sts(2)+10000000);end;
-filename = SIVP_PATH + '/images/people.jpg';
-if MSDOS then filename=strsubst(filename,'/','\'),end
+stacksize('max');
+filename = getSIVPpath() + 'images/people.jpg';
+if getos() == 'Windows' then 
+  filename=strsubst(filename,'/','\');
+end
 im = imread(filename);
 face = detectfaces(im);
 [m,n] = size(face);

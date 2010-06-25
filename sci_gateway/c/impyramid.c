@@ -37,7 +37,7 @@ int int_impyramid(char *fname)
    GetRhsVar(2, "c", &mR, &nR, &lR);
    if(strcmp(cstk(lR), "reduce") == 0)
     {
-      pDstImg = cvCreateImage(cvSize(ceil(pSrcImg->width/2), ceil(pSrcImg->height/2)), pSrcImg->depth, pSrcImg->nChannels);
+      pDstImg = cvCreateImage(cvSize((int)ceil(pSrcImg->width/2), (int)ceil(pSrcImg->height/2)), pSrcImg->depth, pSrcImg->nChannels);
       cvPyrDown(pSrcImg, pDstImg, CV_GAUSSIAN_5x5);
     }
    else if(strcmp(cstk(lR), "expand") == 0)

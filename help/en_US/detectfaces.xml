@@ -31,7 +31,8 @@
 
 <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-    im = imread(SIVP_PATH+'/images/lena.png');
+    SIVP_PATH = getSIVPpath();
+    im = imread(SIVP_PATH+'images/lena.png');
     faces = detectfaces(im);
     [m,n] = size(faces);
     for i=1:m,

@@ -27,7 +27,7 @@ int
 int_aviinfo(char *fname)
 {
   int mL, nL, lL;
-  int mxL, nxL;
+  int mxL;
 
   int mR, nR, lR;
   int One = 1;
@@ -85,7 +85,7 @@ int_aviinfo(char *fname)
   CreateListVarFromPtr(2, ++element, "S", &mL, &nL, NameStr);
   //store file name
   //TODO: the path should be absolute path
-  mxL = strlen(cstk(lR));
+  mxL = (int)strlen(cstk(lR));
   CreateListVarFromPtr(2, ++element, "c", &mxL, &One, &pFilename);
 
   //get the file size
@@ -549,7 +549,6 @@ int int_avireadframe(char * fname)
 //TODL: list filenames
 int int_avilistopened(char * fname)
 {
-  int element;
   int One = 1;
   int i;
 
@@ -572,17 +571,15 @@ int int_avilistopened(char * fname)
 
       //strcpy(sFileNames[count],  OpenedAviCap[i].filename, MAX_FILENAME_LENGTH);
       strncpy(sFileNames+offset, OpenedAviCap[i].filename, MAX_FILENAME_LENGTH);
-	  offset += strlen(OpenedAviCap[i].filename)+1;
+	  offset += (int)strlen(OpenedAviCap[i].filename)+1;
 	  count++;
 	}
     }
 
 
   CreateVarFromPtr(1, "d", &count, &One, &dIdx);
-  //CreateVarFromPtr(2, "S", &count, &One, &sFN);
 
   LhsVar(1) =1;
-  //  LhsVar(2) =2;
 
   return 0;
 }

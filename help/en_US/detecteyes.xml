@@ -36,7 +36,8 @@ reyes = detectrighteyes(im)</synopsis></refsynopsisdiv>
 
 <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
-    im = imread(SIVP_PATH+'/images/lena.png');
+    SIVP_PATH = getSIVPpath();
+    im = imread(SIVP_PATH + 'images/lena.png');
     face = detectfaces(im);
     rect = face*diag([1,1,1,0.7]);
     subface = imcrop(im, rect);

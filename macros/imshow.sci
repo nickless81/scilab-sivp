@@ -53,5 +53,5 @@ function imshow(im)
 	TCL_SetVar('imagechannel',msprintf("%d",channel));
 	TCL_SetVar('imagedata', imc);
 
-	TCL_EvalFile(SIVP_PATH +'/macros/imshow.tcl');
+	TCL_EvalFile(getSIVPpath() +'macros/imshow.tcl');
 endfunction

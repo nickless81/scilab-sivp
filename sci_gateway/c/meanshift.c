@@ -158,10 +158,10 @@ int int_meanshift(char *fname)
        return -1;
      }
 
-    rect.x = CV_IMAGE_ELEM(pWindow, double, 0, 0)-1;
-    rect.y = CV_IMAGE_ELEM(pWindow, double, 0, 1)-1;
-    rect.width = CV_IMAGE_ELEM(pWindow, double, 0, 2);
-    rect.height = CV_IMAGE_ELEM(pWindow, double, 0, 3);
+    rect.x = (int)CV_IMAGE_ELEM(pWindow, double, 0, 0)-1;
+    rect.y = (int)CV_IMAGE_ELEM(pWindow, double, 0, 1)-1;
+    rect.width = (int)CV_IMAGE_ELEM(pWindow, double, 0, 2);
+    rect.height = (int)CV_IMAGE_ELEM(pWindow, double, 0, 3);
     cvReleaseImage(&pWindow);
 
     if(rect.x<0 || rect.y<0 || rect.width<0 || rect.height<0 || rect.x+rect.width>pSrcImage->width ||

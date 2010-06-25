@@ -25,8 +25,8 @@ TOOLBOX_TITLE = "SIVP - Scilab Image and Video Processing Toolbox";
 mprintf("Start " + TOOLBOX_TITLE + "\n");
 
 if isdef("sivplib") then
-	warning(TOOLBOX_NAME + " library is already loaded");
-	return;
+  warning(TOOLBOX_NAME + " library is already loaded");
+  return;
 end
 
 etc_tlbx  = get_absolute_file_path("SIVP.start");
@@ -37,38 +37,51 @@ root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
 // =============================================================================
 mprintf("\tLoad macros\n");
 pathmacros = pathconvert( root_tlbx ) + "macros" + filesep();
-toolbox_skeletonlib = lib(pathmacros);
+sivplib = lib(pathmacros);
 clear pathmacros;
 
 // load gateways
 // =============================================================================
 mprintf("\tLoad gateways\n");
 ilib_verbose(0);
+// load dependencies on OpenCV 2.1.0
+if getos() == 'Windows' then
+  if win64() then
+    opencvDllPath = root_tlbx + '\thirdparty\opencv\windows\x64\';
+  else
+    opencvDllPath = root_tlbx + '\thirdparty\opencv\windows\x86\';
+  end
+  link(opencvDllPath + 'cxcore210' + getdynlibext());
+  link(opencvDllPath + 'ml210' + getdynlibext());
+  link(opencvDllPath + 'highgui210' + getdynlibext());
+  link(opencvDllPath + 'cxts210' + getdynlibext());
+  link(opencvDllPath + 'cv210' + getdynlibext());
+  link(opencvDllPath + 'cvaux210' + getdynlibext());
+end
 exec(pathconvert(root_tlbx+"/sci_gateway/loader_gateway.sce",%f));
 
 // Load and add help chapter
 // =============================================================================
 if or(getscilabmode() == ["NW";"STD"]) then
-	mprintf("\tLoad help\n");
-	path_addchapter = pathconvert(root_tlbx+"/jar");
-	if ( isdir(path_addchapter) <> [] ) then
-		add_help_chapter(TOOLBOX_TITLE, path_addchapter, %F);
-		clear add_help_chapter;
-	end
-	clear path_addchapter;
+  mprintf("\tLoad help\n");
+  path_addchapter = pathconvert(root_tlbx+"/jar");
+  if ( isdir(path_addchapter) <> [] ) then
+    add_help_chapter(TOOLBOX_TITLE, path_addchapter, %F);
+    clear add_help_chapter;
+  end
+  clear path_addchapter;
 end
 
 // Load demos
 // =============================================================================
 if or(getscilabmode() == ["NW";"STD"]) then
-	mprintf("\tLoad demos\n");
-	pathdemos = pathconvert(root_tlbx+"/demos/sivp.dem.gateway.sce",%F,%T);
-	add_demo("SIVP",pathdemos);
-	clear pathdemos add_demo;
+  mprintf("\tLoad demos\n");
+  pathdemos = pathconvert(root_tlbx+"/demos/sivp.dem.gateway.sce",%F,%T);
+  add_demo("SIVP",pathdemos);
+  clear pathdemos add_demo;
 end
 
-SIVP_PATH=root_tlbx;
-sivp_init(SIVP_PATH);
+sivp_init(root_tlbx);
 
 clear root_tlbx;
 clear etc_tlbx;

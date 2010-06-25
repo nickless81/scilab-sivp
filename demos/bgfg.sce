@@ -1,5 +1,7 @@
-filename = SIVP_PATH + '/images/video.avi';
-if MSDOS then filename=strsubst(filename,'/','\'),end   
+filename =  getSIVPpath() + '/images/video.avi';
+if getos() == 'Windows' then 
+  filename = strsubst(filename,'/','\')
+end   
 n = aviopen(filename);
 im = avireadframe(n);
 fgim=uint8(zeros( size(im,1), size(im,2), 3)) ;

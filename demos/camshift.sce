@@ -1,5 +1,7 @@
-filename = SIVP_PATH + '/images/red-car-video.avi';
-if MSDOS then filename=strsubst(filename,'/','\'),end
+filename =  getSIVPpath() + 'images/red-car-video.mpg';
+if getos() == 'Windows' then 
+  filename=strsubst(filename,'/','\');
+end
 n = aviopen(filename);
 //skip the first 4 frames
 im = avireadframe(n); 

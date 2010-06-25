@@ -31,14 +31,10 @@
  **********************************************************************/
 int int_imresize(char * fname)
 {
-
-  int mR1, nR1, lR1;
   int mR2, nR2, lR2;
   int mR3, nR3, lR3;
 
   IplImage* pSrcImg = NULL;
-  //IplImage* pSrcCvtImg = NULL;
-  //IplImage* pDstCvtImg = NULL;
   IplImage* pDstImg = NULL;
 
   int nSrcDepth = 0;

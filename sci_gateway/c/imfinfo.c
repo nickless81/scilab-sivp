@@ -24,7 +24,7 @@ int
 int_imfinfo(char *fname)
 {
   int mL, nL, lL;
-  int mxL, nxL;
+  int mxL;
 
   int mR, nR, lR;
   int One = 1;

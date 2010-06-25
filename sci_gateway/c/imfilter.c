@@ -28,10 +28,6 @@
  **********************************************************************/
 int int_imfilter(char * fname)
 {
-
-  int mR1, nR1, lR1;
-  int mR2, nR2, lR2;
-
   IplImage* src_image = NULL;
   IplImage* dst_image = NULL;
 

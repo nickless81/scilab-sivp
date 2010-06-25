@@ -29,9 +29,6 @@
 int int_filter2(char * fname)
 {
 
-  int mR1, nR1, lR1;
-  int mR2, nR2, lR2;
-
   IplImage* src_image = NULL;
   IplImage* f32_src_image = NULL;
   IplImage* f32_filtered_image = NULL;

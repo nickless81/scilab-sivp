@@ -19,7 +19,7 @@
 
 
 #include "common.h"
-
+#include "MALLOC.h"
 /**************************************************
   In Scilab 5.2.0, I can't find function FreeRhsSVar(),
   so I use this function to replace it.
@@ -27,20 +27,19 @@
  **************************************************/
 void myFreeRhsSVar(char **ptrStr)
 {
-        int i=0;
+  int i=0;
 
-        if (ptrStr)
-        {
-                while ( ptrStr[i] != NULL)
-                {
-                        free(ptrStr[i]);
-                        i++;
-                };
-                free(ptrStr);
-                ptrStr=NULL;
-        }
+  if (ptrStr)
+  {
+    while ( ptrStr[i] != NULL)
+    {
+      FREE(ptrStr[i]);
+      i++;
+    };
+    FREE(ptrStr);
+    ptrStr = NULL;
+  }
 }
-
 
 /**************************************************
  * nRow: the first dim
@@ -330,7 +329,6 @@ IplImage * CreateIplImgFromHm(int nPos)
   int * pListHeader;
   int * pDataHeader;
   void * pData;
-  int m, n, l;
   int m1, n1, m2, n2, m3, n3, l3;
   SciIntMat Dims;
   SciIntMat IntMat;
