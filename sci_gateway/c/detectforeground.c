@@ -93,12 +93,7 @@ int int_detectforeground(char *fname)
        //foreground detection
        else
          {
-          #ifdef _MSC_VER
-           /* we use OpenCV 2.1.0 on Windows */
            cvUpdateBGStatModel(pSrcImg, bg_model, -1 );
-          #else
-           cvUpdateBGStatModel(pSrcImg, bg_model);
-          #endif
 
            IplImg2Mat(bg_model->foreground, Rhs+1);
          }
