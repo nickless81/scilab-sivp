@@ -94,7 +94,7 @@ obj_win = meanshift(im)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">    n = aviopen(fullpath(getSIVPpath() + "/images/" + 'red_car_video.avi'));
+    <programlisting role="example">    n = aviopen(fullpath(getSIVPpath() + "/images/" + 'red-car-video.avi'));
     im = avireadframe(n); //get a frame
     obj_win = meanshift(im, [12, 6, 39, 13]); //initialize tracker
 
