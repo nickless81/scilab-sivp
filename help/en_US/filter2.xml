@@ -1,70 +1,110 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="filter2"><info><pubdate>July, 2006</pubdate></info><refnamediv><refname>filter2</refname><refpurpose>2D digital filtering</refpurpose></refnamediv>
+<refentry version="5.0-subset Scilab" xml:id="filter2" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>July, 2006</pubdate>
+  </info>
 
+  <refnamediv>
+    <refname>filter2</refname>
 
+    <refpurpose>2D digital filtering</refpurpose>
+  </refnamediv>
 
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
 
+    <synopsis>C = filter2(F,im)</synopsis>
+  </refsynopsisdiv>
 
-<refsynopsisdiv><title>Calling Sequence</title><synopsis>C = filter2(F,im)</synopsis></refsynopsisdiv>
-<refsection><title>Parameters</title>
-<variablelist>
-   <varlistentry>
-     <term>im</term>
-     <listitem>
-       An image/matrix which will be filterd. The image can be INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
-     </listitem>
-   </varlistentry>
-   <varlistentry>
-     <term>F</term>
-     <listitem>
-       A double 2D filter.
-     </listitem>
-   </varlistentry>
-   <varlistentry>
-     <term>imf</term>
-     <listitem>
-       The filtered image which has the same size with <literal>imf</literal> and the class double.
-     </listitem>
-   </varlistentry>
-</variablelist>
-</refsection>
+  <refsection>
+    <title>Parameters</title>
 
-<refsection><title>Description</title>
-<para><literal>filter2</literal> filters an image <literal>im</literal> with filter <literal>F</literal>. 
-When <literal>im</literal> is a mult-channel image, each channel can be filtered with <literal>F</literal> seperately.
-Input image pixel values outside the bounds of the image are assumed to 
-equal the nearest array border value.
-</para>
-<para>
-The only diffence of <literal>filter2</literal> with <literal>imfilter</literal> is 
-the output of <literal>filter2</literal> is double matrix,
-and the output of <literal>imfilter</literal> has the same type as input 
-and the elements in the output matrix that 
-exceed the range of the integer type will be truncated.
-</para>
-</refsection>
+    <variablelist>
+      <varlistentry>
+        <term>im</term>
 
+        <listitem>
+           An image/matrix which will be filterd. The image can be INT8, UINT8, INT16, UINT16, INT32, DOUBLE. 
+        </listitem>
+      </varlistentry>
 
-<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+      <varlistentry>
+        <term>F</term>
 
-    im = imread('lena.png');
+        <listitem>
+           A double 2D filter. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>imf</term>
+
+        <listitem>
+           The filtered image which has the same size with 
+
+          <literal>imf</literal>
+
+           and the class double. 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>filter2</literal> filters an image <literal>im</literal>
+    with filter <literal>F</literal>. When <literal>im</literal> is a
+    mult-channel image, each channel can be filtered with <literal>F</literal>
+    seperately. Input image pixel values outside the bounds of the image are
+    assumed to equal the nearest array border value.</para>
+
+    <para>The only diffence of <literal>filter2</literal> with
+    <literal>imfilter</literal> is the output of <literal>filter2</literal> is
+    double matrix, and the output of <literal>imfilter</literal> has the same
+    type as input and the elements in the output matrix that exceed the range
+    of the integer type will be truncated.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">    im = imread(fullpath(getSIVPpath() + "/images/lena.png"));
     filter = fspecial('sobel');
-    imf = filter2(filter,im);
+    imf = filter2(filter,im);</programlisting>
+  </refsection>
 
-]]></programlisting></refsection>
+  <refsection>
+    <title>Authors</title>
 
+    <simplelist type="vert">
+      <member>Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt;</member>
+    </simplelist>
+  </refsection>
 
-<refsection><title>Authors</title><simplelist type="vert">
-   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
-</simplelist></refsection>
+  <refsection>
+    <title>Availability</title>
 
-<refsection><title>Availability</title>
-The latest version of SIVP can be found at
-<para>http://sivp.sf.net </para>
-</refsection>
+     The latest version of SIVP can be found at 
 
-   <refsection><title>See Also</title><simplelist type="inline">
-      <member> <link linkend="fspecial">fspecial</link> </member>
-      <member> <link linkend="imfilter">imfilter</link> </member>
-   </simplelist></refsection>
+    <para>http://sivp.sf.net</para>
+
+     
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="fspecial">fspecial</link></member>
+
+      <member><link linkend="imfilter">imfilter</link></member>
+    </simplelist>
+  </refsection>
 </refentry>

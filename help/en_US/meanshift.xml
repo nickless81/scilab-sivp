@@ -1,50 +1,100 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="meanshift"><info><pubdate>September, 2008</pubdate></info><refnamediv><refname>meanshift</refname><refpurpose>Track an object by color.</refpurpose></refnamediv>
+<refentry version="5.0-subset Scilab" xml:id="meanshift" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>September, 2008</pubdate>
+  </info>
 
+  <refnamediv>
+    <refname>meanshift</refname>
 
+    <refpurpose>Track an object by color.</refpurpose>
+  </refnamediv>
 
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
 
+    <synopsis>obj_win = meanshift(im, init_win)
+obj_win = meanshift(im)</synopsis>
+  </refsynopsisdiv>
 
-<refsynopsisdiv><title>Calling Sequence</title><synopsis>obj_win = meanshift(im, init_win)
-obj_win = meanshift(im)</synopsis></refsynopsisdiv>
-<refsection><title>Parameters</title>
-<variablelist>
-   <varlistentry>
-   <term>im</term>
-   <listitem>
-   Input image which must be a 3-channel image.
-   </listitem>
-   </varlistentry>
-   <varlistentry>
-   <term>init_win</term>
-   <listitem>
-   Initial search window which is a 1x4 matrix [x,y,w,h].
-   <literal>x</literal> is the x-coordinate of the left-top window corner.
-   <literal>y</literal> is the y-coordinate of the left-top window corner.
-   <literal>w</literal> is the width of the window.
-   <literal>h</literal> is the height of the window.
-   </listitem>
-   </varlistentry>
-   <varlistentry>
-   <term>obj_win</term>
-   <listitem>
-   Object window which is a 1x4 matrix [x,y,w,h].
-   <literal>x</literal> is the x-coordinate of the left-top window corner.
-   <literal>y</literal> is the y-coordinate of the left-top window corner.
-   <literal>w</literal> is the width of the window.
-   </listitem>
-   </varlistentry>    
-</variablelist>
-</refsection>
-<refsection><title>Description</title>
-<para>
-   The function iterates to find the object center given its back projection and initial position of search window. When using it, please first use <literal>obj_win=meanshift(im, init_win)</literal> to initialize the tracker, then use <literal>obj_win=meanshift(im)</literal> to track the object.    
-</para>
-</refsection>
+  <refsection>
+    <title>Parameters</title>
 
-<refsection><title>Examples</title><programlisting role="example"><![CDATA[
-	
-    n = aviopen(SCI+'/contrib/sivp-svn-trunk/images/red_car_video.avi');
+    <variablelist>
+      <varlistentry>
+        <term>im</term>
+
+        <listitem>
+           Input image which must be a 3-channel image. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>init_win</term>
+
+        <listitem>
+           Initial search window which is a 1x4 matrix [x,y,w,h]. 
+
+          <literal>x</literal>
+
+           is the x-coordinate of the left-top window corner. 
+
+          <literal>y</literal>
+
+           is the y-coordinate of the left-top window corner. 
+
+          <literal>w</literal>
+
+           is the width of the window. 
+
+          <literal>h</literal>
+
+           is the height of the window. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>obj_win</term>
+
+        <listitem>
+           Object window which is a 1x4 matrix [x,y,w,h]. 
+
+          <literal>x</literal>
+
+           is the x-coordinate of the left-top window corner. 
+
+          <literal>y</literal>
+
+           is the y-coordinate of the left-top window corner. 
+
+          <literal>w</literal>
+
+           is the width of the window. 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>The function iterates to find the object center given its back
+    projection and initial position of search window. When using it, please
+    first use <literal>obj_win=meanshift(im, init_win)</literal> to initialize
+    the tracker, then use <literal>obj_win=meanshift(im)</literal> to track
+    the object.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">    n = aviopen(fullpath(getSIVPpath() + "/images/" + 'red_car_video.avi'));
     im = avireadframe(n); //get a frame
     obj_win = meanshift(im, [12, 6, 39, 13]); //initialize tracker
 
@@ -57,24 +107,34 @@ obj_win = meanshift(im)</synopsis></refsynopsisdiv>
           im = avireadframe(n);
     end;
 
-    aviclose(n);
+    aviclose(n);</programlisting>
+  </refsection>
 
-]]></programlisting></refsection>
+  <refsection>
+    <title>Authors</title>
 
+    <simplelist type="vert">
+      <member>Jia Wu &lt;jiawu83[at]gmail.com&gt;</member>
 
-<refsection><title>Authors</title><simplelist type="vert"> 
-   <member> Jia Wu &lt;jiawu83[at]gmail.com&gt; </member>
-   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>  
-</simplelist></refsection>
+      <member>Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt;</member>
+    </simplelist>
+  </refsection>
 
+  <refsection>
+    <title>Availability</title>
 
-<refsection><title>Availability</title>
-The latest version of SIVP can be found at
-<para>http://sivp.sf.net </para>
-</refsection>
+     The latest version of SIVP can be found at 
 
+    <para>http://sivp.sf.net</para>
 
-<refsection><title>See Also</title><simplelist type="inline">
-   <member><link linkend="camshift">camshift</link></member>
-</simplelist></refsection>
+     
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="camshift">camshift</link></member>
+    </simplelist>
+  </refsection>
 </refentry>

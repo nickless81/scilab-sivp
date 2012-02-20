@@ -1,63 +1,119 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="imcrop"><info><pubdate>March, 2006</pubdate></info><refnamediv><refname>imcrop</refname><refpurpose>Crop image</refpurpose></refnamediv>
+<refentry version="5.0-subset Scilab" xml:id="imcrop" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>March, 2006</pubdate>
+  </info>
 
+  <refnamediv>
+    <refname>imcrop</refname>
 
+    <refpurpose>Crop image</refpurpose>
+  </refnamediv>
 
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
 
+    <synopsis>subim = imcrop(im, rect)</synopsis>
+  </refsynopsisdiv>
 
-<refsynopsisdiv><title>Calling Sequence</title><synopsis>subim = imcrop(im, rect)</synopsis></refsynopsisdiv>
-<refsection><title>Parameters</title>
-<variablelist>
-   <varlistentry>
-   <term>im</term>
-   <listitem>
-     An image, which can be one channel or three channel image.
-   </listitem>
-   </varlistentry>
-   <varlistentry>
-   <term>rect</term>
-   <listitem>
-   <literal>rect=[x, y, width, height]</literal> is a vector. <literal>(x, y)</literal> is the top-left corner of the rentangle.
-   </listitem>
-   </varlistentry>
-   <varlistentry>
-   <term>subim</term>
-   <listitem>
-   <literal>subim</literal> is the sub-region of the image <literal>im</literal>.
-   </listitem>
-   </varlistentry>
-</variablelist>
-</refsection>
-<refsection><title>Description</title>
-<para>Crop image at regin <literal>rect</literal> to <literal>subim</literal>.
-</para>
-</refsection>
-<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Parameters</title>
 
-    im = imread(SCI + '/contrib/sivp/images/lena.png');
+    <variablelist>
+      <varlistentry>
+        <term>im</term>
+
+        <listitem>
+           An image, which can be one channel or three channel image. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rect</term>
+
+        <listitem>
+           
+
+          <literal>rect=[x, y, width, height]</literal>
+
+           is a vector. 
+
+          <literal>(x, y)</literal>
+
+           is the top-left corner of the rentangle. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>subim</term>
+
+        <listitem>
+           
+
+          <literal>subim</literal>
+
+           is the sub-region of the image 
+
+          <literal>im</literal>
+
+          . 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Crop image at regin <literal>rect</literal> to
+    <literal>subim</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">    im = imread(fullpath(getSIVPpath() + "/images/lena.png"));
     subim = imcrop(im, [20, 30, 200, 300]);
-    imshow(subim);
+    imshow(subim);</programlisting>
+  </refsection>
 
-]]></programlisting></refsection>
+  <refsection>
+    <title>TODO</title>
 
-<refsection><title>TODO</title>
-<para>
-If <literal>rect</literal> is not specified, a window which showing the image should be poped out,
-and let the user to select the region using mouse.
-</para>
-</refsection>
+    <para>If <literal>rect</literal> is not specified, a window which showing
+    the image should be poped out, and let the user to select the region using
+    mouse.</para>
+  </refsection>
 
+  <refsection>
+    <title>Authors</title>
 
-<refsection><title>Authors</title><simplelist type="vert">
-   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
-</simplelist></refsection>
+    <simplelist type="vert">
+      <member>Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt;</member>
+    </simplelist>
+  </refsection>
 
-<refsection><title>Availability</title>
-The latest version of SIVP can be found at
-<para>http://sivp.sf.net </para>
-</refsection>
+  <refsection>
+    <title>Availability</title>
 
-   <refsection><title>See Also</title><simplelist type="inline">
-      <member> <link linkend="imresize">imresize</link> </member>
-   </simplelist></refsection>
+     The latest version of SIVP can be found at 
+
+    <para>http://sivp.sf.net</para>
+
+     
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="imresize">imresize</link></member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -1,78 +1,131 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="imsubtract"><info><pubdate>July, 2006</pubdate></info><refnamediv><refname>imsubtract</refname><refpurpose>Subtract two images or subtract a constant from an image</refpurpose></refnamediv>
+<refentry version="5.0-subset Scilab" xml:id="imsubtract" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>July, 2006</pubdate>
+  </info>
 
+  <refnamediv>
+    <refname>imsubtract</refname>
 
+    <refpurpose>Subtract two images or subtract a constant from an
+    image</refpurpose>
+  </refnamediv>
 
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
 
+    <synopsis>imout = imsubtract(im1, im2)</synopsis>
+  </refsynopsisdiv>
 
-<refsynopsisdiv><title>Calling Sequence</title><synopsis>imout = imsubtract(im1, im2)</synopsis></refsynopsisdiv>
-<refsection><title>Parameters</title>
-<variablelist>
-   <varlistentry>
-     <term>im1</term>
-     <listitem>
-       Input image.
-     </listitem>
-   </varlistentry>
-   <varlistentry>
-     <term>im2</term>
-     <listitem>
-       Input image with the same size and same class with <literal>im1</literal>, or a double scalar.
-     </listitem>
-   </varlistentry>
-   <varlistentry>
-     <term>imout</term>
-     <listitem>
-       The difference of <literal>im1</literal> and <literal>im2</literal>.
-     </listitem>
-   </varlistentry>
-</variablelist>
-</refsection>
-<refsection><title>Description</title>
-<para>
-If <literal>im1</literal> and <literal>im2</literal> are images with the same size and same class, 
-<literal>imsubtract</literal> subtracts each element in <literal>im2</literal> 
-from the corresponding one in <literal>im1</literal>. 
-If <literal>im2</literal> is a double scalar, the element in <literal>imout</literal> 
-is the difference of the corresponding one in <literal>im1</literal> with the double scalar.
-<literal>imout</literal> has the same size and class with <literal>im1</literal>.
-</para>
-<para>
-If <literal>im1</literal> is an integer matrix, 
-the elements in the output matrix <literal>imout</literal> that 
-exceed the range of the integer type will be truncated.
-</para>
-<para>
-  Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
-</para>
-</refsection>
+  <refsection>
+    <title>Parameters</title>
 
+    <variablelist>
+      <varlistentry>
+        <term>im1</term>
 
-<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+        <listitem>
+           Input image. 
+        </listitem>
+      </varlistentry>
 
-    im1 = imread('lena.png');
+      <varlistentry>
+        <term>im2</term>
+
+        <listitem>
+           Input image with the same size and same class with 
+
+          <literal>im1</literal>
+
+          , or a double scalar. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>imout</term>
+
+        <listitem>
+           The difference of 
+
+          <literal>im1</literal>
+
+           and 
+
+          <literal>im2</literal>
+
+          . 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>If <literal>im1</literal> and <literal>im2</literal> are images with
+    the same size and same class, <literal>imsubtract</literal> subtracts each
+    element in <literal>im2</literal> from the corresponding one in
+    <literal>im1</literal>. If <literal>im2</literal> is a double scalar, the
+    element in <literal>imout</literal> is the difference of the corresponding
+    one in <literal>im1</literal> with the double scalar.
+    <literal>imout</literal> has the same size and class with
+    <literal>im1</literal>.</para>
+
+    <para>If <literal>im1</literal> is an integer matrix, the elements in the
+    output matrix <literal>imout</literal> that exceed the range of the
+    integer type will be truncated.</para>
+
+    <para>Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">    im1 = imread(fullpath(getSIVPpath() + "/images/lena.png"));
     im2 = imread('peppers.png');
     ims1 = imsubtract(im1, im2);
-    ims2 = imsubtract(im1, 50);
+    ims2 = imsubtract(im1, 50);</programlisting>
+  </refsection>
 
-]]></programlisting></refsection>
+  <refsection>
+    <title>Authors</title>
 
+    <simplelist type="vert">
+      <member>Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt;</member>
+    </simplelist>
+  </refsection>
 
-<refsection><title>Authors</title><simplelist type="vert">
-   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
-</simplelist></refsection>
+  <refsection>
+    <title>Availability</title>
 
-<refsection><title>Availability</title>
-The latest version of SIVP can be found at
-<para>http://sivp.sf.net </para>
-</refsection>
+     The latest version of SIVP can be found at 
 
-   <refsection><title>See Also</title><simplelist type="inline">
-      <member><link linkend="imabsdiff">imabsdiff</link> </member>
-      <member><link linkend="imadd">imadd</link> </member>
-      <member><link linkend="immultiply">immultiply</link> </member>
-      <member><link linkend="imdivide">imdivide</link> </member>
-      <member><link linkend="imcomplement">imcomplement</link> </member>
-      <member><link linkend="imlincomb">imlincomb</link> </member>
-   </simplelist></refsection>
+    <para>http://sivp.sf.net</para>
+
+     
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="imabsdiff">imabsdiff</link></member>
+
+      <member><link linkend="imadd">imadd</link></member>
+
+      <member><link linkend="immultiply">immultiply</link></member>
+
+      <member><link linkend="imdivide">imdivide</link></member>
+
+      <member><link linkend="imcomplement">imcomplement</link></member>
+
+      <member><link linkend="imlincomb">imlincomb</link></member>
+    </simplelist>
+  </refsection>
 </refentry>

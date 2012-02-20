@@ -1,59 +1,98 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="aviclose"><info><pubdate>April, 2006</pubdate></info><refnamediv><refname>aviclose</refname><refpurpose>Close a video file. (experimental)</refpurpose></refnamediv>
+<refentry version="5.0-subset Scilab" xml:id="aviclose" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>April, 2006</pubdate>
+  </info>
 
+  <refnamediv>
+    <refname>aviclose</refname>
 
+    <refpurpose>Close a video file. (experimental)</refpurpose>
+  </refnamediv>
 
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
 
+    <synopsis>aviclose(n)</synopsis>
+  </refsynopsisdiv>
 
-<refsynopsisdiv><title>Calling Sequence</title><synopsis>aviclose(n)</synopsis></refsynopsisdiv>
-<refsection><title>Parameters</title>
-<variablelist>
-   <varlistentry>
-   <term>n</term>
-   <listitem>
-   The opened file/camera index.
-   </listitem>
-   </varlistentry>
-</variablelist>
-</refsection>
-<refsection><title>Description</title>
-<para>
-   <literal>aviclose</literal> close an opened video file or camera.
-</para>
-<para>
-Video support for SIVP is only available when SIVP is compiled with OpenCV which support video I/O.
-</para>
-</refsection>
-<refsection><title>Examples</title><programlisting role="example"><![CDATA[
-	
-    n = aviopen(SCI+'/contrib/sivp/images/video.avi');
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+           The opened file/camera index. 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>aviclose</literal> close an opened video file or
+    camera.</para>
+
+    <para>Video support for SIVP is only available when SIVP is compiled with
+    OpenCV which support video I/O.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">    n = aviopen(fullpath(getSIVPpath() + "/images/video.avi"));
     im = avireadframe(n); //get a frame
     imshow(im);
 
-    avishowopened()
-    aviclose(n);
+    aviclose(n);</programlisting>
+  </refsection>
 
-]]></programlisting></refsection>
+  <refsection>
+    <title>Authors</title>
 
+    <simplelist type="vert">
+      <member>Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt;</member>
+    </simplelist>
+  </refsection>
 
-<refsection><title>Authors</title><simplelist type="vert">
-   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
-</simplelist></refsection>
+  <refsection>
+    <title>Availability</title>
 
-<refsection><title>Availability</title>
-The latest version of SIVP can be found at
-<para>http://sivp.sf.net </para>
-</refsection>
+     The latest version of SIVP can be found at 
 
+    <para>http://sivp.sf.net</para>
 
-   <refsection><title>See Also</title><simplelist type="inline">
-      <member> <link linkend="aviinfo">aviinfo</link> </member>
-      <member> <link linkend="aviopen">aviopen</link> </member>
-      <member> <link linkend="camopen">camopen</link> </member>
-      <member> <link linkend="avifile">avifile</link> </member>
-      <member> <link linkend="addframe">addframe</link> </member>
-      <member> <link linkend="avicloseall">avicloseall</link> </member>
-      <member> <link linkend="avilistopened">avilistopened</link> </member>
-      <member> <link linkend="avireadframe">avireadframe</link> </member>
-   </simplelist></refsection>
+     
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="aviinfo">aviinfo</link></member>
+
+      <member><link linkend="aviopen">aviopen</link></member>
+
+      <member><link linkend="camopen">camopen</link></member>
+
+      <member><link linkend="avifile">avifile</link></member>
+
+      <member><link linkend="addframe">addframe</link></member>
+
+      <member><link linkend="avicloseall">avicloseall</link></member>
+
+      <member><link linkend="avilistopened">avilistopened</link></member>
+
+      <member><link linkend="avireadframe">avireadframe</link></member>
+    </simplelist>
+  </refsection>
 </refentry>

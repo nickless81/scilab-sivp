@@ -1,100 +1,209 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="edge"><info><pubdate>August, 2006</pubdate></info><refnamediv><refname>edge</refname><refpurpose>Find edges in a single channel image.</refpurpose></refnamediv>
+<refentry version="5.0-subset Scilab" xml:id="edge" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>August, 2006</pubdate>
+  </info>
 
+  <refnamediv>
+    <refname>edge</refname>
 
+    <refpurpose>Find edges in a single channel image.</refpurpose>
+  </refnamediv>
 
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
 
-
-<refsynopsisdiv><title>Calling Sequence</title><synopsis>E = edge(im, method)
+    <synopsis>E = edge(im, method)
 E = edge(im, method, thresh)
 E = edge(im, method, thresh, direction)
 E = edge(im, method, thresh, sigma)
-[E, thresh] = edge(im, method, ...)</synopsis></refsynopsisdiv>
-<refsection><title>Parameters</title>
-<variablelist>
-   <varlistentry>
-     <term>im</term>
-     <listitem>
-       Input image which must be a single channel image.
-     </listitem>
-   </varlistentry>
-   <varlistentry>
-     <term>method</term>
-     <listitem>
-       may be 'sobel'(default), 'prewitt', 'log', 'fftderiv' or 'canny'. Other methods will appear in the future.
-     </listitem>
-   </varlistentry>
-   <varlistentry>
-     <term>thresh</term>
-     <listitem>
-sets the threshold level, from 0 to 1. Defaults to 0.2. If negative, then the output image, <literal>E</literal>, will have the un-thresholded gradient image.
-     </listitem>
-   </varlistentry>
-   <varlistentry>
-     <term>direction</term>
-     <listitem>
-       may be 'horizontal', 'vertical' or 'both'(default). This determines the direction to compute the image gradient.
-     </listitem>
-   </varlistentry>
-   <varlistentry>
-     <term>sigma</term>
-     <listitem>
-        Controls the ammount of high-frequency attenuation in some
-       methods (only the 'fftderiv' method uses this
-       parameter). This can be used to obtain different levels of
-       detail and to filter out high-frequency noise. 
-     </listitem>
-   </varlistentry>
-   <varlistentry>
-     <term>E</term>
-     <listitem>
-       edge image which is boolean matrix and has the same size as <literal>im</literal>. 
-       If <literal>thresh&lt;0</literal>, <literal>E</literal> is a double un-thresholded image.
-     </listitem> 
-   </varlistentry>
-</variablelist>
-</refsection>
+[E, thresh] = edge(im, method, ...)</synopsis>
+  </refsynopsisdiv>
 
-<refsection><title>Description</title>
-  <para>
-  The function edge performs edge detection on a grayscale intensity image. 
-The user may set the method, the threshold level, the direction of the edge detection, etc. </para>
-   <variablelist>
-   <varlistentry><term>E=edge(im, 'sobel', thresh, direction)</term><listitem>
- Detects edges in <literal>im</literal>, using the sobel gradient estimator.
-   </listitem></varlistentry>
-   <varlistentry><term>E=edge(im, 'prewitt', thresh, direction)</term><listitem>
- Detects edges in <literal>im</literal>, using the prewitt gradient estimator.
-   </listitem></varlistentry>
-   <varlistentry><term>E=edge(im, 'log', thresh, sigma)</term><listitem>
- Detects edges in <literal>im</literal>, using the the Laplacian of Gaussian method. 
-<literal>sigma</literal> is the standard deviation of the LoG filter 
-and the size of the LoG filter is nxn, where n = ceil(sigma*3)*2+1.
-The default value for <literal>sigma</literal> is 2.
-   </listitem></varlistentry>
-   <varlistentry><term>E=edge(im, 'fftderiv', thresh, direction, sigma)</term><listitem>
- Detects edges in <literal>im</literal>, using the FFT gradient method, default sigma 1.0 
-   </listitem></varlistentry>
-   <varlistentry><term>E=edge(im, 'canny', thresh, sigma)</term><listitem>
- Detects edges in <literal>im</literal>, using Canny method. 
-<literal>thresh</literal> is a two-element vector, in which the fist element is the low threshold 
-and the seond one is the high threshold. If <literal>thresh</literal> is a scalar, 
-the low threshold is <literal>0.4*thresh</literal> and the high one is <literal>thresh</literal>.
-Besides, <literal>thresh</literal> can not be negative scalar.
-<literal>sigma</literal> is the Aperture parameter for Sobel operator, which must be 1, 3, 5 or 7.
-default thresh 0.2; default sigma 3.
-   </listitem></varlistentry>
-   </variablelist>
+  <refsection>
+    <title>Parameters</title>
 
-<para>
-  Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
-</para>
-</refsection>
+    <variablelist>
+      <varlistentry>
+        <term>im</term>
 
+        <listitem>
+           Input image which must be a single channel image. 
+        </listitem>
+      </varlistentry>
 
-<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+      <varlistentry>
+        <term>method</term>
 
-    im = imread('lena.png');
+        <listitem>
+           may be 'sobel'(default), 'prewitt', 'log', 'fftderiv' or 'canny'. Other methods will appear in the future. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>thresh</term>
+
+        <listitem>
+           sets the threshold level, from 0 to 1. Defaults to 0.2. If negative, then the output image, 
+
+          <literal>E</literal>
+
+          , will have the un-thresholded gradient image. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>direction</term>
+
+        <listitem>
+           may be 'horizontal', 'vertical' or 'both'(default). This determines the direction to compute the image gradient. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>sigma</term>
+
+        <listitem>
+           Controls the ammount of high-frequency attenuation in some methods (only the 'fftderiv' method uses this parameter). This can be used to obtain different levels of detail and to filter out high-frequency noise. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>E</term>
+
+        <listitem>
+           edge image which is boolean matrix and has the same size as 
+
+          <literal>im</literal>
+
+          . If 
+
+          <literal>thresh&lt;0</literal>
+
+          , 
+
+          <literal>E</literal>
+
+           is a double un-thresholded image. 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>The function edge performs edge detection on a grayscale intensity
+    image. The user may set the method, the threshold level, the direction of
+    the edge detection, etc.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>E=edge(im, 'sobel', thresh, direction)</term>
+
+        <listitem>
+           Detects edges in 
+
+          <literal>im</literal>
+
+          , using the sobel gradient estimator. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>E=edge(im, 'prewitt', thresh, direction)</term>
+
+        <listitem>
+           Detects edges in 
+
+          <literal>im</literal>
+
+          , using the prewitt gradient estimator. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>E=edge(im, 'log', thresh, sigma)</term>
+
+        <listitem>
+           Detects edges in 
+
+          <literal>im</literal>
+
+          , using the the Laplacian of Gaussian method. 
+
+          <literal>sigma</literal>
+
+           is the standard deviation of the LoG filter and the size of the LoG filter is nxn, where n = ceil(sigma*3)*2+1. The default value for 
+
+          <literal>sigma</literal>
+
+           is 2. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>E=edge(im, 'fftderiv', thresh, direction, sigma)</term>
+
+        <listitem>
+           Detects edges in 
+
+          <literal>im</literal>
+
+          , using the FFT gradient method, default sigma 1.0 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>E=edge(im, 'canny', thresh, sigma)</term>
+
+        <listitem>
+           Detects edges in 
+
+          <literal>im</literal>
+
+          , using Canny method. 
+
+          <literal>thresh</literal>
+
+           is a two-element vector, in which the fist element is the low threshold and the seond one is the high threshold. If 
+
+          <literal>thresh</literal>
+
+           is a scalar, the low threshold is 
+
+          <literal>0.4*thresh</literal>
+
+           and the high one is 
+
+          <literal>thresh</literal>
+
+          . Besides, 
+
+          <literal>thresh</literal>
+
+           can not be negative scalar. 
+
+          <literal>sigma</literal>
+
+           is the Aperture parameter for Sobel operator, which must be 1, 3, 5 or 7. default thresh 0.2; default sigma 3. 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">    im = imread(fullpath(getSIVPpath() + "/images/lena.png"));
     im = rgb2gray(im);
     E = edge(im, 'sobel');
     imshow(E);
@@ -103,34 +212,45 @@ default thresh 0.2; default sigma 3.
     imshow(E);
 
     E = edge(im, 'sobel', -1);
-    imshow(mat2gray(E));
+    imshow(mat2gray(E));</programlisting>
+  </refsection>
 
-]]></programlisting></refsection>
+  <refsection>
+    <title>Authors</title>
 
+    <simplelist type="vert">
+      <member>Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt;</member>
 
-<refsection><title>Authors</title><simplelist type="vert">
-   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
-   <member> Ricardo Fabbri &lt;ricardofabbri[at]users.sf.net&gt; </member>
+      <member>Ricardo Fabbri &lt;ricardofabbri[at]users.sf.net&gt;</member>
+    </simplelist>
+  </refsection>
 
-</simplelist></refsection>
+  <refsection>
+    <title>Bibliography</title>
 
+    <para>"Shape Analysis and Classification", L. da F. Costa and R. M. Cesar
+    Jr., CRC Press, section 3.3.</para>
+  </refsection>
 
-<refsection><title>Bibliography</title>
-   <para>
-"Shape Analysis and Classification", L. da
-F. Costa and R. M. Cesar Jr., CRC Press, section 3.3.
-   </para>
-</refsection>
+  <refsection>
+    <title>Availability</title>
 
+     The latest version of SIVP can be found at 
 
-<refsection><title>Availability</title>
-The latest version of SIVP can be found at
-<para>http://sivp.sf.net </para>
-</refsection>
+    <para>http://sivp.sf.net</para>
 
-   <refsection><title>See Also</title><simplelist type="inline">
-      <member><link linkend="fspecial">fspecial</link> </member>
-      <member><link linkend="imfilter">imfilter</link> </member>
-      <member><link linkend="filter2">filter2</link> </member>
-   </simplelist></refsection>
+     
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="fspecial">fspecial</link></member>
+
+      <member><link linkend="imfilter">imfilter</link></member>
+
+      <member><link linkend="filter2">filter2</link></member>
+    </simplelist>
+  </refsection>
 </refentry>

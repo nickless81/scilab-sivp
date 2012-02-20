@@ -1,108 +1,283 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fspecial"><info><pubdate>June, 2006</pubdate></info><refnamediv><refname>fspecial</refname><refpurpose>Create some 2D special filters</refpurpose></refnamediv>
+<refentry version="5.0-subset Scilab" xml:id="fspecial" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>June, 2006</pubdate>
+  </info>
 
+  <refnamediv>
+    <refname>fspecial</refname>
 
+    <refpurpose>Create some 2D special filters</refpurpose>
+  </refnamediv>
 
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
 
-
-<refsynopsisdiv><title>Calling Sequence</title><synopsis>F = fspecial(type)
+    <synopsis>F = fspecial(type)
 F = fspecial(type, op1)
-F = fspecial(type, op1, op2)</synopsis></refsynopsisdiv>
-<refsection><title>Parameters</title>
-<variablelist>
-   <varlistentry>
-     <term>type</term>
-     <listitem>
-       Filter type. It can be one of these string: 'sobel', 'prewitt', 'gaussion', 'laplacian', 'log', 'average', 'unsharp'. ('motion', 'disk' in future.)
-     </listitem>
-   </varlistentry>
-   <varlistentry>
-     <term>op1</term>
-     <listitem>
-       The first parameter for the filter. Some type of filters do not need it.
-     </listitem>
-   </varlistentry>
-   <varlistentry>
-     <term>op2</term>
-     <listitem>
-       The second parameter for the filter. Some type of filters do not need it.
-     </listitem>
-   </varlistentry>
-   <varlistentry>
-     <term>F</term>
-     <listitem>
-       The returned filter, which is of type double.
-     </listitem>
-   </varlistentry>
-</variablelist>
-</refsection>
+F = fspecial(type, op1, op2)</synopsis>
+  </refsynopsisdiv>
 
-<refsection><title>Description</title>
-<para><literal>fspecial</literal> create some 2D special filters. If no parameters are given, <literal>fspecial</literal> will uses default values.</para>
-<para>The supported filters and the syntax for each filter type are listed in the following list:</para>
-   <variablelist>
-     <varlistentry><term>F=fspecial('sobel')</term><listitem>
-       returns a 3x3 horizontal edges sobel filter. If you want avertical edges sobel filter, you can use transposition of <literal>F</literal>. <literal>F</literal> is [ 1 2 1; 0 0 0; -1 -2 -1].
-     </listitem></varlistentry>
-     <varlistentry><term>F=fspecial('prewitt')</term><listitem>
-       returns a 3x3 horizontal edges prewitt filter. If you want avertical edges prewitt filter, you can use transposition of <literal>F</literal>. <literal>F</literal> is [ 1 1 1; 0 0 0; -1 -1 -1].
-     </listitem></varlistentry>
-     <varlistentry><term>F=fspecial('gaussian', hsize, sigma)</term><listitem>
-       returns a Gaussian lowpass filter. 
-The size of returned filter is determined by parameter <literal>hsize</literal>. 
-<literal>hsize</literal> can be a 1x2 vector which indicate the rows and columns of <literal>F</literal>. 
-If <literal>hsize</literal> is a scalar, <literal>F</literal> is a square matrix. 
-The default value for <literal>hsize</literal> is [3, 3]; the default value for <literal>sigma</literal> is 0.5.
-     </listitem></varlistentry>
-     <varlistentry><term>F=fspecial('laplacian',alpha)</term><listitem>
-       returns a 3-by-3 Laplacian filter. 
-The returned filter is <literal>[alpha, 1-alpha, alpha; 1-alpha, -4, 1-alpha; alpha, 1-alpha, alpha]/(alpha+1)</literal>.
-The default value for <literal>alpha</literal> is 0.2.
-     </listitem></varlistentry>
-     <varlistentry><term>F=fspecial('log',hsize,sigma)</term><listitem>
-       returns a Laplacian of Gaussian filter. 
-       The size of returned filter is determined by parameter <literal>hsize</literal>. 
-       <literal>hsize</literal> can be a 1x2 vector which indicate the rows and columns of <literal>F</literal>. 
-       If <literal>hsize</literal> is a scalar, <literal>F</literal> is a square matrix. 
-       The default value for <literal>hsize</literal> is [5, 5]; the default value for <literal>sigma</literal> is 0.5.
-     </listitem></varlistentry>
-     <varlistentry><term>F=fspecial('average',hsize)</term><listitem>
-       returns an averaging filter.
-       The size of returned filter is determined by parameter <literal>hsize</literal>. 
-       <literal>hsize</literal> can be a 1x2 vector which indicate the rows and columns of <literal>F</literal>. 
-       If <literal>hsize</literal> is a scalar, <literal>F</literal> is a square matrix. 
-       The default value for <literal>hsize</literal> is [3, 3].
-     </listitem></varlistentry>
-     <varlistentry><term>F=fspecial('unsharp',alpha)</term><listitem>
-       returns a 3x3 unsharp contrast enhancement filter.
-       <literal>alpha</literal> must be in the range [0.0, 1.0]. The default value of <literal>alpha</literal> is 0.2.
-     </listitem></varlistentry>
+  <refsection>
+    <title>Parameters</title>
 
-   </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>type</term>
 
-</refsection>
+        <listitem>
+           Filter type. It can be one of these string: 'sobel', 'prewitt', 'gaussion', 'laplacian', 'log', 'average', 'unsharp'. ('motion', 'disk' in future.) 
+        </listitem>
+      </varlistentry>
 
-<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+      <varlistentry>
+        <term>op1</term>
 
-    im = imread('lena.png');
+        <listitem>
+           The first parameter for the filter. Some type of filters do not need it. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>op2</term>
+
+        <listitem>
+           The second parameter for the filter. Some type of filters do not need it. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>F</term>
+
+        <listitem>
+           The returned filter, which is of type double. 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>fspecial</literal> create some 2D special filters. If no
+    parameters are given, <literal>fspecial</literal> will uses default
+    values.</para>
+
+    <para>The supported filters and the syntax for each filter type are listed
+    in the following list:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>F=fspecial('sobel')</term>
+
+        <listitem>
+           returns a 3x3 horizontal edges sobel filter. If you want avertical edges sobel filter, you can use transposition of 
+
+          <literal>F</literal>
+
+          . 
+
+          <literal>F</literal>
+
+           is [ 1 2 1; 0 0 0; -1 -2 -1]. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>F=fspecial('prewitt')</term>
+
+        <listitem>
+           returns a 3x3 horizontal edges prewitt filter. If you want avertical edges prewitt filter, you can use transposition of 
+
+          <literal>F</literal>
+
+          . 
+
+          <literal>F</literal>
+
+           is [ 1 1 1; 0 0 0; -1 -1 -1]. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>F=fspecial('gaussian', hsize, sigma)</term>
+
+        <listitem>
+           returns a Gaussian lowpass filter. The size of returned filter is determined by parameter 
+
+          <literal>hsize</literal>
+
+          . 
+
+          <literal>hsize</literal>
+
+           can be a 1x2 vector which indicate the rows and columns of 
+
+          <literal>F</literal>
+
+          . If 
+
+          <literal>hsize</literal>
+
+           is a scalar, 
+
+          <literal>F</literal>
+
+           is a square matrix. The default value for 
+
+          <literal>hsize</literal>
+
+           is [3, 3]; the default value for 
+
+          <literal>sigma</literal>
+
+           is 0.5. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>F=fspecial('laplacian',alpha)</term>
+
+        <listitem>
+           returns a 3-by-3 Laplacian filter. The returned filter is 
+
+          <literal>[alpha, 1-alpha, alpha; 1-alpha, -4, 1-alpha; alpha,
+          1-alpha, alpha]/(alpha+1)</literal>
+
+          . The default value for 
+
+          <literal>alpha</literal>
+
+           is 0.2. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>F=fspecial('log',hsize,sigma)</term>
+
+        <listitem>
+           returns a Laplacian of Gaussian filter. The size of returned filter is determined by parameter 
+
+          <literal>hsize</literal>
+
+          . 
+
+          <literal>hsize</literal>
+
+           can be a 1x2 vector which indicate the rows and columns of 
+
+          <literal>F</literal>
+
+          . If 
+
+          <literal>hsize</literal>
+
+           is a scalar, 
+
+          <literal>F</literal>
+
+           is a square matrix. The default value for 
+
+          <literal>hsize</literal>
+
+           is [5, 5]; the default value for 
+
+          <literal>sigma</literal>
+
+           is 0.5. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>F=fspecial('average',hsize)</term>
+
+        <listitem>
+           returns an averaging filter. The size of returned filter is determined by parameter 
+
+          <literal>hsize</literal>
+
+          . 
+
+          <literal>hsize</literal>
+
+           can be a 1x2 vector which indicate the rows and columns of 
+
+          <literal>F</literal>
+
+          . If 
+
+          <literal>hsize</literal>
+
+           is a scalar, 
+
+          <literal>F</literal>
+
+           is a square matrix. The default value for 
+
+          <literal>hsize</literal>
+
+           is [3, 3]. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>F=fspecial('unsharp',alpha)</term>
+
+        <listitem>
+           returns a 3x3 unsharp contrast enhancement filter. 
+
+          <literal>alpha</literal>
+
+           must be in the range [0.0, 1.0]. The default value of 
+
+          <literal>alpha</literal>
+
+           is 0.2. 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">    im = imread(fullpath(getSIVPpath() + "/images/lena.png"));
     filter = fspecial('sobel');
     imf = imfilter(im, filter);
-    imshow(imf);
+    imshow(imf);</programlisting>
+  </refsection>
 
-]]></programlisting></refsection>
+  <refsection>
+    <title>Authors</title>
 
+    <simplelist type="vert">
+      <member>Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt;</member>
+    </simplelist>
+  </refsection>
 
-<refsection><title>Authors</title><simplelist type="vert">
-   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
-</simplelist></refsection>
+  <refsection>
+    <title>Availability</title>
 
-<refsection><title>Availability</title>
-The latest version of SIVP can be found at
-<para>http://sivp.sf.net </para>
-</refsection>
+     The latest version of SIVP can be found at 
 
-   <refsection><title>See Also</title><simplelist type="inline">
-      <member> <link linkend="imfilter">imfilter</link> </member>
-      <member> <link linkend="filter2">filter2</link> </member>
-   </simplelist></refsection>
+    <para>http://sivp.sf.net</para>
+
+     
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="imfilter">imfilter</link></member>
+
+      <member><link linkend="filter2">filter2</link></member>
+    </simplelist>
+  </refsection>
 </refentry>

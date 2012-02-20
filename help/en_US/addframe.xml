@@ -1,74 +1,133 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="addframe"><info><pubdate>Sep, 2006</pubdate></info><refnamediv><refname>addframe</refname><refpurpose>Add a frame to the video file. (experimental)</refpurpose></refnamediv>
+<refentry version="5.0-subset Scilab" xml:id="addframe" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>Sep, 2006</pubdate>
+  </info>
 
+  <refnamediv>
+    <refname>addframe</refname>
 
+    <refpurpose>Add a frame to the video file. (experimental)</refpurpose>
+  </refnamediv>
 
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
 
+    <synopsis>n = addframe(n, im)</synopsis>
+  </refsynopsisdiv>
 
-<refsynopsisdiv><title>Calling Sequence</title><synopsis>n = addframe(n, im)</synopsis></refsynopsisdiv>
-<refsection><title>Parameters</title>
-<variablelist>
-   <varlistentry>
-   <term>n</term>
-   <listitem>
-   The opened video file index, the return value of <literal>avifile</literal>.
-   </listitem>
-   </varlistentry>
-   <varlistentry>
-   <term>im</term>
-   <listitem>
-   The input image which must be UINT8 RGB image. If the image size is not the same with the argument <literal>dims</literal> of function <literal>avifile</literal>, the image will be resized to <literal>dims</literal>.
-   </listitem>
-   </varlistentry>
-</variablelist>
-</refsection>
-<refsection><title>Description</title>
-<para>
-   <literal>addframe</literal> add a frame to video file <literal>n</literal>.
-</para>
-<para>
-Video support for SIVP is only available when SIVP is compiled with OpenCV which support video I/O.
-</para>
+  <refsection>
+    <title>Parameters</title>
 
-</refsection>
-<refsection><title>Examples</title><programlisting role="example"><![CDATA[
-	
-    im = imread('lena.png');
-    n = avifile('lena.avi', [300;300], 30);
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+           The opened video file index, the return value of 
+
+          <literal>avifile</literal>
+
+          . 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>im</term>
+
+        <listitem>
+           The input image which must be UINT8 RGB image. If the image size is not the same with the argument 
+
+          <literal>dims</literal>
+
+           of function 
+
+          <literal>avifile</literal>
+
+          , the image will be resized to 
+
+          <literal>dims</literal>
+
+          . 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>addframe</literal> add a frame to video file
+    <literal>n</literal>.</para>
+
+    <para>Video support for SIVP is only available when SIVP is compiled with
+    OpenCV which support video I/O.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">    im = imread(fullpath(getSIVPpath() + "/images/lena.png"));
+    n = avifile(fullpath(TMPDIR +'/lena.avi'), [300;300], 30);
 
     for ii=1:200
         ims = im(ii:512-ii, ii:512-ii, :);
         addframe(n, ims);
     end
 
-    aviclose(n);
+    aviclose(n);</programlisting>
+  </refsection>
 
-]]></programlisting></refsection>
+  <refsection>
+    <title>Bugs and Shortcomings</title>
 
-<refsection><title>Bugs and Shortcomings</title>
-<para>
-<literal>addframe</literal> does not check the size and date type of input image now.
-</para>
-</refsection>
+    <para><literal>addframe</literal> does not check the size and date type of
+    input image now.</para>
+  </refsection>
 
-<refsection><title>Authors</title><simplelist type="vert">
-   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
-</simplelist></refsection>
+  <refsection>
+    <title>Authors</title>
 
-<refsection><title>Availability</title>
-The latest version of SIVP can be found at
-<para>http://sivp.sf.net </para>
-</refsection>
+    <simplelist type="vert">
+      <member>Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt;</member>
+    </simplelist>
+  </refsection>
 
+  <refsection>
+    <title>Availability</title>
 
-   <refsection><title>See Also</title><simplelist type="inline">
-      <member> <link linkend="aviinfo">aviinfo</link> </member>
-      <member> <link linkend="aviopen">aviopen</link> </member>
-      <member> <link linkend="camopen">camopen</link> </member>
-      <member> <link linkend="avifile">avifile</link> </member>
-      <member> <link linkend="avireadframe">avireadframe</link> </member>
-      <member> <link linkend="aviclose">aviclose</link> </member>
-      <member> <link linkend="avicloseall">avicloseall</link> </member>
-      <member> <link linkend="avilistopened">avilistopened</link> </member>
-   </simplelist></refsection>
+     The latest version of SIVP can be found at 
+
+    <para>http://sivp.sf.net</para>
+
+     
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="aviinfo">aviinfo</link></member>
+
+      <member><link linkend="aviopen">aviopen</link></member>
+
+      <member><link linkend="camopen">camopen</link></member>
+
+      <member><link linkend="avifile">avifile</link></member>
+
+      <member><link linkend="avireadframe">avireadframe</link></member>
+
+      <member><link linkend="aviclose">aviclose</link></member>
+
+      <member><link linkend="avicloseall">avicloseall</link></member>
+
+      <member><link linkend="avilistopened">avilistopened</link></member>
+    </simplelist>
+  </refsection>
 </refentry>

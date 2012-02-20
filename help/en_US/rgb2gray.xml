@@ -1,57 +1,111 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rgb2gray"><info><pubdate>April, 2006</pubdate></info><refnamediv><refname>rgb2gray</refname><refpurpose>Convert RGB images to gray images</refpurpose></refnamediv>
+<refentry version="5.0-subset Scilab" xml:id="rgb2gray" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>April, 2006</pubdate>
+  </info>
 
+  <refnamediv>
+    <refname>rgb2gray</refname>
 
+    <refpurpose>Convert RGB images to gray images</refpurpose>
+  </refnamediv>
 
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
 
+    <synopsis>G = rgb2gray(RGB)</synopsis>
+  </refsynopsisdiv>
 
-<refsynopsisdiv><title>Calling Sequence</title><synopsis>G = rgb2gray(RGB)</synopsis></refsynopsisdiv>
-<refsection><title>Parameters</title>
-<variablelist>
-   <varlistentry>
-   <term>RGB</term>
-   <listitem>
-   A RGB image (hypermat), the dimension of <literal>RGB</literal> should be <literal>M x N x 3</literal>.
-   </listitem>
-   </varlistentry>
-   <varlistentry>
-   <term>G</term>
-   <listitem>
-   Output image, a gray image which dimension is <literal>M x N</literal> and has the same data type as <literal>RGB</literal>.
-   </listitem>
-   </varlistentry>
-</variablelist>
-</refsection>
-<refsection><title>Description</title>
-<para>
-   <literal>rgb2gry</literal> convert RGB images to gray scale images using <literal>G = 0.299*R + 0.587*G + 0.114*B</literal>.
-</para>
-</refsection>
-<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Parameters</title>
 
-    RGB = imread('lena.png');
+    <variablelist>
+      <varlistentry>
+        <term>RGB</term>
+
+        <listitem>
+           A RGB image (hypermat), the dimension of 
+
+          <literal>RGB</literal>
+
+           should be 
+
+          <literal>M x N x 3</literal>
+
+          . 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>G</term>
+
+        <listitem>
+           Output image, a gray image which dimension is 
+
+          <literal>M x N</literal>
+
+           and has the same data type as 
+
+          <literal>RGB</literal>
+
+          . 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>rgb2gry</literal> convert RGB images to gray scale images
+    using <literal>G = 0.299*R + 0.587*G + 0.114*B</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">    RGB = imread(fullpath(getSIVPpath() + "/images/lena.png"));
     G = rgb2gray(RGB);
-    imshow(G);
+    imshow(G);</programlisting>
+  </refsection>
 
-]]></programlisting></refsection>
+  <refsection>
+    <title>Bugs and Shortcomings</title>
 
-<refsection><title>Bugs and Shortcomings</title>
-<para>The algorithm should be optimized to improve performance.
-</para>
-</refsection>
+    <para>The algorithm should be optimized to improve performance.</para>
+  </refsection>
 
+  <refsection>
+    <title>Authors</title>
 
-<refsection><title>Authors</title><simplelist type="vert">
-   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
-</simplelist></refsection>
+    <simplelist type="vert">
+      <member>Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt;</member>
+    </simplelist>
+  </refsection>
 
-<refsection><title>Availability</title>
-The latest version of SIVP can be found at
-<para>http://sivp.sf.net </para>
-</refsection>
+  <refsection>
+    <title>Availability</title>
 
-   <refsection><title>See Also</title><simplelist type="inline">
-      <member> <link linkend="im2bw">im2bw</link> </member>
-      <member> <link linkend="mat2gray">mat2gray</link> </member>
-   </simplelist></refsection>
+     The latest version of SIVP can be found at 
+
+    <para>http://sivp.sf.net</para>
+
+     
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="im2bw">im2bw</link></member>
+
+      <member><link linkend="mat2gray">mat2gray</link></member>
+    </simplelist>
+  </refsection>
 </refentry>

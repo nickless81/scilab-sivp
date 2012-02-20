@@ -1,69 +1,126 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="imwrite"><info><pubdate>Oct, 2006</pubdate></info><refnamediv><refname>imwrite</refname><refpurpose>Write image to file</refpurpose></refnamediv>
+<refentry version="5.0-subset Scilab" xml:id="imwrite" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>Oct, 2006</pubdate>
+  </info>
 
+  <refnamediv>
+    <refname>imwrite</refname>
 
+    <refpurpose>Write image to file</refpurpose>
+  </refnamediv>
 
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
 
+    <synopsis>ret=imwrite(im, filename)</synopsis>
+  </refsynopsisdiv>
 
-<refsynopsisdiv><title>Calling Sequence</title><synopsis>ret=imwrite(im, filename)</synopsis></refsynopsisdiv>
-<refsection><title>Parameters</title>
-<variablelist>
-   <varlistentry>
-   <term>im</term>
-   <listitem>
-	<literal>im</literal> can be an M-by-N (greyscale image) or M-by-N-by-3 (color image) matrix. 
-If <literal>im</literal> is not of class uint8,  <literal>imwrite</literal> will convert the datatype before writing using <literal>im2uint8(im)</literal>.
-   </listitem>
-   </varlistentry>
-   <varlistentry>
-   <term>filename</term>
-   <listitem>
-   A string that specifies the name of the output file.
-   </listitem>
-   </varlistentry>
-   <varlistentry>
-   <term>ret</term>
-   <listitem>
-   Return value. If the image is successfully writed into a file, <literal>ret</literal> will be 1.
-   </listitem>
-   </varlistentry>
-</variablelist>
-</refsection>
-<refsection><title>Description</title>
-<para>
-   <literal>imwrite</literal> writes a matrix into a image file. The format of the  file is inferred from the extension in the <literal>filename</literal> parameter. Currently the following file formats are supported:</para>
-   
-   
-   
-   
-   
-   
+  <refsection>
+    <title>Parameters</title>
 
-</refsection>
-<refsection><title>Examples</title><programlisting role="example"><![CDATA[
-    im=rand(200,300);
-    ret = imwrite(im, 'rand.png');
-]]></programlisting></refsection>
+    <variablelist>
+      <varlistentry>
+        <term>im</term>
 
+        <listitem>
+           
 
-<refsection><title>Authors</title><simplelist type="vert">
-   <member> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </member>
-</simplelist></refsection>
+          <literal>im</literal>
 
-<refsection><title>Bugs and Shortcomings</title>
-<para>
-Images with a palette are not supported.
-</para>
-</refsection>
+           can be an M-by-N (greyscale image) or M-by-N-by-3 (color image) matrix. If 
 
-<refsection><title>Availability</title>
-The latest version of SIVP can be found at
-<para>http://sivp.sf.net </para>
-</refsection>
+          <literal>im</literal>
 
-   <refsection><title>See Also</title><simplelist type="inline">
-      <member> <link linkend="imread">imread</link> </member>
-      <member> <link linkend="imshow">imshow</link> </member>
-      <member> <link linkend="imfinfo">imfinfo</link> </member>
-   </simplelist></refsection>
+           is not of class uint8, 
+
+          <literal>imwrite</literal>
+
+           will convert the datatype before writing using 
+
+          <literal>im2uint8(im)</literal>
+
+          . 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>filename</term>
+
+        <listitem>
+           A string that specifies the name of the output file. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ret</term>
+
+        <listitem>
+           Return value. If the image is successfully writed into a file, 
+
+          <literal>ret</literal>
+
+           will be 1. 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>imwrite</literal> writes a matrix into a image file. The
+    format of the file is inferred from the extension in the
+    <literal>filename</literal> parameter. Currently the following file
+    formats are supported:</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">    im = rand(200,300);
+    ret = imwrite(im, fullpath(TMPDIR + '/rand.png'));</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt;</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Bugs and Shortcomings</title>
+
+    <para>Images with a palette are not supported.</para>
+  </refsection>
+
+  <refsection>
+    <title>Availability</title>
+
+     The latest version of SIVP can be found at 
+
+    <para>http://sivp.sf.net</para>
+
+     
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="imread">imread</link></member>
+
+      <member><link linkend="imshow">imshow</link></member>
+
+      <member><link linkend="imfinfo">imfinfo</link></member>
+    </simplelist>
+  </refsection>
 </refentry>
