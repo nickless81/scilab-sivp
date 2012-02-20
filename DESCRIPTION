@@ -1,0 +1,37 @@
+
+Toolbox: SIVP
+
+Title: Scilab Image and Video Processing module
+
+Summary: SIVP intends to do image processing and video processing tasks
+
+Version: 1.0
+
+Author: Shiqi Yu
+ Jia Wu
+ Shulin Shang
+ Vincent Etienne
+ Allan CORNET
+
+Maintainer: Allan Cornet <allan.cornet@scilab.org>
+
+Category: Image Processing
+
+Entity: LIAMA - Institute of Automation - Shenzhen Institute of Advanced Technology
+
+WebSite: http://sivp.sourceforge.net/
+
+URL: http://atoms.scilab.org/toolboxes/SIVP/1.0
+
+License: GPL
+
+ScilabVersion: >= 5.4
+
+Depends:
+
+Date: 2012-02-21 12:00:07
+
+Description: Scilab needs a powerful image processing module. SIVP intends to do image
+ processing and video processing tasks. SIVP is meant to be a useful, efficient,
+ and free image and video processing toolbox for Scilab.
+
