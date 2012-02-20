@@ -1,6 +1,10 @@
-filename = getSIVPpath() + 'images/lena.png';
-if getos() == 'Windows' then 
-  filename=strsubst(filename,'/','\');
-end
-im = imread(filename);
-imshow(im);
+// ====================================================================
+function demo_image()
+  filename = fullpath(getSIVPpath() + 'images/lena.png');
+  im = imread(filename);
+  imshow(im);
+endfunction
+// ====================================================================
+demo_image();
+clear demo_image;
+// ====================================================================

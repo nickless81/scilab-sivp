@@ -1,7 +1,7 @@
-//
 // -------------------------------------------------------------------------
 // SIVP - Scilab Image Processing toolbox
 // Copyright (C) 2005-2010  Shiqi Yu
+// Copyright (C) 2012 - DIGITEO - Allan CORNET
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,70 +18,84 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 // -------------------------------------------------------------------------
 //
+function sivplib = startModule()
 
-TOOLBOX_NAME  = "SIVP";
-TOOLBOX_TITLE = "SIVP - Scilab Image and Video Processing Toolbox";
+  TOOLBOX_NAME  = "SIVP";
+  TOOLBOX_TITLE = "SIVP - Scilab Image and Video Processing Toolbox";
 
-mprintf("Start " + TOOLBOX_TITLE + "\n");
+  mprintf("Start " + TOOLBOX_TITLE + "\n");
 
-if isdef("sivplib") then
-  warning(TOOLBOX_NAME + " library is already loaded");
-  return;
-end
-
-etc_tlbx  = get_absolute_file_path("SIVP.start");
-etc_tlbx  = getshortpathname(etc_tlbx);
-root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
-
-//Load  functions library
-// =============================================================================
-mprintf("\tLoad macros\n");
-pathmacros = pathconvert( root_tlbx ) + "macros" + filesep();
-sivplib = lib(pathmacros);
-clear pathmacros;
-
-// load gateways
-// =============================================================================
-mprintf("\tLoad gateways\n");
-ilib_verbose(0);
-// load dependencies on OpenCV 2.1.0
-if getos() == 'Windows' then
-  if win64() then
-    opencvDllPath = root_tlbx + '\thirdparty\opencv\windows\x64\';
-  else
-    opencvDllPath = root_tlbx + '\thirdparty\opencv\windows\x86\';
+  if isdef("sivplib") then
+    warning(TOOLBOX_NAME + " library is already loaded");
+    return;
   end
-  link(opencvDllPath + 'cxcore210' + getdynlibext());
-  link(opencvDllPath + 'ml210' + getdynlibext());
-  link(opencvDllPath + 'highgui210' + getdynlibext());
-  link(opencvDllPath + 'cxts210' + getdynlibext());
-  link(opencvDllPath + 'cv210' + getdynlibext());
-  link(opencvDllPath + 'cvaux210' + getdynlibext());
-end
-exec(pathconvert(root_tlbx+"/sci_gateway/loader_gateway.sce",%f));
 
-// Load and add help chapter
-// =============================================================================
-if or(getscilabmode() == ["NW";"STD"]) then
-  mprintf("\tLoad help\n");
-  path_addchapter = pathconvert(root_tlbx+"/jar");
-  if ( isdir(path_addchapter) <> [] ) then
-    add_help_chapter(TOOLBOX_TITLE, path_addchapter, %F);
-    clear add_help_chapter;
+  etc_tlbx  = get_absolute_file_path("SIVP.start");
+  etc_tlbx  = getshortpathname(etc_tlbx);
+  root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
+
+  //Load  functions library
+  // =============================================================================
+  mprintf("\tLoad macros\n");
+  pathmacros = pathconvert( root_tlbx ) + "macros" + filesep();
+  sivplib = lib(pathmacros);
+
+  verboseMode = ilib_verbose();
+  ilib_verbose(0);
+
+  // load dependencies
+  // =============================================================================
+  // load dependencies on OpenCV 3.2.1
+  if getos() == 'Windows' then
+     mprintf("\tLoad dependencies\n");
+    if win64() then
+      opencvDllPath = root_tlbx + '\thirdparty\opencv\windows\x64\bin\';
+      tbbDllPath = root_tlbx + '\thirdparty\opencv\windows\common\tbb\intel64\';
+    else
+      opencvDllPath = root_tlbx + '\thirdparty\opencv\windows\x86\bin\';
+      tbbDllPath = root_tlbx + '\thirdparty\opencv\windows\common\tbb\ia32\';
+    end
+
+    link(tbbDllPath + 'tbb' + getdynlibext());
+    link(opencvDllPath + 'opencv_core231' + getdynlibext());
+    link(opencvDllPath + 'opencv_highgui231' + getdynlibext());
+    link(opencvDllPath + 'opencv_imgproc231' + getdynlibext());
+    link(opencvDllPath + 'opencv_flann231' + getdynlibext());
+    link(opencvDllPath + 'opencv_features2d231' + getdynlibext());
+    link(opencvDllPath + 'opencv_calib3d231' + getdynlibext());
+    link(opencvDllPath + 'opencv_objdetect231' + getdynlibext());
+    link(opencvDllPath + 'opencv_video231' + getdynlibext());
   end
-  clear path_addchapter;
-end
 
-// Load demos
+  // load gateways
+  // =============================================================================
+  mprintf("\tLoad gateways\n");
+  exec(pathconvert(root_tlbx + "/sci_gateway/loader_gateway.sce", %f));
+
+  ilib_verbose(verboseMode);
+
+  // Load and add help chapter
+  // =============================================================================
+  if or(getscilabmode() == ["NW";"STD"]) then
+    mprintf("\tLoad help\n");
+    path_addchapter = pathconvert(root_tlbx+"/jar");
+    if ( isdir(path_addchapter) <> [] ) then
+      add_help_chapter(TOOLBOX_TITLE, path_addchapter, %F);
+    end
+  end
+
+  // Load demos
+  // =============================================================================
+  if or(getscilabmode() == ["NW";"STD"]) then
+    mprintf("\tLoad demos\n");
+    pathdemos = pathconvert(root_tlbx+"/demos/sivp.dem.gateway.sce",%F,%T);
+    add_demo("SIVP",pathdemos);
+  end
+
+  sivp_init(root_tlbx);
+
+endfunction
 // =============================================================================
-if or(getscilabmode() == ["NW";"STD"]) then
-  mprintf("\tLoad demos\n");
-  pathdemos = pathconvert(root_tlbx+"/demos/sivp.dem.gateway.sce",%F,%T);
-  add_demo("SIVP",pathdemos);
-  clear pathdemos add_demo;
-end
-
-sivp_init(root_tlbx);
-
-clear root_tlbx;
-clear etc_tlbx;
+sivplib = startModule();
+clear startModule; // remove startModule on stack
+// =============================================================================

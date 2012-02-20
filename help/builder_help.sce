@@ -1,4 +1,22 @@
-help_dir = get_absolute_file_path('builder_help.sce');
-tbx_builder_help_lang("en_US", help_dir);
-clear help_dir;
-
+// -------------------------------------------------------------------------
+// SIVP - Scilab Image Processing toolbox
+// Copyright (C) 2012 - DIGITEO - Allan CORNET
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+// -------------------------------------------------------------------------
+//
+// =============================================================================
+tbx_builder_help_lang(["en_US"], get_absolute_file_path("builder_help.sce"));
+// =============================================================================
