@@ -68,7 +68,7 @@
     <title>Examples</title>
 
     <programlisting role="example">    im = imread(fullpath(getSIVPpath() + "/images/lena.png"));
-    imr = rectangle(im, [20, 30, 50, 100]);
+    imr = rectangle(im, [20, 30, 50, 100], [12 155 0]);
     imshow(imr);</programlisting>
   </refsection>
 
