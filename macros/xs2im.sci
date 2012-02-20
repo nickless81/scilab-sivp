@@ -1,6 +1,7 @@
 ////////////////////////////////////////////////////////////
 // SIVP - Scilab Image and Video Processing toolbox
 // Copyright (C) 2006  Shiqi Yu
+// Copyright (C) 2012 - DIGITEO - Allan CORNET
 // 
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -28,7 +29,7 @@ function im =  xs2im(win_num, varargin)
     iscolor = 1;
   end
   imfile = TMPDIR + "/sivp-tmp-" + strcat(string(getdate())) + ".ppm";
-  xs2ppm(win_num, imfile, iscolor);
+  xs2ppm(win_num, imfile);
   im = imread(imfile);
   mdelete(imfile);
 endfunction 
