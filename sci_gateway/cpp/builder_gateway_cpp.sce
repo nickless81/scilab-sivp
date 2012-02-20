@@ -86,6 +86,7 @@ function builder_gateway_cpp()
   opencv_libs = [];
 
   if getos() <> 'Windows' then  //linux
+    gw_cpp_files = [gw_cpp_files, "common.h", "gw_sivp.h"];
     opencv_version = unix_g('pkg-config --modversion opencv');
     if( length(opencv_version) == 0 | ( strtod( strsubst(opencv_version, '.', '')) <= 99.9 ) )
       error(gettext("OpenCV (version >= 1.0.0) is needed for compiling SIVP."));
