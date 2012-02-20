@@ -7,6 +7,7 @@ o Changed:
   * Scilab 5.4 required
   * ATOMS 5.4 compatibility
   * Warnings on Windows 64 bit
+  * Add unit test for each function
 
 ------------------------------------------------------------
         SIVP 0.5.4
