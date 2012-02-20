@@ -4,9 +4,7 @@
 // unit test fspecial
 //==============================================================================
 im = imread(fullpath(getSIVPpath() + "/images/lena.png"));
-filter = fspecial('sobel');
-Warning : redefining function: filter                  . Use funcprot(0) to avoid this message
-
-imf = imfilter(im, filter);
+fl = fspecial('sobel');
+imf = imfilter(im, fl);
 imshow(imf);
 //==============================================================================

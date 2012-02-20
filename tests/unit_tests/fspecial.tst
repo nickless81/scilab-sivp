@@ -4,7 +4,7 @@
 // unit test fspecial
 //==============================================================================
 im = imread(fullpath(getSIVPpath() + "/images/lena.png"));
-filter = fspecial('sobel');
-imf = imfilter(im, filter);
+fl = fspecial('sobel');
+imf = imfilter(im, fl);
 imshow(imf);
 //==============================================================================
