@@ -1,0 +1,12 @@
+//==============================================================================
+// Allan CORNET - 2012 - DIGITEO
+//==============================================================================
+// unit test fspecial
+//==============================================================================
+im = imread(fullpath(getSIVPpath() + "/images/lena.png"));
+filter = fspecial('sobel');
+Warning : redefining function: filter                  . Use funcprot(0) to avoid this message
+
+imf = imfilter(im, filter);
+imshow(imf);
+//==============================================================================
