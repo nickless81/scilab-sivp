@@ -32,7 +32,8 @@ int int_imread(char * fname)
 
   GetRhsVar(1, "c", &mR, &nR, &lR);
 
-  pImage = cvLoadImage(cstk(lR), -1);
+  // fix default mode for compatibility with previous version of SIVP
+  pImage = cvLoadImage(cstk(lR), 1);
 
   /* if load image failed */
   if(pImage == NULL)
