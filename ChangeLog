@@ -8,6 +8,7 @@ o Changed:
   * ATOMS 5.4 compatibility
   * Warnings on Windows 64 bit
   * Add unit test for each function
+  * extend imshow to display in a standard graphic window
 
 ------------------------------------------------------------
         SIVP 0.5.4
