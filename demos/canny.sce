@@ -1,4 +1,6 @@
 // ====================================================================
+stacksize('max');
+// ====================================================================
 function demo_canny()
   filename = fullpath(getSIVPpath() + 'images/lena.png');
   im = imread(filename);               

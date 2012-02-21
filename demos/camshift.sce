@@ -1,4 +1,6 @@
 // ====================================================================
+stacksize('max');
+// ====================================================================
 function demo_camshift()
   filename =  fullpath(getSIVPpath() + 'images/red-car-video.avi');
   n = aviopen(filename);
