@@ -46,8 +46,8 @@ function sivplib = startModule()
   // load dependencies
   // =============================================================================
   // load dependencies on OpenCV 3.2.1
+  mprintf("\tLoad dependencies\n");
   if getos() == 'Windows' then
-     mprintf("\tLoad dependencies\n");
     if win64() then
       opencvDllPath = root_tlbx + '\thirdparty\opencv\windows\x64\bin\';
       tbbDllPath = root_tlbx + '\thirdparty\opencv\windows\common\tbb\intel64\';
