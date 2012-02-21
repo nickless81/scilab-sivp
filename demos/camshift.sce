@@ -1,6 +1,6 @@
 // ====================================================================
 function demo_camshift()
-  filename =  fullpath(getSIVPpath() + 'images/red-car-video.mpg');
+  filename =  fullpath(getSIVPpath() + 'images/red-car-video.avi');
   n = aviopen(filename);
   // skip the first 4 frames
   im = avireadframe(n);
