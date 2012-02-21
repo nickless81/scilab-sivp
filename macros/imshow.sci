@@ -19,7 +19,25 @@
 ////////////////////////////////////////////////////////////
 
 
-function imshow(im)
+function imshow(im, outputMode)
+
+  if ~isdef('outputMode') then
+    outputMode = 0; // tcl/tk default;
+    if ~with_tk() then
+      outputMode = 1; // standard graphic output
+    end
+  else
+    if type(outputMode) <> 1 then
+      error(999, msprintf(_("%s: Wrong type for input argument #%d: A scalar double expected.\n"), 'imshow', 2));
+    end
+    if size(outputMode, '*') <> 1 then
+      error(999, msprintf(_("%s: Wrong size for input argument #%d: A scalar double expected.\n"), 'imshow', 2));
+    end
+    if ~or(outputMode == [0, 1]) then
+      error(999, msprintf(_("%s: Wrong value for input argument #%d: ''%d'' or ''%d'' expected.\n"), 'imshow', 2, 0, 1));
+    end
+  end
+  
   //get dim of image
   width = size(im, 2);
   height = size(im, 1);
@@ -41,8 +59,11 @@ function imshow(im)
   end
 
   imc = mat2utfimg(im2uint8(im));
-
-  if with_tk() then
+  
+  if outputMode == 0 then
+    if ~with_tk() then
+      warning('Cannot display (no tcl/tk installed)');
+    end
     if (channel == 1)
       imc = 'P5' + char(10) + msprintf("%d %d", width, height) + char(10) + '255' + char(10) + char(imc);
     else
@@ -53,8 +74,21 @@ function imshow(im)
     TCL_SetVar('imageheight', msprintf("%d", height));
     TCL_SetVar('imagechannel', msprintf("%d", channel));
     TCL_SetVar('imagedata', imc);
-    TCL_EvalFile(getSIVPpath() +'/macros/imshow.tcl');
+    TCL_EvalFile(getSIVPpath() +'/tcl/imshow.tcl');
   else
-    warning('Cannot display (no tcl/tk installed)');
+    NumberOfPixels = width * height;
+    im = im2double(im);
+    ColorMap = matrix(im, NumberOfPixels, channel);
+    IndexImage = matrix(1 : NumberOfPixels, width, height);
+    drawlater();
+    f = gcf();
+    if f.figure_id == 100000 then // demos window
+      f = scf(); 
+    end
+    f.figure_size = [width, height];
+    f.color_map = ColorMap;
+    Matplot(IndexImage);
+    drawnow();
   end
+
 endfunction

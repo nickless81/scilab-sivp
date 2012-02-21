@@ -19,7 +19,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>imshow(im)</synopsis>
+    <synopsis>imshow(im)
+imshow(im, outputMode)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -34,6 +35,14 @@
         </listitem>
       </varlistentry>
     </variablelist>
+      <varlistentry>
+        <term>outputMode</term>
+
+        <listitem>
+           outputMode a scalar double 0 for default tcl/tk window, 1 for scilab graphic window (default on MacOs)
+        </listitem>
+      </varlistentry>
+    
   </refsection>
 
   <refsection>
@@ -66,7 +75,9 @@
     <title>Examples</title>
 
     <programlisting role="example">    im = imread(fullpath(getSIVPpath() + "/images/lena.png"));
-    imshow(im);</programlisting>
+    imshow(im);
+    imshow(im, 1);
+    </programlisting>
   </refsection>
 
   <refsection>
