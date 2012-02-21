@@ -9,6 +9,7 @@ o Changed:
   * Warnings on Windows 64 bit
   * Add unit test for each function
   * extend imshow to display in a standard graphic window
+    (it allows to work on MacOs)
 
 ------------------------------------------------------------
         SIVP 0.5.4
