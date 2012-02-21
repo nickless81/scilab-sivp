@@ -63,6 +63,7 @@ function imshow(im, outputMode)
   if outputMode == 0 then
     if ~with_tk() then
       warning('Cannot display (no tcl/tk installed)');
+      return;
     end
     if (channel == 1)
       imc = 'P5' + char(10) + msprintf("%d %d", width, height) + char(10) + '255' + char(10) + char(imc);
@@ -76,8 +77,14 @@ function imshow(im, outputMode)
     TCL_SetVar('imagedata', imc);
     TCL_EvalFile(getSIVPpath() +'/tcl/imshow.tcl');
   else
-    NumberOfPixels = width * height;
     im = im2double(im);
+    [width, height, channel] = size(im);
+    if channel == 1 then
+      im(:,:,2) = im(:,:,1);
+      im(:,:,3) = im(:,:,1);
+      channel = 3;
+    end
+    NumberOfPixels = width * height;    
     ColorMap = matrix(im, NumberOfPixels, channel);
     IndexImage = matrix(1 : NumberOfPixels, width, height);
     drawlater();
