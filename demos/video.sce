@@ -1,6 +1,6 @@
 // ====================================================================
 function demo_video()
-  filename = fullpath(getSIVPpath() + 'images/video.mpg');
+  filename = fullpath(getSIVPpath() + 'images/red-car-video.avi');
   n = aviopen(filename);
   for idx = 1:100,
     im = avireadframe(n);
