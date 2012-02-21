@@ -65,6 +65,37 @@ function sivplib = startModule()
     link(opencvDllPath + 'opencv_calib3d231' + getdynlibext());
     link(opencvDllPath + 'opencv_objdetect231' + getdynlibext());
     link(opencvDllPath + 'opencv_video231' + getdynlibext());
+  else
+    if execstr('link(''libopencv_core'' + getdynlibext())', 'errcatch') == 0 then
+      link('libopencv_highgui' + getdynlibext());
+      link('libopencv_imgproc' + getdynlibext());
+      link('libopencv_flann' + getdynlibext());
+      link('libopencv_features2d' + getdynlibext());
+      link('libopencv_calib3d' + getdynlibext());
+      link('libopencv_objdetect' + getdynlibext());
+      ink('libopencv_video' + getdynlibext());
+    else
+      [a, b] = getversion();
+      is_x64 = or(b == 'x64');
+      if (is_x64) then
+        opencvDynLibPath = fullpath(root_tlbx + '/thirdparty/opencv/" + getos() + "/x64/bin/");
+      else
+        opencvDynLibPath = fullpath(root_tlbx + '/thirdparty/opencv/" + getos() + "/x86/bin/");
+      end
+      if execstr('link(opencvDynLibPath + ''libopencv_core'' + getdynlibext())', 'errcatch') == 0 then
+        link(opencvDynLibPath + 'libopencv_highgui' + getdynlibext());
+        link(opencvDynLibPath + 'libopencv_imgproc' + getdynlibext());
+        link(opencvDynLibPath + 'libopencv_flann' + getdynlibext());
+        link(opencvDynLibPath + 'libopencv_features2d' + getdynlibext());
+        link(opencvDynLibPath + 'libopencv_calib3d' + getdynlibext());
+        link(opencvDynLibPath + 'libopencv_objdetect' + getdynlibext());
+        link(opencvDynLibPath + 'libopencv_video' + getdynlibext());
+      else
+        warning("Can not load dependencies (opencv 2.3.1 or more required).");
+        sivplib = [];
+        return;
+      end
+    end
   end
 
   // load gateways
@@ -99,3 +130,4 @@ endfunction
 sivplib = startModule();
 clear startModule; // remove startModule on stack
 // =============================================================================
+
