@@ -530,7 +530,6 @@ int int_avireadframe(char * fname)
   if (! pImage)
   {
       Create2DDoubleMat(Rhs+1, 0, 0, &tmp);
-      sciprint("Warning: No frame.\r\n", fname);
   }
   else if(! IplImg2Mat(pImage, Rhs+1))
     {
