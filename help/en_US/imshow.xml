@@ -39,7 +39,10 @@ imshow(im, outputMode)</synopsis>
         <term>outputMode</term>
 
         <listitem>
-           outputMode a scalar double 0 for default tcl/tk window, 1 for scilab graphic window (default on MacOs)
+           outputMode a scalar double
+           0 as uicontrol component (default),
+           1 for scilab graphic window,
+           2 tcl/tk window
         </listitem>
       </varlistentry>
     
@@ -76,7 +79,11 @@ imshow(im, outputMode)</synopsis>
 
     <programlisting role="example">    im = imread(fullpath(getSIVPpath() + "/images/lena.png"));
     imshow(im);
+    f = scf();
     imshow(im, 1);
+    if with_tk() then
+      imshow(im, 2);
+    end
     </programlisting>
   </refsection>
 
