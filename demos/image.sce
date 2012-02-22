@@ -1,6 +1,4 @@
 // ====================================================================
-stacksize('max');
-// ====================================================================
 function demo_image()
   filename = fullpath(getSIVPpath() + 'images/lena.png');
   im = imread(filename);

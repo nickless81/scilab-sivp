@@ -1,5 +1,5 @@
 // ====================================================================
-stacksize('max');
+stacksize(1e7)
 // ====================================================================
 function demo_noise()
   filename = fullpath(getSIVPpath() + 'images/lena.png');

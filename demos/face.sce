@@ -1,6 +1,4 @@
 // ====================================================================
-stacksize('max');
-// ====================================================================
 function demo_face()
   filename = fullpath(getSIVPpath() + 'images/people.jpg');
   im = imread(filename);

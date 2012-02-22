@@ -1,6 +1,4 @@
 // ====================================================================
-stacksize('max');
-// ====================================================================
 function demo_bgfg()
   filename =  fullpath(getSIVPpath() + '/images/video.avi');
   n = aviopen(filename);

@@ -1,6 +1,4 @@
 // ====================================================================
-stacksize('max');
-// ====================================================================
 function demo_video()
   filename = fullpath(getSIVPpath() + 'images/red-car-video.avi');
   n = aviopen(filename);
