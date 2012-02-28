@@ -73,7 +73,7 @@ function sivplib = startModule()
       link('libopencv_features2d' + getdynlibext());
       link('libopencv_calib3d' + getdynlibext());
       link('libopencv_objdetect' + getdynlibext());
-      ink('libopencv_video' + getdynlibext());
+      link('libopencv_video' + getdynlibext());
     else
       [a, b] = getversion();
       is_x64 = or(b == 'x64');
