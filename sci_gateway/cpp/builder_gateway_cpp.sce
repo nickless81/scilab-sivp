@@ -85,23 +85,30 @@ function builder_gateway_cpp()
 
   opencv_libs = [];
 
-  if getos() <> 'Windows' then  //linux
+  if getos() <> 'Windows' then  //linux, Darwin
     gw_cpp_files = [gw_cpp_files, "common.h", "gw_sivp.h"];
-    opencv_version = unix_g('pkg-config --modversion opencv');
-    if( length(opencv_version) == 0 | ( strtod( strsubst(opencv_version, '.', '')) <= 99.9 ) )
-      error(gettext("OpenCV (version >= 1.0.0) is needed for compiling SIVP."));
-    end;
-
-    if ( strtod( strsubst(opencv_version, '.', '')) < 111 ) then //if opencv version <1.1.1
-      inter_cflags = "-DOPENCV_V1 ";
+    if getos() == 'Darwin' then
+      if ~isdir("/usr/local/include/opencv") then
+        error("Can not find OpenCV. Compiling SIVP needs OpenCV");
+      end
+      inter_cflags = "-DOPENCV_V2 -I/usr/local/include/opencv ";
+      inter_ldflags = "-lopencv_core -lopencv_imgproc -lopencv_calib3d -lopencv_video -lopencv_features2d -lopencv_ml -lopencv_highgui -lopencv_objdetect -lopencv_contrib -lopencv_legacy";
     else
-      inter_cflags = "-DOPENCV_V2 ";
-    end;
+      opencv_version = unix_g('pkg-config --modversion opencv');
+      if( length(opencv_version) == 0 | ( strtod( strsubst(opencv_version, '.', '')) <= 99.9 ) )
+        error(gettext("OpenCV (version >= 1.0.0) is needed for compiling SIVP."));
+      end;
 
-    inter_cflags = inter_cflags + unix_g('pkg-config --cflags opencv');
-    inter_ldflags = unix_g('pkg-config --libs opencv');
-    if( (length(inter_cflags)==0) | (length(inter_ldflags)==0))
-      error("Can not find OpenCV. Compiling SIVP needs OpenCV");
+      if ( strtod( strsubst(opencv_version, '.', '')) < 111 ) then //if opencv version <1.1.1
+        inter_cflags = "-DOPENCV_V1 ";
+      else
+        inter_cflags = "-DOPENCV_V2 ";
+      end;
+      inter_cflags = inter_cflags + unix_g('pkg-config --cflags opencv');
+      inter_ldflags = unix_g('pkg-config --libs opencv');
+      if( (length(inter_cflags)==0) | (length(inter_ldflags)==0))
+        error("Can not find OpenCV. Compiling SIVP needs OpenCV");
+      end    
     end
   else
     gw_cpp_files = [gw_cpp_files, "dllSIVP.cpp"];

@@ -20,6 +20,9 @@
 // =============================================================================
 mode(-1);
 
+// Allows to build with old stack functions of Scilab with 5.4 (and more < 6.0)
+setenv("__USE_DEPRECATED_STACK_FUNCTIONS__", "YES");
+
 function main_builder();
   TOOLBOX_NAME  = "SIVP";
   TOOLBOX_TITLE = "SIVP - Scilab Image and Video Processing Toolbox";
@@ -30,12 +33,12 @@ function main_builder();
   try
 	  v = getversion("scilab");
   catch
-	  error(gettext("Scilab 5.4 or more is required."));
+	  error(gettext("Scilab 5.3 or more is required."));
   end
 
-  if v(2) < 4 then
-	  // new API in scilab 5.4
-	  error(gettext('Scilab 5.4 or more is required.'));  
+  if v(2) < 3 then
+	  // new API in scilab 5.3
+	  error(gettext('Scilab 5.3 or more is required.'));  
   end
   
   // Check modules_manager module availability
