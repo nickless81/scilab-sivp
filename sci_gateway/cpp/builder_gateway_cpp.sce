@@ -120,7 +120,8 @@ function builder_gateway_cpp()
     opencv_libs = [];
   end
 
-
+  inter_cflags = inter_cflags + ' -D__USE_DEPRECATED_STACK_FUNCTIONS__';
+ 
   tbx_build_gateway('gw_sivp', ..
                     gw_cpp_table, ..
                     gw_cpp_files, ..

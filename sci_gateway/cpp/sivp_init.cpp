@@ -18,11 +18,11 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ***********************************************************************/
 /*--------------------------------------------------------------------------*/
-#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "common.h"
 #include "gw_sivp.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 char sSIVP_PATH[MAX_FILENAME_LENGTH];
 /*--------------------------------------------------------------------------*/
