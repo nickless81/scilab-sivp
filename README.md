@@ -1,23 +1,22 @@
 # SIVP - Scilab Image and Video Processing toolbox
-        ================================================
 
 ## About SIVP
 SIVP stands for Scilab Image and Video Processing toolbox. SIVP intends to do image and video processing tasks. SIVP is meant to be a useful, efficient, and free image and video processing toolbox for Scilab.
 
-SIVP homepage: http://sivp.sourceforge.net/
+SIVP homepage: (http://sivp.sourceforge.net/)
 
 SIVP used some source code of SIP (http://siptoolbox.sourceforge.net/),
 thanks to Ricardo Fabbri and other SIP developers.
 
 
 ## Dependencies
-Scilab		>= 5.4		(http://www.scilab.org/)
-OpenCV		>= 3.2.1	(http://sourceforge.net/projects/opencvlibrary/)
+* Scilab		>= 5.4		(http://www.scilab.org/)
+* OpenCV		>= 3.2.1	(http://sourceforge.net/projects/opencvlibrary/)
 		(if you want video support, OpenCV should be compiled with ffmpeg)
 
 
 ## TODO
-More image processing functions
+* More image processing functions
 
 
 ## Bugs
