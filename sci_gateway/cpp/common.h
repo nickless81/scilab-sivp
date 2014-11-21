@@ -40,7 +40,7 @@
 
 #include <stdio.h>
 
-#include <cxcore.h>
+//#include <cxcore.h>
 #include <cv.h>
 #include <cvaux.h>
 #include <highgui.h>
