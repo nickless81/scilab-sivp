@@ -1,0 +1,5 @@
+install:
+  - sudo apt-get update -qq
+  - sudo apt-get install scilab libopencv-dev 
+script:
+  - scilab-cli -e 'cd /vagrant; result = exec("builder.sce", "errcatch"); exit(result)'
