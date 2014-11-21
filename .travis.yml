@@ -3,6 +3,6 @@ os:
   - linux
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install libcv-dev scilab 
+  - sudo apt-get install libcv-dev libopencv-dev scilab 
 script:
   - scilab-cli -e 'result = exec("builder.sce", "errcatch"); exit(result)'
