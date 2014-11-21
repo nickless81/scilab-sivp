@@ -40,11 +40,11 @@
 
 #include <stdio.h>
 
-//#include <cxcore.h>
+#include <cxcore.h>
 #include <cv.h>
-#include <cvaux.h>
-#include <highgui.h>
-
+#include <opencv2/highgui/highgui_c.h>
+#include <opencv2/legacy/legacy.hpp>
+#include <opencv2/video/background_segm.hpp>
 #include <stack-c.h>
 #include <Scierror.h>
 #include <sciprint.h>
