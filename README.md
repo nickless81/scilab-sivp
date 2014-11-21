@@ -1,5 +1,6 @@
 # SIVP - Scilab Image and Video Processing toolbox
 
+[![Build Status](https://travis-ci.org/acbalingit/scilab-sivp.svg?branch=master)](https://travis-ci.org/acbalingit/scilab-sivp)
 ## About SIVP
 SIVP stands for Scilab Image and Video Processing toolbox. SIVP intends to do image and video processing tasks. SIVP is meant to be a useful, efficient, and free image and video processing toolbox for Scilab.
 
