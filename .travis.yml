@@ -6,3 +6,5 @@ before_install:
   - sudo apt-get install libcv-dev libopencv-dev scilab 
 script:
   - scilab -nw -e 'result = exec("builder.sce", "errcatch"); exit(result)'
+  - scilab -nw -e 'result = exec("loader.sce", "errcatch"); exit(result)'
+  - scilab -nw -e 'result = exec("cleaner.sce", "errcatch"); exit(result)'
