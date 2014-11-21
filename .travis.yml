@@ -1,3 +1,6 @@
+language: cpp
+os:
+  - linux
 install:
   - sudo apt-get update -qq
   - sudo apt-get install scilab libopencv-dev 
