@@ -12,7 +12,7 @@ thanks to Ricardo Fabbri and other SIP developers.
 
 ## Dependencies
 * Scilab		>= 5.4		(http://www.scilab.org/)
-* OpenCV		>= 3.2.1	(http://sourceforge.net/projects/opencvlibrary/)
+* OpenCV		>= 2.3.1	(http://sourceforge.net/projects/opencvlibrary/)
 		(if you want video support, OpenCV should be compiled with ffmpeg)
 
 
